@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\begin{document}
+
+\title{Survaival analysis brief}
+Pretty much any probability density $f(t)$ defined on the positive real line can be used to model time-to-event ($t$) data, though some are more handy than others. Some simple ones are the exponential, log-logistic(with log-transformed data), Weibull and log-normal distributions - these are handily available in R survival packages.
+
+In Winbugs/JAGS, they are easily implemented (following examples):
+
+<<eval=FALSE>>=
+model
+{ 
+  for(i in 1 : N) {
+    datas[i]~ dweib(r,lambda[i])I(t.cen[i],)
+    				
+    lambda[i] <- exp(mu[i])							 			
+    mu[i]<- beta %*% X[i,]
+  }
+  
+  for (b in 1:n.covs){
+    beta[b] ~ dnorm(0,1e-6)
+  }
+  
+  r ~ dgamma(0.01,0.01)
+}
+@
+
+Often, one is interested in the probability that the event will/will not occur within a certain interval, i.e. $F(t)=P(t<T)=\int_{-\inf}^t f(t)$ or $S(t)=1-F(t)$,respectively. $f(t)$ can be artificially split into the probability that the event hasn't occured up to time $t$ ($S(t)$), and the likelihood that it will happen immediately following T, that is $h(t)=\frac{P(T<t<T+\Delta T|t>T)}{\Delta T}$ as $\Delta T$ approaches 0. Now $f(t)$ can now be written as $f(t)=S(t)*h(t)$, and it becomes easy to see what truncation does: censored observations only contribute $S(t)$ (they \emph{survived}) to the likelihood because $h(t)$ is unobserved. To do this explicitly in BUGS with the ones trick (or afterwards in R):
+
+<<eval=FALSE>>=
+model
+{ 
+  
+  for(i in 1 : N) {
+    
+    # survival
+    log(S[i]) <- -lambda[i]*pow(datas[i],r)
+    # log F
+    log(f[i]) <- log(r)+log(lambda[i])+(r-1)*log(datas[i])-lam[i]*pow(datas[i],r)
+    #partial likelihood
+    log(L[i]) <- t.cen[i]*log(f[i])+(1-t.cen[i])*log(S[i])
+    
+    z[i] <- 1
+    z[i] ~dunif(G[i],H[i])
+    G[i] <- -1/L[i]
+    H[i] <- 1/L[i]
+    
+    LL[i]<-log(L[i])
+    # the rest is the same as above...
+  }
+}
+@
+
+If some individuals never experience the event (i.e., they are \emph{cured}), then this can be incorporated as well and modeled explicitly:
+
+<<eval=FALSE>>=
+model
+{ 
+  
+  for(i in 1 : N) {
+    
+    # survival
+    log(S[i]) <- -lambda[i]*pow(datas[i],r)
+    # log F
+    log(f[i]) <- log(r)+log(lambda[i])+(r-1)*log(datas[i])-lam[i]*pow(datas[i],r)
+    #partial likelihood
+    log(L[i]) <- t.cen[i]*log(th[i]*f[i])+(1-t.cen[i])*log(1-th[i]+th[i]*S[i])
+    
+    logit(th[i])  <- beta_cure %*% X_cure[,i]
+    
+    z[i] <- 1
+    z[i] ~dunif(G[i],H[i])
+    G[i] <- -1/L[i]
+    H[i] <- 1/L[i]
+    
+    LL[i]<-log(L[i])
+    # the rest is the same as above...
+  }
+}
+@
+
+If the underlying process can be though of as a stochastic process (e.g., evolution of biomass) with a deterministic drift, then the distribution of 'times-to-event' of many realizations of this process should follow an inverse-Gaussian with parameters determined by the distance from the \emph{target} and the rate (bias/drift) with which the process approaches the \emph{target}. It can be similarly implemented in BUGS...
+
+<<eval=FALSE>>=
+model
+  { 
+	
+for(i in 1 : N) {
+
+# density
+log(f[i]) <- log(r[i] )-0.9189385+log(pow(datas[i],-1.5))-((r[i] -mu[i]*datas[i])*(r[i] -mu[i]*datas[i]))/(2*datas[i])
+
+# jsut for numerical stability
+exps[i]<-(2*r[i] *mu[i])+log(phi((-r[i] -mu[i]*datas[i])/sqrt(datas[i]))) 
+# survival
+S[i] <- phi((r[i] -mu[i]*datas[i])/sqrt(datas[i]))-exp(exps[i])
+# partial likelihood
+L[i]<- t.cen[i]*(f[i])+(1-t.cen[i])*(S[i])
+
+z[i] <- 1; z[i] ~dunif(G[i],H[i]); G[i] <- -1/L[i]; H[i] <- 1/L[i]
+#LL[i]<-log(L[i])
+lH[i]<-log(H[i])
+
+r[i]  <- beta %*% X[i,]
+		 			
+mu[i]<- beta_dist %*% X_dist[i,]
+
+# ... more detail to follow if needed
+@
+
+
+\end{document}
