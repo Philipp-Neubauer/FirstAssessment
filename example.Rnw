@@ -108,5 +108,5 @@ mu[i]<- beta_dist %*% X_dist[i,]
 # ... more detail to follow if needed
 @
 
-
+JIM TESTING COMMIT
 \end{document}
