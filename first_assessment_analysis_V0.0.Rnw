@@ -1,0 +1,71 @@
+\documentclass{article}
+
+\begin{document}
+
+
+\title{Analysis notes}
+\maketitle
+
+V0.0 PN Mo March 24th 
+
+Data were crudely transformed to input, using max year for any timespans. Subject to further discussion...
+
+<< Data input,results='hide',warning=FALSE>>=
+
+require(dplyr,quietly=T,warn.conflicts=F)
+
+year_table <- tbl_df(read.csv('~/Work/Dropbox/First year of assessment/V2_as_input.csv'))
+
+
+year_table <- year_table %.% mutate(time = YFA - Development)
+@
+
+<<reponse>>=
+hist(year_table$time,20)
+@
+
+Time since \emph{Development} doesn't look normally distributed, nor is it log-normal/gamma etc. The negative values make it quite different froma  classical 'survival analysis' (time since diagnosis, for instance, is always positive).
+\\
+\\
+Try a linear model to have a first look at potential patterns in the data: order rebuiling factor, not sure if that's necessary, but seems intuitive.
+
+<<>>=
+year_table$Rebuild <- ordered(year_table$Rebuild,levels=c('never','previously','currently','closed'))
+
+with(year_table,table(Rebuild))
+
+# set north-east as reference treatment
+RC <- contr.treatment(levels(year_table$Region),base=3)
+
+@
+
+<<time_vs_status>>=
+with(year_table,boxplot(time ~ Rebuild))
+@
+
+
+Try a simple normal linear model without any cencoring
+
+<< Try normal lm>>=
+ylm  <- with(year_table,lm(time ~ Survey + Rebuild + Recreational + Region,contrasts = list(Region = RC)))
+
+summary(ylm)
+@
+
+The contrast in the status is with respect to the base case (never been in a rebuiling plan). Look at fit:
+
+<<lm_fit>>=
+plot(ylm,w=2)
+@
+
+The linear model fits ok, but explains only 17.9\% of the total variance. Some initial questions:
+
+\begin{itemize}
+
+\item Is this the right response to look at? 
+\item Is there a better strategy to give a single number to the development date? OR perhaps cencoring at that end of the distribution is appropriate as well.
+\item What could be additional factors: Size of the fishery in catch volume or revenue? Life-history/taxonomy? 
+
+\end{itemize}
+
+\end{document}
