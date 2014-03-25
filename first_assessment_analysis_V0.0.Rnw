@@ -21,7 +21,7 @@ year_table <- year_table %.% mutate(time = YFA - Development)
 @
 
 <<reponse>>=
-hist(year_table$time,20)
+hist(year_table$time,20,main='',xlab='Time to first assessment')
 @
 
 Time since \emph{Development} doesn't look normally distributed, nor is it log-normal/gamma etc. The negative values make it quite different froma  classical 'survival analysis' (time since diagnosis, for instance, is always positive).
@@ -33,6 +33,8 @@ Try a linear model to have a first look at potential patterns in the data: order
 year_table$Rebuild <- ordered(year_table$Rebuild,levels=c('never','previously','currently','closed'))
 
 with(year_table,table(Rebuild))
+
+with(year_table,table(Region))
 
 # set north-east as reference treatment
 RC <- contr.treatment(levels(year_table$Region),base=3)
