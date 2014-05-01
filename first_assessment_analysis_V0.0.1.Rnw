@@ -1,0 +1,246 @@
+\documentclass{article}
+
+\begin{document}
+
+
+\title{Analysis notes}
+\maketitle
+
+V0.0.1 PN Mo May 2nd
+
+\section(Data manupulation)
+
+Data were crudely transformed to input, using max year for any timespans. Subject to further discussion...
+
+<< Data input,results='hide',warning=FALSE>>=
+
+require(dplyr,quietly=T,warn.conflicts=F)
+
+year.table <- tbl_df(read.csv('~/Work/Dropbox/First year of assessment/V3_Final_dataset.csv',na.strings=c('','NA')))
+
+ref.time <- min(year.table$Year.of.first.stock.assessment,na.rm=T)-1
+
+year.table <- year.table %.% 
+  mutate(time = Year.of.first.stock.assessment - ref.time,
+         survey.abs = Year.of.first.fishery.indepen.dent.surveys)
+
+@
+
+<<reponse>>=
+hist(year.table$time,10,main='',xlab='Time to first assessment')
+@
+
+
+<<>>=
+year.table$Rebuild <- ordered(year.table$Rebuilding.plan.history,levels=c('never','previously','currently','closed'))
+
+with(year.table,table(Rebuild))
+
+with(year.table,table(Region))
+
+# set north-east as reference treatment
+RC <- contr.treatment(levels(year.table$Region),base=3)
+
+@
+
+<<time_vs_status>>=
+boxplot(time ~ Rebuild,data=year.table,xlab='Rebuild status',ylab='Years')
+@
+
+\section{Try simple GLM no censoring}
+
+Try a simple normal linear model without any censoring
+
+<< Try normal lm>>=
+ylm.abs  <- lm(time ~ survey.abs + Rebuild + Recreational...of.catch + Region,contrasts = list(Region = RC), data = year.table)
+
+summary(ylm.abs)
+
+@
+
+The contrast in the status is with respect to the base case (never been in a rebuiling plan). The model doesn't explain much ($<8\%$) and the fit isn't great either:
+
+<<lm_fit>>=
+
+plot(ylm.abs,w=2)
+
+@
+
+\section{Simple Bayesian Weibull survival model}
+
+Try a Bayesian trunkated Weibull model to keep is simple to start with:
+
+<<Jags setup>>=
+
+#assessment time
+a.time <- year.table$time
+
+# true false censoring
+censored <- as.numeric(is.na(a.time))
+
+# censor time - improve here
+ctime <- a.time
+ctime[is.na(a.time)]  <- 2010 - ref.time
+
+# initial values for censored observations
+time.inits <- ctime + 1
+time.inits[!is.na(a.time)] <- NA
+
+# habitat and family random effect - note - taxon is half way between habitat and Family variables, try that too sometime
+
+afs <- function(x) as.numeric(as.factor(x))
+
+hab <- with(year.table,afs(habitat_MM))
+n.hab <- length(unique(hab))
+
+fam <- with(year.table,afs(Family))
+n.fam <- length(unique(fam))
+
+# fixed effect for regions
+region <- data.frame(with(year.table,model.matrix(~Region,contrasts.arg=list(Region = RC))))
+# 
+
+# Covariate dataframe
+covs <- year.table %.%
+  select(Lmax..cm.,
+         TL,
+         Recreational...of.catch,
+         Year.of.fishery.development)
+
+# replace TL for CA spiny lobster with something approximate for now since I can't find a good value
+covs$TL[is.na(covs$TL)] <- 3.2
+
+#scale covariates
+sc.covs <- data.frame(apply(covs,2,function(x) (x-mean(x))/(2*sd(x)) ))
+COVS <- cbind(region, sc.covs)
+n.covs <- ncol(COVS)
+n.stocks <- nrow(COVS)
+@
+
+<<Run Jags model,eval=F>>=
+# set up jags model
+
+require(rjags)
+
+jags.data <- list(
+  COVS=COVS,
+  n.covs=n.covs,
+  n.stocks=n.stocks,
+  hab=hab,
+  fam=fam,
+  n.hab=n.hab,
+  n.fam=n.fam,
+  ctime=ctime,
+  a.time=a.time,
+  censored=censored)
+
+# run model - short run for now...
+JM <- jags.model('Weib_surv.R',inits = list(a.time = time.inits),data=jags.data,n.chains=1)
+
+update(JM,n.iter=2000)
+
+a.out <- coda.samples(JM,variable.names=c('betas','habitat','fp.var','CS'),n.iter = 1e4, thin = 10)
+
+@
+
+<<diagnostic plots, eval=FALSE>>=
+
+plot(a.out)
+crosscorr.plot(a.out)
+
+@
+
+
+<<Get output>>=
+
+# get coeffs from the chains - pull in some helper functions and Rdata from Bayesian model
+source('helper_functs.R')
+load('~/Work/Dropbox/First year of assessment/FA_V001.RData')
+
+# get posterior for cox-snell(CS) residuals from MCMC
+CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
+
+# just look at mean CS for now, can put posterior around it later
+CS.means <- CS.full %.%
+  group_by(Parameter) %.%
+  summarise(post.mean = mean(MCMC))
+
+library(survival)
+
+CS = CS.means$post.mean
+
+# Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
+km.cs <- survfit(Surv(CS,!censored) ~ 1)
+summary.km.cs <- summary(km.cs)
+rcu <- summary.km.rc$time # Cox-Snell residuals of
+                            # uncensored points.
+surv.cs <- summary.km.cs$surv
+plot(rcu,-log(surv.cs),type="p",pch=16,
+xlab="Cox-Snell residual",ylab="Cumulative hazard")
+abline(a=0,b=1,col=3,lwd=2); 
+
+
+coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
+
+coef_P <- coeffs %.%
+  group_by(Parameter) %.%
+  summarise(post.mean = mean(MCMC),
+            post.P = mean(MCMC > 0))
+@
+
+\begin{table}
+\centering
+  \small{
+  \caption{Posterior mean and $P(\beta>0)$ for model parameters}
+    \begin{tabular}{lrr}
+    \newline
+    Parameter & Posterior Mean & Bayesian P \\
+    \hline
+    <<table,results='asis',echo=FALSE>>=
+library(xtable)
+      print(xtable(coef_P),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
+    @
+  \end{tabular}
+}
+\end{table}
+
+
+<< random effects >>=
+# habitat
+habs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'habitat',var.names = with(year.table,levels(habitat_MM))))
+
+hab_P <- habs %.%
+  group_by(Parameter) %.%
+  summarise(post.mean = mean(MCMC),
+            post.P = mean(MCMC > 0))
+
+@
+
+
+\begin{table}
+\centering
+  \small{
+  \caption{Posterior mean and $P(\beta>0)$ for model habitat}
+    \begin{tabular}{lrr}
+    \newline
+    Habitat & Posterior Mean & Bayesian P \\
+    \hline
+    <<habitat_table,results='asis',echo=FALSE>>=
+library(xtable)
+      print(xtable(hab_P),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
+    @
+  \end{tabular}
+}
+\end{table}
+
+<<>>=
+#
+# finite population variance of 
+fp.vars <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'fp.var')) %.% summarise(mean(MCMC)^2)
+
+fp.vars
+
+@
+
+
+\end{document}
