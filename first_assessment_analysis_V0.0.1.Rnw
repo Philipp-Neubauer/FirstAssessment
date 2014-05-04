@@ -6,11 +6,11 @@
 \title{Analysis notes}
 \maketitle
 
-V0.0.1 PN Mo May 2nd
+V0.0.1 PN
 
-\section(Data manupulation)
+\section{Data manupulation}
 
-Data were crudely transformed to input, using max year for any timespans. Subject to further discussion...
+Data were crudely transformed to input, using Mike's suggestions for fishery deveopment year.
 
 << Data input,results='hide',warning=FALSE>>=
 
@@ -18,7 +18,7 @@ require(dplyr,quietly=T,warn.conflicts=F)
 
 year.table <- tbl_df(read.csv('~/Work/Dropbox/First year of assessment/V3_Final_dataset.csv',na.strings=c('','NA')))
 
-ref.time <- min(year.table$Year.of.first.stock.assessment,na.rm=T)-1
+ref.time <- min(year.table$Year.of.first.stock.assessment, na.rm=T)-1
 
 year.table <- year.table %.% 
   mutate(time = Year.of.first.stock.assessment - ref.time,
@@ -27,12 +27,12 @@ year.table <- year.table %.%
 @
 
 <<reponse>>=
-hist(year.table$time,10,main='',xlab='Time to first assessment')
+hist(year.table$time, 10, main='', xlab='Time to first assessment')
 @
 
 
 <<>>=
-year.table$Rebuild <- ordered(year.table$Rebuilding.plan.history,levels=c('never','previously','currently','closed'))
+year.table$Rebuild <- ordered(year.table$Rebuilding.plan.history ,levels=c('never','previously','currently','closed'))
 
 with(year.table,table(Rebuild))
 
@@ -47,7 +47,7 @@ RC <- contr.treatment(levels(year.table$Region),base=3)
 boxplot(time ~ Rebuild,data=year.table,xlab='Rebuild status',ylab='Years')
 @
 
-\section{Try simple GLM no censoring}
+\section{Try simple GLM, no censoring}
 
 Try a simple normal linear model without any censoring
 
@@ -58,7 +58,7 @@ summary(ylm.abs)
 
 @
 
-The contrast in the status is with respect to the base case (never been in a rebuiling plan). The model doesn't explain much ($<8\%$) and the fit isn't great either:
+The contrast in the status is with respect to the base case (never been in a rebuiling plan). The model doesn't explain much ($<8\%$) and the fit is ok, but not great:
 
 <<lm_fit>>=
 
@@ -78,7 +78,7 @@ a.time <- year.table$time
 # true false censoring
 censored <- as.numeric(is.na(a.time))
 
-# censor time - improve here
+# censor time - improve here from the arbitrary 2010 cutoff for censored (non-assessed stocks)
 ctime <- a.time
 ctime[is.na(a.time)]  <- 2010 - ref.time
 
@@ -86,7 +86,7 @@ ctime[is.na(a.time)]  <- 2010 - ref.time
 time.inits <- ctime + 1
 time.inits[!is.na(a.time)] <- NA
 
-# habitat and family random effect - note - taxon is half way between habitat and Family variables, try that too sometime
+# habitat and family random effect - note - taxon is half way between habitat and family variables, try that too sometime
 
 afs <- function(x) as.numeric(as.factor(x))
 
@@ -110,7 +110,7 @@ covs <- year.table %.%
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 covs$TL[is.na(covs$TL)] <- 3.2
 
-#scale covariates
+#scale covariates for comparison
 sc.covs <- data.frame(apply(covs,2,function(x) (x-mean(x))/(2*sd(x)) ))
 COVS <- cbind(region, sc.covs)
 n.covs <- ncol(COVS)
@@ -179,13 +179,18 @@ plot(rcu,-log(surv.cs),type="p",pch=16,
 xlab="Cox-Snell residual",ylab="Cumulative hazard")
 abline(a=0,b=1,col=3,lwd=2); 
 
+@
 
+It looks as though the fit of the Weibull isn't too bad, some deviation is expected in the tails of the distribution, but over the bulk it seems to follow the 1:1 line fairly closely. Perhaps not much of an improvement over the normal GLM above - should try differnet distributional assumptions here. We could also plot the posterior for the CS residuals and see if the 1:1 line falls outside a 95\% interval for any points.
+
+<<table of regression coeffs>>=
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
 
+# regressin coeffs are -beta
 coef_P <- coeffs %.%
   group_by(Parameter) %.%
-  summarise(post.mean = mean(MCMC),
-            post.P = mean(MCMC > 0))
+  summarise(post.mean = -mean(MCMC),
+            post.P = 1-mean(MCMC > 0))
 @
 
 \begin{table}
@@ -211,8 +216,8 @@ habs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'habitat',var.nam
 
 hab_P <- habs %.%
   group_by(Parameter) %.%
-  summarise(post.mean = mean(MCMC),
-            post.P = mean(MCMC > 0))
+  summarise(post.mean = -mean(MCMC),
+            post.P = 1-mean(MCMC > 0))
 
 @
 
@@ -235,7 +240,7 @@ library(xtable)
 
 <<>>=
 #
-# finite population variance of 
+# finite population variance of family random effects
 fp.vars <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'fp.var')) %.% summarise(mean(MCMC)^2)
 
 fp.vars
