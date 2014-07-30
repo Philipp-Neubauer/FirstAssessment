@@ -334,5 +334,22 @@ fp.vars
 
 @
 
+\section{Add NOAA data on all \emph{stocks}}
 
+Obviously, 
+
+<<>>=
+
+stock.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/ManagedSpecies2014.csv'), na.strings=c('','NA','#N/A'), stringsAsFactors = F))
+
+#subset to just FMU stocks ??? 
+stock.table.sset <- subset(stock.table,do.call('rbind',strsplit(ACL.,split = ' - '))[,1] == 'Y')
+
+stock.table.sset
+
+load(file.path(DB,"fishbase-web.RData",v=T))
+
+stock.merged <- tbl_df(merge(stock.table.sset,fb,by.y = 'species',by.x = 'Scientific.Name',all.y=F))
+
+@
 \end{document}
