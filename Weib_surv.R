@@ -9,7 +9,7 @@ model{
   a.time[i] ~ dweib(tau,mu[i])
   
   # linear predictor
-  log(mu[i]) <- betas[1:n.covs] %*% COVS[i,1:n.covs] + habitat[hab[i]] + family[fam[i]]
+  log(mu[i]) <- betas[1:n.covs] %*% COVS[i,1:n.covs] + habitat[hab[i]] + taxonomy[tax[i]]
   
   # cox-snell residuals - use pweib alone for predictions of P(t<T|X) i.e. for some predictor X what is the probability that a stock is assessed within T years
   CS[i] <- -log(1-pweib(ctime[i],tau,mu[i]))
@@ -35,16 +35,16 @@ model{
   hab.xi ~ dnorm(0,0.04)
   hab.prec ~ dgamma(0.5,0.5)
   
-  for (l in 1:n.fam){
-    family[l] <- fam.xi*fam.eta[l]
-    fam.eta[l] ~ dnorm(0,fam.prec)
+  for (l in 1:n.tax){
+    taxonomy[l] <- tax.xi*tax.eta[l]
+    tax.eta[l] ~ dnorm(0,tax.prec)
   }
   # finite population variance
-  fp.var <- sd(family)
+  fp.var <- sd(taxonomy)
   
   # half cauchy on random effects
-  fam.xi ~ dnorm(0,0.04)
-  fam.prec ~ dgamma(0.5,0.5)
+  tax.xi ~ dnorm(0,0.04)
+  tax.prec ~ dgamma(0.5,0.5)
   
   tau ~ dgamma(0.1,0.1)
   
