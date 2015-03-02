@@ -214,7 +214,7 @@ year.table <- red.tab %>%
   mutate(time = year - ref.time)
 @
 
-<<results='hide',cache=T,warning=FALSE>>=
+<<results='hide',cache=T,warning=FALSE,comment=>>=
 
 # get habitat and taxonomy from fishbase and other DBs
 require(rfishbase)
