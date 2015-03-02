@@ -13,9 +13,7 @@ model{
   
   # cox-snell residuals - use pweib alone for predictions of P(t<T|X) i.e. for some predictor X what is the probability that a stock is assessed within T years
   CS[i] <- -log(1-pweib(ctime[i],tau,mu[i]))
-  
-  
-  
+ 
   }
   
   # regression parameters
@@ -40,7 +38,8 @@ model{
     tax.eta[l] ~ dnorm(0,tax.prec)
   }
   # finite population variance
-  fp.var <- sd(taxonomy)
+  fp.sd.tax <- sd(taxonomy)
+  fp.sd.hab <- sd(habitat)
   
   # half cauchy on random effects
   tax.xi ~ dnorm(0,0.04)

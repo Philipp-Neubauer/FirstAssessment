@@ -92,7 +92,7 @@ land.price$Species[grepl('SHRIMP, MA',land.price$Species,ignore.case = T) & (lan
 
 I reduced the table down to only stocks that had at least 10t of catch at some point over the regional time-series.
 
-<<Some subsetting>>=
+<<Some subsetting,cache=TRUE>>=
 
 # only keep stocks where 10t have been caught in a region at some point
 suml <- tbl_df(land.price) %>% 
@@ -118,7 +118,7 @@ land.price[,prop.cols] <- apply(land.price[,prop.cols],2,as.numeric)
 
 Stocks were defined as region-species/group, with landings and price totalled over the region.
 
-<<>>=
+<<results='hide',cache=TRUE>>=
 
 # make it fast
 library("compiler")
@@ -137,7 +137,7 @@ stock.landings <- data.table(year = rep(1,l),
 # clunky, but easy:
 a=1
 for (i in 1:nrow(land.price)){
-  cat(i,'\n')
+  #cat(i,'\n')
   
   stocks <- land.price[i,stock.cols]
   props <- land.price[i,prop.cols]
@@ -195,12 +195,13 @@ full.tab %>%
   mutate(assessed = !is.na(Year.of.first.stock.assessment)) %>%
   group_by(region,year,assessed) %>%
   summarise(ns = n()) %>%
-  ggplot() + geom_line(aes(col=assessed,x=year,y=ns,linetype = region)) + theme_bw()
+  ggplot() + geom_line(aes(col=region,x=year,y=ns,linetype = assessed)) + ylab('Number of species') + xlab('Year') + 
+  theme_bw()
 @
 
 For the survival analysis, we only need the last year and cumulative price and landings. I think.
 
-<<>>=
+<<results='hide'>>=
 # only need year with assessment, or last year.
 red.tab <- full.tab %>% 
   mutate(maxyear = max(year)) %>%
@@ -211,7 +212,9 @@ ref.time <- min(red.tab$year, na.rm=T)-1
 #final data table
 year.table <- red.tab %>% 
   mutate(time = year - ref.time)
+@
 
+<<results='hide',cache=T,warning=FALSE>>=
 
 # get habitat and taxonomy from fishbase and other DBs
 require(rfishbase)
@@ -292,8 +295,8 @@ ech <- names(which(unlist(lapply(cs[-urn2],function(x) x$name[x$rank=='Phylum'] 
 habitats[year.table$species %in% ech] <- 'benthopelagic'
 
 # Annelida are benthic too
-ann <- names(which(unlist(lapply(cs[-urn2],function(x) x$name[x$rank=='Phylum'] == 'Annelida'))))
-habitats[year.table$species %in% ann] <- 'benthopelagic'
+# ann <- names(which(unlist(lapply(cs[-urn2],function(x) x$name[x$rank=='Phylum'] == 'Annelida'))))
+# habitats[year.table$species %in% ann] <- 'benthopelagic'
 
 # fish orders are benthic too
 fsh <- names(which(unlist(lapply(cs[-urn2],function(x) x$name[x$rank=='Order'] == 'Pleuronectiformes'|  x$name[x$rank=='Order'] == 'Rajiformes' | 
@@ -356,12 +359,12 @@ Some preliminary plots:
 <<>>=
 year.table$assessed <- !is.na(as.numeric(year.table$Year.of.first.stock.assessment))
 
-ggplot(year.table) + geom_bar(aes(fill=assessed,x=habitat,y=(..count..)/sum(..count..))) + coord_flip() + theme_bw()
+ggplot(year.table) + geom_bar(aes(fill=assessed,x=habitat)) +coord_flip() + theme_bw()
 
-ggplot(year.table) + geom_bar(aes(fill=assessed,x=phylum,y=(..count..)/sum(..count..))) + coord_flip() + theme_bw()
+ggplot(year.table) + geom_bar(aes(fill=assessed,x=phylum)) + coord_flip() + theme_bw()
 
 ggplot(year.table %>% filter(phylum == 'Chordata')) + 
-  geom_bar(aes(fill=assessed,x=order,y=(..count..)/sum(..count..))) + coord_flip()
+  geom_bar(aes(fill=assessed,x=order)) + coord_flip() + theme_bw()
   #theme(axis.text.x = element_text(angle = -90))
 
 @
@@ -397,7 +400,7 @@ afs <- function(x) as.numeric(as.factor(x))
 hab <- with(year.table,afs(habitat))
 n.hab <- length(unique(hab))
 
-tax <- with(year.table,afs(order))
+tax <- with(year.table,afs(phylum))
 n.tax <- length(unique(tax))
 
 # random effect for regions
@@ -420,7 +423,7 @@ n.covs <- ncol(COVS)
 n.stocks <- nrow(COVS)
 @
 
-<<Run Jags model,eval=T>>=
+<<Run Jags model,eval=T,cache=T>>=
 # set up jags model
 
 require(rjags)
@@ -438,11 +441,11 @@ jags.data <- list(
   censored=censored)
 
 # run model - short run for now...
-JM <- jags.model('Weib_surv.R',inits = list(a.time = time.inits),data=jags.data,n.chains=1)
+JM <- jags.model('Weib_surv.R',inits = list(a.time = time.inits),data=jags.data,n.chains=3)
 
 update(JM,n.iter=10000)
 
-a.out <- coda.samples(JM,variable.names=c('betas','habitat','fp.var','CS'),n.iter = 2e5, thin = 100)
+a.out <- coda.samples(JM,variable.names=c('betas','habitat','fp.sd.tax','fp.sd.hab','taxonomy','CS'),n.iter = 2e4, thin = 10)
 
 save(a.out,file=paste0('model.out',date(),'.rda'))
 
@@ -450,8 +453,8 @@ save(a.out,file=paste0('model.out',date(),'.rda'))
 
 <<diagnostic plots, eval=T>>=
 
-plot(a.out)
-crosscorr.plot(a.out)
+#plot(a.out)
+#crosscorr.plot(a.out)
 
 @
 
@@ -463,14 +466,10 @@ source('helper_functs.R')
 #load('~/Work/Dropbox/First year of assessment/FA_V001.RData')
 
 # get posterior for cox-snell(CS) residuals from MCMC
-CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
+mcmc.out <- do.call('rbind',a.out)
+CS.full <- mcmc.out[,grepl('CS',colnames(mcmc.out))]
 
 # just look at mean CS for now, can put posterior around it later
-CS.means <- CS.full %>%
-  group_by(Parameter) %>%
-  summarise(post.mean = median(MCMC),
-            q1 = quantile(MCMC,0.025),
-            q3 = quantile(MCMC,0.975))
 
 library(survival)
 
@@ -479,32 +478,41 @@ CS_high = CS.means$q3
 CS_low = CS.means$q1
 
 # Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
-km.cs <- survfit(Surv(CS,!censored) ~ 1)
-summary.km.cs <- summary(km.cs)
-rcu <- summary.km.cs$time # Cox-Snell residuals of
-                            # uncensored points.
-surv.cs <- summary.km.cs$surv
-# intervals
-km.cs.h <- survfit(Surv(CS_high,!censored) ~ 1)
-summary.km.cs.h <- summary(km.cs.h)
-rcu.h <- summary.km.cs.h$time # Cox-Snell residuals of
-                            # uncensored points.
-surv.cs.h <- summary.km.cs.h$surv
-km.cs.l <- survfit(Surv(CS_low,!censored) ~ 1)
-summary.km.cs.l <- summary(km.cs.l)
-rcu.l <- summary.km.cs.l$time # Cox-Snell residuals of
-                            # uncensored points.
-surv.cs.l <- summary.km.cs.l$surv
+CS_func <- function(CS,censored){
+  km.cs <- survfit(Surv(CS,!censored) ~ 1)
+  summary.km.cs <- summary(km.cs)
+  rcu <- summary.km.cs$time # Cox-Snell residuals of
+  # uncensored points.
+  surv.cs <- summary.km.cs$surv
+  return(list(rcu,surv.cs))
+}
 
-plot(rcu,-log(surv.cs),type="p",pch=16,
-xlab="Cox-Snell residual",ylab="Cumulative hazard")
-lines(rcu.l,-log(surv.cs.l),lty=2)
-lines(rcu.h,-log(surv.cs.h),lty=2)
-abline(a=0,b=1,col=3,lwd=2); 
+CS.means <- apply(CS.full,1,CS_func,censored = censored)
+CS.means <- do.call('rbind',lapply(CS.means,function(x) do.call('cbind',x)))
+
+bins <- cut(CS.means[,1],breaks = quantile(CS.means[,1], probs = seq(0, 1, 0.005)),labels = FALSE)
+
+CS.means <- data.frame(CS.means)
+CS.means$bin <- bins
+colnames(CS.means) <- c('time','CS','bin')
+
+CS.mean.sum <- CS.means %>% group_by(bin) %>% 
+  summarise(m_CS = mean(-log(CS)),
+            m_t = mean(time),
+            q1_CS = quantile(-log(CS),0.025),
+            q3_CS = quantile(-log(CS),0.975))
+
+ggplot(CS.mean.sum,aes(y=m_CS,x=m_t))+
+  geom_point()+
+ geom_ribbon(aes(ymin=q1_CS,ymax=q3_CS),col='grey80',alpha=0.3)+  
+  geom_abline(aes(yintercept=0,slope=1))+
+  scale_x_continuous("Cox-Snell residual",expand=c(0,0))+
+  ylab("Cumulative hazard")+
+  theme_bw()
 
 @
 
-It looks as though the fit of the Weibull isn't too bad, some deviation is expected in the tails of the distribution, but over the bulk it seems to follow the 1:1 line fairly closely. We could also plot the posterior for the CS residuals and see if the 1:1 line falls outside a 95\% interval for any points.
+It looks as though the fit of the Weibull isn't too bad, some deviation is expected in the tails of the distribution, but over the bulk it seems to follow the 1:1 line fairly closely.
 
 <<table of regression coeffs>>=
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
@@ -537,11 +545,19 @@ library(xtable)
 # habitat
 habs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'habitat',var.names = with(year.table,levels(factor(habitat)))))
 
+taxs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'taxonomy',var.names = with(year.table,levels(factor(phylum)))))
+
+
 
 hab_P <- habs %>%
   group_by(Parameter) %>%
-  summarise(post.mean = -mean(MCMC),
-            post.P = 1-mean(MCMC > 0))
+  summarise(post.mean = exp(-mean(MCMC)),
+            post.P = (1-mean(MCMC > 0)))
+
+tax_P <- taxs %>%
+  group_by(Parameter) %>%
+  summarise(post.mean = exp(-mean(MCMC)),
+            post.P = (1-mean(MCMC > 0)))
 
 @
 
@@ -558,6 +574,7 @@ hab_P <- habs %>%
 library(xtable)
       print(xtable(hab_P),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
     @
+  
   \end{tabular}
 }
 \end{table}
