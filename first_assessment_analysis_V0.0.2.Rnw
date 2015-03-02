@@ -347,9 +347,21 @@ stock.table.sset <- subset(stock.table,do.call('rbind',strsplit(ACL.,split = ' -
 
 stock.table.sset
 
-load(file.path(DB,"fishbase-web.RData",v=T))
+load(file.path(DB,"First year of assessment/fishbase-web.RData"),v=T)
 
-stock.merged <- tbl_df(merge(stock.table.sset,fb,by.y = 'species',by.x = 'Scientific.Name',all.y=F))
+stock.merged <- tbl_df(merge(stock.table.sset,fb,by.y = 'species',by.x = 'Scientific.Name',all.x=T))
+
+gmean <- function(x,na.rm =T) exp(mean(log(x),na.rm=na.rm))
+
+stock_sset <- stock.merged %.% group_by(Region,Scientific.Name,Entity) %.%
+  summarise(family = unique(family),
+            linfs = gmean(linf),
+            depthmin = gmean(depthmin),
+            habitat = unique(habit),
+            k = gmean(k),
+            temp = gmean(temp),
+            trophic = gmean(trophic)
+            )
 
 @
 \end{document}
