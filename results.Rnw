@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{subfig}
+\usepackage{placeins}
+\begin{document}
+
+\title{Model results as of \date}
+
+<<echo=FALSE>>=
+require(knitr)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE)
+@
+ 
+<<preamble,results='hide'>>=
+source('helper_functs.R')
+require("dplyr")
+require(xtable)
+require("ggplot2")
+load("Full_model_n_data.RData")
+
+coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
+
+# regressin coeffs are -beta
+coef_P <- coeffs %>%
+  group_by(Parameter) %>%
+  summarise(post.mean = mean(exp(MCMC)),
+            post.P = mean(MCMC > 0))
+@
+  
+
+<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status and b) proportion of landed stocks that are assessed. The vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks'),echo=FALSE,results='asis',fig.width=4,fig.height=4,out.width='.59\\linewidth',fig.align='center'>>=
+
+plot.tab <- full.tab %>% 
+  mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment) %>%
+  group_by(region,year,assessed) %>%
+  summarise(ns = n()) 
+
+plot.tab.prop <- full.tab %>% 
+  mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment) %>%
+  group_by(region,year,assessed) %>%
+  summarise(ns = n()) %>%
+  mutate(total = ns/sum(ns)) %>%
+  filter(assessed==T)
+  
+
+  ggplot(plot.tab) + geom_line(aes(col=region,x=year,y=ns,linetype = assessed)) + ylab('Number of stocks') + xlab('Year') + 
+  geom_vline(aes(xintercept=1996))+
+  theme_bw()
+
+ggplot(plot.tab.prop) + geom_line(aes(col=region,x=year,y=total)) + ylab('Proportion of landed stocks') + xlab('Year') + 
+  geom_vline(aes(xintercept=1996))+
+  theme_bw()
+@
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1\maxwidth]{Assessed_by_habitat.pdf} 
+  \caption{Assessment status at time of last known status (censoring time) by habitat}
+  \end{figure}
+  
+ \begin{figure}[!h]
+\centering
+\includegraphics[width=1\maxwidth]{Assessed_by_phylum.pdf} 
+  \caption{Assessment status at time of last known status (censoring time) by phylum}
+  \end{figure}
+  
+  \begin{figure}[!h]
+\centering
+\includegraphics[width=1\maxwidth]{Assessed_by_order_fish.pdf} 
+  \caption{Assessment status at time of last known status (censoring time) by Order within Chordata}
+  \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\maxwidth]{Model_fit.pdf} 
+  \caption{Model fit of the Weibull survival model}
+  \end{figure}
+  
+  \FloatBarrier
+  
+  \begin{table}
+\centering
+\small{
+  \caption{Posterior mean and $P(\beta>1)$ for model parameters}
+  \begin{tabular}{lrr}
+  \newline
+  Parameter & Posterior Mean & Bayesian P \\
+  \hline
+  <<table,results='asis',echo=FALSE>>=
+  print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
+  @
+    \end{tabular}
+}
+\end{table}
+
+<< random effects>>=
+# habitat
+habs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'habitat',var.names = with(year.table,levels(factor(habitat)))))
+
+#phylum
+taxs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'taxonomy',var.names = with(year.table,levels(factor(phylum)))))
+
+hab_P <- habs %>%
+  group_by(Parameter) %>%
+  summarise(post.mean = mean(exp(MCMC)),
+            post.P = (mean(MCMC > 0)))
+
+tax_P <- taxs %>%
+  group_by(Parameter) %>%
+  summarise(post.mean = mean(exp(MCMC)),
+            post.P = (mean(MCMC > 0)))
+
+@
+
+
+\begin{table}
+\centering
+  \small{
+  \caption{Posterior mean and $P(\beta>1)$ for phylum effect}
+    \begin{tabular}{lrr}
+    \newline
+    Phylum & Posterior Mean & Bayesian P \\
+    \hline
+    <<tax_table,results='asis',echo=FALSE>>=
+      print(xtable(data.frame(tax_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
+    @
+  
+  \end{tabular}
+}
+\end{table}
+
+
+
+\begin{table}
+\centering
+  \small{
+  \caption{Posterior mean and $P(\beta>1)$ for habitat effect}
+    \begin{tabular}{lrr}
+    \newline
+    Habitat & Posterior Mean & Bayesian P \\
+    \hline
+    <<habitat_table,results='asis',echo=FALSE>>=
+      print(xtable(data.frame(hab_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
+    @
+  
+  \end{tabular}
+}
+\end{table}
+
+
+
+<<echo=TRUE,results='markup',tidy=TRUE>>=
+# finite population variance of habitat effect
+get_coef_chains(model.out = a.out, coef.names = 'fp.sd.hab') %>% 
+  summarise(mean(MCMC)^2)
+
+# finite population variance of phylum effect
+get_coef_chains(model.out = a.out, coef.names = 'fp.sd.tax') %>% 
+  summarise(mean(MCMC)^2)
+@
+
+
+\end{document}

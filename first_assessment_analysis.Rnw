@@ -315,7 +315,7 @@ habitats[year.table$species %in% names(csn)] <- 'demersal'
 
 year.table$habitat <- habitats
 
-# get a taxon variable for analysis for all species. 
+# get a taxon variable for all species. 
 year.table <- year.table %>% filter(!is.na(habitat), !is.na(species),region!='inland')
 
 # beware this is SLOW too
@@ -350,7 +350,7 @@ year.table$order <- orders[match(year.table$species,names(orders))]
       
 year.table$phylum <- phylum[match(year.table$species,names(phylum))]
 
-year.table
+year.table <- year.table %>% filter(phylum != 'Annelida')
 
 @
 
@@ -514,76 +514,3 @@ ggplot(CS.mean.sum,aes(y=m_CS,x=m_t))+
 
 It looks as though the fit of the Weibull isn't too bad, some deviation is expected in the tails of the distribution, but over the bulk it seems to follow the 1:1 line fairly closely.
 
-<<table of regression coeffs>>=
-coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
-
-# regressin coeffs are -beta
-coef_P <- coeffs %>%
-  group_by(Parameter) %>%
-  summarise(post.mean = exp(-mean(MCMC)),
-            post.P = 1-mean(MCMC > 0))
-@
-
-\begin{table}
-\centering
-  \small{
-  \caption{Posterior mean and $P(\beta>0)$ for model parameters}
-    \begin{tabular}{lrr}
-    \newline
-    Parameter & Posterior Mean & Bayesian P \\
-    \hline
-    <<table,results='asis',echo=FALSE>>=
-library(xtable)
-      print(xtable(coef_P),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
-    @
-  \end{tabular}
-}
-\end{table}
-
-
-<< random effects >>=
-# habitat
-habs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'habitat',var.names = with(year.table,levels(factor(habitat)))))
-
-taxs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'taxonomy',var.names = with(year.table,levels(factor(phylum)))))
-
-
-
-hab_P <- habs %>%
-  group_by(Parameter) %>%
-  summarise(post.mean = exp(-mean(MCMC)),
-            post.P = (1-mean(MCMC > 0)))
-
-tax_P <- taxs %>%
-  group_by(Parameter) %>%
-  summarise(post.mean = exp(-mean(MCMC)),
-            post.P = (1-mean(MCMC > 0)))
-
-@
-
-
-\begin{table}
-\centering
-  \small{
-  \caption{Posterior mean and $P(\beta>0)$ for model habitat}
-    \begin{tabular}{lrr}
-    \newline
-    Habitat & Posterior Mean & Bayesian P \\
-    \hline
-    <<habitat_table,results='asis',echo=FALSE>>=
-library(xtable)
-      print(xtable(hab_P),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
-    @
-  
-  \end{tabular}
-}
-\end{table}
-
-<<>>=
-#
-# finite population variance of family random effects
-fp.vars <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'fp.var')) %>% summarise(mean(MCMC)^2)
-
-fp.vars
-
-@
