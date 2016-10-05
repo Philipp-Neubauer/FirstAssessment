@@ -224,76 +224,47 @@ To get taxonomy and habitat info for unassessed stocks (ie, those not in Mike's 
 
 # get habitat and taxonomy from fishbase and other DBs
 require(rfishbase)
-require(taxize)
 
 year.table <- filter(year.table,!is.na(species))
 
-u.spec <- unique(year.table$species)
-
-# FISH
-# match species to fishbase entries to get habitat. 
-
-specs <- paste(fishbase$Genus,fishbase$Species)
-# parallelise this call
-sp_match <- parallel::mclapply(u.spec, function(name) {
-  unique(c(which(specs %in% name),which(fishbase$Genus %in% name),which(fishbase$Family %in% name)))
-}, mc.cores=3)
-
-class <- lapply(sp_match, function(x) unique(fishbase[x,'Class']))
-
-unknown.habitat.spec <- u.spec[u.spec %in% unique(year.table$species[is.na(year.table$habitat_MM)])]
-
-smatch <- sp_match[u.spec %in% unknown.habitat.spec]
-
-sps <- specs[unlist(smatch)]
-
-habref  <- lapply(1:length(smatch),function(s) {
-  if(length(smatch[[s]])>0) return(data.frame(smatch[[s]],s))
-})
-
-habref <- do.call('rbind',habref)
- 
-
-sp_match <- do.call('c',sp_match)
+fishspecs <- paste(fishbase$Genus,fishbase$Species)
+fishmatch <- match(year.table$species, fishspecs)
+fishes <- which(!is.na(fishmatch))
 
 habitats <- species(fields='DemersPelag',limit=35000)$DemersPelag
 
-habitat <- tapply(habitats[habref[,1]], habref[,2], function(x) names(which.max(table(x))))
+fishhabitat <- habitats[fishmatch[!is.na(fishmatch) & is.na(year.table$habitat_MM)]]
 
-mix <- match(year.table$species,unknown.habitat.spec)[is.na(year.table$habitat_MM)]
+year.table[!is.na(fishmatch) & is.na(year.table$habitat_MM), 'habitat_MM'] <- fishhabitat
 
-year.table$habitat_MM[is.na(year.table$habitat_MM)] <- habitat[match(mix,as.numeric(names(habitat)))]
+fishtax <- fishbase[fishmatch[!is.na(fishmatch)], c('Family','Order','Class')]
 
-### inverts
+year.table <- year.table %>% mutate(Order=NA,
+                                    Family=NA,
+                                    Class=NA)
+
+year.table[fishes, c('Family','Order','Class')] <- fishtax
+
+
+#### Inverts ###
+# need to reload beyongd the cached part of sealifebase
 sealifebase <- load_taxa(server=SEALIFEBASE_API,update = T,limit=120000)
 
-unknown.inv.spec <- u.spec[u.spec %in% unique(year.table$species[is.na(year.table$habitat_MM)])]
-
 invspecs <- paste(sealifebase$Genus,sealifebase$Species)
-
-invmatch <- lapply(unknown.inv.spec, function(name) {
-  unique(c(which(invspecs %in% name),which(sealifebase$Genus %in% name),which(sealifebase$Family %in% name)))
-})
+invmatch <- match(year.table$species, invspecs)
+invs <- which(!is.na(invmatch))
 
 inv_habitats <- species(fields='DemersPelag', server='http://fishbase.ropensci.org/sealifebase',limit=120000)
 
-SC <- inv_habitats[match(inv_habitats$SpecCode, sealifebase$SpecCode),]
+inv_habitat <- inv_habitats[invmatch[!is.na(invmatch) & is.na(year.table$habitat_MM)], 'DemersPelag']
 
+year.table[!is.na(invmatch) & is.na(year.table$habitat_MM), 'habitat_MM'] <- inv_habitat
 
+invtax <- sealifebase[invmatch[!is.na(invmatch)], c('Family','Order','Class')]
 
-habref  <- lapply(1:length(invmatch),function(s) {
-  if(length(invmatch[[s]])>0) return(data.frame(invmatch[[s]],s))
-})
+year.table[invs, c('Family','Order','Class')] <- invtax
 
-habref <- do.call('rbind',habref)
- 
-
-inv_habitat <- unlist(tapply(inv_habitats[habref[,1],'DemersPelag'], habref[,2], function(x) names(which.max(table(x)))))
-
-mix <- match(year.table$species,unknown.inv.spec)[is.na(year.table$habitat_MM)]
-
-year.table$habitat_MM[is.na(year.table$habitat_MM)] <- inv_habitat[match(mix,as.numeric(names(inv_habitat)))]
-
+### less resolution for habitat variable
 
 year.table$habitat_MM[grepl('pelagic', year.table$habitat_MM)] <- 'pelagic'
 
@@ -301,48 +272,50 @@ year.table$habitat_MM[grepl('demersal', year.table$habitat_MM)] <- 'demersal'
 
 year.table$habitat_MM[grepl('reef', year.table$habitat_MM)] <- 'reef'
 
-
-# get a taxon variable for all species. 
-year.table <- year.table %>% filter(!is.na(habitat_MM), !is.na(species),region!='inland') %>% as.data.frame()
-      
-fls <- fishbase[match(year.table$species,specs),'Order'] 
-flf <- fishbase[match(year.table$species,fishbase$Family),'Order'] 
-flg <- fishbase[match(year.table$species,fishbase$Genus),'Order'] 
-
-
-sls <- sealifebase[match(year.table$species,invspecs),'Order']
-slf <- sealifebase[match(year.table$species,sealifebase$Family),'Order']
-
-all <- cbind(fls,flf,sls,slf)
-
-year.table$order
-
-year.table$order[is.na(year.table$order)] <- sealifebase[match(year.table$species[is.na(year.table$order)],invspecs),'Order'] %>% as.data.frame()
-
-      
-year.table$phylum <- phylum[match(year.table$species,names(phylum))]
+# filter out higher taxonomy (i.e., rows that didn't match...)
+year.table <- year.table %>% filter(!is.na(habitat_MM), !is.na(species),region!='inland',!is.na(Order)) %>% as.data.frame()
 
 @
 
 Some preliminary plots:
 
 <<>>=
-year.table$assessed <- !is.na(as.numeric(year.table$Year.of.first.stock.assessment))
+year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
 
-ggplot(year.table) + geom_bar(aes(fill=assessed,x=habitat_MM)) +coord_flip() + theme_bw()
+ggplot(year.table) + 
+  geom_bar(aes(fill=Assessed,x=habitat_MM)) +
+  coord_flip() + 
+  theme_classic() + 
+  xlab('Habitat') + 
+  ylab('Count') + 
+  theme(legend.position='bottom')
 
+ggsave('Assessed_by_habitat.pdf',width = 6,height = 4)
 
-ggplot(year.table) + geom_bar(aes(fill=assessed,x=phylum)) + coord_flip() + theme_bw()
+ggplot(year.table) + 
+  geom_bar(aes(fill=Assessed,x=Class)) + 
+  coord_flip() + 
+  theme_classic() + 
+  ylab('Count') + 
+  theme(legend.position='bottom')
 
-ggplot(year.table %>% filter(phylum == 'Chordata')) + 
-  geom_bar(aes(fill=assessed,x=order)) + coord_flip() + theme_bw()
-  #theme(axis.text.x = element_text(angle = -90))
+ggsave('Assessed_by_class.pdf',width = 6,height = 4)
+
+ggplot(year.table) + 
+  geom_bar(aes(fill=Assessed,x=Order)) + 
+  coord_flip() + 
+  theme_classic() + 
+  ylab('Count') + 
+  theme(legend.position='bottom')
+
+ggsave('Assessed_by_order.pdf',width = 6,height = 4)
+
 
 @
 
 \section{Simple Bayesian Weibull survival model}
 
-Try a Bayesian trunkated Weibull model to keep is simple to start with:
+Try a Bayesian truncated Weibull model to keep is simple to start with:
 
 <<Jags setup>>=
 
@@ -371,8 +344,14 @@ afs <- function(x) as.numeric(as.factor(x))
 hab <- with(year.table,afs(habitat_MM))
 n.hab <- length(unique(hab))
 
-tax <- with(year.table,afs(phylum))
-n.tax <- length(unique(tax))
+order <- with(year.table,afs(Order))
+n.order <- length(unique(order))
+
+class <- with(year.table,afs(Class))
+n.class <- length(unique(class))
+
+family <- with(year.table,afs(Family))
+n.family <- length(unique(family))
 
 # random effect for regions
 region <- data.frame(with(year.table,model.matrix(~region)))
@@ -404,32 +383,30 @@ n.stocks <- nrow(COVS)
 require(rjags)
 
 jags.data <- list(
+  censored=as.numeric(censored),
   COVS=COVS,
   n.covs=n.covs,
   n.stocks=n.stocks,
   hab=hab,
-  tax=tax,
+  class=class,
+  n.class=n.class,
+  order=order,
+  n.order=n.order,
+  family=family,
+  n.family=n.family,
   n.hab=n.hab,
-  n.tax=n.tax,
   ctime=ctime,
-  lctime=log(ctime),
-  a.time=a.time,
-  la.time=log(a.time),
-  censored=censored)
-
-
-
-formula=inla.surv(a.time,!censored) ~ land+price+region+f(habitat_MM,model='iid') + f(order,model='iid')
-model=inla(formula, family ="weibull", data=year.table)
+  a.time=a.time
+  )
 
 # run model - short run for now...
-JM <- jags.model('Weib_surv.R',inits = list(a.time = (time.inits)),data=jags.data,n.chains=3)
+JM <- jags.model('Weib_surv.R',data=jags.data,inits = list(a.time = time.inits),n.chains=3)
 
-update(JM,n.iter=1000)
+update(JM,n.iter=10000)
 
-a.out <- coda.samples(JM,variable.names=c('betas','habitat','fp.sd.tax','fp.sd.hab','taxonomy','CS'),n.iter = 2e3, thin = 10)
+a.out <- coda.samples(JM,variable.names=c('betas','habitat','fp.sd.family','fp.sd.order','fp.sd.class','fp.sd.hab','CS'),n.iter = 20e3, thin = 10)
 
-save(a.out,file=paste0('model.out',date(),'.rda'))
+save(a.out,year.table,COVS,full.tab,file=paste0('model.out',date(),'.rda'))
 
 @
 
@@ -473,25 +450,30 @@ CS.means <- do.call('rbind',lapply(CS.means, function(x) do.call('cbind',x)))
 #CS_high = CS.means$q3
 #CS_low = CS.means$q1
 
-bins <- cut(CS.means[,1],breaks = quantile(CS.means[,1], probs = seq(0, 1, 0.005)),labels = FALSE)
+cuts <- quantile(CS.means[,1], probs = seq(0, 1, 0.01))
+bins <- cut(CS.means[,1],breaks = cuts,labels = FALSE)
+midpts <- (cuts[1:100]+lead(cuts)[1:100])/2
 
 CS.means <- data.frame(CS.means)
-CS.means$bin <- bins
+CS.means$bin <- midpts[bins]
 colnames(CS.means) <- c('time','CS','bin')
 
 CS.mean.sum <- CS.means %>% group_by(bin) %>% 
-  summarise(m_CS = mean(-log(CS)),
-            m_t = mean(time),
-            q1_CS = quantile(-log(CS),0.025),
-            q3_CS = quantile(-log(CS),0.975))
+  filter(!is.na(bin)) %>%
+  summarise(m_CS = log(median(-log(CS),na.rm=T)),
+            m_t = log(unique(bin)),
+            q1_CS = log(quantile(-log(CS),0.025)),
+            q3_CS = log(quantile(-log(CS),0.975)))
 
 ggplot(CS.mean.sum,aes(y=m_CS,x=m_t))+
   geom_point()+
- geom_ribbon(aes(ymin=q1_CS,ymax=q3_CS),col='grey80',alpha=0.3)+  
+  geom_ribbon(aes(ymin=q1_CS,ymax=q3_CS),col='grey80',alpha=0.3)+  
   geom_abline(aes(intercept=0,slope=1))+
   scale_x_continuous("Cox-Snell residual",expand=c(0,0))+
   ylab("Cumulative hazard")+
   theme_bw()
+
+ggsave('Model_fit.pdf')
 
 @
 
