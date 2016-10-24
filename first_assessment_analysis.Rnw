@@ -231,6 +231,14 @@ fishspecs <- paste(fishbase$Genus,fishbase$Species)
 fishmatch <- match(year.table$species, fishspecs)
 fishes <- which(!is.na(fishmatch))
 
+sp <- ecology(fishspecs[fishmatch[fishes]],limit=100000)
+
+sp <- species(limit=100000)
+year.table$lengths <- sp$Length[match(year.table$species,sp$sciname)]
+
+
+fishspecs
+
 habitats <- species(fields='DemersPelag',limit=35000)$DemersPelag
 
 fishhabitat <- habitats[fishmatch[!is.na(fishmatch) & is.na(year.table$habitat_MM)]]
@@ -249,6 +257,11 @@ year.table[fishes, c('Family','Order','Class')] <- fishtax
 #### Inverts ###
 # need to reload beyongd the cached part of sealifebase
 sealifebase <- load_taxa(server=SEALIFEBASE_API,update = T,limit=120000)
+
+sp_invs <- species(limit=120000, server=SEALIFEBASE_API)
+
+inv_length <- sp_invs$Length[match(year.table$species,sp_invs$sciname)]
+year.table$lengths[!is.na(inv_length)] <- inv_length[!is.na(inv_length)]
 
 invspecs <- paste(sealifebase$Genus,sealifebase$Species)
 invmatch <- match(year.table$species, invspecs)

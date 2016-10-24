@@ -7,24 +7,30 @@
 \title{Are assessed stocks a representative sample of fished species in the US?}
 
 \author{Philipp Neubauer, Dragonfly Data Science, Wellington, NZ \\
-        \and James T. Thorsen, NOAA Northwest Fisheries Science Center, Seattle 
-        \and            Michael C. Melnychuk, School of Aquatic and Fisheries Science, \\University of Washington, Seattle}
+\and James T. Thorsen, NOAA Northwest Fisheries Science Center, Seattle 
+\and            Michael C. Melnychuk, School of Aquatic and Fisheries Science, \\University of Washington, Seattle}
 
 \maketitle
 
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
 @
- 
+
 <<preamble,results='hide'>>=
 source('helper_functs.R')
 require("dplyr")
 require(xtable)
 require("ggplot2")
 
-    load("model.outTue Oct  4 15:22:01 2016.rda")
+load("model.outWed Oct 12 22:14:54 2016.rda")
+
+# just for matching
+year.table$Region <- year.table$mainregion
+year.table$Habitat <- year.table$habitat_MM
+year.table$region <- year.table$mainregion
+year.table$habitat <- year.table$habitat_MM
 
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
 
@@ -34,35 +40,35 @@ coef_P <- coeffs %>%
   summarise(post.mean = mean(MCMC),
             post.P = mean(MCMC > 0))
 @
-  
+
 \begin{landscape}
 <<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status and b) proportion of landed stocks that are assessed. The vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks'),echo=FALSE,results='asis',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
 
 plot.tab <- full.tab %>% 
   mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment,
          Assessed = ifelse(assessed,'Yes','No')) %>%
-  group_by(region,year,Assessed) %>%
+  group_by(mainregion,year,Assessed) %>%
   summarise(ns = n()) 
 
 plot.tab.prop <- full.tab %>% 
   mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment) %>%
-  group_by(region,year,assessed) %>%
+  group_by(mainregion,year,assessed) %>%
   summarise(ns = n()) %>%
   mutate(total = ns/sum(ns)) %>%
   filter(assessed==T)
-  
-  ggplot(plot.tab) + 
-    geom_line(aes(col=region,x=year,y=ns,linetype = Assessed)) + 
-    ylab('Number of stocks') + 
-    xlab('Year') +
-    scale_linetype('Assessed')+
-    scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
-    geom_vline(aes(xintercept=1996))+
-    theme_classic()
+
+ggplot(plot.tab) + 
+  geom_line(aes(col=mainregion,x=year,y=ns,linetype = Assessed)) + 
+  ylab('Number of landed stocks') + 
+  xlab('Year') +
+  scale_linetype('Assessed')+
+  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
+  geom_vline(aes(xintercept=1996))+
+  theme_classic()
 
 ggplot(plot.tab.prop) + 
-  geom_line(aes(col=region,x=year,y=total)) + 
-  ylab('Proportion of landed stocks') + 
+  geom_line(aes(col=mainregion,x=year,y=total)) + 
+  ylab('Proportion assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
   scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
@@ -72,94 +78,236 @@ ggplot(plot.tab.prop) +
 
 \end{landscape}
 
+
+<<>>=
+
+year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
+
+@
+
 \begin{figure}[!h]
 \centering
-\includegraphics[width=1\maxwidth]{Assessed_by_habitat.pdf} 
-  \caption{Assessment status at time of last known status (censoring time) by habitat}
-  \end{figure}
-  
- \begin{figure}[!h]
+<<fig.width=5,fig.height=5,out.width='0.8\\textwidth'>>=
+ggplot(year.table) + 
+  geom_bar(aes(fill=Assessed,x=habitat_MM)) +
+  coord_flip() + 
+  theme_classic() + 
+  xlab('Habitat') + 
+  ylab('Count') + 
+  theme(legend.position='bottom')
+@
+\caption{Assessment status at time of last known status (censoring time) by habitat}
+\end{figure}
+
+\begin{figure}[!h]
 \centering
-\includegraphics[width=1\maxwidth]{Assessed_by_order.pdf} 
-  \caption{Assessment status at time of last known status (censoring time) by phylum}
-  \end{figure}
-  
-  \begin{figure}[!h]
+<<fig.width=5,fig.height=5,out.width='0.8\\textwidth'>>=
+ggplot(year.table) + 
+  geom_bar(aes(fill=Assessed,x=Order)) + 
+  coord_flip() + 
+  theme_classic() + 
+  ylab('Count') + 
+  theme(legend.position='bottom')
+  @
+\caption{Assessment status at time of last known status (censoring time) by phylum}
+\end{figure}
+
+\begin{figure}[!h]
 \centering
-\includegraphics[width=1\maxwidth]{Assessed_by_class.pdf} 
-  \caption{Assessment status at time of last known status (censoring time) by Class}
-  \end{figure}
+<<fig.width=5,fig.height=5,out.width='0.8\\textwidth'>>=
+ggplot(year.table) + 
+  geom_bar(aes(fill=Assessed,x=Class)) + 
+  coord_flip() + 
+  theme_classic() + 
+  ylab('Count') + 
+  theme(legend.position='bottom')
+@
+\caption{Assessment status at time of last known status (censoring time) by Class}
+\end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\maxwidth]{Model_fit.pdf} 
-  \caption{Model fit of the Weibull survival model}
-  \end{figure}
-  
-  \FloatBarrier
-  
-  \begin{table}
-\centering
-\small{
-  \caption{Posterior mean and $P(\beta>1)$ for model parameters}
-  \begin{tabular}{lrr}
-  \newline
-  Parameter & Posterior Mean & Bayesian P \\
-  \hline
-  <<table,results='asis',echo=FALSE>>=
-  print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
-  @
-    \end{tabular}
-}
-\end{table}
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
 
-<< random effects>>=
-# habitat
-habs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'habitat',var.names = with(year.table,levels(factor(habitat_MM)))))
-
-hab_P <- habs %>%
+# just look at mean CS for now, can put posterior around it later
+CS.means <- CS.full %>%
   group_by(Parameter) %>%
-  summarise(post.mean = mean(MCMC),
-            post.P = (mean(MCMC > 0)))
+  summarise(post.mean = mean(MCMC))
 
+library(survival)
+
+CS = CS.means$post.mean
+
+#assessment time
+devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+
+# true false censoring
+censored <- is.na(a.time)
+
+# Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
+km.cs <- survfit(Surv(CS,!censored) ~ 1)
+summary.km.cs <- summary(km.cs)
+rcu <- summary.km.cs$time # Cox-Snell residuals of
+                            # uncensored points.
+surv.cs <- summary.km.cs$surv
+plot(rcu,-log(surv.cs),type="p",pch=16,
+xlab="Cox-Snell residual",ylab="Cumulative hazard")
+abline(a=0,b=1,col=3,lwd=2); 
 @
+\caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
+\end{figure}
 
-
-
+\FloatBarrier
 
 \begin{table}
 \centering
-  \small{
-  \caption{Posterior mean and $P(\beta>1)$ for habitat effect}
-    \begin{tabular}{lrr}
-    \newline
-    Habitat & Posterior Mean & Bayesian P \\
-    \hline
-    <<habitat_table,results='asis',echo=FALSE>>=
-      print(xtable(data.frame(hab_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
-    @
-  
-  \end{tabular}
+\small{
+\caption{Posterior mean and $P(\beta>1)$ for model parameters}
+\begin{tabular}{lrr}
+\newline
+Parameter & Posterior Mean & Bayesian P \\
+\hline
+<<table,results='asis',echo=FALSE>>=
+print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
+@
+\end{tabular}
 }
 \end{table}
 
+<<post_plot,fig.cap='Comparison of finite population standard deviation for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
 
+fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
 
-<<echo=TRUE,results='markup',tidy=TRUE>>=
-# finite population variance of habitat effect
-get_coef_chains(model.out = a.out, coef.names = 'fp.sd.hab') %>% 
-  summarise(mean(MCMC)^2)
+.simpleCap <- function(s) {
+  
+  paste(toupper(substring(s, 1, 1)), substring(s, 2),
+        sep = "")
+}
 
-# finite population variance of phylum effect
-get_coef_chains(model.out = a.out, coef.names = 'fp.sd.family') %>% 
-  summarise(mean(MCMC)^2)
+fp$Effect <- .simpleCap(do.call('rbind',strsplit(as.character(fp$Parameter),'\\.'))[,3])
+fp$Effect[fp$Effect=='Hab'] <- 'Habitat'
+fp$Effect <- factor(fp$Effect, levels = rev(unique(fp$Effect)))
 
-get_coef_chains(model.out = a.out, coef.names = 'fp.sd.order') %>% 
-  summarise(mean(MCMC)^2)
+fp %>% group_by(Effect) %>%
+  summarise(means = median(MCMC),
+            q1 = quantile(MCMC,0.025),
+            q3 = quantile(MCMC,0.975),
+            q11 = quantile(MCMC,0.25),
+            q33 = quantile(MCMC,0.75)) %>%
+  ggplot() + 
+  geom_point(aes(x=Effect, y=means), size=4) +
+  geom_linerange(aes(x=Effect,ymin=q1,ymax=q3),size=1) +
+  geom_linerange(aes(x=Effect,ymin=q11,ymax=q33),size=2) +
+  ylab('Finite populaition SD') +
+  xlab('') + 
+  theme_classic() +
+  coord_flip()+
+  theme(axis.text = element_text(colour='black'))
 
-get_coef_chains(model.out = a.out, coef.names = 'fp.sd.class') %>% 
-  summarise(mean(MCMC)^2)
 @
 
+\begin{landscape}
+
+<<surv_plot,fig.cap='Marginal probability of a stock being assessed as a function of time, for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.4\\textwidth',fig.align='center'>>=
+
+preds <- get_coef_chains(model.out = a.out, coef.names = 'pred' )
+
+preds$Parameter <- as.character(preds$Parameter)
+
+preds <- preds %>% 
+  mutate(effect = do.call('rbind',strsplit(as.character(Parameter),'\\.'))[,1],
+         Effect = .simpleCap(effect),
+         idx = regmatches(Parameter,regexpr('*([0-9]*),([0-9])*',Parameter)),
+         fx = as.numeric(do.call('rbind',strsplit(idx,','))[,1]),
+         t = as.numeric(do.call('rbind',strsplit(idx,','))[,2]))
+
+preds$Effect[preds$Effect=='Hab'] <- 'Habitat'
+preds$effect[preds$effect=='hab'] <- 'habitat'
+
+pred.plot <- preds %>% 
+  group_by(Effect) %>%
+  mutate(Group = levels(as.factor(year.table[,unique(Effect)]))[fx]) %>%
+  ungroup() %>%
+  group_by(Effect,Group,t) %>%
+  summarise(p=median(MCMC),
+            q1=quantile(MCMC,0.1),
+            q3=quantile(MCMC,0.9))
+
+
+p=0;gg<- list()
+for(group in unique(pred.plot$Effect)){
+  
+  this <- names(sort(table(year.table[,group]),decreasing = T)[1:8])
+  p=p+1;
+  pp<- pred.plot %>% filter(Effect == group, Group %in% this)
+  
+  gg[[p]] <- ggplot(pp) + 
+    geom_line(aes(x=t,y=p,col=Group,linetype=Group)) + 
+    theme_classic() + 
+    theme(axis.text = element_text(colour='black'))+
+    ylab('Probability of being assessed') +
+    xlab('Time (yr)') + 
+    scale_colour_brewer(group,type='qual',palette='Dark2') + 
+    scale_linetype_discrete(group)+
+    coord_cartesian(expand = F)
+}
+
+gridExtra::grid.arrange(grobs=gg,ncol=2)
+
+@
+\end{landscape}
+
+\begin{landscape}
+<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, and c) regional random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center',fig.subcap=c('Covariates', 'Habitat','Region')>>=
+
+betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Cumulative landings', 'Mean price per kg'))
+betas$Effect <- 'Covariates'
+
+habitats <- get_coef_chains(model.out = a.out, coef.names = 'habitat\\[[0-9]*\\]', var.names = levels(as.factor(year.table$habitat_MM)))
+habitats$Effect <- 'Habitat'
+
+regions <- get_coef_chains(model.out = a.out, coef.names = 'region\\[[0-9]*\\]', var.names = levels(as.factor(year.table$mainregion)))
+regions$Effect <- 'Region'
+
+fx.plot <- rbind(betas,habitats,regions)
+
+p=0;gg<- list()
+for(group in unique(fx.plot$Effect)){
+  
+  if(any(group %in% colnames(year.table))){
+    this <- names(sort(table(year.table[,group]),decreasing = T)[1:8])
+  } else {
+    this <- unique(fx.plot$Parameter)
+  }
+  p=p+1;
+  
+  gg[[p]] <- fx.plot %>% filter(Effect == group, Parameter %in% this) %>%
+    group_by(Parameter) %>%
+  summarise(means = median(MCMC),
+            q1 = quantile(MCMC,0.025),
+            q3 = quantile(MCMC,0.975),
+            q11 = quantile(MCMC,0.25),
+            q33 = quantile(MCMC,0.75)) %>%
+  ggplot() + 
+  geom_point(aes(x=Parameter, y=means), size=4) +
+  geom_linerange(aes(x=Parameter,ymin=q1,ymax=q3),size=1) +
+  geom_linerange(aes(x=Parameter,ymin=q11,ymax=q33),size=2) +
+  ylab('') +
+  xlab('') +
+  geom_hline(aes(yintercept=0), linetype=2) + 
+  theme_classic() +
+  coord_flip()+
+  theme(axis.text = element_text(colour='black'))
+}
+
+gg
+
+#gridExtra::grid.arrange(grobs=gg,nrow=1)
+@
+
+\end{landscape}
 
 \end{document}
