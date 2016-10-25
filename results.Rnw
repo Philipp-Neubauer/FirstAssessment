@@ -19,12 +19,14 @@ opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TR
 @
 
 <<preamble,results='hide'>>=
+#setwd("C:/Users/James.Thorson/Desktop/Project_git/FirstAssessment")
 source('helper_functs.R')
 require("dplyr")
 require(xtable)
 require("ggplot2")
 library(survival)
 
+#DB <- 'C:/Users/James.Thorson/Dropbox'
 DB <- '~/Dropbox'
 load(file.path(DB,"First year of assessment/model.outTue Oct 25 15:07:50 2016.rda"),v=T)
 
@@ -53,21 +55,22 @@ coef_P <- coeffs %>%
 
 It is often said "what gets measured gets managed".  For over XXXX years (historical citation), fisheries scientists have measured
 human impacts on ocean populations (finfishes and marine invertebrates) with the goal of balancing both the long-term sustainability
-of human impacts with the goal of maximizing harvest (or value) from fishing.  In particular, stock assessments generally involve
-estimating two measures of impact: (1) fishing rate, i.e., the instantaneous mortality or annual fraction of the population that is
-harvested, relative to optimal levels, and (2) the population abundance, i.e., total or spawning biomass, or reproductive output, relative
-to optimal levels.  The value of these two measurements can be plotted on a 2-dimensional "stock status" plot, and fisheries agencies are
-increasingly committed to maintaining populations in the "healthy" quadrant (i.e., fishing rate below a target level, and population
-abundance above a target level).
+of human impacts with maximizing harvest (or value) from fishing.  In particular, stock assessments generally involve
+estimating two measures of human impact: (1) fishing rate, i.e., the instantaneous mortality or annual fraction of the population that is harvested relative to an estimated target level, and (2) the population abundance, i.e., spawning biomass or reproductive output relative to an estimated target level.  The value of these two metrics can be plotted on a 2-dimensional "stock status" plot, and fisheries agencies are increasingly committed to maintaining fished populations in the "healthy" quadrant (i.e., fishing rate below a target level, and population abundance above a target level; citation).
 
-Recently, the National Marine Fisheries Service (the agency in charge of science supporting fisheries management in the United States)
-has sought to "end overfishing" for all marine species within regional fisheries management plans (with exceptions granted in a few
-circumstances; citation). In the US, overfishing is defined as having a total harvest quantity (in units biomass) above limit levels.
-A target harvest quantity can in theory be calculated by combining a target harvest rate with a target population abundance.  However,
-the vast majority of "overfishing" limits are currently calculated using methods that do not individually calculate either harvest rate
-or population abundance (Berkson and Thorson 2015, Newman Berkson Sautoni 2015).  These [To be continued]...
+Recently, the National Marine Fisheries Service (NMFS, the agency in charge of science supporting fisheries management in the United States) has committed to "end overfishing" for all marine species within regional fisheries management plans (with exceptions granted in a few circumstances; citation). In the US, overfishing is defined as any stock having annual harvest above limit levels. A target (or limit) harvest can in theory be calculated by combining a target harvest rate with a target population abundance.  However, the vast majority of overfishing limits are currently estimated using methods that do not individually calculate either harvest rate or population abundance (Berkson and Thorson 2015, Newman Berkson Sautoni 2015).  For example, depletion-corrected average catch (DCAC; MacCall 2009) is used to calculate an annual fishing limit for many stocks, but is not used to calculate population abundance. DCAC (and similar methods) can therefore be used to help "end overfishing" but is not otherwise informative about characteristics of the fished population. 
 
+However, conservationists and ecologists will often be more interested in estimating population abundance (or abundance relative to equilibrium conditions) than estimating an overfishing limit (citations).  Estimating abundance generally requires applying a population model to available harvest data and an index of population depletion (either an index proportional to population abundance, or average size/age data);  in these cases, the population model essentially treats the historical fishing as a "depletion experiment" to estimate the fraction of the population that is fished every year.  In the following, we call these population models "stock assessments", although we acknowledge that other authors have used the term "stock assessment" more broadly to also include methods for estimating overfishing limits (e.g., DCAC). Although NMFS has estimated overfishing limits for the vast majority of fishes in US fisheries management plans, a much smaller percentage of fished species have a stock assessment (in our sense). This relative dearth of stock assessment models presumably arises because developing a stock assessment is time-consuming and requires extensive financial resources from NMFS and other interested parties (Geremont ref).
 
+We  argue that stock assessments (population models for estimating absolute abundance for fished species) are important for many applied and theoretical questions regarding marine ecosystems.  However, there is little previous research regarding which fished species are more or less likely to receive sufficient attention to develop a stock assessment.  Understanding which species are more or less likely to be assessed could be useful for the following three reasons (among others):
+
+1.  Unassessed stocks may receive less attention from the public or fisheries managers regarding management actions. Therefore, if a given taxon is less likely to be assessed, it might also be less likely to receive rapid or public attention when management changes are warrented.
+
+2.  Output from stock assessments has often been used in meta-analysis models to understand ecological characteristics of marine fishes in general (Myers ref, Thorson et al. Fish and Fisheries 2015, other ideas...).  Therefore, any systematic bias in which stocks are assessed could also bias our ecological understanding of marine fishes.
+
+3.  Stock assessments often require updates periodically (e.g., Pacific hake has been re-assessed annually from X through 2016), and agency resources might be fully expended while assessing a small fraction of stocks.  However, it is currently unknown whether the rate of assessing new species for the first time is increasing or decreasing.  If this rate is decreasing, this could indicate the need for additional public resources for stock assessment.  
+
+We therefore seek to provide the first-ever quantitative analysis of which marine species are likely to have undergone a stock assessment.  To do so, we combine two databases representing all fished marine species in the United States:  a database of all landed species from 195X to 201X, and a database of management and stock assessment attributes for all US fishes with peer-reviewed stock assessments.  For each landed stock in each of four US regions (northeast, southeast, northwest, and southwest), we record the year that it first had a stock assessment; we treat any stock that does not have an assessment by 2015 as a "censored" observation (i.e., it might eventually have a peer-reviewed assessment)  We then apply a censored time-to-event model to answer the following questions:  (1) what economic or biological characteristics are associated with a high or low annual probability of being assessed for the first time? (2) which US region has assessed stocks relatively quickly or slowly? (3) are there certain taxa (e.g., invertebrates or sharks) that are substantially faster or slower-assessed given these biological and economic attributes? and (4) is the rate of stock assessment accelerating or deccelerating over time.  [Add one sentence high-line conclusion -- I know some people don't do this, but I think its a reasonable way to hook interest]
 
 \FloatBarrier
 \newpage
