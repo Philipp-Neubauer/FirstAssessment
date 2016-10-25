@@ -34,7 +34,11 @@ year.table$Habitat <- year.table$habitat_MM
 year.table$region <- year.table$mainregion
 year.table$habitat <- year.table$habitat_MM
 
-coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
+coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
+                                 coef.names = 'betas',
+                                 var.names = c('Length',
+                                               'Cumulative landings',
+                                               'Mean price per kg')))
 
 # regressin coeffs are beta
 coef_P <- coeffs %>%
@@ -150,17 +154,8 @@ lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
 
 abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
 @
-\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, data should fall on a line with slope $p$ (the Weibull shape parameter) between the $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{lm_fit[2]}, suggesting an increasing assessment rate with increasing time $t$.}
+\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the time from fishery development to assessment should fall on a line with slope $p$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{round(lm_fit[2],2)}, suggesting an increasing assessment rate with increasing time $t$.}
 \end{figure}
-
-
-
-<<>>=
-
-print(dim(year.table))
-print(censored)
-print(length(censored))
-@
 
 \begin{figure}
 \centering
@@ -199,7 +194,7 @@ abline(a=0,b=1,col=3,lwd=2);
 \begin{table}
 \centering
 \small{
-\caption{Posterior mean and $P(\beta>1)$ for model parameters. Parameters can be interpreted as multiplicative acceleration factors(i.e., $\beta$=2 suggests a stock is assessed twice as fast as a stock with $\beta=1$.}
+\caption{Posterior mean and $P(\beta>1)$ for model parameters. Parameters can be interpreted as multiplicative acceleration factors (i.e., $\beta$=2 suggests a stock is assessed twice as fast as a stock with $\beta=1$).}
 \begin{tabular}{lrr}
 \newline
 Parameter & Posterior Mean & Bayesian P \\
@@ -297,7 +292,7 @@ gridExtra::grid.arrange(grobs=gg,ncol=2)
 \begin{landscape}
 <<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, and c) regional random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center',fig.subcap=c('Covariates', 'Habitat','Region')>>=
 
-betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Cumulative landings', 'Mean price per kg'))
+betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Cumulative landings', 'Mean price per kg'))
 betas$Effect <- 'Covariates'
 
 habitats <- get_coef_chains(model.out = a.out, coef.names = 'habitat\\[[0-9]*\\]', var.names = levels(as.factor(year.table$habitat_MM)))
