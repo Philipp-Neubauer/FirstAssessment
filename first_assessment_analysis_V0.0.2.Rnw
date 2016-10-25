@@ -247,8 +247,8 @@ source('helper_functs.R')
 CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
 
 # just look at mean CS for now, can put posterior around it later
-CS.means <- CS.full %.%
-  group_by(Parameter) %.%
+CS.means <- CS.full %>%
+  group_by(Parameter) %>%
   summarise(post.mean = mean(MCMC))
 
 library(survival)

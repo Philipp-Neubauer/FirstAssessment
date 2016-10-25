@@ -23,7 +23,7 @@ source('helper_functs.R')
 require("dplyr")
 require(xtable)
 require("ggplot2")
-
+library(survival)
 
 DB <- '~/Dropbox'
 load(file.path(DB,"First year of assessment/model.outTue Oct 25 15:07:50 2016.rda"),v=T)
@@ -36,11 +36,11 @@ year.table$habitat <- year.table$habitat_MM
 
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'betas',var.names = colnames(COVS)))
 
-# regressin coeffs are -beta
+# regressin coeffs are beta
 coef_P <- coeffs %>%
   group_by(Parameter) %>%
-  summarise(post.mean = mean(MCMC),
-            post.P = mean(MCMC > 0))
+  summarise(post.mean = mean(exp(MCMC)),
+            post.P = mean(exp(MCMC) > 1))
 @
 
 \begin{landscape}
@@ -132,14 +132,13 @@ ggplot(year.table) +
 \centering
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
 
-
 #assessment time
 devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
 
 a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
 
 # true false censoring
-censored <- is.na(a.time)
+censored <- as.logical(is.na(a.time))
 
 # Kaplan-Meyer non-parametric survival at t - should be linear with slope p
 km.cs <- survfit(Surv(a.time,!censored) ~ 1)
@@ -157,17 +156,10 @@ abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2);
 
 
 <<>>=
-CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
 
-# just look at mean CS for now, can put posterior around it later
-CS.means <- CS.full %>%
-  group_by(Parameter) %>%
-  summarise(post.mean = mean(MCMC))
-
-library(survival)
-
-CS = CS.means$post.mean
-
+print(dim(year.table))
+print(censored)
+print(length(censored))
 @
 
 \begin{figure}
@@ -175,6 +167,20 @@ CS = CS.means$post.mean
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
 
 # Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
+CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
+
+# just look at mean CS for now, can put posterior around it later
+CS.means <- CS.full %>%
+  group_by(Parameter) %>%
+  summarise(post.mean = mean(MCMC))
+
+CS = CS.means$post.mean
+
+devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+censored <- as.logical(is.na(a.time))
+
 km.cs <- survfit(Surv(CS,!censored) ~ 1)
 summary.km.cs <- summary(km.cs)
 rcu <- summary.km.cs$time # Cox-Snell residuals of
@@ -193,7 +199,7 @@ abline(a=0,b=1,col=3,lwd=2);
 \begin{table}
 \centering
 \small{
-\caption{Posterior mean and $P(\beta>1)$ for model parameters}
+\caption{Posterior mean and $P(\beta>1)$ for model parameters. Parameters can be interpreted as multiplicative acceleration factors(i.e., $\beta$=2 suggests a stock is assessed twice as fast as a stock with $\beta=1$.}
 \begin{tabular}{lrr}
 \newline
 Parameter & Posterior Mean & Bayesian P \\

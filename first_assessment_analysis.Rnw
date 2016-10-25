@@ -5,7 +5,7 @@
 \title{Analysis notes}
 \maketitle
 
-V0.0.2 PN
+V0.1 PN
 
 \section{Data manupulation}
 
