@@ -26,7 +26,7 @@ require("ggplot2")
 
 
 DB <- '~/Dropbox'
-load(file.path(DB,"First year of assessment/model.outTue Oct 25 15:07:50 2016.rda"))
+load(file.path(DB,"First year of assessment/model.outTue Oct 25 15:07:50 2016.rda"),v=T)
 
 # just for matching
 year.table$Region <- year.table$mainregion
@@ -156,9 +156,7 @@ abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2);
 
 
 
-\begin{figure}
-\centering
-<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+<<>>=
 CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
 
 # just look at mean CS for now, can put posterior around it later
@@ -170,6 +168,12 @@ library(survival)
 
 CS = CS.means$post.mean
 
+@
+
+\begin{figure}
+\centering
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+
 # Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
 km.cs <- survfit(Surv(CS,!censored) ~ 1)
 summary.km.cs <- summary(km.cs)
@@ -179,6 +183,7 @@ surv.cs <- summary.km.cs$surv
 plot(rcu,-log(surv.cs),type="p",pch=16,
 xlab="Cox-Snell residual",ylab="Cumulative hazard")
 abline(a=0,b=1,col=3,lwd=2); 
+
 @
 \caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
 \end{figure}
