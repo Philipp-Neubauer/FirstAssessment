@@ -51,6 +51,24 @@ coef_P <- coeffs %>%
 \newpage
 \section{Introduction}
 
+It is often said "what gets measured gets managed".  For over XXXX years (historical citation), fisheries scientists have measured
+human impacts on ocean populations (finfishes and marine invertebrates) with the goal of balancing both the long-term sustainability
+of human impacts with the goal of maximizing harvest (or value) from fishing.  In particular, stock assessments generally involve
+estimating two measures of impact: (1) fishing rate, i.e., the instantaneous mortality or annual fraction of the population that is
+harvested, relative to optimal levels, and (2) the population abundance, i.e., total or spawning biomass, or reproductive output, relative
+to optimal levels.  The value of these two measurements can be plotted on a 2-dimensional "stock status" plot, and fisheries agencies are
+increasingly committed to maintaining populations in the "healthy" quadrant (i.e., fishing rate below a target level, and population
+abundance above a target level).
+
+Recently, the National Marine Fisheries Service (the agency in charge of science supporting fisheries management in the United States)
+has sought to "end overfishing" for all marine species within regional fisheries management plans (with exceptions granted in a few
+circumstances; citation). In the US, overfishing is defined as having a total harvest quantity (in units biomass) above limit levels.
+A target harvest quantity can in theory be calculated by combining a target harvest rate with a target population abundance.  However,
+the vast majority of "overfishing" limits are currently calculated using methods that do not individually calculate either harvest rate
+or population abundance (Berkson and Thorson 2015, Newman Berkson Sautoni 2015).  These [To be continued]...
+
+
+
 \FloatBarrier
 \newpage
 \section{Methods}
