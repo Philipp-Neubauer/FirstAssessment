@@ -28,7 +28,7 @@ library(survival)
 
 #DB <- 'C:/Users/James.Thorson/Dropbox'
 DB <- '~/Dropbox'
-load(file.path(DB,"First year of assessment/model.outTue Oct 25 15:07:50 2016.rda"),v=T)
+load(file.path(DB,"First year of assessment/Weibull_model_out.rda"),v=T)
 
 # just for matching
 year.table$Region <- year.table$mainregion
