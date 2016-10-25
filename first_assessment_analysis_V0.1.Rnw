@@ -245,11 +245,15 @@ require(taxize)
 
 year.table <- filter(year.table,!is.na(species))
 
+fishbase <- load_taxa(update = T,limit = 35000)
+
 fishspecs <- paste(fishbase$Genus,fishbase$Species)
 fishmatch <- match(year.table$species, fishspecs)
 fishes <- which(!is.na(fishmatch))
 
-habitats <- species(fields='DemersPelag',limit=35000)$DemersPelag
+sp <- species(limit=35000)
+habitats <- sp$DemersPelag
+lengths <- sp$Length
 
 fishhabitat <- habitats[fishmatch[!is.na(fishmatch) & is.na(year.table$habitat_MM)]]
 
@@ -263,24 +267,28 @@ year.table <- year.table %>% mutate(Order=NA,
 
 year.table[fishes, c('Family','Order','Class')] <- fishtax
 
+# Lengths
+year.table$lengths <- sp$Length[match(year.table$species,sp$sciname)]
+
 
 #### Inverts ###
 # need to reload beyongd the cached part of sealifebase
-sealifebase <- load_taxa(server=SEALIFEBASE_API,update = T,limit=120000)
+sealifebase <- load_taxa(server='http://fishbase.ropensci.org/sealifebase',update = T,limit=120000)
 
 invspecs <- paste(sealifebase$Genus,sealifebase$Species)
 invmatch <- match(year.table$species, invspecs)
 invs <- which(!is.na(invmatch))
 
-inv_habitats <- species(fields='DemersPelag', server='http://fishbase.ropensci.org/sealifebase',limit=120000)
+inv_sp <- species(server='http://fishbase.ropensci.org/sealifebase',limit=120000)
 
-inv_habitat <- inv_habitats[invmatch[!is.na(invmatch) & is.na(year.table$habitat_MM)], 'DemersPelag']
+inv_habitat <- inv_sp[invmatch[!is.na(invmatch) & is.na(year.table$habitat_MM)], 'DemersPelag']
 
 year.table[!is.na(invmatch) & is.na(year.table$habitat_MM), 'habitat_MM'] <- inv_habitat
 
 invtax <- sealifebase[invmatch[!is.na(invmatch)], c('Family','Order','Class')]
 
 year.table[invs, c('Family','Order','Class')] <- invtax
+
 
 ### less resolution for habitat variable
 
@@ -293,13 +301,29 @@ year.table$habitat_MM[grepl('reef', year.table$habitat_MM)] <- 'reef'
 # filter out higher taxonomy (i.e., rows that didn't match...)
 year.table <- year.table %>% filter(!is.na(habitat_MM), !is.na(species),!is.na(Order)) %>% as.data.frame()
 
+
+### length
+
+invCodes <- sealifebase$SpecCode[match(year.table$species[is.na(year.table$lengths)],invspecs)]
+invlength <- inv_sp$CommonLength[match(invCodes,inv_sp$SpecCode)]
+
+year.table$lengths[is.na(year.table$lengths)] <- invlength
+
+
+invCodes <- sealifebase$SpecCode[match(year.table$species[is.na(year.table$lengths)],invspecs)]
+invlengths <- inv_sp$CommonLength[match(invCodes,inv_sp$SpecCode)]
+
+year.table$lengths[is.na(year.table$lengths)] <- invlengths
+
+year.table <- year.table %>% filter(!is.na(lengths))
+
 @
 
 
 
 \section{Simple Bayesian Weibull survival model}
 
-Try a Bayesian trunkated Weibull model to keep is simple to start with:
+Try a Bayesian truncated Weibull model to keep is simple to start with:
 
 <<Jags setup>>=
 
@@ -350,14 +374,16 @@ n.family <- length(unique(family))
 # 
 
 std <- function(x) (x-mean(x))/(2*sd(x))
-year.table <- year.table %>% mutate(stdprice = std(log10(price)),
-                      land = std(log10(cum.land)))
+year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
+                                    std_log10_price = std(log10(price)),
+                                    std_log10_land = std(log10(cum.land)))
 
 
 # Covariate dataframe
 COVS <- year.table %>%
-  select(land,
-         stdprice)
+  select(std_log10_length,
+         std_log10_price,
+         std_log10_land)
 
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 #covs$TL[is.na(covs$TL)] <- 3.2
@@ -400,7 +426,8 @@ JM <- jags.model('Weib_surv.R',data=jags.data,inits = list(a.time = time.inits),
 
 update(JM,n.iter=2000)
 
-a.out <- coda.samples(JM,variable.names=c('betas',
+a.out <- coda.samples(JM,variable.names=c('tau',
+                                          'betas',
                                           'habitat',
                                           'region',
                                           'orderfx',

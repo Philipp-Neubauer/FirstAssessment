@@ -24,7 +24,9 @@ require("dplyr")
 require(xtable)
 require("ggplot2")
 
-load("model.outWed Oct 12 22:14:54 2016.rda")
+
+DB <- '~/Dropbox'
+load(file.path(DB,"First year of assessment/model.outTue Oct 25 15:07:50 2016.rda"))
 
 # just for matching
 year.table$Region <- year.table$mainregion
@@ -125,6 +127,35 @@ ggplot(year.table) +
 \caption{Assessment status at time of last known status (censoring time) by Class}
 \end{figure}
 
+
+\begin{figure}
+\centering
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+
+
+#assessment time
+devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+
+# true false censoring
+censored <- is.na(a.time)
+
+# Kaplan-Meyer non-parametric survival at t - should be linear with slope p
+km.cs <- survfit(Surv(a.time,!censored) ~ 1)
+summary.km.cs <- summary(km.cs)
+rcu <- summary.km.cs$time 
+surv.cs <- summary.km.cs$surv
+plot(log(rcu),log(-log(surv.cs)),type="p",pch=16,xlab="log(t)",ylab="log(-log(S(t)))")
+lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
+
+abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
+@
+\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, data should fall on a line with slope $p$ (the Weibull shape parameter) between the $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{lm_fit[2]}, suggesting an increasing assessment rate with increasing time $t$.}
+\end{figure}
+
+
+
 \begin{figure}
 \centering
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
@@ -138,14 +169,6 @@ CS.means <- CS.full %>%
 library(survival)
 
 CS = CS.means$post.mean
-
-#assessment time
-devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
-
-a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
-
-# true false censoring
-censored <- is.na(a.time)
 
 # Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
 km.cs <- survfit(Surv(CS,!censored) ~ 1)
