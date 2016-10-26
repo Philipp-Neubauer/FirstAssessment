@@ -19,16 +19,21 @@ opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TR
 @
 
 <<preamble,results='hide'>>=
-#setwd("C:/Users/James.Thorson/Desktop/Project_git/FirstAssessment")
+DB <- '~/Dropbox'
+
+# Settings for Jim's machine
+if( Sys.info()["effective_user"] == "James.Thorson" ){
+  setwd("C:/Users/James.Thorson/Desktop/Project_git/FirstAssessment")
+  DB <- 'C:/Users/James.Thorson/Dropbox'
+}
+
 source('helper_functs.R')
 require("dplyr")
 require(xtable)
 require("ggplot2")
 library(survival)
 
-#DB <- 'C:/Users/James.Thorson/Dropbox'
-DB <- '~/Dropbox'
-load(file.path(DB,"First year of assessment/Weibull_model_out.rda"),v=T)
+load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
 
 # just for matching
 year.table$Region <- year.table$mainregion
