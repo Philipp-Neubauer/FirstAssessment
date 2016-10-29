@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{subfig}
 \usepackage{placeins}
+\usepackage{amsmath}
 \usepackage{pdflscape}
 \begin{document}
 
@@ -44,13 +45,19 @@ year.table$habitat <- year.table$habitat_MM
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'betas',
                                  var.names = c('Length',
-                                               'Cumulative landings',
+                                               'Maximum landings',
                                                'Mean price per kg')))
 
+
+tau <- tbl_df(get_coef_chains(model.out = a.out, 
+                                 coef.names = 'tau',
+                                 var.names = 'Rate'))
+coeffs$Rate = tau$MCMC
 # regressin coeffs are beta
 coef_P <- coeffs %>%
   group_by(Parameter) %>%
   summarise(post.mean = mean(exp(MCMC)),
+            acc = mean(exp(-MCMC/Rate)),
             post.P = mean(exp(MCMC) > 1))
 @
 
@@ -75,7 +82,7 @@ We  argue that stock assessments (population models for estimating absolute abun
 
 3.  Stock assessments often require updates periodically (e.g., Pacific hake has been re-assessed annually from X through 2016), and agency resources might be fully expended while assessing a small fraction of stocks.  However, it is currently unknown whether the rate of assessing new species for the first time is increasing or decreasing.  If this rate is decreasing, this could indicate the need for additional public resources for stock assessment.  
 
-We therefore seek to provide the first-ever quantitative analysis of which marine species are likely to have undergone a stock assessment.  To do so, we combine two databases representing all fished marine species in the United States:  a database of all landed species from 195X to 201X, and a database of management and stock assessment attributes for all US fishes with peer-reviewed stock assessments.  For each landed stock in each of four US regions (northeast, southeast, northwest, and southwest), we record the year that it first had a stock assessment; we treat any stock that does not have an assessment by 2015 as a "censored" observation (i.e., it might eventually have a peer-reviewed assessment)  We then apply a censored time-to-event model to answer the following questions:  (1) what economic or biological characteristics are associated with a high or low annual probability of being assessed for the first time? (2) which US region has assessed stocks relatively quickly or slowly? (3) are there certain taxa (e.g., invertebrates or sharks) that are substantially faster or slower-assessed given these biological and economic attributes? and (4) is the rate of stock assessment accelerating or deccelerating over time.  [Add one sentence high-line conclusion -- I know some people don't do this, but I think its a reasonable way to hook interest]
+We therefore seek to provide the first-ever quantitative analysis of which marine species are likely to have undergone a stock assessment.  To do so, we combine two databases representing all fished marine species in the United States:  a database of all landed species from 195X to 201X, and a database of management and stock assessment attributes for all US fishes with peer-reviewed stock assessments.  For each landed stock in each of four US regions (northeast, southeast, northwest, and southwest), we record the year that it first had a stock assessment; we treat any stock that does not have an assessment by 2015 as a "censored" observation (i.e., it might eventually have a peer-reviewed assessment)  We then apply a censored time-to-event model to answer the following questions:  (1) what economic or biological characteristics are associated with a high or low annual probability of being assessed for the first time? (2) which US region has assessed stocks relatively quickly or slowly? (3) are there certain taxa (e.g., invertebrates or sharks) that are substantially faster or slower-assessed given these biological and economic attributes? and (4) is the rate of stock assessment accelerating or decelerating over time.  [Add one sentence high-line conclusion -- I know some people don't do this, but I think its a reasonable way to hook interest]
 
 \FloatBarrier
 \newpage
@@ -87,95 +94,11 @@ We therefore seek to provide the first-ever quantitative analysis of which marin
 
 \subsection{Data preparation}
 
-\subsection{Model formulation}
+\subsection{Time-to-event model}
 
-\FloatBarrier
-\newpage
-\section{Results}
-\begin{landscape}
-<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status and b) proportion of landed stocks that are assessed. The vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks'),echo=FALSE,results='asis',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
+To assess which factors drive the over-all rate of assessments and the time from first recorded landings to a full stock assessment in US stocks, we applied a time-to-event model. Also called survival models in the medical and ecological literature, these models account for censored data (i.e., species that are landed but not yet assessed) while modeling time-to-assessment within a parametric framework.
 
-plot.tab <- full.tab %>% 
-  mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment,
-         Assessed = ifelse(assessed,'Yes','No')) %>%
-  group_by(mainregion,year,Assessed) %>%
-  summarise(ns = n()) 
-
-plot.tab.prop <- full.tab %>% 
-  mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment) %>%
-  group_by(mainregion,year,assessed) %>%
-  summarise(ns = n()) %>%
-  mutate(total = ns/sum(ns)) %>%
-  filter(assessed==T)
-
-ggplot(plot.tab) + 
-  geom_line(aes(col=mainregion,x=year,y=ns,linetype = Assessed)) + 
-  ylab('Number of landed stocks') + 
-  xlab('Year') +
-  scale_linetype('Assessed')+
-  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
-  geom_vline(aes(xintercept=1996))+
-  theme_classic()
-
-ggplot(plot.tab.prop) + 
-  geom_line(aes(col=mainregion,x=year,y=total)) + 
-  ylab('Proportion assessed') + 
-  xlab('Year') + 
-  scale_linetype('Assessed')+
-  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
-  geom_vline(aes(xintercept=1996))+
-  theme_classic()
-@
-
-\end{landscape}
-
-
-<<>>=
-
-year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
-
-@
-
-\begin{figure}[!h]
-\centering
-<<fig.width=5,fig.height=5,out.width='0.8\\textwidth'>>=
-ggplot(year.table) + 
-  geom_bar(aes(fill=Assessed,x=habitat_MM)) +
-  coord_flip() + 
-  theme_classic() + 
-  xlab('Habitat') + 
-  ylab('Count') + 
-  theme(legend.position='bottom')
-@
-\caption{Assessment status at time of last known status (censoring time) by habitat}
-\end{figure}
-
-\begin{figure}[!h]
-\centering
-<<fig.width=5,fig.height=5,out.width='0.8\\textwidth'>>=
-ggplot(year.table) + 
-  geom_bar(aes(fill=Assessed,x=Order)) + 
-  coord_flip() + 
-  theme_classic() + 
-  ylab('Count') + 
-  theme(legend.position='bottom')
-  @
-\caption{Assessment status at time of last known status (censoring time) by phylum}
-\end{figure}
-
-\begin{figure}[!h]
-\centering
-<<fig.width=5,fig.height=5,out.width='0.8\\textwidth'>>=
-ggplot(year.table) + 
-  geom_bar(aes(fill=Assessed,x=Class)) + 
-  coord_flip() + 
-  theme_classic() + 
-  ylab('Count') + 
-  theme(legend.position='bottom')
-@
-\caption{Assessment status at time of last known status (censoring time) by Class}
-\end{figure}
-
+The Weibull distribution is often used as a flexible model that has several desireable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The rate parameter of the Weibull can be interpreted in terms of the rate of events occurring. A slope greater than one suggests an increasing rate of events, whereas a slope of less than one indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time.
 
 \begin{figure}
 \centering
@@ -200,7 +123,116 @@ lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
 abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
 @
 \caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the time from fishery development to assessment should fall on a line with slope $p$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{round(lm_fit[2],2)}, suggesting an increasing assessment rate with increasing time $t$.}
+\label{fig:Weibull_check}
 \end{figure}
+
+A further desirable property is the model can be interpreted in terms of the ratio of event rates as well as time-to-event. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model can also be interpreted in terms of time-to-event parameters, which scale the time to the event by an acceleration factor. For example, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmeters obtained for the event rate interpretation - the two interpretation are therefore easily exchangeable in the Weibull model.
+
+We thus model time-to-assessment as Weibull distributed with shape parameter $\tau$ and rate $\lambda$. The connection between the event rate and the time-to-event interpretations can be made explicit by writing the Weibull density as a function of the product of the probability of an event occurring at time $t$ and the probability of an event not occurring prior to time $t$. Thus, $P(T=t)$ depends on the probability of that event not having occurred prior to time $t$ and the probability of the event occurring at time $t$. Thus,
+
+\begin{align}
+P(T=t) &= Weibull(\tau,\lambda) \\
+       &= r(t) \times A(t) \\
+       &= \lambda \tau t^{\tau-1} \times \exp(-\lambda t^\tau)
+\end{align}
+
+
+\FloatBarrier
+\newpage
+\section{Results}
+
+\begin{landscape}
+
+<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status and b) proportion of landed stocks that are assessed. The vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks'),echo=FALSE,results='asis',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
+
+plot.tab <- full.tab %>% 
+  mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment,
+         Assessed = ifelse(assessed,'Yes','No')) %>%
+  group_by(mainregion,year,Assessed) %>%
+  summarise(ns = n()) 
+
+plot.tab.prop <- full.tab %>% 
+  mutate(assessed = !is.na(Year.of.first.stock.assessment) & year>Year.of.first.stock.assessment) %>%
+  group_by(mainregion,year,assessed) %>%
+  summarise(ns = n()) %>%
+  mutate(total = ns/sum(ns)) %>%
+  filter(assessed==T)
+
+ggplot(plot.tab) + 
+  geom_line(aes(col=mainregion,x=year,y=ns,linetype = Assessed)) + 
+  ylab('Number of landed stocks') + 
+  xlab('Year') +
+  scale_linetype('Assessed')+
+  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
+  geom_vline(aes(xintercept=1996))+
+  theme_classic()+
+  theme(axis.text = element_text(color = 'black'))
+
+ggplot(plot.tab.prop) + 
+  geom_line(aes(col=mainregion,x=year,y=total)) + 
+  ylab('Proportion assessed') + 
+  xlab('Year') + 
+  scale_linetype('Assessed')+
+  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
+  geom_vline(aes(xintercept=1996))+
+  theme_classic()+
+  theme(axis.text = element_text(color = 'black'))
+@
+
+\end{landscape}
+
+
+<<>>=
+
+year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
+
+@
+
+\begin{figure}[!h]
+\centering
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+
+
+simpleCap <- function(s) {
+  #s <- do.call('rbind',strsplit(x, " "))
+  paste(toupper(substring(s, 1,1)), substring(s, 2),
+      sep="")
+}
+
+yt <- year.table %>% mutate(hab = simpleCap(habitat_MM))
+
+ggplot(yt) + 
+  geom_bar(aes(fill=Assessed,x=hab)) +
+  #coord_flip() + 
+  theme_classic() + 
+  xlab('Habitat') + 
+  ylab('Count') + 
+  theme(axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
+        axis.text = element_text(color = 'black'))
+@
+\caption{Assessment status at time of last known status (censoring time) by habitat}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+<<fig.width=5,fig.height=5,out.width='\\textwidth'>>=
+yt <- year.table %>% mutate(class=substr(Class,1,1))
+
+ggplot(yt) + 
+  geom_bar(aes(fill=Assessed,x=Order), width = 1) + 
+  facet_grid(~class, drop = T,switch = "both", scales = "free_x", space = "free_x") +
+  #coord_flip() + 
+  theme_classic() + 
+  ylab('Count') + 
+  theme(axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
+        #strip.text = element_text(angle=90,hjust = 1,vjust=0.5),
+        panel.spacing = unit(0, "lines"), 
+        axis.text = element_text(color = 'black'),
+        strip.background = element_rect())
+  @
+\caption{Assessment status at time of last known status (censoring time) by Order and sorted by Class. Classes are abbreviated as \Sexpr{paste(paste(unique(yt$class),unique(yt$Class),sep=': '),collapse=', ')}}
+\end{figure}
+
 
 \begin{figure}
 \centering
@@ -239,10 +271,10 @@ abline(a=0,b=1,col=3,lwd=2);
 \begin{table}
 \centering
 \small{
-\caption{Posterior mean and $P(\beta>1)$ for model parameters. Parameters can be interpreted as multiplicative acceleration factors (i.e., $\beta$=2 suggests a stock is assessed twice as fast as a stock with $\beta=1$).}
-\begin{tabular}{lrr}
+\caption{Posterior mean and $P(\beta>1)$ for model parameters. Parameters can be interpreted as the ration of rates (rate effect, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\alpha$=0.5 suggests a stock with these characteristics is assessed twice as fast as the average stock).}
+\begin{tabular}{lrrr}
 \newline
-Parameter & Posterior Mean & Bayesian P \\
+Parameter & Rate effect ($\beta$) & Time effect ($\alpha=\beta\tau^-1$) & $P(\beta>1)$\\
 \hline
 <<table,results='asis',echo=FALSE>>=
 print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
@@ -287,30 +319,33 @@ fp %>% group_by(Effect) %>%
 
 <<surv_plot,fig.cap='Marginal probability of a stock being assessed as a function of time, for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.4\\textwidth',fig.align='center'>>=
 
-preds <- get_coef_chains(model.out = a.out, coef.names = 'pred' )
+preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
 
 preds$Parameter <- as.character(preds$Parameter)
 
-preds <- preds %>% 
+preda <- preds %>% 
+  split(.$Parameter) %>%
+  purrr::map(function(l) {
+    tp <- sapply(seq(0,50),function(t) 1-exp(-l$MCMC*t^tau$MCMC))
+    data.frame(time=0:50,mm=apply(tp,2,median))
+  })
+
+
+mpreda <- reshape2::melt(preda,id.vars='time') %>% dplyr::select(-variable)
+names(mpreda) <- c('time','MCMC','Parameter')
+
+preda <- tbl_df(mpreda) %>% 
   mutate(effect = do.call('rbind',strsplit(as.character(Parameter),'\\.'))[,1],
          Effect = .simpleCap(effect),
-         idx = regmatches(Parameter,regexpr('*([0-9]*),([0-9])*',Parameter)),
-         fx = as.numeric(do.call('rbind',strsplit(idx,','))[,1]),
-         t = as.numeric(do.call('rbind',strsplit(idx,','))[,2]))
-
-preds$Effect[preds$Effect=='Hab'] <- 'Habitat'
-preds$effect[preds$effect=='hab'] <- 'habitat'
-
-pred.plot <- preds %>% 
-  group_by(Effect) %>%
-  mutate(Group = levels(as.factor(year.table[,unique(Effect)]))[fx]) %>%
-  ungroup() %>%
-  group_by(Effect,Group,t) %>%
-  summarise(p=median(MCMC),
-            q1=quantile(MCMC,0.1),
-            q3=quantile(MCMC,0.9))
+         idx = as.numeric(regmatches(Parameter,regexpr('([0-9]+)',Parameter))))
 
 
+preda$Effect[preda$Effect=='Hab'] <- 'Habitat'
+
+pred.plot <- data.frame(preda) %>%
+  rowwise() %>%
+  mutate(Group = levels(as.factor(year.table[,unique(Effect)]))[idx])
+  
 p=0;gg<- list()
 for(group in unique(pred.plot$Effect)){
   
@@ -319,7 +354,7 @@ for(group in unique(pred.plot$Effect)){
   pp<- pred.plot %>% filter(Effect == group, Group %in% this)
   
   gg[[p]] <- ggplot(pp) + 
-    geom_line(aes(x=t,y=p,col=Group,linetype=Group)) + 
+    geom_line(aes(x=time,y=MCMC,col=Group,linetype=Group)) + 
     theme_classic() + 
     theme(axis.text = element_text(colour='black'))+
     ylab('Probability of being assessed') +
@@ -337,7 +372,7 @@ gridExtra::grid.arrange(grobs=gg,ncol=2)
 \begin{landscape}
 <<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, and c) regional random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center',fig.subcap=c('Covariates', 'Habitat','Region')>>=
 
-betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Cumulative landings', 'Mean price per kg'))
+betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Maximum landings', 'Mean price per kg'))
 betas$Effect <- 'Covariates'
 
 habitats <- get_coef_chains(model.out = a.out, coef.names = 'habitat\\[[0-9]*\\]', var.names = levels(as.factor(year.table$habitat_MM)))
@@ -360,18 +395,18 @@ for(group in unique(fx.plot$Effect)){
   
   gg[[p]] <- fx.plot %>% filter(Effect == group, Parameter %in% this) %>%
     group_by(Parameter) %>%
-  summarise(means = median(MCMC),
-            q1 = quantile(MCMC,0.025),
-            q3 = quantile(MCMC,0.975),
-            q11 = quantile(MCMC,0.25),
-            q33 = quantile(MCMC,0.75)) %>%
+  summarise(means = exp(median(MCMC)),
+            q1 = exp(quantile(MCMC,0.025)),
+            q3 = exp(quantile(MCMC,0.975)),
+            q11 = exp(quantile(MCMC,0.25)),
+            q33 = exp(quantile(MCMC,0.75))) %>%
   ggplot() + 
   geom_point(aes(x=Parameter, y=means), size=4) +
   geom_linerange(aes(x=Parameter,ymin=q1,ymax=q3),size=1) +
   geom_linerange(aes(x=Parameter,ymin=q11,ymax=q33),size=2) +
   ylab('') +
   xlab('') +
-  geom_hline(aes(yintercept=0), linetype=2) + 
+  geom_hline(aes(yintercept=1), linetype=2) + 
   theme_classic() +
   coord_flip()+
   theme(axis.text = element_text(colour='black'))
