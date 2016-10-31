@@ -402,7 +402,10 @@ habitats$Effect <- 'Habitat'
 regions <- get_coef_chains(model.out = a.out, coef.names = 'region\\[[0-9]*\\]', var.names = levels(as.factor(year.table$mainregion)))
 regions$Effect <- 'Region'
 
-fx.plot <- rbind(betas,habitats,regions)
+classes <- get_coef_chains(model.out = a.out, coef.names = 'classfx\\[[0-9]*\\]', var.names = levels(as.factor(year.table$Class)))
+classes$Effect <- 'Class'
+
+fx.plot <- rbind(betas,habitats,regions,classes)
 
 p=0;gg<- list()
 for(group in unique(fx.plot$Effect)){
@@ -416,18 +419,18 @@ for(group in unique(fx.plot$Effect)){
   
   gg[[p]] <- fx.plot %>% filter(Effect == group, Parameter %in% this) %>%
     group_by(Parameter) %>%
-  summarise(means = exp(median(MCMC)),
-            q1 = exp(quantile(MCMC,0.025)),
-            q3 = exp(quantile(MCMC,0.975)),
-            q11 = exp(quantile(MCMC,0.25)),
-            q33 = exp(quantile(MCMC,0.75))) %>%
+  summarise(means = (median(MCMC)),
+            q1 = (quantile(MCMC,0.025)),
+            q3 = (quantile(MCMC,0.975)),
+            q11 = (quantile(MCMC,0.25)),
+            q33 = (quantile(MCMC,0.75))) %>%
   ggplot() + 
   geom_point(aes(x=Parameter, y=means), size=4) +
   geom_linerange(aes(x=Parameter,ymin=q1,ymax=q3),size=1) +
   geom_linerange(aes(x=Parameter,ymin=q11,ymax=q33),size=2) +
   ylab('') +
   xlab('') +
-  geom_hline(aes(yintercept=1), linetype=2) + 
+  geom_hline(aes(yintercept=0), linetype=2) + 
   theme_classic() +
   coord_flip()+
   theme(axis.text = element_text(colour='black'))
