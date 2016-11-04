@@ -3,6 +3,7 @@
 \usepackage{placeins}
 \usepackage{amsmath}
 \usepackage{pdflscape}
+\usepackage[toc,page]{appendix}
 \begin{document}
 
 \title{Are assessed stocks a representative sample of fished species in the US?}
@@ -84,8 +85,6 @@ We  argue that stock assessments (population models for estimating absolute abun
 
 We therefore seek to provide the first-ever quantitative analysis of which marine species are likely to have undergone a stock assessment.  To do so, we combine two databases representing all fished marine species in the United States:  a database of all landed species from 195X to 201X, and a database of management and stock assessment attributes for all US fishes with peer-reviewed stock assessments.  For each landed stock in each of four US regions (northeast, southeast, northwest, and southwest), we record the year that it first had a stock assessment; we treat any stock that does not have an assessment by 2015 as a "censored" observation (i.e., it might eventually have a peer-reviewed assessment)  We then apply a censored time-to-event model to answer the following questions:  (1) what economic or biological characteristics are associated with a high or low annual probability of being assessed for the first time? (2) which US region has assessed stocks relatively quickly or slowly? (3) are there certain taxa (e.g., invertebrates or sharks) that are substantially faster or slower-assessed given these biological and economic attributes? and (4) is the rate of stock assessment accelerating or decelerating over time.  [Add one sentence high-line conclusion -- I know some people don't do this, but I think its a reasonable way to hook interest]
 
-\FloatBarrier
-\newpage
 \section{Methods}
 
 \subsection{Management database}
@@ -100,43 +99,11 @@ Year of first assessment assignments were compared with the NOAA Species Informa
 
 \subsection{Data preparation}
 
-The year of first stock assessment was determined primarily by interviews with regional stock assessment scientists, or occasionally by searching through archived assessments. In reality numerous types of stock assessments exist, with varying levels of model complexity and input data requirements. Assessments for any given stock also tend to change over time, typically becoming more complex as warranted by available data. For consistency across populations, we required a stock assessment in some year to be based on a single-species population model which provided time series estimates of some form of abundance (e.g. total biomass, spawning biomass) and/or fishing mortality (or exploitation rate) as well as some type of benchmark for these time series estimates. Benchmarks could include target reference points, reference points based on maximum sustainable yield (MSY) or its proxies, or initial population abundance; ratios of the time series and their corresponding reference points provide a relative index of stock status. Age-structured models, delay-difference models, biomass dynamics models, and surplus production models all qualified as population models. Exceptions were occasionally made (i.e. definitions of an assessment were more forgiving) for some invertebrate species like squids due to short lifespans and difficulties of aging individuals.
-
-Several variables were considered as explanatory factors affecting the year in which a stock was first assessed. Regional differences across the United States may arise. Populations were classified into four regions, which were treated as categorical random effects: Alaska; West Coast; Northeast Coast (including the mid-Atlantic Coast); and Southeast Coast (including the South Atlantic Coast and Gulf of Mexico). The habitat typically occupied by the population was also considered as a categorical random effect. Habitat types from FishBase (ref) or SeaLifeBase (ref) were aggregated into four (five?) categories (benthic; demersal; benthopelagic(?); pelagic; and reef-associated), and adjustments were made to the default global species-level classifications for some populations to better reflect local habitat usage. Maximum body length of the species was also assigned to each population and used as a numerical predictor, drawing from FishBase and SeaLifeBase. Fisheries that developed earlier may be more likely to be assessed earlier than others. The year of fishery development, defined as the year in which landings first reached 25\% of the maximum landings across the full time series (CITE Sethi et al. 2011 PNAS), provides historical information about the fishery for each population as was used as a numerical predictor. The catch quantity and ex-vessel price of the population together determine landed value of the population; more valuable populations may be more likely to be assessed. We considered maximum annual landings prior to the first assessment and ex-vessel price in the year of first assessment as separate numerical predictors, drawn from the National Marine Fisheries Service landings database. These state-level landings and ex-vessel price data were linked to corresponding biological stock units according to areas of stock distribution as defined in assessments.
-
-Year of first assessment assignments were compared with the NOAA Species Information System (SIS) database to ensure consistency. The SIS database does not contain information about when a stock was first assessed, so comparisons were restricted to recent years, assuming that stocks which qualified as assessed in a previous year continue to qualify as presently assessed. These comparisons generally showed consistency among datasets. The only exceptions... [squids, couple others].
-
 \subsection{Time-to-event model}
 
 To assess which factors drive the over-all rate of assessments and the time from first recorded landings to a full stock assessment in US stocks, we applied a time-to-event model. Also called survival models in the medical and ecological literature, these models account for censored data (i.e., species that are landed but not yet assessed) while modeling time-to-assessment within a parametric framework.
 
 The Weibull distribution is often used as a flexible model that has several desireable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The rate parameter of the Weibull can be interpreted in terms of the rate of events occurring. A slope greater than one suggests an increasing rate of events, whereas a slope of less than one indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time.
-
-\begin{figure}
-\centering
-<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
-
-#assessment time
-devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
-
-a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
-
-# true false censoring
-censored <- as.logical(is.na(a.time))
-
-# Kaplan-Meyer non-parametric survival at t - should be linear with slope p
-km.cs <- survfit(Surv(a.time,!censored) ~ 1)
-summary.km.cs <- summary(km.cs)
-rcu <- summary.km.cs$time 
-surv.cs <- summary.km.cs$surv
-plot(log(rcu),log(-log(surv.cs)),type="p",pch=16,xlab="log(t)",ylab="log(-log(S(t)))")
-lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
-
-abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
-@
-\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the time from fishery development to assessment should fall on a line with slope $p$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{round(lm_fit[2],2)}, suggesting an increasing assessment rate with increasing time $t$.}
-\label{fig:Weibull_check}
-\end{figure}
 
 A further desirable property is the model can be interpreted in terms of the ratio of event rates as well as time-to-event. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model can also be interpreted in terms of time-to-event parameters, which scale the time to the event by an acceleration factor. For example, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmeters obtained for the event rate interpretation - the two interpretation are therefore easily exchangeable in the Weibull model.
 
@@ -258,40 +225,6 @@ ggplot(yt) +
 \caption{Assessment status at time of last known status (censoring time) by Order and sorted by Class. Classes are abbreviated as \Sexpr{paste(paste(unique(yt$class),unique(yt$Class),sep=': '),collapse=', ')}}
 \end{figure}
 
-
-\begin{figure}
-\centering
-<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
-
-# Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
-CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
-
-# just look at mean CS for now, can put posterior around it later
-CS.means <- CS.full %>%
-  group_by(Parameter) %>%
-  summarise(post.mean = mean(MCMC))
-
-CS = CS.means$post.mean
-
-devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
-
-a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
-censored <- as.logical(is.na(a.time))
-
-km.cs <- survfit(Surv(CS,!censored) ~ 1)
-summary.km.cs <- summary(km.cs)
-rcu <- summary.km.cs$time # Cox-Snell residuals of
-                            # uncensored points.
-surv.cs <- summary.km.cs$surv
-plot(rcu,-log(surv.cs),type="p",pch=16,
-xlab="Cox-Snell residual",ylab="Cumulative hazard")
-abline(a=0,b=1,col=3,lwd=2); 
-
-@
-\caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
-\end{figure}
-
-\FloatBarrier
 
 \begin{table}
 \centering
@@ -492,5 +425,71 @@ orderr %>%
 
 @
 
+\FloatBarrier
+\newpage
+\begin{appendices}
+\section{Model fit}
 
+
+\begin{figure}
+\centering
+
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+
+#assessment time
+devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+
+# true false censoring
+censored <- as.logical(is.na(a.time))
+
+# Kaplan-Meyer non-parametric survival at t - should be linear with slope p
+km.cs <- survfit(Surv(a.time,!censored) ~ 1)
+summary.km.cs <- summary(km.cs)
+rcu <- summary.km.cs$time 
+surv.cs <- summary.km.cs$surv
+plot(log(rcu),log(-log(surv.cs)),type="p",pch=16,xlab="log(t)",ylab="log(-log(S(t)))")
+lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
+
+abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
+@
+\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the time from fishery development to assessment should fall on a line with slope $p$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{round(lm_fit[2],2)}, suggesting an increasing assessment rate with increasing time $t$.}
+\label{fig:Weibull_check}
+\end{figure}
+
+\begin{figure}
+\centering
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+
+# Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
+CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
+
+# just look at mean CS for now, can put posterior around it later
+CS.means <- CS.full %>%
+  group_by(Parameter) %>%
+  summarise(post.mean = mean(MCMC))
+
+CS = CS.means$post.mean
+
+devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+censored <- as.logical(is.na(a.time))
+
+km.cs <- survfit(Surv(CS,!censored) ~ 1)
+summary.km.cs <- summary(km.cs)
+rcu <- summary.km.cs$time # Cox-Snell residuals of
+                            # uncensored points.
+surv.cs <- summary.km.cs$surv
+plot(rcu,-log(surv.cs),type="p",pch=16,
+xlab="Cox-Snell residual",ylab="Cumulative hazard")
+abline(a=0,b=1,col=3,lwd=2); 
+
+@
+\caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
+\end{figure}
+
+
+\end{appendices}
 \end{document}
