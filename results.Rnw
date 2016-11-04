@@ -427,8 +427,10 @@ orderr %>%
 
 \FloatBarrier
 \newpage
-\begin{appendices}
-\section{Model fit}
+\appendix
+\renewcommand\thefigure{\thesection.\arabic{figure}}   
+\setcounter{figure}{0} 
+\section{A: Model fit}
 
 
 \begin{figure}
@@ -491,5 +493,4 @@ abline(a=0,b=1,col=3,lwd=2);
 \end{figure}
 
 
-\end{appendices}
 \end{document}
