@@ -16,7 +16,7 @@
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -184,7 +184,7 @@ ggplot(plot.tab) +
   ylab('Number of landed stocks') + 
   xlab('Year') +
   scale_linetype('Assessed')+
-  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
+  viridis::scale_color_viridis('Region',discrete = T) + 
   geom_vline(aes(xintercept=1996))+
   theme_classic()+
   theme(axis.text = element_text(color = 'black'))
@@ -194,7 +194,7 @@ ggplot(plot.tab.prop) +
   ylab('Proportion assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
-  scale_color_brewer('Region', type = 'qual', palette = 'Dark2')+
+  viridis::scale_color_viridis('Region', discrete = T)+
   geom_vline(aes(xintercept=1996))+
   theme_classic()+
   theme(axis.text = element_text(color = 'black'))
@@ -380,7 +380,7 @@ for(group in unique(pred.plot$Effect)){
     theme(axis.text = element_text(colour='black'))+
     ylab('Probability of being assessed') +
     xlab('Time (yr)') + 
-    scale_colour_brewer(group,type='qual',palette='Dark2') + 
+    viridis::scale_color_viridis(group,discrete = T) + 
     scale_linetype_discrete(group)+
     coord_cartesian(expand = F)
 }
@@ -391,7 +391,7 @@ gridExtra::grid.arrange(grobs=gg,ncol=2)
 \end{landscape}
 
 \begin{landscape}
-<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, and c) regional random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center',fig.subcap=c('Covariates', 'Habitat','Region')>>=
+<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, c) regional random effects, and d) taxonomic class random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1.2\\textwidth',fig.align='center'>>=
 
 betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Maximum landings', 'Mean price per kg'))
 betas$Effect <- 'Covariates'
@@ -405,42 +405,88 @@ regions$Effect <- 'Region'
 classes <- get_coef_chains(model.out = a.out, coef.names = 'classfx\\[[0-9]*\\]', var.names = levels(as.factor(year.table$Class)))
 classes$Effect <- 'Class'
 
+
 fx.plot <- rbind(betas,habitats,regions,classes)
 
-p=0;gg<- list()
-for(group in unique(fx.plot$Effect)){
-  
-  if(any(group %in% colnames(year.table))){
-    this <- names(sort(table(year.table[,group]),decreasing = T)[1:8])
-  } else {
-    this <- unique(fx.plot$Parameter)
-  }
-  p=p+1;
-  
-  gg[[p]] <- fx.plot %>% filter(Effect == group, Parameter %in% this) %>%
-    group_by(Parameter) %>%
+fx.plot %>%
+  group_by(Effect,Parameter) %>%
   summarise(means = (median(MCMC)),
             q1 = (quantile(MCMC,0.025)),
             q3 = (quantile(MCMC,0.975)),
             q11 = (quantile(MCMC,0.25)),
             q33 = (quantile(MCMC,0.75))) %>%
+  
   ggplot() + 
   geom_point(aes(x=Parameter, y=means), size=4) +
   geom_linerange(aes(x=Parameter,ymin=q1,ymax=q3),size=1) +
   geom_linerange(aes(x=Parameter,ymin=q11,ymax=q33),size=2) +
   ylab('') +
+  facet_wrap(~Effect,drop = T, scales = "free",as.table = F) +
   xlab('') +
   geom_hline(aes(yintercept=0), linetype=2) + 
   theme_classic() +
   coord_flip()+
   theme(axis.text = element_text(colour='black'))
-}
-
-gg
 
 #gridExtra::grid.arrange(grobs=gg,nrow=1)
 @
 
+
 \end{landscape}
+
+<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for order within class, showing a summary (grey line: posterior mean, coloured box: 95\\% confidence) of class effects, and order effects relative to class effects (points: posterior mean, black line: 95\\% confidence).',echo=FALSE,results='hide',fig.width=5,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
+
+afs <- function(x) as.numeric(as.factor(x))
+orders <- with(year.table,afs(Order))
+class <- with(year.table,afs(Class))
+classord <- tapply(class,orders,unique)
+
+
+cl <- classes %>% group_by(Parameter) %>% mutate(iter=1:n()) %>% tidyr::spread(Parameter,MCMC)
+
+orderr <- get_coef_chains(model.out = a.out, coef.names = 'orderfx\\[[0-9]*\\]', var.names = levels(as.factor(year.table$Order)))
+orderr$Effect <- 'Order'
+orderr$class <- levels(as.factor(year.table$Class))[classord[match(orderr$Parameter,levels(as.factor(year.table$Order)))]]
+
+orderr[,c('Class','Iter')] <- reshape2::melt(cl[,-c(1,2)][,classord])
+
+orderr$Class <- as.character(orderr$Class)
+
+orderr %>%
+  group_by(Parameter,Class) %>%
+  summarise(omeans = mean(MCMC+Iter),
+            cmeans = mean(Iter),
+            oq1 = quantile(MCMC+Iter,0.025),
+            cq1 = quantile(Iter,0.025),
+            oq3 = quantile(MCMC+Iter,0.975),
+            cq3 = quantile(Iter,0.975),
+            oq11 = quantile(MCMC+Iter,0.25),
+            cq11 = quantile(Iter,0.25),
+            oq33 = quantile(MCMC+Iter,0.75),
+            cq33 = quantile(Iter,0.75)) %>%
+  group_by(Class) %>%
+  mutate(ns = n()) %>% 
+  filter(ns>1) %>%
+  ggplot() + 
+  geom_crossbar(aes(x=Parameter, y=cmeans,ymin=cq1,ymax=cq3,fill=Class),col='grey50',alpha=0.5,size=0.01,fatten=100) +
+  facet_grid(~Class, drop = T,switch = "both", scales = "free_x", space = "free_x") +
+  viridis::scale_fill_viridis(discrete = T) + 
+  geom_point(aes(x=Parameter, y=omeans), size=1) +
+  geom_linerange(aes(x=Parameter,ymin=oq1,ymax=oq3),size=1) +
+  #geom_linerange(aes(x=Parameter,ymin=oq11,ymax=oq33),size=2) +
+  ylab('') +
+  xlab('') +
+  #geom_hline(aes(yintercept=0), linetype=2) + 
+  theme_classic() +
+  #coord_flip()+
+  theme(axis.text = element_text(colour='black'),
+        axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
+        #strip.text = element_text(angle=90,hjust = 1,vjust=0.5),
+        panel.spacing = unit(0, "lines"), 
+        strip.background = element_rect(),
+        strip.text = element_blank())
+
+@
+
 
 \end{document}
