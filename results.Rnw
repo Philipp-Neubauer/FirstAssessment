@@ -371,7 +371,7 @@ fx.plot %>%
 
 \end{landscape}
 
-<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for order within class, showing a summary (grey line: posterior mean, coloured box: 95\\% confidence) of class effects, and order effects relative to class effects (points: posterior mean, black line: 95\\% confidence).',echo=FALSE,results='hide',fig.width=5,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
+<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for order within class, showing a summary (grey line: posterior mean, coloured box: 95\\% confidence) of class effects, and order effects relative to class effects (points: posterior mean, black line: 95\\% confidence), for classes with multiple orders in the dataset.',echo=FALSE,results='hide',fig.width=5,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
 
 afs <- function(x) as.numeric(as.factor(x))
 orders <- with(year.table,afs(Order))
@@ -425,6 +425,59 @@ orderr %>%
 
 @
 
+<<surv_plot_region,fig.cap='Projected proportion of stocks assessed by region and calendar year, based on assessment probabilities of stocks within each region over the projected year range.',echo=FALSE,results='hide',fig.width=5,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
+
+devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+
+# true false censoring
+censored <- as.logical(is.na(a.time))
+
+preds <- get_coef_chains(model.out = a.out, coef.names = '(mu\\[[0-9]*)')
+
+mus <- tbl_df(preds) %>% filter(!grepl('\\.',Parameter))
+
+mus$Parameter <- as.character(mus$Parameter)
+mus$ymin <- 2016-rep(year.table$minyear,each=6000)
+mus$cc <- rep(censored,each=6000)
+mus$Region <- rep(year.table$mainregion,each=6000)
+
+mus.p <- mus %>% 
+  split(.$Parameter) %>%
+  purrr::map(function(l) {
+    lmin <- unique(l$ymin)
+    tp <- sapply(seq(lmin,lmin+34),function(t) 1-exp(-l$MCMC*t^tau$MCMC))
+    data.frame(time=2016:2050,mm=apply(tp,2,median),mq1=apply(tp,2,quantile,0.025),mq2=apply(tp,2,quantile,0.975),censored=unique(l$cc),Region=unique(l$Region))
+  })
+
+
+mpreda <- reshape2::melt(mus.p,id.vars=c('time','censored','Region'))
+names(mpreda) <- c('time','censored','Region','Quantile','MCMC','Parameter')
+
+
+preda <- tbl_df(mpreda) %>%
+  group_by(Region, time, Quantile) %>%
+  summarise(pro_assessed = mean(!censored),
+            pro_pred = pro_assessed+(1-pro_assessed)*mean(MCMC[censored==T])) %>%
+  tidyr::spread(key = Quantile,value = pro_pred)
+  
+ggplot(preda) + 
+ geom_line(aes(x=time,y=mm,col=Region)) + 
+  geom_line(aes(x=time,y=mq1,col=Region), linetype=2) +
+  geom_line(aes(x=time,y=mq2,col=Region), linetype=2) + 
+  geom_ribbon(aes(x=time,y=mm,ymin=mq1,ymax=mq2,fill=Region),alpha=0.4,col=NA) + 
+  theme_classic() + 
+  theme(axis.text = element_text(colour='black'))+
+  ylab('Proportion assessed') +
+  xlab('Calendar year') + 
+  viridis::scale_color_viridis(discrete = T) + 
+  viridis::scale_fill_viridis(discrete = T) + 
+    coord_cartesian(expand = F)
+
+
+@
+
 \FloatBarrier
 \newpage
 \appendix
@@ -439,12 +492,7 @@ orderr %>%
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
 
 #assessment time
-devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
 
-a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
-
-# true false censoring
-censored <- as.logical(is.na(a.time))
 
 # Kaplan-Meyer non-parametric survival at t - should be linear with slope p
 km.cs <- survfit(Surv(a.time,!censored) ~ 1)
@@ -486,69 +534,13 @@ rcu <- summary.km.cs$time # Cox-Snell residuals of
 surv.cs <- summary.km.cs$surv
 plot(rcu,-log(surv.cs),type="p",pch=16,
 xlab="Cox-Snell residual",ylab="Cumulative hazard")
-abline(a=0,b=1,col=3,lwd=2); 
+abline(a=0,b=1,col=3,lwd=2) 
 
 @
 \caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
 \end{figure}
 
 
-
-<<surv_plot_region,fig.cap='Marginal probability of a stock being assessed as a function of time, for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1\\textwidth',fig.align='center'>>=
-
-preds <- get_coef_chains(model.out = a.out, coef.names = '(mu\\[[0-9]*)')
-
-mus <- tbl_df(preds) %>% filter(!grepl('\\.',Parameter))
-
-mus$Parameter <- as.character(mus$Parameter)
-mus$ymin <- 2016-rep(year.table$minyear,each=6000)
-mus$cc <- rep(censored,each=6000)
-
-mus.p <- mus %>% 
-  split(.$Parameter) %>%
-  purrr::map(function(l) {
-    lmin <- unique(l$ymin)
-    tp <- sapply(seq(lmin,lmin+34),function(t) 1-exp(-l$MCMC*t^tau$MCMC))
-    data.frame(time=2016:2050,mm=apply(tp,2,median),censored=unique(l$cc))
-  })
-
-
-mpreda <- reshape2::melt(mus.p,id.vars='time') %>% dplyr::select(-variable)
-names(mpreda) <- c('time','MCMC','Parameter')
-
-preda <- tbl_df(mpreda) %>% 
-  mutate(effect = do.call('rbind',strsplit(as.character(Parameter),'\\.'))[,1],
-         Effect = .simpleCap(effect),
-         idx = as.numeric(regmatches(Parameter,regexpr('([0-9]+)',Parameter))))
-
-
-preda$Effect[preda$Effect=='Hab'] <- 'Habitat'
-
-pred.plot <- data.frame(preda) %>%
-  rowwise() %>%
-  mutate(Group = levels(as.factor(year.table[,unique(Effect)]))[idx])
-  
-p=0;gg<- list()
-for(group in unique(pred.plot$Effect)){
-  
-  this <- names(sort(table(year.table[,group]),decreasing = T)[1:8])
-  p=p+1;
-  pp<- pred.plot %>% filter(Effect == group, Group %in% this)
-  
-  gg[[p]] <- ggplot(pp) + 
-    geom_line(aes(x=time,y=MCMC,col=Group,linetype=Group)) + 
-    theme_classic() + 
-    theme(axis.text = element_text(colour='black'))+
-    ylab('Probability of being assessed') +
-    xlab('Time (yr)') + 
-    viridis::scale_color_viridis(group,discrete = T) + 
-    scale_linetype_discrete(group)+
-    coord_cartesian(expand = F)
-}
-
-gridExtra::grid.arrange(grobs=gg,ncol=2)
-
-@
 
 
 \end{document}
