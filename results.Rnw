@@ -103,18 +103,28 @@ Year of first assessment assignments were compared with the NOAA Species Informa
 
 To assess which factors drive the over-all rate of assessments and the time from first recorded landings to a full stock assessment in US stocks, we applied a time-to-event model. Also called survival models in the medical and ecological literature, these models account for censored data (i.e., species that are landed but not yet assessed) while modeling time-to-assessment within a parametric framework.
 
-The Weibull distribution is often used as a flexible model that has several desireable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The rate parameter of the Weibull can be interpreted in terms of the rate of events occurring. A slope greater than one suggests an increasing rate of events, whereas a slope of less than one indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time.
+The Weibull distribution is often used as a flexible model that has several desireable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The shape parameter of the Weibull density can be interpreted in terms of the rate of events occurring. A shape greater than one suggests an increasing rate of events, whereas a shape of less than one indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time.
 
-A further desirable property is the model can be interpreted in terms of the ratio of event rates as well as time-to-event. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model can also be interpreted in terms of time-to-event parameters, which scale the time to the event by an acceleration factor. For example, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmeters obtained for the event rate interpretation - the two interpretation are therefore easily exchangeable in the Weibull model.
+A further desirable property is that the model can be interpreted in terms of the ratio of event rates as well as time-to-event. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model can also be interpreted in terms of time-to-event parameters, which scale the time to the event by an acceleration factor. For example, in a hyothetical scenario, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmeters obtained for the event rate interpretation - the two interpretation are therefore easily exchangeable in the Weibull model.
 
-We thus model time-to-assessment as Weibull distributed with shape parameter $\tau$ and rate $\lambda$. The connection between the event rate and the time-to-event interpretations can be made explicit by writing the Weibull density as a function of the product of the probability of an event occurring at time $t$ and the probability of an event not occurring prior to time $t$. Thus, $P(T=t)$ depends on the probability of that event not having occurred prior to time $t$ and the probability of the event occurring at time $t$. Thus,
+We thus model time-to-assessment as Weibull distributed with shape parameter $\tau$ and rate $\lambda$. The connection between the event rate and the time-to-event interpretations can be made explicit by writing the Weibull density as a function of the product of the probability of the assessment occurring at time $t$ and the probability of the assessment not occurring prior to time $t$. Thus, $P(T=t)$ depends on the probability of an assessment not having occurred prior to time $t$, ($A(t) = 1-P(T\le t)=1-F(t)$), where $F(t) = \exp(-\lambda t^\tau)$ is the Weibull distribution function, and the rate $r(t)$ with which assessments occurr at time $t$. 
 
 \begin{align}
-P(T=t) &= Weibull(\tau,\lambda) \\
-       &= r(t) \times A(t) \\
-       &= \lambda \tau t^{\tau-1} \times \exp(-\lambda t^\tau)
+T &\sim Weibull(\tau,\lambda) \\
+  &=  A(t)\times r(t)  \\
+  &= \exp(-\lambda t^\tau) \times \lambda \tau t^{\tau-1}  
+\end{align}   
+
+We model the scale $\lambda$ of the Weibull distribution as a function of covariates and categorical variables:
+
+\begin{align}
+log(lambda_{i,r,h,c,o,f}) = \beta X_i + \alpha_r + \gamma_h + \kappa_c + \omega_o + \zeta_f,
 \end{align}
 
+where beta is a row-vector of regression coefficients, $X_i$ is a vector of continuous covariates. Continuous covariates were taken as the logarithm of price per kg, maximum landings, and species maximum length. $\alpha$, $\gamma$, $\kappa$, $\omega$, and $\zeta_f$ were region, habitat, class, order, and family specific random effects. The model was estiamted within a Bayesian framework, using Markov Chain Monte Carlo (MCMC) as implemented in the JAGS package. MCMC was run using three chain of 210~000 iterations each, keeping every 100th iteration, with 10~000 iterations for each chain discarted as burn-in. This provided 6000
+samples from the posterior distribution for each parameter.
+
+All random effects were given half-Cauchy priors with a scale of $\Theta=100$, regression coeficcients had vague normal priors with a precision of $1/sigma^2 = 1e-5$, and $\tau$ was estimated using a gamma prior with parameters $a=b=1e-5$.  
 
 \section{Results}
 
@@ -484,9 +494,7 @@ ggplot(preda) +
 \renewcommand\thefigure{\thesection.\arabic{figure}}   
 \setcounter{figure}{0} 
 \section{A: Model fit}
-
-
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
@@ -508,7 +516,7 @@ abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2);
 \label{fig:Weibull_check}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
 
