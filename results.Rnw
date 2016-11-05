@@ -3,7 +3,10 @@
 \usepackage{placeins}
 \usepackage{amsmath}
 \usepackage{pdflscape}
+\usepackage{longtable}
 \usepackage[toc,page]{appendix}
+\usepackage{array,booktabs}
+
 \begin{document}
 
 \title{Are assessed stocks a representative sample of fished species in the US?}
@@ -17,7 +20,7 @@
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -121,10 +124,10 @@ We model the scale $\lambda$ of the Weibull distribution as a function of covari
 log(lambda_{i,r,h,c,o,f}) = \beta X_i + \alpha_r + \gamma_h + \kappa_c + \omega_o + \zeta_f,
 \end{align}
 
-where beta is a row-vector of regression coefficients, $X_i$ is a vector of continuous covariates. Continuous covariates were taken as the logarithm of price per kg, maximum landings, and species maximum length. $\alpha$, $\gamma$, $\kappa$, $\omega$, and $\zeta_f$ were region, habitat, class, order, and family specific random effects. The model was estiamted within a Bayesian framework, using Markov Chain Monte Carlo (MCMC) as implemented in the JAGS package. MCMC was run using three chain of 210~000 iterations each, keeping every 100th iteration, with 10~000 iterations for each chain discarted as burn-in. This provided 6000
+where beta is a row-vector of regression coefficients, $X_i$ is a vector of continuous covariates. Continuous covariates were taken as the logarithm of price per kg, maximum landings, and species maximum length, standardised for the analysis. $\alpha$, $\gamma$, $\kappa$, $\omega$, and $\zeta_f$ were region, habitat, class, order, and family specific random effects. The model was estiamted within a Bayesian framework, using Markov Chain Monte Carlo (MCMC) as implemented in the JAGS package. MCMC was run using three chain of 210~000 iterations each, keeping every 100th iteration, with 10~000 iterations for each chain discarted as burn-in. This provided 6000
 samples from the posterior distribution for each parameter.
 
-All random effects were given half-Cauchy priors with a scale of $\Theta=100$, regression coeficcients had vague normal priors with a precision of $1/sigma^2 = 1e-5$, and $\tau$ was estimated using a gamma prior with parameters $a=b=1e-5$.  
+All random effects were given half-Cauchy priors with a scale of $\Theta=100$, regression coeficcients had vague normal priors with a precision of $1/sigma^2 = 1e-5$, and $\tau$ was estimated using a gamma prior with parameters $a=b=1e-5$. 
 
 \section{Results}
 
@@ -239,10 +242,10 @@ ggplot(yt) +
 \begin{table}
 \centering
 \small{
-\caption{Posterior mean and $P(\beta>1)$ for model parameters. Parameters can be interpreted as the ration of rates (rate effect, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\alpha$=0.5 suggests a stock with these characteristics is assessed twice as fast as the average stock).}
+\caption{Posterior mean and $P(\theta>1)$ for model parameters. Parameters can be interpreted as the ration of rates (rate effect $\theta$, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\nu=\theta\tau^-1=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock).}
 \begin{tabular}{lrrr}
 \newline
-Parameter & Rate effect ($\beta$) & Time effect ($\alpha=\beta\tau^-1$) & $P(\beta>1)$\\
+Parameter & Rate effect ($\theta$) & Time effect ($\theta\tau^-1$) & $P(\theta>0)$ \\
 \hline
 <<table,results='asis',echo=FALSE>>=
 print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
@@ -251,7 +254,7 @@ print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include
 }
 \end{table}
 
-<<post_plot,fig.cap='Comparison of finite population standard deviation for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
+<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
 
 fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
 
@@ -285,7 +288,7 @@ fp %>% group_by(Effect) %>%
 
 \begin{landscape}
 
-<<surv_plot,fig.cap='Marginal probability of a stock being assessed as a function of time, for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.4\\textwidth',fig.align='center'>>=
+<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.4\\textwidth',fig.align='center'>>=
 
 preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
 
@@ -549,6 +552,61 @@ abline(a=0,b=1,col=3,lwd=2)
 \end{figure}
 
 
+<<>>=
 
+orderr <- get_coef_chains(model.out = a.out, coef.names = 'orderfx\\[[0-9]*\\]', var.names = levels(as.factor(year.table$Order)))
+orderr$Effect <- 'Order'
+
+
+fx.tab <- rbind(betas,habitats,regions,classes,orderr) 
+fx.tab$Rate <- tau$MCMC
+
+fx.tab.sum <- fx.tab %>%
+  group_by(Effect, Parameter) %>%
+  summarise(m = mean(MCMC),
+            acc = mean(exp(-MCMC/Rate)),
+            p = mean(MCMC>0))
+
+ptab <- order(match(fx.tab.sum$Effect, c('Covariates','Region','Habitat','Class','Order')))
+
+
+@
+
+\FloatBarrier
+\newpage
+\begin{center}
+\begin{longtable}{llrrr}
+\caption[Paramter estimates]{Paramter estimates and the Bayesian probability $P(\theta>0)$ (i.e., the probability that stocks in this category have a higher than average rate of assessment) for any parameter $\theta$. Parameters can be interpreted as the ration of rates (rate effect $\theta$, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\nu=\theta\tau^-1=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock).} 
+\label{tab:fx} \\
+
+Effect & Category & Rate effect ($\theta$) & Time effect ($\nu=\theta\tau^-1$) & $P(\theta>0)$ \\
+\addlinespace
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\addlinespace 
+Effect & Category & Rate effect ($\theta$) & Time effect ($\theta\tau^-1$) & $P(\theta>0)$ \\
+\addlinespace 
+\endhead
+
+\addlinespace 
+\hline 
+\addlinespace 
+\multicolumn{5}{r}{Continued on next page} \\
+\endfoot
+
+\endlastfoot
+
+<<results="asis">>=
+print(xtable(fx.tab.sum[ptab,]),
+      hline.after = -1,
+      only.contents = T,
+      include.rownames = F, 
+      include.colnames = F)
+@
+\end{longtable}
+\end{center}
 
 \end{document}
