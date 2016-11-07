@@ -38,6 +38,9 @@ require(xtable)
 require("ggplot2")
 library(survival)
 
+cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7","#999999")
+
+
 load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
 
 # just for matching
@@ -176,7 +179,7 @@ ggplot(plot.tab) +
   ylab('Number of landed stocks') + 
   xlab('Year') +
   scale_linetype('Assessed')+
-  viridis::scale_color_viridis('Region',discrete = T) + 
+  scale_colour_manual('Region',values=cbPalette) + 
   geom_vline(aes(xintercept=1996))+
   theme_classic()+
   theme(axis.text = element_text(color = 'black'))
@@ -186,7 +189,7 @@ ggplot(plot.tab.prop) +
   ylab('Proportion assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
-  viridis::scale_color_viridis('Region', discrete = T)+
+  scale_colour_manual('Region', values=cbPalette)+
   geom_vline(aes(xintercept=1996))+
   theme_classic()+
   theme(axis.text = element_text(color = 'black'))
@@ -338,7 +341,7 @@ for(group in unique(pred.plot$Effect)){
     theme(axis.text = element_text(colour='black'))+
     ylab('Probability of being assessed') +
     xlab('Time (yr)') + 
-    viridis::scale_color_viridis(group,discrete = T) + 
+    scale_colour_manual(group,values=cbPalette) + 
     scale_linetype_discrete(group)+
     coord_cartesian(expand = F)
 }
@@ -428,7 +431,7 @@ orderr %>%
   ggplot() + 
   geom_crossbar(aes(x=Parameter, y=cmeans,ymin=cq1,ymax=cq3,fill=Class),col='grey50',alpha=0.5,size=0.01,fatten=100) +
   facet_grid(~Class, drop = T,switch = "both", scales = "free_x", space = "free_x") +
-  viridis::scale_fill_viridis(discrete = T) + 
+  scale_fill_manual(values=cbPalette) + 
   geom_point(aes(x=Parameter, y=omeans), size=1) +
   geom_linerange(aes(x=Parameter,ymin=oq1,ymax=oq3),size=1) +
   #geom_linerange(aes(x=Parameter,ymin=oq11,ymax=oq33),size=2) +
@@ -492,8 +495,8 @@ ggplot(preda) +
   theme(axis.text = element_text(colour='black'))+
   ylab('Proportion assessed') +
   xlab('Calendar year') + 
-  viridis::scale_color_viridis(discrete = T) + 
-  viridis::scale_fill_viridis(discrete = T) + 
+  scale_colour_manual(values=cbPalette) + 
+  scale_fill_manual(values=cbPalette) + 
     coord_cartesian(expand = F, ylim=c(0,1))
 
 
