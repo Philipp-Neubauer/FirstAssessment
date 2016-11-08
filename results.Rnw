@@ -20,7 +20,7 @@
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -141,9 +141,11 @@ All random effects were given half-Cauchy priors with a scale of $\Theta=100$, r
 
 \section{Results}
 
+Across all regions of the US, the number of un-assessed fished populations increased steadily since the 1950s and into the 1990s, while an increasing number of assessments in each region lead to a steadily increasing trend in the proportion of landed stocks that are assessed (Figure \ref{fig:assessed_landed2}).
+
 \begin{landscape}
 
-<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status and b) proportion of landed stocks that are assessed. The vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks'),echo=FALSE,results='asis',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
+<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status, b) proportion of landed stocks that are assessed, and c) the proportion of total landings (per year) from assessed stocks. The dotted vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks', 'Proportion of landings'),echo=FALSE,results='asis',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
 
 l.tab <- full.tab %>% 
   group_by(mainregion,stock) %>%
@@ -156,22 +158,23 @@ a.tab <- full.tab %>%
   group_by(mainregion,stock) %>%
   mutate(ya=as.numeric(as.numeric(Year.of.first.stock.assessment))) %>%
   group_by(mainregion,year) %>%
-  summarise(n.assessed = sum(ya==year,na.rm=T)) %>% 
+  summarise(n.assessed = sum(ya==year,na.rm=T),
+            land.assessed = sum(total_landings[ya<=year],na.rm=T)/1000,
+            land.unassessed = sum(total_landings[ya>year|is.na(ya)],na.rm=T)/1000) %>% 
   mutate(c.assessed = cumsum(n.assessed)) 
   
-
 plot.tab <- inner_join(l.tab, a.tab) %>% 
   mutate(c.a = ifelse(is.na(c.assessed), 0, c.assessed),
     unassessed.landed = c.landed - c.a) %>%
-  select(-c.a,-c.landed,-n.assessed,-n.landed) %>%
+  select(-c.a,-c.landed,-n.assessed,-n.landed,-land.assessed,-land.unassessed) %>%
   reshape2::melt(id.vars=c('mainregion','year')) %>%
   mutate(Assessed = ifelse(variable=='unassessed.landed','No','Yes'))
-  
-  
 
 plot.tab.prop <- inner_join(l.tab, a.tab) %>% 
   mutate(p.assessed = c.assessed/c.landed) 
  
+land_plot <- a.tab %>% 
+  mutate(p.assessed = land.assessed/(land.assessed+land.unassessed))
 
 ggplot(plot.tab) + 
   geom_line(aes(col=mainregion,x=year,y=value,linetype = Assessed)) + 
@@ -179,19 +182,30 @@ ggplot(plot.tab) +
   xlab('Year') +
   scale_linetype('Assessed')+
   scale_colour_manual('Region',values=cbPalette) + 
-  geom_vline(aes(xintercept=1996))+
+  geom_vline(aes(xintercept=1996),linetype=3)+
   theme_classic()+
   theme(axis.text = element_text(color = 'black'))
 
 ggplot(plot.tab.prop) + 
   geom_line(aes(col=mainregion,x=year,y=p.assessed)) + 
-  ylab('Proportion assessed') + 
+  ylab('Proportion of stocks assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
   scale_colour_manual('Region', values=cbPalette)+
-  geom_vline(aes(xintercept=1996))+
+  geom_vline(aes(xintercept=1996),linetype=3)+
   theme_classic()+
   theme(axis.text = element_text(color = 'black'))
+
+ggplot(land_plot) + 
+  geom_line(aes(col=mainregion,x=year,y=p.assessed)) + 
+  ylab('Proportion of landings assessed') + 
+  xlab('Year') + 
+  scale_linetype('Assessed')+
+  scale_colour_manual('Region', values=cbPalette)+
+  geom_vline(aes(xintercept=1996),linetype=3)+
+  theme_classic()+
+  theme(axis.text = element_text(color = 'black'))
+
 @
 
 \end{landscape}
@@ -205,7 +219,7 @@ year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.a
 
 \begin{figure}[!h]
 \centering
-<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+<<fig.width=3,fig.height=3,out.width='0.5\\textwidth'>>=
 
 
 simpleCap <- function(s) {
@@ -230,7 +244,7 @@ ggplot(yt) +
 
 \begin{figure}[!h]
 \centering
-<<fig.width=5,fig.height=5,out.width='\\textwidth'>>=
+<<fig.width=6,fig.height=3,out.width='\\textwidth'>>=
 yt <- year.table %>% mutate(class=substr(Class,1,1))
 
 ggplot(yt) + 
@@ -252,7 +266,7 @@ ggplot(yt) +
 \begin{table}
 \centering
 \small{
-\caption{Posterior mean and $P(\theta>1)$ for model parameters. Parameters can be interpreted as the ration of rates (rate effect $\theta$, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock).}
+\caption{Posterior mean and $P(\theta>1)$ for model parameters. Parameters can be interpreted as the ratio of rates (rate effect $\theta$, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock).}
 \begin{tabular}{lrrr}
 \newline
 Parameter & Rate effect ($\theta$) & Time effect ($\nu$) & $P(\theta>1)$ \\
@@ -264,7 +278,7 @@ print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include
 }
 \end{table}
 
-<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=4,fig.height=4,out.width='0.7\\textwidth',fig.align='center'>>=
+<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
 
 fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
 
@@ -288,7 +302,7 @@ fp %>% group_by(Effect) %>%
   geom_point(aes(x=Effect, y=means), size=4) +
   geom_linerange(aes(x=Effect,ymin=q1,ymax=q3),size=1) +
   geom_linerange(aes(x=Effect,ymin=q11,ymax=q33),size=2) +
-  ylab('Finite populaition SD') +
+  ylab('Finite population SD') +
   xlab('') + 
   theme_classic() +
   coord_flip()+
@@ -298,7 +312,7 @@ fp %>% group_by(Effect) %>%
 
 \begin{landscape}
 
-<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.4\\textwidth',fig.align='center'>>=
+<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.6\\textwidth',fig.align='center'>>=
 
 preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
 
@@ -351,13 +365,15 @@ gridExtra::grid.arrange(grobs=gg,ncol=2)
 \end{landscape}
 
 \begin{landscape}
-<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, c) regional random effects, and d) taxonomic class random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1.2\\textwidth',fig.align='center'>>=
+<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, c) regional random effects, and d) taxonomic class random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1.5\\textwidth',fig.align='center'>>=
 
 betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Maximum landings', 'Mean price per kg'))
 betas$Effect <- 'Covariates'
 
 habitats <- get_coef_chains(model.out = a.out, coef.names = 'habitat\\[[0-9]*\\]', var.names = levels(as.factor(year.table$habitat_MM)))
 habitats$Effect <- 'Habitat'
+habitats$Parameter <- as.character(habitats$Parameter)
+habitats$Parameter <- simpleCap(habitats$Parameter)
 
 regions <- get_coef_chains(model.out = a.out, coef.names = 'region\\[[0-9]*\\]', var.names = levels(as.factor(year.table$mainregion)))
 regions$Effect <- 'Region'
@@ -394,7 +410,7 @@ fx.plot %>%
 
 \end{landscape}
 
-<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for order within class, showing a summary (grey line: posterior mean, coloured box: 95\\% confidence) of class effects, and order effects relative to class effects (points: posterior mean, black line: 95\\% confidence), for classes with multiple orders in the dataset.',echo=FALSE,results='hide',fig.width=5,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
+<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for order within class, showing a summary (grey line: posterior mean, coloured box: 95\\% confidence) of class effects, and order effects relative to class effects (points: posterior mean, black line: 95\\% confidence), for classes with multiple orders in the dataset.',echo=FALSE,results='hide',fig.width=6,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
 
 afs <- function(x) as.numeric(as.factor(x))
 orders <- with(year.table,afs(Order))
