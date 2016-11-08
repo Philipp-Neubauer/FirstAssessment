@@ -17,6 +17,20 @@
 
 \maketitle
 
+{\bf Target journals}
+
+\begin{enumerate}
+\item Fish \& Fisheries
+\item ICES JMS
+\item ...
+\end{enumerate}
+
+
+\begin{abstract}
+
+Management of marine resources depends of a quantiatiative understanding of their trend and status. Although there is a legislative mandate to set catch limits of fished species in the United States, assessing the status of marine resources is both expensive and time consuming, and to date only a subset of landed species have been assessed using formal population dynamics models. Here we quantitatively explore the factors that influence the time to first assessment for landed stocks around the United States. Using a model framework based on time-to-event analysis, we quantify region, habitat, and life-history dependent discrepancies in rates of first assessment for close to 600 stocks. Although the majority of landings come from assessed stocks in all regions, less than half of the regionally landed species are assessed. Landings are thus the dominant factor that determines the rate of new assessments, followed by price per kg of landed fish. Nevertheless, we find that the over-all rate at which new stocks are assessed has been increasing since the 1950s, and a number of vulnerable groups such as Rockfish and some Elasmobranchs have been assessed disproportionately fast, given their relativly small tonnage and low price. Given the characteristics of species that are currently un-assessed, our model suggests that the number of population dynamics based stock assessments will only increase margnally in the future, as the landed tonnage and price for these species makes it unlikely that sufficient resources can be spent on these stocks.
+
+\end{abstract}
 
 <<echo=FALSE>>=
 require(knitr)
