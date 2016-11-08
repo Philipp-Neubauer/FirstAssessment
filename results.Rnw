@@ -501,16 +501,17 @@ preda <- tbl_df(mpreda) %>%
   tidyr::spread(key = Quantile,value = pro_pred)
   
 ggplot(preda) + 
- geom_line(aes(x=time,y=mm,col=Region)) + 
+ geom_line(aes(x=time,y=mm)) + 
   geom_line(aes(x=time,y=mq1,col=Region), linetype=2) +
   geom_line(aes(x=time,y=mq2,col=Region), linetype=2) + 
   geom_ribbon(aes(x=time,y=mm,ymin=mq1,ymax=mq2,fill=Region),alpha=0.4,col=NA) + 
   theme_classic() + 
+  facet_wrap(~Region) + 
   theme(axis.text = element_text(colour='black'))+
   ylab('Proportion assessed') +
   xlab('Calendar year') + 
-  scale_colour_manual(values=cbPalette) + 
-  scale_fill_manual(values=cbPalette) + 
+  #scale_colour_manual(values=cbPalette) + 
+  #scale_fill_manual(values=cbPalette) + 
     coord_cartesian(expand = F, ylim=c(0,1))
 
 

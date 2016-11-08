@@ -8,6 +8,7 @@
 *.tex
 *.gz
 *.rda
+*.pdf
 figure/
 cache/
 FirstAssessment/
