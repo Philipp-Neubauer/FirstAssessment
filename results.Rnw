@@ -141,7 +141,9 @@ All random effects were given half-Cauchy priors with a scale of $\Theta=100$, r
 
 \section{Results}
 
-Across all regions of the US, the number of un-assessed fished populations increased steadily since the 1950s and into the 1990s, while an increasing number of assessments in each region lead to a steadily increasing trend in the proportion of landed stocks that are assessed (Figure \ref{fig:assessed_landed2}).
+Across all regions of the US, the number of un-assessed fished populations increased steadily since the 1950s and into the 1990s (Figure \ref{fig:assessed_landed1}), while an increasing number of assessments in each region lead to a steadily increasing trend in the proportion of landed stocks that are assessed (Figure \ref{fig:assessed_landed2}). In terms of landings, the assessment of lage stocks in each region between the 70s and 00s lead to rapidly increasing proportions of landings being assessed. In Alaska, the vast majority of landed stocks in our database were assessed (not counting Salmon; (Figure \ref{fig:assessed_landed3}). 
+
+Demersal species were landed more frequently than species associated with any other habitat (Figure \ref{fig:habitat}), and aslo accounted for the highest number of assessments. The majority of landed stocks were fish species (Figure \ref{fig:taxa}), with Perciformes, Pleuronectiformes and Scorpaeniformes dominating both the number of assessed and unassessed stocks.
 
 \begin{landscape}
 
@@ -219,7 +221,7 @@ year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.a
 
 \begin{figure}[!h]
 \centering
-<<fig.width=3,fig.height=3,out.width='0.5\\textwidth'>>=
+<<habitat,fig.width=3,fig.height=3,out.width='0.5\\textwidth'>>=
 
 
 simpleCap <- function(s) {
@@ -244,7 +246,7 @@ ggplot(yt) +
 
 \begin{figure}[!h]
 \centering
-<<fig.width=6,fig.height=3,out.width='\\textwidth'>>=
+<<taxa,fig.width=6,fig.height=3,out.width='\\textwidth'>>=
 yt <- year.table %>% mutate(class=substr(Class,1,1))
 
 ggplot(yt) + 
