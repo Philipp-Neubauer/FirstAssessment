@@ -47,6 +47,12 @@ if( Sys.info()["effective_user"] == "James.Thorson" ){
   DB <- 'C:/Users/James.Thorson/Dropbox'
 }
 
+# Settings for Mike's machine
+if( Sys.info()["effective_user"] == "MikeMelnychuk" ){
+  setwd("E:/Documents/GitHub/FirstAssessment")
+  DB <- 'E:/Dropbox/Projects'
+}
+
 source('helper_functs.R')
 require("dplyr")
 require(xtable)
