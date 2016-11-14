@@ -158,36 +158,13 @@ All random effects were given half-Cauchy priors with a scale of $\Theta=100$, r
 
 \section{Results}
 
-The number of landed marine populations in the United States (excluding salmons and highly migratory species) increased steadily from the 1950s into the 1990s (Figure \ref{fig:assessed_landed1}). During this period, the number of landed populations in Alaska, West Coast, and Southeast regions approximately doubled, while the number of landed populations in the Northeast increased more slowly (but was already relatively high at the start of this period). Most of the newly-landed stocks were unassessed throughout this period; by the enactment of the Sustainable Fisheries Act in 1996, less than 30 populations in each of the four regions were assessed. As a proportion of all landed populations, however, the trend in assessed stocks has steadily increased in all regions since the 1970s or 1980s (Figure \ref{fig:assessed_landed2}). Currently the proportion of landed stocks that are assessed ranges from 16% in the Southeast to 36% in Alaska. In terms of regional landings, the assessment of large stocks in each region between the 1970s and 2000s lead to rapidly increasing proportions of total landed tonnage being comprised of assessed populations. By 1996, >80% of landings in Alaska, Northeast, and Southeast regions were comprised of assessed stocks, and in the West Coast this proportion has increased rapidly from 30% in 1996 to 70% currently (Figure \ref{fig:assessed_landed3}). 
-
-Demersal species represent a higher proportion of landed populations than species associated with other habitat types (Figure \ref{fig:habitat}), and also accounted for the highest number and proportion of stock assessments. The majority of landed populations were fish species (Figure \ref{fig:taxa}), with Perciformes, Pleuronectiformes and Scorpaeniformes dominating both the number of assessed and unassessed stocks. Among invertebrate taxa, decapod species were the most commonly landed and also most commonly assessed.
-
-We now turn to our time-to-event model to interpret which biological and fishery characteristics explain differences in annual probability of first assessment among stocks (see Appendix Figure A.1 and A.2 for model diagnostics).  Among the numerical covariates considered (Table 1), maximum body length had little explanatory power (p=0.48), while maximum annual landings and ex-vessel price both had positive and strongly significant impacts on annual assessment probabilities.  The effect of landings on assessment probability therefore explains how each region has a large proportion of landed tonnage derived from assessed populations (Fig. 1c), but a smaller proportion of landed stocks being assessed (Fig. 1b).  
-
-Among explanatory random effects, taxonomy factors (both class and order) explain a larger portion of residual variance (SD > 1.0) than either habitat or region factors (SD < 0.5; Figure 4).  This is reflected in the probability of prior assessment in any given year after first being landed (Figure 5), for which octopii and squids (Cephalopods) and sharks (Elasmobranchs) have a higher probability of prior assessment than bony-fishes (Actinopterygii) or other taxonomic classes.  Groundsharks (Carcharhiniformes),  rockfishes (Scorpaeniformes), and flatfishes (Pleuronectiformes) have the highest probability of prior assessment among taxonomic orders, each having a higher assessment probability relative to the average of their taxonomic classes (Figure 7).  Habitat and regional effects were generally smaller than taxonomic effects. After controlling for other factors, benthic species had a higher probability of assessment than species from other habitats (in particular demersal species), and assessment probabilities were greatest for stocks in Alaska and least for stocks in the Northeast.   
-
-Finally, we use our model to forecast annual assessment probabilities for all unassessed stocks in each region, and use this to calculate the expected proportion of assessed stocks through 2050 (Figure 8). These projections rely on the values of maximum landings and ex-vessel price in 2013(?), the final year of available time series data used for model fitting. As expected, Alaska is predicted to have the highest proportion of assessed populations throughout the 25-year projection window.  Notably, all regions show a relatively slow increase in the predicted proportion of assessed populations compared to the rapid increases in the observed proportions of assessed populations over the last 35 years (Fig. 1b).  This occurs because stocks with a high assessment probability have typically been assessed early, so that remaining stocks have low landings, prices, or other characteristics associated with low annual assessment probability.      
-     
-
-\section{Discussion}
-
-possible Discussion points:
-
-We introduced this study with a common phrase in business management which equally pertains to natural resource management, "what gets measured, gets managed". Many possible limitations exist in the capacity for managing fish and invertebrate populations, and one major limitation is the uncertainty surrounding the current state and projected future of exploited populations. Stock assessments are our primary means of quantifying stock status to inform fisheries management decisions. 
-
-In reality stock assessments are not a dichotomous categorization, they represent a continuum of complexity, use a wide variety of data inputs, and produce a wide range of estimated outputs. For the purposes of this analysis we drew the line somewhere. Criteria defining assessments for this analysis (poplation dynamics model fit to …) represented a reasonable balance in complexity and inclusiveness for the ability of stock assessments to provide model outputs that can inform fisheries management.
-
-Of all explanatory factors considered to affect the rate at which stocks are first assessed, ex-vessel price was particularly strong, followed closely by maximum landings. The product of these variables, landed value, represents the value derived from fish and invertebrate stocks. Fisheries managers and scientists must choose among several candidate species in a given region and devote stock assessment time and resources towards only a subset of these. If this choice reflects in part the landed value of stocks, then these results support previous findings (Sethi et al 2010 PNAS) suggesting that fishery development is also driven primarily by landed tonnage and ex-vessel prices of fished species.
-
-Populations in the United States are reaching saturation with respect to the rate of first assessment of stocks. Even though most stocks in all regions are as yet unassessed (Fig. 1b), the predicted rate of increase is slow because the stocks most likely to be assessed have already been assessed. However, this pattern is likely not characteristic of most countries. Most will currently have a lower proportion of assessed stocks, and may be more likely still within the period of rapid increase in the proportion of assessed stocks.
-
-
-\section{Acknowledgements}
-We thank Cody Szuwalski for productive discussions while planning out the data set and analysis.  
+The number of landed marine populations in the United States (excluding salmons and highly migratory species) increased steadily from the 1950s into the 1990s (Figure \ref{fig:assessed_landed}a). During this period, the number of landed populations in Alaska, West Coast, and Southeast regions approximately doubled, while the number of landed populations in the Northeast increased more slowly (but was already relatively high at the start of this period). Most of the newly-landed stocks were unassessed throughout this period; by the enactment of the Sustainable Fisheries Act in 1996, less than 30 populations in each of the four regions were assessed. As a proportion of all landed populations, however, the trend in assessed stocks has steadily increased in all regions since the 1970s or 1980s (Figure \ref{fig:assessed_landed}b). Currently the proportion of landed stocks that are assessed ranges from 16\% in the Southeast to 36\% in Alaska. In terms of regional landings, the assessment of large stocks in each region between the 1970s and 2000s lead to rapidly increasing proportions of total landed tonnage being comprised of assessed populations. By 1996, >80\% of landings in Alaska, Northeast, and Southeast regions were comprised of assessed stocks, and in the West Coast this proportion has increased rapidly from 30\% in 1996 to 70\% currently (Figure \ref{fig:assessed_landed}c). 
 
 \begin{landscape}
 
-<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status, b) proportion of landed stocks that are assessed, and c) the proportion of landed tonnage derived from assessed stocks. The dotted vertical line marks the enactment of the Sustainable Fisheries Act of 1996.', fig.show='hold',echo=FALSE,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth',fig.align='center'>>=
+\begin{figure}[!ht]
+\centering
+<<assessed_landed,echo=FALSE,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth'>>=
 
 l.tab <- full.tab %>% 
   group_by(mainregion,stock) %>%
@@ -219,7 +196,7 @@ land_plot <- a.tab %>%
   mutate(p.assessed = land.assessed/(land.assessed+land.unassessed))
 
 gga <- ggplot(plot.tab) + 
-  geom_line(aes(col=mainregion,x=year,y=value,linetype = Assessed)) + 
+  geom_line(aes(col=mainregion,x=year,y=value,linetype = Assessed),size=1.3) + 
   ylab('Number of landed stocks') + 
   xlab('Year') +
   scale_linetype('Assessed')+
@@ -231,7 +208,7 @@ gga <- ggplot(plot.tab) +
         legend.position = 'top')
 
 ggpr <- ggplot(plot.tab.prop) + 
-  geom_line(aes(col=mainregion,x=year,y=p.assessed)) + 
+  geom_line(aes(col=mainregion,x=year,y=p.assessed),size=1.3) + 
   ylab('Proportion of stocks assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
@@ -243,7 +220,7 @@ ggpr <- ggplot(plot.tab.prop) +
         legend.position = 'top')
 
 ggl <- ggplot(land_plot) + 
-  geom_line(aes(col=mainregion,x=year,y=p.assessed)) + 
+  geom_line(aes(col=mainregion,x=year,y=p.assessed),size=1.3) + 
   ylab('Proportion of landings assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
@@ -263,21 +240,19 @@ ggl <- ggplot(land_plot) +
   draw_plot_label(c("a", "b",'c'), c(1/12, 5/12,9/12), c(0.8, 0.8,0.8), size = 15)
 
 @
+\caption{Timeline of a) the number of stocks landed by region and assessment status, b) proportion of landed stocks that are assessed, and c) the proportion of landed tonnage derived from assessed stocks. The dotted vertical line marks the enactment of the Sustainable Fisheries Act of 1996.}
+\label{fig:assessed_landed}
+\end{figure}
 
 \end{landscape}
 
+The majority of landed populations were fish species (Figure \ref{fig:assessed}a), with Perciformes, Pleuronectiformes and Scorpaeniformes dominating both the number of assessed and unassessed stocks. Among invertebrate taxa, decapod species were the most commonly landed and also most commonly assessed. Demersal species represent a higher proportion of landed populations than species associated with other habitat types (Figure \ref{fig:assessed}b), and also accounted for the highest number and proportion of stock assessments.
 
-<<>>=
-
-year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
-
-@
-
-
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering
 <<taxa,fig.width=7,fig.height=7,out.width='\\textwidth'>>=
-
+year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
+  
 simpleCap <- function(s) {
   #s <- do.call('rbind',strsplit(x, " "))
   paste(toupper(substring(s, 1,1)), substring(s, 2),
@@ -290,7 +265,7 @@ ggh <- ggplot(yth) +
   geom_bar(aes(fill=Assessed,x=hab)) +
   coord_flip() + 
   theme_classic() + 
-  scale_fill_manual(values=cbPalette,guide='none') + 
+  scale_fill_grey(guide='none') + 
   xlab('Habitat') + 
   ylab('Count') + 
   theme(axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
@@ -314,7 +289,7 @@ ggp <- ggplot(yt) +
   facet_grid(class~., drop = T,switch = "both", scales = "free_y", space = "free_y") +
   coord_flip() + 
   theme_cowplot() + 
-  scale_fill_manual(values=cbPalette) + 
+  scale_fill_grey() + 
   ylab('Count') + 
   theme(strip.background = element_rect(fill = 'grey80',colour = NA),
         legend.position = 'top')
@@ -327,13 +302,18 @@ ggp <- ggplot(yt) +
 
   @
 \caption{Assessment status at time of last known status (censoring time) a) by taxonomic order and sorted by class and b) by habitat type. In a), classes are abbreviated as \Sexpr{paste(paste(inits,unique(yt$Class),sep=': '),collapse=', ')}, and only orders with more than three stocks are shown.}
+\label{fig:assessed}
 \end{figure}
 
+We now turn to our time-to-event model to interpret which biological and fishery characteristics explain differences in annual probability of first assessment among stocks (see Appendix Figures \ref{fig:Weibull_check} and \ref{fig:CS} for model diagnostics).  Among the numerical covariates considered (Figure \ref{fig:fx_plot}, Table \ref{tab:fx}), maximum body length had little explanatory power (p=0.48), while maximum annual landings and ex-vessel price both had positive and strongly significant impacts on annual assessment probabilities.  The effect of landings on assessment probability therefore explains how each region has a large proportion of landed tonnage derived from assessed populations (Fig. \ref{fig:assessed}c), but a smaller proportion of landed stocks being assessed (Fig. \ref{fig:assessed}b).  
 
-<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for numeric covariates in the model, regional random effects, habitat random effects, and taxonomic class random effects. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1\\textwidth',fig.align='center'>>=
+
+\begin{figure}[!ht]
+\centering
+<<fx_plot,echo=FALSE,results='hide',fig.width=5,fig.height=8,out.width='0.6\\textwidth',fig.align='center'>>=
 
 betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length', 'Mean price per kg','Maximum landings'))
-betas$Effect <- 'Numeric'
+betas$Effect <- 'Num.'
 
 print(levels(as.factor(year.table$habitat_FB.SLB)))
 
@@ -357,7 +337,7 @@ fx.plot <- rbind(betas,habitats,regions,classes) %>%
             q11 = (quantile(MCMC,0.25)),
             q33 = (quantile(MCMC,0.75))) 
 
-fx.plot$Effect <- factor(fx.plot$Effect,levels=unique(fx.plot$Effect)[c(2,3,4,1)])
+fx.plot$Effect <- factor(fx.plot$Effect,levels=unique(fx.plot$Effect)[c(3,2,4,1)])
 
 ggplot(fx.plot) + 
   geom_point(aes(x=Parameter, y=means), size=4) +
@@ -372,9 +352,16 @@ ggplot(fx.plot) +
 
 #gridExtra::grid.arrange(grobs=gg,nrow=1)
 @
+\caption{Summaries of estimated posterior distributions for numeric (Num.) covariates in the model, regional random effects, habitat random effects, and taxonomic class random effects. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\% confidence intervals.}
+\label{fig:fx_plot}
+\end{figure}
 
 
-<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for random effects of orders within classes. For classes containing multiple nested orders in the dataset, grey lines show posterior means and coloured boxes show 95\\% confidence intervals of class effects. Order effects are shown as relative to the class effect within which they are nested, with points showing posterior means and black lines showing 95\\% confidence intervals.',echo=FALSE,results='hide',fig.width=5,fig.height=7,out.width='0.7\\textwidth',fig.align='center'>>=
+Among explanatory random effects, taxonomy factors (both class and order) explain a larger portion of residual variance (SD > 1.0) than either habitat or region factors (SD < 0.5; Figure \ref{fig:post_plot}).  This is reflected in the probability of prior assessment in any given year after first being landed (Figures \ref{fig:fx_plot} and \ref{fig:surv_plot}), for which octopii and squids (Cephalopods) and sharks (Elasmobranchs) have a higher probability of prior assessment than bony-fishes (Actinopterygii) or other taxonomic classes.  Groundsharks (Carcharhiniformes),  rockfishes (Scorpaeniformes), and flatfishes (Pleuronectiformes) have the highest probability of prior assessment among taxonomic orders, each having a higher assessment probability relative to the average of their taxonomic classes (Figure \ref{fig:fx_plot_oder}).  Habitat and regional effects were generally smaller than taxonomic effects. After controlling for other factors, benthic species had a higher probability of assessment than species from other habitats (in particular demersal species), and assessment probabilities were greatest for stocks in Alaska and least for stocks in the Northeast.   
+
+\begin{figure}[!ht]
+\centering
+<<fx_plot_oder,echo=FALSE,results='hide',fig.width=5,fig.height=7,out.width='0.7\\textwidth'>>=
 
 afs <- function(x) as.numeric(as.factor(x))
 orders <- with(year.table,afs(Order))
@@ -382,7 +369,10 @@ class <- with(year.table,afs(Class))
 classord <- tapply(class,orders,unique)
 
 
-cl <- classes %>% group_by(Parameter) %>% mutate(iter=1:n()) %>% tidyr::spread(Parameter,MCMC)
+cl <- classes %>% 
+  group_by(Parameter) %>% 
+  mutate(iter=1:n()) %>% 
+  tidyr::spread(Parameter,MCMC)
 
 orderr <- get_coef_chains(model.out = a.out, coef.names = 'orderfx\\[[0-9]*\\]', var.names = levels(as.factor(year.table$Order)))
 orderr$Effect <- 'Order'
@@ -391,6 +381,8 @@ orderr$class <- levels(as.factor(year.table$Class))[classord[match(orderr$Parame
 orderr[,c('Class','Iter')] <- reshape2::melt(cl[,-c(1,2)][,classord])
 
 orderr$Class <- as.character(orderr$Class)
+
+orderr$Class[orderr$Class=='Gastropoda'] <- 'Gas.'
 
 orderr %>%
   group_by(Parameter,Class) %>%
@@ -409,10 +401,10 @@ orderr %>%
   filter(ns>1) %>%
   ggplot() + 
   geom_hline(aes(yintercept=0), linetype=3) + 
-  geom_crossbar(aes(x=Parameter, y=cmeans,ymin=cq1,ymax=cq3,fill=Class),col='grey50',alpha=0.5,size=0.01,fatten=100) +
+  geom_crossbar(aes(x=Parameter, y=cmeans,ymin=cq1,ymax=cq3),fill='grey80',col='grey50',alpha=0.5,size=0.01,fatten=100) +
   facet_grid(Class~., drop = T,switch = "both", scales = "free_y", space = "free_y") +
   coord_flip()+
-  scale_fill_manual(values=cbPalette) + 
+  #scale_fill_grey(guide='none') + 
   geom_point(aes(x=Parameter, y=omeans), size=1) +
   geom_linerange(aes(x=Parameter,ymin=oq1,ymax=oq3),size=1) +
   #geom_linerange(aes(x=Parameter,ymin=oq11,ymax=oq33),size=2) +
@@ -423,11 +415,15 @@ orderr %>%
   theme(#axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
         #strip.text = element_text(angle=90,hjust = 1,vjust=0.5),
         #panel.spacing = unit(0, "lines"), 
-        strip.background = element_rect(),
-        strip.text = element_blank())
+        strip.background = element_rect(fill='grey80'))
 
 @
+\caption{Summaries of estimated posterior distributions for random effects of orders within classes (Gas.: Gastropoda). For classes containing multiple nested orders in the dataset, grey lines show posterior means and coloured boxes show 95\% confidence intervals of class effects. Order effects are shown as relative to the class effect within which they are nested, with points showing posterior means and black lines showing 95\% confidence intervals.}
+\label{fig:fx_plot_oder}
+\end{figure}
 
+Finally, we use our model to forecast annual assessment probabilities for all unassessed stocks in each region, and use this to calculate the expected proportion of assessed stocks through 2050 (Figure \ref{fig:surv_plot_region}). These projections rely on the values of maximum landings and ex-vessel price in the last year (usually 2013) for all un-assessed stocks, the final year of available time series data used for model fitting. Alaska is predicted to have the highest proportion of assessed populations throughout the 25-year projection window.  Notably, all regions show a relatively slow increase in the predicted proportion of assessed populations compared to the rapid increases in the observed proportions of assessed populations over the last 35 years (Fig. \ref{fig:assessed}b).  This occurs because stocks with a high assessment probability have typically been assessed early, so that remaining stocks have low landings, prices, or other characteristics associated with low annual assessment probability.      
+     
 <<surv_plot_region,fig.cap='Projected proportion of stocks assessed by region and calendar year, based on assessment probabilities of stocks within each region over the projected year range.',echo=FALSE,results='hide',fig.width=8,fig.height=4,out.width='1\\textwidth',fig.align='center'>>=
 
 devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
@@ -486,6 +482,25 @@ ggplot(preda) +
 
 
 @
+
+
+\section{Discussion}
+
+possible Discussion points:
+
+We introduced this study with a common phrase in business management which equally pertains to natural resource management, "what gets measured, gets managed". Many possible limitations exist in the capacity for managing fish and invertebrate populations, and one major limitation is the uncertainty surrounding the current state and projected future of exploited populations. Stock assessments are our primary means of quantifying stock status to inform fisheries management decisions. 
+
+In reality stock assessments are not a dichotomous categorization, they represent a continuum of complexity, use a wide variety of data inputs, and produce a wide range of estimated outputs. For the purposes of this analysis we drew the line somewhere. Criteria defining assessments for this analysis (poplation dynamics model fit to …) represented a reasonable balance in complexity and inclusiveness for the ability of stock assessments to provide model outputs that can inform fisheries management.
+
+Of all explanatory factors considered to affect the rate at which stocks are first assessed, ex-vessel price was particularly strong, followed closely by maximum landings. The product of these variables, landed value, represents the value derived from fish and invertebrate stocks. Fisheries managers and scientists must choose among several candidate species in a given region and devote stock assessment time and resources towards only a subset of these. If this choice reflects in part the landed value of stocks, then these results support previous findings (Sethi et al 2010 PNAS) suggesting that fishery development is also driven primarily by landed tonnage and ex-vessel prices of fished species.
+
+Populations in the United States are reaching saturation with respect to the rate of first assessment of stocks. Even though most stocks in all regions are as yet unassessed (Fig. 1b), the predicted rate of increase is slow because the stocks most likely to be assessed have already been assessed. However, this pattern is likely not characteristic of most countries. Most will currently have a lower proportion of assessed stocks, and may be more likely still within the period of rapid increase in the proportion of assessed stocks.
+
+
+\section{Acknowledgements}
+We thank Cody Szuwalski for productive discussions while planning out the data set and analysis.  
+
+
 
 
 \FloatBarrier
@@ -548,9 +563,10 @@ abline(a=0,b=1,col=3,lwd=2)
 
 @
 \caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x (green) line.}
+\label{fig:CS}
 \end{figure}
 
-<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
+<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=4,fig.height=4,out.width='0.4\\textwidth',fig.align='center'>>=
 
 fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
 
