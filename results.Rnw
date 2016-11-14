@@ -272,7 +272,7 @@ ggh <- ggplot(yth) +
   geom_bar(aes(fill=Assessed,x=hab)) +
   coord_flip() + 
   theme_classic() + 
-  scale_fill_grey(guide='none') + 
+  scale_fill_grey( start = 0.4,guide='none') + 
   xlab('Habitat') + 
   ylab('Count') + 
   theme(axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
@@ -296,7 +296,7 @@ ggp <- ggplot(yt) +
   facet_grid(class~., drop = T,switch = "both", scales = "free_y", space = "free_y") +
   coord_flip() + 
   theme_cowplot() + 
-  scale_fill_grey() + 
+  scale_fill_grey( start = 0.4) + 
   ylab('Count') + 
   theme(strip.background = element_rect(fill = 'grey80',colour = NA),
         legend.position = 'top')
