@@ -296,92 +296,6 @@ ggplot(yt) +
 \end{figure}
 
 
-<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
-
-fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
-
-.simpleCap <- function(s) {
-  
-  paste(toupper(substring(s, 1, 1)), substring(s, 2),
-        sep = "")
-}
-
-fp$Effect <- .simpleCap(do.call('rbind',strsplit(as.character(fp$Parameter),'\\.'))[,3])
-fp$Effect[fp$Effect=='Hab'] <- 'Habitat'
-fp$Effect <- factor(fp$Effect, levels = rev(unique(fp$Effect)))
-
-fp %>% group_by(Effect) %>%
-  summarise(means = median(MCMC),
-            q1 = quantile(MCMC,0.025),
-            q3 = quantile(MCMC,0.975),
-            q11 = quantile(MCMC,0.25),
-            q33 = quantile(MCMC,0.75)) %>%
-  ggplot() + 
-  geom_point(aes(x=Effect, y=means), size=4) +
-  geom_linerange(aes(x=Effect,ymin=q1,ymax=q3),size=1) +
-  geom_linerange(aes(x=Effect,ymin=q11,ymax=q33),size=2) +
-  ylab('Finite population SD') +
-  xlab('') + 
-  theme_classic() +
-  coord_flip()+
-  theme(axis.text = element_text(colour='black'))
-
-@
-
-\begin{landscape}
-
-<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.6\\textwidth',fig.align='center'>>=
-
-preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
-
-preds$Parameter <- as.character(preds$Parameter)
-
-preda <- preds %>% 
-  split(.$Parameter) %>%
-  purrr::map(function(l) {
-    tp <- sapply(seq(0,50),function(t) 1-exp(-l$MCMC*t^tau$MCMC))
-    data.frame(time=0:50,mm=apply(tp,2,median))
-  })
-
-
-mpreda <- reshape2::melt(preda,id.vars='time') %>% dplyr::select(-variable)
-names(mpreda) <- c('time','MCMC','Parameter')
-
-preda <- tbl_df(mpreda) %>% 
-  mutate(effect = do.call('rbind',strsplit(as.character(Parameter),'\\.'))[,1],
-         Effect = .simpleCap(effect),
-         idx = as.numeric(regmatches(Parameter,regexpr('([0-9]+)',Parameter))))
-
-
-preda$Effect[preda$Effect=='Hab'] <- 'Habitat'
-
-pred.plot <- data.frame(preda) %>%
-  rowwise() %>%
-  mutate(Group = levels(as.factor(year.table[,unique(Effect)]))[idx])
-  
-p=0;gg<- list()
-for(group in unique(pred.plot$Effect)){
-  
-  this <- names(sort(table(year.table[,group]),decreasing = T)[1:8])
-  p=p+1;
-  pp<- pred.plot %>% filter(Effect == group, Group %in% this)
-  
-  gg[[p]] <- ggplot(pp) + 
-    geom_line(aes(x=time,y=MCMC,col=Group,linetype=Group)) + 
-    theme_classic() + 
-    theme(axis.text = element_text(colour='black'))+
-    ylab('Probability of being assessed') +
-    xlab('Time (yr)') + 
-    scale_colour_manual(group,values=cbPalette) + 
-    scale_linetype_discrete(group)+
-    coord_cartesian(expand = F)
-}
-
-gridExtra::grid.arrange(grobs=gg,ncol=2)
-
-@
-\end{landscape}
-
 \begin{landscape}
 <<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, c) regional random effects, and d) taxonomic class random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1.5\\textwidth',fig.align='center'>>=
 
@@ -598,6 +512,91 @@ abline(a=0,b=1,col=3,lwd=2)
 \caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
 \end{figure}
 
+<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
+
+fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
+
+.simpleCap <- function(s) {
+  
+  paste(toupper(substring(s, 1, 1)), substring(s, 2),
+        sep = "")
+}
+
+fp$Effect <- .simpleCap(do.call('rbind',strsplit(as.character(fp$Parameter),'\\.'))[,3])
+fp$Effect[fp$Effect=='Hab'] <- 'Habitat'
+fp$Effect <- factor(fp$Effect, levels = rev(unique(fp$Effect)))
+
+fp %>% group_by(Effect) %>%
+  summarise(means = median(MCMC),
+            q1 = quantile(MCMC,0.025),
+            q3 = quantile(MCMC,0.975),
+            q11 = quantile(MCMC,0.25),
+            q33 = quantile(MCMC,0.75)) %>%
+  ggplot() + 
+  geom_point(aes(x=Effect, y=means), size=4) +
+  geom_linerange(aes(x=Effect,ymin=q1,ymax=q3),size=1) +
+  geom_linerange(aes(x=Effect,ymin=q11,ymax=q33),size=2) +
+  ylab('Finite population SD') +
+  xlab('') + 
+  theme_classic() +
+  coord_flip()+
+  theme(axis.text = element_text(colour='black'))
+
+@
+
+\begin{landscape}
+
+<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.6\\textwidth',fig.align='center'>>=
+
+preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
+
+preds$Parameter <- as.character(preds$Parameter)
+
+preda <- preds %>% 
+  split(.$Parameter) %>%
+  purrr::map(function(l) {
+    tp <- sapply(seq(0,50),function(t) 1-exp(-l$MCMC*t^tau$MCMC))
+    data.frame(time=0:50,mm=apply(tp,2,median))
+  })
+
+
+mpreda <- reshape2::melt(preda,id.vars='time') %>% dplyr::select(-variable)
+names(mpreda) <- c('time','MCMC','Parameter')
+
+preda <- tbl_df(mpreda) %>% 
+  mutate(effect = do.call('rbind',strsplit(as.character(Parameter),'\\.'))[,1],
+         Effect = .simpleCap(effect),
+         idx = as.numeric(regmatches(Parameter,regexpr('([0-9]+)',Parameter))))
+
+
+preda$Effect[preda$Effect=='Hab'] <- 'Habitat'
+
+pred.plot <- data.frame(preda) %>%
+  rowwise() %>%
+  mutate(Group = levels(as.factor(year.table[,unique(Effect)]))[idx])
+  
+p=0;gg<- list()
+for(group in unique(pred.plot$Effect)){
+  
+  this <- names(sort(table(year.table[,group]),decreasing = T)[1:8])
+  p=p+1;
+  pp<- pred.plot %>% filter(Effect == group, Group %in% this)
+  
+  gg[[p]] <- ggplot(pp) + 
+    geom_line(aes(x=time,y=MCMC,col=Group,linetype=Group)) + 
+    theme_classic() + 
+    theme(axis.text = element_text(colour='black'))+
+    ylab('Probability of being assessed') +
+    xlab('Time (yr)') + 
+    scale_colour_manual(group,values=cbPalette) + 
+    scale_linetype_discrete(group)+
+    coord_cartesian(expand = F)
+}
+
+gridExtra::grid.arrange(grobs=gg,ncol=2)
+
+@
+\end{landscape}
 
 <<>>=
 
