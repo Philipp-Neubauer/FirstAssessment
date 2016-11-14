@@ -158,13 +158,7 @@ All random effects were given half-Cauchy priors with a scale of $\Theta=100$, r
 
 \section{Results}
 
-The number of landed marine populations in the United States (excluding salmons and highly migratory species) increased steadily from the 1950s into the 1990s (Figure \ref{fig:assessed_landed}a). During this period, the number of landed populations in Alaska, West Coast, and Southeast regions approximately doubled, while the number of landed populations in the Northeast increased more slowly (but was already relatively high at the start of this period). Most of the newly-landed stocks were unassessed throughout this period; by the enactment of the Sustainable Fisheries Act in 1996, less than 30 populations in each of the four regions were assessed. As a proportion of all landed populations, however, the trend in assessed stocks has steadily increased in all regions since the 1970s or 1980s (Figure \ref{fig:assessed_landed}b). Currently the proportion of landed stocks that are assessed ranges from 16\% in the Southeast to 36\% in Alaska. In terms of regional landings, the assessment of large stocks in each region between the 1970s and 2000s lead to rapidly increasing proportions of total landed tonnage being comprised of assessed populations. By 1996, >80\% of landings in Alaska, Northeast, and Southeast regions were comprised of assessed stocks, and in the West Coast this proportion has increased rapidly from 30\% in 1996 to 70\% currently (Figure \ref{fig:assessed_landed}c). 
-
-\begin{landscape}
-
-\begin{figure}[!ht]
-\centering
-<<assessed_landed,echo=FALSE,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth'>>=
+<<prelim_results>>=
 
 l.tab <- full.tab %>% 
   group_by(mainregion,stock) %>%
@@ -194,6 +188,19 @@ plot.tab.prop <- inner_join(l.tab, a.tab) %>%
  
 land_plot <- a.tab %>% 
   mutate(p.assessed = land.assessed/(land.assessed+land.unassessed))
+
+
+@
+
+
+The number of landed marine populations in the United States (excluding salmons and highly migratory species) increased steadily from the 1950s into the 1990s (Figure \ref{fig:assessed_landed}a). During this period, the number of landed populations in Alaska, West Coast, and Southeast regions approximately doubled, while the number of landed populations in the Northeast increased more slowly (but was already relatively high at the start of this period). Most of the newly-landed stocks were unassessed throughout this period; by the enactment of the Sustainable Fisheries Act in 1996, less than 30 populations in each of the four regions were assessed. As a proportion of all landed populations, however, the trend in assessed stocks has steadily increased in all regions since the 1970s or 1980s (Figure \ref{fig:assessed_landed}b). Currently the proportion of landed stocks that are assessed ranges from \Sexpr{round(plot.tab.prop$p.assessed[plot.tab.prop$mainregion=='USEC-SE' & plot.tab.prop$year == 2013]*100)}\% in the Southeast to \Sexpr{round(plot.tab.prop$p.assessed[plot.tab.prop$mainregion=='USWC-AK' & plot.tab.prop$year == 2012]*100)}\% in Alaska. In terms of regional landings, the assessment of large stocks in each region between the 1970s and 2000s lead to rapidly increasing proportions of total landed tonnage being comprised of assessed populations. By 1996, $>$\Sexpr{floor(min(land_plot$p.assessed[land_plot$mainregion!='USWC-48' & land_plot$year >= 2013]*100))}\% of landings in Alaska, Northeast, and Southeast regions were comprised of assessed stocks, and in the West Coast this proportion has increased rapidly from \Sexpr{round(land_plot$p.assessed[land_plot$mainregion=='USWC-48' & land_plot$year == 1996]*100)}\% in 1996 to $>$\Sexpr{floor(land_plot$p.assessed[land_plot$mainregion=='USWC-48' & land_plot$year == 2013]*100)}\% currently (Figure \ref{fig:assessed_landed}c). 
+
+\begin{landscape}
+
+\begin{figure}[!ht]
+\centering
+<<assessed_landed,echo=FALSE,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth'>>=
+
 
 gga <- ggplot(plot.tab) + 
   geom_line(aes(col=mainregion,x=year,y=value,linetype = Assessed),size=1.3) + 
@@ -357,7 +364,7 @@ ggplot(fx.plot) +
 \end{figure}
 
 
-Among explanatory random effects, taxonomy factors (both class and order) explain a larger portion of residual variance (SD > 1.0) than either habitat or region factors (SD < 0.5; Figure \ref{fig:post_plot}).  This is reflected in the probability of prior assessment in any given year after first being landed (Figures \ref{fig:fx_plot} and \ref{fig:surv_plot}), for which octopii and squids (Cephalopods) and sharks (Elasmobranchs) have a higher probability of prior assessment than bony-fishes (Actinopterygii) or other taxonomic classes.  Groundsharks (Carcharhiniformes),  rockfishes (Scorpaeniformes), and flatfishes (Pleuronectiformes) have the highest probability of prior assessment among taxonomic orders, each having a higher assessment probability relative to the average of their taxonomic classes (Figure \ref{fig:fx_plot_oder}).  Habitat and regional effects were generally smaller than taxonomic effects. After controlling for other factors, benthic species had a higher probability of assessment than species from other habitats (in particular demersal species), and assessment probabilities were greatest for stocks in Alaska and least for stocks in the Northeast.   
+Among explanatory random effects, taxonomy factors (both class and order) explain a larger portion of residual variance than either habitat or region factors (Figure \ref{fig:post_plot}).  This is reflected in the probability of prior assessment in any given year after first being landed (Figures \ref{fig:fx_plot} and \ref{fig:surv_plot}), for which octopii and squids (Cephalopods) and sharks (Elasmobranchs) have a higher probability of prior assessment than bony-fishes (Actinopterygii) or other taxonomic classes.  Groundsharks (Carcharhiniformes),  rockfishes (Scorpaeniformes), and flatfishes (Pleuronectiformes) have the highest probability of prior assessment among taxonomic orders, each having a higher assessment probability relative to the average of their taxonomic classes (Figure \ref{fig:fx_plot_oder}).  Habitat and regional effects were generally smaller than taxonomic effects. After controlling for other factors, benthic species had a higher probability of assessment than species from other habitats (in particular demersal species), and assessment probabilities were greatest for stocks in Alaska and least for stocks in the Northeast.   
 
 \begin{figure}[!ht]
 \centering
