@@ -35,7 +35,7 @@ At a minimum, fisheries management requires estimating fishery harvest or fishin
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -62,13 +62,15 @@ library(survival)
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7","#999999")
 
 
-load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
+#load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
+load('model.outSun Nov 13 22:25:59 2016.rda',v=T)
+
 
 # just for matching
 year.table$Region <- year.table$mainregion
-year.table$Habitat <- year.table$habitat_MM
+year.table$Habitat <- year.table$habitat_FB.SLB
 year.table$region <- year.table$mainregion
-year.table$habitat <- year.table$habitat_MM
+year.table$habitat <- year.table$habitat_FB.SLB
 
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'betas',
@@ -259,7 +261,7 @@ simpleCap <- function(s) {
       sep="")
 }
 
-yt <- year.table %>% mutate(hab = simpleCap(habitat_MM))
+yt <- year.table %>% mutate(hab = simpleCap(habitat_FB.SLB))
 
 ggplot(yt) + 
   geom_bar(aes(fill=Assessed,x=hab)) +
@@ -293,21 +295,6 @@ ggplot(yt) +
 \caption{Assessment status at time of last known status (censoring time) by Order and sorted by Class. Classes are abbreviated as \Sexpr{paste(paste(unique(yt$class),unique(yt$Class),sep=': '),collapse=', ')}}
 \end{figure}
 
-
-\begin{table}
-\centering
-\small{
-\caption{Posterior mean and $P(\theta>1)$ for model parameters. Parameters can be interpreted as the ratio of rates (rate effect $\theta$, i.e., rates at which stocks with different characteristics are assessed) or as multiplicative acceleration factors (time effect, i.e., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock).}
-\begin{tabular}{lrrr}
-\newline
-Parameter & Rate effect ($\theta$) & Time effect ($\nu$) & $P(\theta>1)$ \\
-\hline
-<<table,results='asis',echo=FALSE>>=
-print(xtable(data.frame(coef_P)),only.contents=TRUE, include.colnames=F, include.rownames=F,hline.after=NULL)
-@
-\end{tabular}
-}
-\end{table}
 
 <<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
 
@@ -401,7 +388,9 @@ gridExtra::grid.arrange(grobs=gg,ncol=2)
 betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Maximum landings', 'Mean price per kg'))
 betas$Effect <- 'Covariates'
 
-habitats <- get_coef_chains(model.out = a.out, coef.names = 'habitat\\[[0-9]*\\]', var.names = levels(as.factor(year.table$habitat_MM)))
+print(levels(as.factor(year.table$habitat_FB.SLB)))
+
+habitats <- get_coef_chains(model.out = a.out, coef.names = 'habitat\\[[0-9]*\\]', var.names = levels(as.factor(year.table$habitat_FB.SLB)))
 habitats$Effect <- 'Habitat'
 habitats$Parameter <- as.character(habitats$Parameter)
 habitats$Parameter <- simpleCap(habitats$Parameter)
