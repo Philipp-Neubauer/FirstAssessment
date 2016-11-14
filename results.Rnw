@@ -29,13 +29,13 @@
 
 \begin{abstract}
 
-At a minimum, fisheries management requires estimating fishery harvest or fishing rates such that the fishery will perform well on average.  However, many management agencies also define objectives regarding population status (e.g., biomass relative to biological targets), and these different mandates (estimating harvest rates vs. population status) are often achieved using different types of models.  For example, the United States has a legislative mandate to "end overfishing" by setting harvest limits below biological targets, and has estimated these targets for many species using models that do not estimate population status. By contrast, estimating population status generally requires a statistical model of population dynamics to estimate population size relative to harvest, which we call a "stock assessment".  Stock assessments are often more costly and resource-intensive than models that only estimate harvest limits, and to date only a subset of landed species have stock assessments. Here we quantitatively explore the factors that influence the probability that a previously unassessed stock in the United States will receive a stock assessment. Using a statistical model based on time-to-event analysis and nearly 600 stocks, we quantify the imapct of region, habitat, and life-history on the annual probability of being assessed for the first time. Although the majority of landings come from assessed stocks in all regions, less than half of the regionally landed species have a stock assessment. Landings are thus the dominant factor that determines the rate of new assessments, followed by price per kg of landed fish. Nevertheless, we find that the over-all rate at which new stocks are assessed has been increasing since the 1950s, and a number of vulnerable groups such as rockfishes (Scorpaeniformes) and groundsharks (Carcharhiniformes) have a relatively high annual probability of being assessed when controlling for their relativly small tonnage and low price. Given the characteristics of species that are currently un-assessed, our model suggests that the number of assessed stocks will increase slowly in the future, as the landed tonnage and price for the remaining unassessed stocks makes it unlikely that current resources are sufficient to generate stock assessments for these species.
+At a minimum, fisheries management requires estimating harvested quantities or fishing rates so that the fishery can sustainably derive value from the resource base. Beyond this, many management agencies also define objectives regarding population status (e.g., biomass relative to biological targets). The different mandates of estimating harvest rates versus population status are often achieved using different types of models.  For example, agencies in the United States have a legislative mandate to "end overfishing" by setting harvest limits below biological targets, and have estimated these targets for many species using models that do not estimate population status. By contrast, estimating population status generally requires a "stock assessment"—a statistical model of population dynamics to estimate population size relative to harvest.  Stock assessments are often more costly and resource-intensive than models that only estimate harvest limits, and to date only a subset of landed species have stock assessments. Here we quantitatively explore the factors influencing the probability that a previously unassessed stock in the United States will become the subject of a stock assessment. Using a statistical model based on time-to-event analysis and 600 coastal marine fish and invertebrate stocks, we quantify the impact of region, habitat, life-history, and economic factors on the annual probability of being assessed. Although the majority of landings come from assessed stocks in all regions, less than half of the regionally-landed species currently have a stock assessment. Landed tonnage is thus the dominant factor determining the rate of new assessments. However, we also find that a high ex-vessel price of landed fish leads to earlier stock assessment. The overall rate at which new stocks are assessed has been increasing since the 1950s, and a number of vulnerable groups such as rockfishes (Scorpaeniformes) and groundsharks (Carcharhiniformes) have a relatively high annual probability of being assessed after controlling for their relatively small tonnage and low price. Given the characteristics of species that are currently unassessed, our model suggests that the number of assessed stocks will increase slowly in future decades, as the landed tonnage and price for the remaining unassessed stocks makes it unlikely that current resources are sufficient to generate stock assessments for these species.
 
 \end{abstract}
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -59,7 +59,7 @@ require(xtable)
 require("ggplot2")
 library(survival)
 
-cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7","#999999")
+cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00", "#CC79A7","#999999")
 
 
 #load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
@@ -75,8 +75,8 @@ year.table$habitat <- year.table$habitat_FB.SLB
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'betas',
                                  var.names = c('Length',
-                                               'Maximum landings',
-                                               'Mean price per kg')))
+                                               'Mean price per kg',
+                                               'Maximum landings')))
 
 
 tau <- tbl_df(get_coef_chains(model.out = a.out, 
@@ -95,52 +95,50 @@ coef_P <- coeffs %>%
 \newpage
 \section{Introduction}
 
-It is often said "what gets measured gets managed".  For over XXXX years (historical citation), fisheries scientists have measured human impacts on ocean populations (finfishes and marine invertebrates) with the goal of balancing both the long-term sustainability of human impacts with maximizing harvest (or value) from fishing.  In particular, stock assessments generally involve estimating two measures of human impact: (1) fishing rate, i.e., the instantaneous mortality or annual fraction of the population that is harvested relative to an estimated target level, and (2) the population abundance, i.e., spawning biomass or reproductive output relative to an estimated target level.  The value of these two metrics can be plotted on a 2-dimensional "stock status" plot, and fisheries agencies are increasingly committed to maintaining fished populations in the "healthy" quadrant (i.e., fishing rate below a target level, and population abundance above a target level; citation).
+It is often said, "what gets measured, gets managed".  For over XXXX years (historical citation), fisheries scientists have measured human impacts on ocean populations of finfishes and marine invertebrates with the goal of balancing the value derived from fishing with the long-term sustainability of populations.  In particular, stock assessments generally involve estimating two measures of human impact: (1) fishing rate, i.e., the instantaneous mortality or annual fraction of the population that is harvested relative to an estimated target level, and (2) the population abundance, i.e., spawning biomass or reproductive output relative to an estimated target level. Together these measures reflect the “stock status” of an assessed population, and fisheries agencies are increasingly committed to maintaining fished populations at fishing rates below target levels and population abundances above target levels (citation).
 
-Recently, the National Marine Fisheries Service (NMFS, the agency in charge of science supporting fisheries management in the United States) has committed to "end overfishing" for all marine species within regional fisheries management plans (with exceptions granted in a few circumstances; citation). In the US, overfishing is defined as any stock having annual harvest above limit levels. A target (or limit) harvest can in theory be calculated by combining a target harvest rate with a target population abundance.  However, the vast majority of overfishing limits are currently estimated using methods that do not individually calculate either harvest rate or population abundance (Berkson and Thorson 2015, Newman Berkson Sautoni 2015).  For example, depletion-corrected average catch (DCAC; MacCall 2009) is used to calculate an annual fishing limit for many stocks, but is not used to calculate population abundance. DCAC (and similar methods) can therefore be used to help "end overfishing" but is not otherwise informative about characteristics of the fished population. 
+Recently, the National Marine Fisheries Service (NMFS, the agency in charge of science supporting fisheries management in the United States) has committed to "end overfishing" for all marine species within regional fisheries management plans (with exceptions granted in a few circumstances; citation). In the US, overfishing is defined as any stock having annual harvest above limit levels. A target (or limit) harvest can in theory be calculated by combining a target harvest rate with a target population abundance.  However, the vast majority of overfishing limits are currently estimated using methods that do not individually estimate either harvest rate or population abundance (Berkson and Thorson 2015, Newman Berkson Sautoni 2015).  For example, depletion-corrected average catch (DCAC; MacCall 2009) is used to estimate an annual fishing limit for many stocks, but is not used to estimate population abundance. DCAC and similar methods can therefore be used to help "end overfishing", but are not otherwise informative about the status of a fished population. 
 
-However, conservationists and ecologists will often be more interested in estimating population abundance (or abundance relative to equilibrium conditions) than estimating an overfishing limit (citations).  Estimating abundance generally requires applying a population model to available harvest data and an index of population depletion (either an index proportional to population abundance, or average size/age data);  in these cases, the population model essentially treats the historical fishing as a "depletion experiment" to estimate the fraction of the population that is fished every year.  In the following, we call these population models "stock assessments", although we acknowledge that other authors have used the term "stock assessment" more broadly to also include methods for estimating overfishing limits (e.g., DCAC). Although NMFS has estimated overfishing limits for the vast majority of fishes in US fisheries management plans, a much smaller percentage of fished species have a stock assessment (in our sense). This relative dearth of stock assessment models presumably arises because developing a stock assessment is time-consuming and requires extensive financial resources from NMFS and other interested parties (Geremont ref).
+Conservationists and ecologists will often be more interested in estimating population abundance (or abundance relative to equilibrium conditions) than estimating an overfishing limit (citations).  Estimating abundance generally requires applying a population model to available harvest data and an index of population depletion (either an index proportional to population abundance, or average size or age data); in these cases, the population model essentially treats the historical fishing as a "depletion experiment" to estimate the fraction of the population that is fished every year.  In the following, we consider these population models "stock assessments", although we acknowledge that other authors have used the term "stock assessment" more broadly to also include methods for estimating overfishing limits (e.g., DCAC). Although NMFS has estimated overfishing limits for the vast majority of fishes in US fisheries management plans, a smaller percentage of fished species have a stock assessment as defined. The dearth of assessed species presumably arises because developing a stock assessment is time-consuming, typically has greater data input needs, and requires extensive financial resources from NMFS and other interested parties (Geremont ref).
 
-We  argue that stock assessments (population models for estimating absolute abundance for fished species) are important for many applied and theoretical questions regarding marine ecosystems.  In particular, managing population stability (a characteristic of population size), rather than simply annual fishery removals, depends upon measuring population abundance via stock assessment models.  However, there is little previous research regarding which fished species are more or less likely to receive sufficient attention to develop a stock assessment.  Understanding which species are more or less likely to be assessed could be useful for the following three reasons (among others):
+Stock assessments (population models for estimating absolute abundance of fished species and associated biological reference points) are important for many applied and theoretical questions regarding marine ecosystems.  In particular, managing population stability (a characteristic of population size), rather than simply managing annual fishery removals, is possible only by estimating population abundance using stock assessment models.  However, there is little previous research regarding which fished species are more or less likely to receive sufficient attention to develop a stock assessment.  Understanding which species are more or less likely to be assessed could be useful for the following three reasons:
 
-1.  Unassessed stocks may receive less attention from the public or fisheries managers regarding management actions. Therefore, if a given taxon is less likely to be assessed, it might also be less likely to receive rapid or public attention when management changes are warrented.
+1.  Unassessed stocks may receive less attention from the public or fisheries managers when management changes are warranted.
 
-2.  Output from stock assessments has often been used in meta-analysis models to understand ecological characteristics of marine fishes in general (Myers ref, Thorson et al. Fish and Fisheries 2015, other ideas...).  Therefore, any systematic bias in which stocks are assessed could also bias our ecological understanding of marine fishes.
+2.  Output from stock assessments has often been used in meta-analyses to understand ecological characteristics of marine fishes in general (Myers ref, Thorson et al. Fish and Fisheries 2015, other ideas...).  Therefore, any systematic bias in which stocks are assessed will also bias our ecological understanding of marine fishes.
 
-3.  Stock assessments often require updates periodically (e.g., Pacific hake has been re-assessed annually from X through 2016), and agency resources might be fully expended while assessing a small fraction of stocks.  However, it is currently unknown whether the rate of assessing new species for the first time is increasing or decreasing.  If this rate is decreasing, this could indicate the need for additional public resources for stock assessment.  
+3.  Stock assessments often require periodic updates (e.g., Pacific hake has been re-assessed annually from X through 2016), and agency resources might be fully expended while assessing a small fraction of possible stocks. If the rate of assessing new species  is decreasing, this could indicate the need for additional public resources for stock assessment.  
 
-We therefore seek to provide the first-ever quantitative analysis of which marine species are likely to have undergone a stock assessment using a statistical population dynamics model.  To do so, we combine two databases representing all fished marine species in the United States:  a database of all landed species from 195X to 201X, and a database of management and stock assessment attributes for all US fishes with peer-reviewed stock assessments.  For each landed stock in each of four US regions (northeast, southeast, northwest, and southwest), we record the year that it first had a stock assessment; we treat any stock that does not have an assessment by 2015 as a "censored" observation (i.e., it might eventually have a peer-reviewed assessment)  We then apply a censored time-to-event model to answer the following questions:  (1) what economic or biological characteristics are associated with a high or low annual probability of being assessed for the first time? (2) which US region has assessed stocks relatively quickly or slowly? (3) are there certain taxa (e.g., invertebrates or sharks) that are substantially faster or slower-assessed given these biological and economic attributes? and (4) is the rate of stock assessment accelerating or decelerating over time. We show that price per kilo and and landings are the main drivers of globallly increasing stock assessment rates, but some taxa defy these trends and are .
+In this paper, we seek to provide a quantitative analysis of which marine species are likely to have undergone a stock assessment using a statistical population dynamics model.  To do so, we combine two databases representing fished coastal marine species in the continental United States and Alaska: a database of landed tonnage and value by species from 195X to 201X, and a database of management and stock assessment attributes for US fishes and invertebrates with peer-reviewed stock assessments.  For each landed stock in each of four US regions (northeast, southeast, northwest, and southwest), we record the year that it first had a stock assessment; we treat any stock that did not have an assessment by 2015 as a "censored" observation (i.e., it might eventually have a peer-reviewed assessment). We apply a censored time-to-event model to answer the following questions:  (1) what economic and biological characteristics are associated with a high or low annual probability of being assessed for the first time?; (2) how has the rate of assessing stocks differed among US regions?; (3) are there certain taxa (e.g., invertebrates or sharks) that are assessed  substantially faster or slower-given these biological and economic attributes?; and (4) is the rate of stock assessment accelerating or decelerating over time? We show that ex-vessel price and landed tonnage are the main drivers of increasing rates of stock assessments, but some taxa defy these trends and are more likely to be assessed.
 
 \section{Methods}
 
-\subsection{Management database}
+\subsection{Year of first stock assessment}
 
-The year of first stock assessment for marine stocks previously assessed in the United States was determined primarily by interviews with regional stock assessment scientists, as supplemented by conducting a literature review of archived assessments. Many types of stock assessments are applied in the US, with varying levels of model complexity and input data requirements. Assessments for any given stock also tend to change over time, typically becoming more complex as warranted by available data. For consistency across populations, we defined a stock assessment as a single-species  model of density-dependent population dynamics (e.g., including some combination of individual growth, recruitment, and/or aggregate surplus production), with model parameters that were estimated by fitting to abundance index and/or age and length compositional data, and that provided time series estimates of population abundance (e.g. total biomass, spawning biomass) and/or exploitation rates (e.g., fishing mortality or harvest fractions) as well as a benchmark for these time series estimates. Benchmarks includeD target reference points, reference points based on maximum sustainable yield (MSY) or its proxies, or initial population abundance; ratios of the time series and their corresponding reference points provide a relative index of stock status. Age-structured models, delay-difference models, biomass dynamics models, and surplus production models all qualified as assessment models.  We recongize that stock-reduction analyses (SRAs) are often used to estimate overfishing limits for stocks in the absence of a population-dynamics model fitted to data. However, stock-reduction analyses did not qualify as stock assessments under this definition because they typically are not fitted to abundance-index or compositional data. Exceptions were occasionally made (i.e. definitions of an assessment were more forgiving) for some invertebrate species like squids due to short lifespans and difficulties of aging individuals.     
+The year of first stock assessment for marine stocks previously assessed in the United States was determined primarily by interviews with regional stock assessment scientists, and supplemented by literature reviews of archived assessments. Many types of stock assessments are applied in the US, with varying levels of model complexity and input data requirements. Assessments for any given stock also tend to change over time, typically becoming more complex as warranted by available data. For consistency across populations, we defined a stock assessment as a single-species model of density-dependent population dynamics (e.g., including some combination of individual growth, recruitment, or aggregate surplus production) with the following criteria: (i) model parameters were estimated by fitting to abundance index and/or age or length compositional data; (ii) the model provided time series estimates of population abundance (e.g. total biomass, spawning biomass) and/or exploitation rates (e.g., fishing mortality or harvest fractions); and (iii) management benchmarks corresponding to these time series estimates were estimated within the assessment or were otherwise explicitly stated. Benchmarks included target reference points, reference points based on maximum sustainable yield (MSY) or its proxies, or initial population abundance; ratios of the time series and their corresponding reference points provide a relative index of stock status. Age-structured models, delay-difference models, biomass dynamics models, and surplus production models all qualified as assessment models.  We recognize that stock-reduction analyses (SRAs) are often used to estimate overfishing limits for stocks in the absence of a population-dynamics model fitted to data. However, stock-reduction analyses did not qualify as stock assessments under this definition because they typically are not fitted to abundance-index or compositional data. Exceptions were occasionally made (i.e. definitions of an assessment were more forgiving) for some invertebrate species like squids due to short lifespans and difficulties of aging individuals.     
 
-Year of first assessment assignments were compared with the NOAA Species Information System (SIS) database to ensure consistency. The SIS database does not contain information about when a stock was first assessed, so comparisons were restricted to recent years, assuming that stocks which qualified as assessed in a previous year continue to qualify as presently assessed. These comparisons generally showed consistency among datasets. The only exceptions... [squids, couple others].
+Assignments of first assessment year were compared with the NOAA Species Information System (SIS) database to ensure consistency. The SIS database does not contain information about when a stock was first assessed, so comparisons were restricted to recent years, assuming that stocks which qualified as assessed in a previous year continue to qualify as presently assessed. These comparisons generally showed consistency among datasets, with categories of ‘Levels of Stock Assessment Models’ in SIS aligning with our assignments. Of the nearly 200 stocks for which we assigned a year of first assessment, there were seven discrepancies with SIS classifications which resulted from violation of the abovementioned assumption. These stocks were previously assessed using populations models, but currently are assessed with less complex methods. For analyses, we maintain our assignments of when these stocks were first assessed.
 
 \subsection{Defining un-assessed stocks}
 
-Not all species landed in US fisheries are assessed using a population-dynamics model, and some are only assessed in a subset of regions. Our management database therefore only included instances of stocks with a stock assessment, and did not contain records of unassessed stocks. Excluding all un-assessed stocks would not allow us to make general inference about the propensity of stocks to be assessed. We therefore complement the management database with data from NOAA's landings database. For this, we attributed all regional landings from assessed stocks to these stocks [MIKE - I'm talking about the proportions for each stock in the spreadsheet. Can't quite recall how you did this - can you elaborate here?], and then grouped landings that were not attributed to assessed stocks into species/region combinations, which we treated as un-assessed stocks. We distinguish four regions, defined as: Alaska (i.e., the Eastern Bering Sea, Gulf of Alaska, and Aleutian Islands); US West Coast (i.e., the federal waters of Oregon, Washington, and California); Northeast Coast (including the mid-Atlantic Coast); and Southeast Coast (including the South Atlantic Coast and Gulf of Mexico). These regions do not include the portion of US federally-managed waters in the Caribbean or central Pacific, because the management database has not been consistently expanded to these regions [IS THIS CORRECT MIKE?].
+Not all species landed in US fisheries are assessed using a population-dynamics model, and some are only assessed in limited sub-regions. Our year-of-first assessment database therefore contained few records of unassessed stocks. Failing to include unassessed stocks would not allow us to make general inference about the propensity of stocks to be assessed, so we complement this year-of-first assessment database with data from NOAA's landings database. The NOAA landings database provides annual landings by species and state, whereas areas of stock distribution as defined in stock assessments comprise a wide array of spatial designations including state, regional, and national levels. To align databases, we identified the US states included within the area of distribution for all stocks in our dataset. Species with landings in states outside of these areas of assessed stocks were considered as ‘unassessed’ in those states. These assignments of ‘unassessed’ species:state combinations were pooled into species:region combinations so that an ‘unassessed’ stock represented a single species in a particular region that was not already represented by the area of distribution of an assessed stock. We distinguish four regions, defined as: Alaska (i.e., the Eastern Bering Sea, Gulf of Alaska, and Aleutian Islands); US West Coast (i.e., the federal waters of Oregon, Washington, and California); Northeast Coast (including the mid-Atlantic Coast); and Southeast Coast (including the South Atlantic Coast and Gulf of Mexico). These regions do not include the portion of US federally-managed waters in the Caribbean or central Pacific, because the year-of-first assessment database has not been expanded to these regions.
 
-This definition of "unassessed stocks" is difficult to apply in the case of highly migratory species, which often span multiple regions or cross national jurisdiction. We therefore expluded all species that are typically assessed by Regional Fisheries Management Organisations. This included all tuna, billfish and oceanic sharks. 
+This definition of "unassessed stocks" is difficult to apply in the case of highly migratory species, which often span multiple regions or cross national jurisdiction. Further, the year of first assessment of highly migratory species that are assessed is likely influenced by other countries, unlike coastal stocks of the continental US and Alaska. We therefore excluded species that are typically assessed by Regional Fisheries Management Organisations, including tuna, billfish, and oceanic shark species. We also excluded salmon species from our analysis because our year-of-first assessment database has not been expanded to cover salmon species.
 
 \subsection{Explanatory variables}
 
-Several variables were considered as explanatory factors affecting the year in which a stock was first assessed. Region and habitat typically occupied by the population were each treated as a categorical random effect. Habitat types from FishBase (ref) or SeaLifeBase (ref) were aggregated into six categories: deep sea (>200m; bathy-pelagic or bathy-demersal); benthic; demersal; benthopelagic; pelagic; and reef-associated. Adjustments were made to the default global species-level classifications for some populations to better reflect local habitat usage. 
-
-Maximum body length of the species was also assigned to each population and used as a numerical predictor, drawing from FishBase and SeaLifeBase. Fisheries that developed earlier may be more likely to be assessed earlier than others. The year of fishery development, defined as the year in which landings first reached 25 percent of the maximum landings across the full time series (Sethi et al. 2011? PNAS), provides historical information about the fishery for each population as was used as a numerical predictor. The catch quantity and ex-vessel price of the population together determine landed value of the population; more valuable populations may be more likely to be assessed. We considered maximum annual landings prior to the first assessment and ex-vessel price per kg in the year of first assessment as separate numerical predictors, drawn from the National Marine Fisheries Service landings database. These state-level landings and ex-vessel price data were linked to corresponding biological stock units according to areas of stock distribution as defined in assessments.
+Several variables were considered as explanatory factors affecting the year in which a stock was first assessed. Region and habitat typically occupied by the population were each treated as a categorical random effect. Habitat types from FishBase (ref) or SeaLifeBase (ref) were aggregated into six categories: deep sea (>200m; bathy-pelagic or bathy-demersal); benthic; demersal; benthopelagic; pelagic; and reef-associated. Adjustments were made to the default global species-level classifications for some populations to better reflect local habitat usage. Maximum body length of the species was also assigned to each population and used as a numerical predictor, drawing from FishBase and SeaLifeBase. The catch quantity and ex-vessel price of the population together determine landed value of the population; more valuable populations may be more likely to be assessed. We considered maximum annual landings prior to the first assessment and ex-vessel price (US.kg$^{-1}$) in the year of first assessment as separate numerical predictors, drawn from the NOAA landings database. For unassessed stocks, the maximum annual landings throughout the time series and the ex-vessel price in the final year of the time series were used as values for these predictor variables.
 
 
 \subsection{Time-to-event model}
 
-To assess which factors drive the over-all rate of assessments and the time from first recorded landings to a full stock assessment in US stocks, we applied a time-to-event model. Also called survival models in the medical and ecological literature, these models account for censored data (i.e., species that are landed but not yet assessed) while modeling time-to-assessment within a parametric framework.
+To assess which factors drive the over-all rate of assessments and the time from first recorded landings to a full stock assessment in US stocks, we applied a time-to-event model. Also called termed survival models in the medical and ecological literature, these models account for censored data (i.e., species that are landed but not yet assessed) while modeling time-to-assessment within a parametric framework.
 
-The Weibull distribution is often used as a flexible model that has several desireable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The shape parameter of the Weibull density can be interpreted in terms of the rate of events occurring. A shape greater than one suggests an increasing rate of events, whereas a shape of less than one indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time.
+The Weibull distribution is often used as a flexible model that has several desireabledesirable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The shape parameter of the Weibull density can be interpreted in terms of the rate of events occurring. A shape parameter >1greater than one  suggests an increasing rate of events, whereas a shape parameter <1of less than one  indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time. Weibull 
 
-A further desirable property is that the model can be interpreted in terms of the ratio of event rates as well as time-to-event. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model can also be interpreted in terms of time-to-event parameters, which scale the time to the event by an acceleration factor. For example, in a hyothetical scenario, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmeters obtained for the event rate interpretation - the two interpretation are therefore easily exchangeable in the Weibull model.
+A further desirable property is that the model coefficient estimates can be interpreted both in terms of the ratio of event rates as well as time-to-event probabilities. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model A coefficient can also be interpreted as the in terms of time-to-event parameters, which scale the time to the an event, scaled by an acceleration factor. For example, in a hyothetical scenario, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmetersparameters obtained for the event rate interpretation - the two interpretations are easily exchangeable in the Weibull model.
 
-We thus model time-to-assessment as Weibull distributed with shape parameter $\tau$ and rate $\lambda$. The connection between the event rate and the time-to-event interpretations can be made explicit by writing the Weibull density as a function of the product of the probability of the assessment occurring at time $t$ and the probability of the assessment not occurring prior to time $t$. Thus, $P(T=t)$ depends on the probability of an assessment not having occurred prior to time $t$, ($A(t) = 1-P(T\le t)=1-F(t)$), where $F(t) = \exp(-\lambda t^\tau)$ is the Weibull distribution function, and the rate $r(t)$ with which assessments occurr at time $t$. 
+We thus model time-to-assessment as Weibull- distributed with shape parameter $\tau$ and rate $\lambda$. The connection between the event rate and the time-to-event interpretations can be is made explicit by writing the Weibull density as a function of the product of the probability of the assessment occurring at time $t$ and the probability of the assessment not occurring prior to time $t$. Thus, $P(T=t)$ depends on the probability of an assessment not having occurred prior to time $t$, ($A(t) = 1-P(T\le t)=1-F(t)$), where $F(t) = \exp(-\lambda t^\tau)$ is the Weibull distribution function, and the rate $r(t)$ with which assessments occur at time $t$. 
 
 \begin{align}
 T &\sim Weibull(\tau,\lambda) \\
@@ -154,31 +152,42 @@ We modeled the scale $\lambda$ of the Weibull distribution as a function of cova
 log(\lambda_{i,r,h,c,o,f}) = \beta X_i + \alpha_r + \gamma_h + \kappa_c + \omega_o + \zeta_f,
 \end{align}
 
-where beta is a row-vector of regression coefficients, $X_i$ is a vector of continuous covariates. Continuous covariates were taken as the logarithm of price per kg, maximum landings, and species maximum length, standardised for the analysis. $\alpha$, $\gamma$, $\kappa$, $\omega$, and $\zeta_f$ were region, habitat, class, order, and family specific random effects. The model was estiamted within a Bayesian framework, using Markov Chain Monte Carlo (MCMC) as implemented in the JAGS package. MCMC was run using three chain of 210~000 iterations each, keeping every 100th iteration, with 10~000 iterations for each chain discarted as burn-in. This provided 6000
-samples from the posterior distribution for each parameter.
+where beta is a row-vector of regression coefficients, and $X_i$ is a vector of continuous covariates. Continuous covariates were taken as the logarithms of ex-vessel price per kg, maximum landings, and species maximum length, standardised for the analysis. Categorical variables $\alpha$, $\gamma$, $\kappa$, $\omega$, and $\zeta_f$ were region, habitat, class, order, and family, respectively, all treated as  specific random effects. The model was estiamated within a Bayesian framework, using Markov Chain Monte Carlo (MCMC) as implemented in the JAGS package. MCMC was run using three chains of 210~000 iterations each, keeping every 100th iteration, with 10~000 iterations for each chain discarded as burn-in. This provided 6000 samples from the posterior distribution for each parameter.
 
-All random effects were given half-Cauchy priors with a scale of $\Theta=100$, regression coeficcients had vague normal priors with a precision of $1/sigma^2 = 1e-5$, and $\tau$ was estimated using a gamma prior with parameters $a=b=1e-5$. 
+All random effects were given half-Cauchy priors with a scale of $\Theta=100$, regression coefficients had vague normal priors with a precision of $1/\sigma^2 = 1e-5$, and $\tau$ was estimated using a gamma distribution prior with parameters $a=b=1e-5$. 
 
 \section{Results}
 
-Across Alaska, West Coast, Northest, and Southeast marine regions of the US, the number of landed populations (excluding salmons and highly migratory species) increased steadily since the 1950s and into the 1990s (Figure \ref{fig:assessed_landed1}).  The increase in landed species was fastest in the West Coast and Southeast regions, but it was faster than the rate of new assessments in all regions, thus driving an increase in unassessed species through the 1990s.  However, an increasing number of assessments in each region lead to a steadily increasing trend in the proportion of landed stocks that are assessed (Figure \ref{fig:assessed_landed2}). In terms of landings, the assessment of large stocks in each region between the 70s and 2000s lead to rapidly increasing proportions of landings being assessed. In Alaska, the vast majority of landed stocks in our database were assessed by the 1990s (Figure \ref{fig:assessed_landed3}). 
+The number of landed marine populations in the United States (excluding salmons and highly migratory species) increased steadily from the 1950s into the 1990s (Figure \ref{fig:assessed_landed1}). During this period, the number of landed populations in Alaska, West Coast, and Southeast regions approximately doubled, while the number of landed populations in the Northeast increased more slowly (but was already relatively high at the start of this period). Most of the newly-landed stocks were unassessed throughout this period; by the enactment of the Sustainable Fisheries Act in 1996, less than 30 populations in each of the four regions were assessed. As a proportion of all landed populations, however, the trend in assessed stocks has steadily increased in all regions since the 1970s or 1980s (Figure \ref{fig:assessed_landed2}). Currently the proportion of landed stocks that are assessed ranges from 16% in the Southeast to 36% in Alaska. In terms of regional landings, the assessment of large stocks in each region between the 1970s and 2000s lead to rapidly increasing proportions of total landed tonnage being comprised of assessed populations. By 1996, >80% of landings in Alaska, Northeast, and Southeast regions were comprised of assessed stocks, and in the West Coast this proportion has increased rapidly from 30% in 1996 to 70% currently (Figure \ref{fig:assessed_landed3}). 
 
-Demersal species represent a high proportion of landed species than species associated with other habitat types (Figure \ref{fig:habitat}), and aslo accounted for the highest number of assessments. The majority of landed stocks were fish species (Figure \ref{fig:taxa}), with Perciformes, Pleuronectiformes and Scorpaeniformes dominating both the number of assessed and unassessed stocks.
+Demersal species represent a higher proportion of landed populations than species associated with other habitat types (Figure \ref{fig:habitat}), and also accounted for the highest number and proportion of stock assessments. The majority of landed populations were fish species (Figure \ref{fig:taxa}), with Perciformes, Pleuronectiformes and Scorpaeniformes dominating both the number of assessed and unassessed stocks. Among invertebrate taxa, decapod species were the most commonly landed and also most commonly assessed.
 
-We now turn to our time-to-event model to interpret what biological and fishery characteristics explain differences in annual probability of first assesssment among stocks (see Appendix Figure A.1 and A.2 for model diagnostics).  Among our explanatory covariates (Table 1), maximum size for each stock has little explanatory power (p=0.48), while both maximum annual landings and ex-vessel price per kilogram both have a positive and strongly significant impact on annual assessment probability.  The impact of landings on assessment probability therefore explains how each region has assessed species generating a large proportion of landings, but a relatively smaller portion of stocks overall.  
+We now turn to our time-to-event model to interpret which biological and fishery characteristics explain differences in annual probability of first assessment among stocks (see Appendix Figure A.1 and A.2 for model diagnostics).  Among the numerical covariates considered (Table 1), maximum body length had little explanatory power (p=0.48), while maximum annual landings and ex-vessel price both had positive and strongly significant impacts on annual assessment probabilities.  The effect of landings on assessment probability therefore explains how each region has a large proportion of landed tonnage derived from assessed populations (Fig. 1c), but a smaller proportion of landed stocks being assessed (Fig. 1b).  
 
-Among explanatory factors, taxonomy (class and order) explain a large portion of residual variance (SD~1.0) than either habitat or region (SD<0.5; Figure 4).  This is reflected in the probability of prior assessment after the first year of being landed (Figure 6), where octopii and squids (Cephalopods) and sharks (Elasmobranchs) have a higher probability of prior assessment than bony-fishes (Actinopterygii) or other taxonomic classes.  In particular, groundsharks (Carcharhiniformes),  rockfishes (Scorpaeniformes), and flatfishes (Pleuronectiformes) have the highest probability of prior assessment among taxonomic orders, and each have a substantial increase in assessment probability relative to their taxonomic classes (Figure 7).  While having smaller effects, benthic species in had a higher probability of assessment than other habitats (in particular demersal species), and stocks in Alaska had a higher assessment probability than other regions.   
+Among explanatory random effects, taxonomy factors (both class and order) explain a larger portion of residual variance (SD > 1.0) than either habitat or region factors (SD < 0.5; Figure 4).  This is reflected in the probability of prior assessment in any given year after first being landed (Figure 5), for which octopii and squids (Cephalopods) and sharks (Elasmobranchs) have a higher probability of prior assessment than bony-fishes (Actinopterygii) or other taxonomic classes.  Groundsharks (Carcharhiniformes),  rockfishes (Scorpaeniformes), and flatfishes (Pleuronectiformes) have the highest probability of prior assessment among taxonomic orders, each having a higher assessment probability relative to the average of their taxonomic classes (Figure 7).  Habitat and regional effects were generally smaller than taxonomic effects. After controlling for other factors, benthic species had a higher probability of assessment than species from other habitats (in particular demersal species), and assessment probabilities were greatest for stocks in Alaska and least for stocks in the Northeast.   
 
-Finally, we use our model to forecast annual assessment probabilities for all unassessed stocks in each region, and use this to calculate the expected proportion of assessed stocks through 2050 (Figure 8).  As expected, this shows the highest proportion of assessments in Alaska.  Noteably, all regions show a relatively slow increase in assessment proportion.  This occurs because stocks with a high assessment probability are assessed early, and so that remaining stocks have low landings, price, or otherwise have characteristics that are associated with low annual assessment probability.      
+Finally, we use our model to forecast annual assessment probabilities for all unassessed stocks in each region, and use this to calculate the expected proportion of assessed stocks through 2050 (Figure 8). These projections rely on the values of maximum landings and ex-vessel price in 2013(?), the final year of available time series data used for model fitting. As expected, Alaska is predicted to have the highest proportion of assessed populations throughout the 25-year projection window.  Notably, all regions show a relatively slow increase in the predicted proportion of assessed populations compared to the rapid increases in the observed proportions of assessed populations over the last 35 years (Fig. 1b).  This occurs because stocks with a high assessment probability have typically been assessed early, so that remaining stocks have low landings, prices, or other characteristics associated with low annual assessment probability.      
+     
 
 \section{Discussion}
+
+possible Discussion points:
+
+We introduced this study with a common phrase in business management which equally pertains to natural resource management, "what gets measured, gets managed". Many possible limitations exist in the capacity for managing fish and invertebrate populations, and one major limitation is the uncertainty surrounding the current state and projected future of exploited populations. Stock assessments are our primary means of quantifying stock status to inform fisheries management decisions. 
+
+In reality stock assessments are not a dichotomous categorization, they represent a continuum of complexity, use a wide variety of data inputs, and produce a wide range of estimated outputs. For the purposes of this analysis we drew the line somewhere. Criteria defining assessments for this analysis (poplation dynamics model fit to …) represented a reasonable balance in complexity and inclusiveness for the ability of stock assessments to provide model outputs that can inform fisheries management.
+
+Of all explanatory factors considered to affect the rate at which stocks are first assessed, ex-vessel price was particularly strong, followed closely by maximum landings. The product of these variables, landed value, represents the value derived from fish and invertebrate stocks. Fisheries managers and scientists must choose among several candidate species in a given region and devote stock assessment time and resources towards only a subset of these. If this choice reflects in part the landed value of stocks, then these results support previous findings (Sethi et al 2010 PNAS) suggesting that fishery development is also driven primarily by landed tonnage and ex-vessel prices of fished species.
+
+Populations in the United States are reaching saturation with respect to the rate of first assessment of stocks. Even though most stocks in all regions are as yet unassessed (Fig. 1b), the predicted rate of increase is slow because the stocks most likely to be assessed have already been assessed. However, this pattern is likely not characteristic of most countries. Most will currently have a lower proportion of assessed stocks, and may be more likely still within the period of rapid increase in the proportion of assessed stocks.
+
 
 \section{Acknowledgements}
 We thank Cody Szuwalski for productive discussions while planning out the data set and analysis.  
 
 \begin{landscape}
 
-<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status, b) proportion of landed stocks that are assessed, and c) the proportion of total landings (per year) from assessed stocks. The dotted vertical line marks the enactment of the Sustainable Fisheries Act of 1996',fig.subcap=c('Number of stocks', 'Proportion of stocks', 'Proportion of landings'),echo=FALSE,results='asis',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
+<<assessed_landed,fig.cap='Timeline of a) the number of stocks landed by region and assessment status, b) proportion of landed stocks that are assessed, and c) the proportion of landed tonnage derived from assessed stocks. The dotted vertical line marks the enactment of the Sustainable Fisheries Act of 1996.', fig.show='hold',echo=FALSE,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth',fig.align='center'>>=
 
 l.tab <- full.tab %>% 
   group_by(mainregion,stock) %>%
@@ -209,35 +218,49 @@ plot.tab.prop <- inner_join(l.tab, a.tab) %>%
 land_plot <- a.tab %>% 
   mutate(p.assessed = land.assessed/(land.assessed+land.unassessed))
 
-ggplot(plot.tab) + 
+gga <- ggplot(plot.tab) + 
   geom_line(aes(col=mainregion,x=year,y=value,linetype = Assessed)) + 
   ylab('Number of landed stocks') + 
   xlab('Year') +
   scale_linetype('Assessed')+
-  scale_colour_manual('Region',values=cbPalette) + 
+  guides(linetype=guide_legend(nrow=2))+
+  scale_colour_manual('Region',values=cbPalette,guide='none') + 
   geom_vline(aes(xintercept=1996),linetype=3)+
   theme_classic()+
-  theme(axis.text = element_text(color = 'black'))
+  theme(axis.text = element_text(color = 'black'),
+        legend.position = 'top')
 
-ggplot(plot.tab.prop) + 
+ggpr <- ggplot(plot.tab.prop) + 
   geom_line(aes(col=mainregion,x=year,y=p.assessed)) + 
   ylab('Proportion of stocks assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
   scale_colour_manual('Region', values=cbPalette)+
   geom_vline(aes(xintercept=1996),linetype=3)+
-  theme_classic()+
-  theme(axis.text = element_text(color = 'black'))
+  theme_classic()+ 
+  guides(colour=guide_legend(nrow=2))+
+  theme(axis.text = element_text(color = 'black'),
+        legend.position = 'top')
 
-ggplot(land_plot) + 
+ggl <- ggplot(land_plot) + 
   geom_line(aes(col=mainregion,x=year,y=p.assessed)) + 
   ylab('Proportion of landings assessed') + 
   xlab('Year') + 
   scale_linetype('Assessed')+
   scale_colour_manual('Region', values=cbPalette)+
+  guides(colour=guide_legend(title='',nrow=2, override.aes = list(col=NA)))+
   geom_vline(aes(xintercept=1996),linetype=3)+
   theme_classic()+
-  theme(axis.text = element_text(color = 'black'))
+  theme(axis.text = element_text(color = 'black'),
+        legend.position = 'top',
+        legend.text = element_blank())
+
+ require(cowplot)
+  ggdraw() +
+  draw_plot(gga, 0, 0, 1/3, 1) +
+  draw_plot(ggpr, 1/3, 0, 1/3, 1) +
+  draw_plot(ggl, 2/3, 0, 1/3, 1) +
+  draw_plot_label(c("a", "b",'c'), c(1/12, 5/12,9/12), c(0.8, 0.8,0.8), size = 15)
 
 @
 
@@ -250,10 +273,10 @@ year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.a
 
 @
 
+
 \begin{figure}[!h]
 \centering
-<<habitat,fig.width=3,fig.height=3,out.width='0.5\\textwidth'>>=
-
+<<taxa,fig.width=7,fig.height=7,out.width='\\textwidth'>>=
 
 simpleCap <- function(s) {
   #s <- do.call('rbind',strsplit(x, " "))
@@ -261,46 +284,56 @@ simpleCap <- function(s) {
       sep="")
 }
 
-yt <- year.table %>% mutate(hab = simpleCap(habitat_FB.SLB))
+yth <- year.table %>% mutate(hab = simpleCap(habitat_FB.SLB))
 
-ggplot(yt) + 
+ggh <- ggplot(yth) + 
   geom_bar(aes(fill=Assessed,x=hab)) +
-  #coord_flip() + 
+  coord_flip() + 
   theme_classic() + 
+  scale_fill_manual(values=cbPalette,guide='none') + 
   xlab('Habitat') + 
   ylab('Count') + 
   theme(axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
         axis.text = element_text(color = 'black'))
-@
-\caption{Assessment status at time of last known status (censoring time) by habitat}
-\end{figure}
 
-\begin{figure}[!h]
-\centering
-<<taxa,fig.width=6,fig.height=3,out.width='\\textwidth'>>=
-yt <- year.table %>% mutate(class=substr(Class,1,1))
+yt <- year.table %>% 
+  group_by(Order) %>% 
+  mutate(class=substr(Class,1,2),
+         ns = n()) %>% 
+  filter(ns>=3)
 
-ggplot(yt) + 
+inits <- substr(unique(yt$Class),1,2)
+
+inits[inits=='Ma'] <- 'M'
+yt$class[yt$class=='Ma'] <- 'M'
+inits[inits=='Ec'] <- 'E'
+yt$class[yt$class=='Ec'] <- 'E'
+
+ggp <- ggplot(yt) + 
   geom_bar(aes(fill=Assessed,x=Order), width = 1) + 
-  facet_grid(~class, drop = T,switch = "both", scales = "free_x", space = "free_x") +
-  #coord_flip() + 
-  theme_classic() + 
+  facet_grid(class~., drop = T,switch = "both", scales = "free_y", space = "free_y") +
+  coord_flip() + 
+  theme_cowplot() + 
+  scale_fill_manual(values=cbPalette) + 
   ylab('Count') + 
-  theme(axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
-        #strip.text = element_text(angle=90,hjust = 1,vjust=0.5),
-        panel.margin = unit(0, "lines"), 
-        axis.text = element_text(color = 'black'),
-        strip.background = element_rect())
+  theme(strip.background = element_rect(fill = 'grey80',colour = NA),
+        legend.position = 'top')
+
+  require(cowplot)
+  ggdraw() +
+  draw_plot(ggp, 0, 0, 1, 1) +
+  draw_plot(ggh, 0.5, 0.15, 0.5, .5) +
+  draw_plot_label(c("a", "b"), c(0, 0.55), c(1, 0.65), size = 15)
+
   @
-\caption{Assessment status at time of last known status (censoring time) by Order and sorted by Class. Classes are abbreviated as \Sexpr{paste(paste(unique(yt$class),unique(yt$Class),sep=': '),collapse=', ')}}
+\caption{Assessment status at time of last known status (censoring time) a) by taxonomic order and sorted by class and b) by habitat type. In a), classes are abbreviated as \Sexpr{paste(paste(inits,unique(yt$Class),sep=': '),collapse=', ')}, and only orders with more than three stocks are shown.}
 \end{figure}
 
 
-\begin{landscape}
-<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for a) continous covariates in the model, b) habitat random effects, c) regional random effects, and d) taxonomic class random effects. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1.5\\textwidth',fig.align='center'>>=
+<<Effect_plot,fig.cap='Summaries of estimated posterior distributions for numeric covariates in the model, regional random effects, habitat random effects, and taxonomic class random effects. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',echo=FALSE,results='hide',fig.width=8,fig.height=5,out.width='1\\textwidth',fig.align='center'>>=
 
-betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length','Maximum landings', 'Mean price per kg'))
-betas$Effect <- 'Covariates'
+betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length', 'Mean price per kg','Maximum landings'))
+betas$Effect <- 'Numeric'
 
 print(levels(as.factor(year.table$habitat_FB.SLB)))
 
@@ -316,35 +349,32 @@ classes <- get_coef_chains(model.out = a.out, coef.names = 'classfx\\[[0-9]*\\]'
 classes$Effect <- 'Class'
 
 
-fx.plot <- rbind(betas,habitats,regions,classes)
-
-fx.plot %>%
+fx.plot <- rbind(betas,habitats,regions,classes) %>%
   group_by(Effect,Parameter) %>%
   summarise(means = (median(MCMC)),
             q1 = (quantile(MCMC,0.025)),
             q3 = (quantile(MCMC,0.975)),
             q11 = (quantile(MCMC,0.25)),
-            q33 = (quantile(MCMC,0.75))) %>%
-  
-  ggplot() + 
+            q33 = (quantile(MCMC,0.75))) 
+
+fx.plot$Effect <- factor(fx.plot$Effect,levels=unique(fx.plot$Effect)[c(2,3,4,1)])
+
+ggplot(fx.plot) + 
   geom_point(aes(x=Parameter, y=means), size=4) +
   geom_linerange(aes(x=Parameter,ymin=q1,ymax=q3),size=1) +
   geom_linerange(aes(x=Parameter,ymin=q11,ymax=q33),size=2) +
-  ylab('') +
-  facet_wrap(~Effect,drop = T, scales = "free",as.table = F) +
-  xlab('') +
+  coord_flip() + 
+  facet_grid(Effect~., drop = T,switch = "both", scales = "free_y", space = "free_y") +
   geom_hline(aes(yintercept=0), linetype=2) + 
-  theme_classic() +
-  coord_flip()+
-  theme(axis.text = element_text(colour='black'))
+  theme_cowplot() +
+  ylab('Effect size')+
+  theme(strip.background = element_rect())
 
 #gridExtra::grid.arrange(grobs=gg,nrow=1)
 @
 
 
-\end{landscape}
-
-<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for order within class, showing a summary (grey line: posterior mean, coloured box: 95\\% confidence) of class effects, and order effects relative to class effects (points: posterior mean, black line: 95\\% confidence), for classes with multiple orders in the dataset.',echo=FALSE,results='hide',fig.width=6,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
+<<Effect_plot_oder,fig.cap='Summaries of estimated posterior distributions for random effects of orders within classes. For classes containing multiple nested orders in the dataset, grey lines show posterior means and coloured boxes show 95\\% confidence intervals of class effects. Order effects are shown as relative to the class effect within which they are nested, with points showing posterior means and black lines showing 95\\% confidence intervals.',echo=FALSE,results='hide',fig.width=5,fig.height=7,out.width='0.7\\textwidth',fig.align='center'>>=
 
 afs <- function(x) as.numeric(as.factor(x))
 orders <- with(year.table,afs(Order))
@@ -378,27 +408,27 @@ orderr %>%
   mutate(ns = n()) %>% 
   filter(ns>1) %>%
   ggplot() + 
+  geom_hline(aes(yintercept=0), linetype=3) + 
   geom_crossbar(aes(x=Parameter, y=cmeans,ymin=cq1,ymax=cq3,fill=Class),col='grey50',alpha=0.5,size=0.01,fatten=100) +
-  facet_grid(~Class, drop = T,switch = "both", scales = "free_x", space = "free_x") +
+  facet_grid(Class~., drop = T,switch = "both", scales = "free_y", space = "free_y") +
+  coord_flip()+
   scale_fill_manual(values=cbPalette) + 
   geom_point(aes(x=Parameter, y=omeans), size=1) +
   geom_linerange(aes(x=Parameter,ymin=oq1,ymax=oq3),size=1) +
   #geom_linerange(aes(x=Parameter,ymin=oq11,ymax=oq33),size=2) +
-  ylab('') +
-  xlab('') +
-  #geom_hline(aes(yintercept=0), linetype=2) + 
-  theme_classic() +
+  xlab('Order') +
+  ylab('Effect size') +
+  theme_cowplot() +
   #coord_flip()+
-  theme(axis.text = element_text(colour='black'),
-        axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
+  theme(#axis.text.x = element_text(angle=90,hjust = 1,vjust=0.5),
         #strip.text = element_text(angle=90,hjust = 1,vjust=0.5),
-        panel.spacing = unit(0, "lines"), 
+        #panel.spacing = unit(0, "lines"), 
         strip.background = element_rect(),
         strip.text = element_blank())
 
 @
 
-<<surv_plot_region,fig.cap='Projected proportion of stocks assessed by region and calendar year, based on assessment probabilities of stocks within each region over the projected year range.',echo=FALSE,results='hide',fig.width=5,fig.height=3,out.width='1\\textwidth',fig.align='center'>>=
+<<surv_plot_region,fig.cap='Projected proportion of stocks assessed by region and calendar year, based on assessment probabilities of stocks within each region over the projected year range.',echo=FALSE,results='hide',fig.width=8,fig.height=4,out.width='1\\textwidth',fig.align='center'>>=
 
 devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
 
@@ -435,14 +465,19 @@ preda <- tbl_df(mpreda) %>%
             pro_pred = pro_assessed+(1-pro_assessed)*mean(MCMC[censored==T])) %>%
   tidyr::spread(key = Quantile,value = pro_pred)
   
+preda$Region <- as.character(preda$Region)
+
+preda$Region <- factor(preda$Region, levels = unique(preda$Region)[c(3,2,4,1)])
+
 ggplot(preda) + 
  geom_line(aes(x=time,y=mm)) + 
   geom_line(aes(x=time,y=mq1), linetype=2) +
   geom_line(aes(x=time,y=mq2), linetype=2) + 
   geom_ribbon(aes(x=time,y=mm,ymin=mq1,ymax=mq2),alpha=0.4,col=NA) + 
-  theme_classic() + 
-  facet_wrap(~Region) + 
-  theme(axis.text = element_text(colour='black'))+
+  theme_cowplot() + 
+  facet_grid(~Region) + 
+  theme(strip.background = element_rect(colour=NA),
+        axis.text.x = element_text(angle = 45, hjust=1))+
   ylab('Proportion assessed') +
   xlab('Calendar year') + 
   #scale_colour_manual(values=cbPalette) + 
@@ -452,10 +487,13 @@ ggplot(preda) +
 
 @
 
+
 \FloatBarrier
 \newpage
+
 \appendix
 \renewcommand\thefigure{\thesection.\arabic{figure}}   
+\renewcommand\thetable{\thesection.\arabic{table}}   
 \setcounter{figure}{0} 
 \section{A: Model fit}
 \begin{figure}[!ht]
@@ -476,7 +514,7 @@ lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
 
 abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
 @
-\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the time from fishery development to assessment should fall on a line with slope $p$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $p$ evaluates to \Sexpr{round(lm_fit[2],2)}, suggesting an increasing assessment rate with increasing time $t$.}
+\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the beginning of the landings dataset in 1950 to the year of first assessment should fall on a line with slope $\tau$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $\tau$ evaluates to \Sexpr{round(lm_fit[2],2)} (slope of the green line), suggesting an increasing assessment rate with increasing time $t$.}
 \label{fig:Weibull_check}
 \end{figure}
 
@@ -509,10 +547,10 @@ xlab="Cox-Snell residual",ylab="Cumulative hazard")
 abline(a=0,b=1,col=3,lwd=2) 
 
 @
-\caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x line.}
+\caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x (green) line.}
 \end{figure}
 
-<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. The circle shows the posterior median, with thick bars showing the inter-quartile range of the posterior and the thin line is the 95\\% confidence interval',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
+<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=3,fig.height=3,out.width='0.5\\textwidth',fig.align='center'>>=
 
 fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
 
@@ -538,15 +576,14 @@ fp %>% group_by(Effect) %>%
   geom_linerange(aes(x=Effect,ymin=q11,ymax=q33),size=2) +
   ylab('Finite population SD') +
   xlab('') + 
-  theme_classic() +
-  coord_flip()+
-  theme(axis.text = element_text(colour='black'))
+  theme_cowplot() +
+  coord_flip()
 
 @
 
 \begin{landscape}
 
-<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=5,out.width='1.6\\textwidth',fig.align='center'>>=
+<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=4,out.width='1.6\\textwidth',fig.align='center'>>=
 
 preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
 
@@ -622,7 +659,7 @@ ptab <- order(match(fx.tab.sum$Effect, c('Covariates','Region','Habitat','Class'
 \newpage
 \begin{center}
 \begin{longtable}{llrrr}
-\caption[Paramter estimates]{Parameter estimates and probability $P(\theta_k>0)$, the probability that stocks in this category $k$ have a higher than average rate of assessment. Parameters can be interpreted as the ratio of rates between a stock of category $k$ and an average stock (rate effect $\theta$) or as multiplicative acceleration factors (time effect, e.g., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock).} 
+\caption[Paramter estimates]{Posterior means of model parameters under interpretations of ratio of rates ($\theta$) or time-to-assessment ($\nu$), and probability $P(\theta>1)$ that increasing parameter values or stocks in a given category have an increased likelihood of assessment compared to the baseline. Under the ratio of rates interpretation, the rate effect $\theta$ represents rates at which stocks with different characteristics are assessed relative to a baseline of 1. Under the time-to-assessment interpretation, the time effect ν is a multiplicative acceleration factor, i.e., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock.} 
 \label{tab:fx} \\
 
 Effect & Category & Rate effect ($\theta$) & Time effect ($\nu$) & $P(\theta>1)$ \\

@@ -87,6 +87,7 @@ land.price <- land.price %>% filter(Species != 'SHELLFISH',
                                     !grepl('SALMON',Species),
                                     !grepl('TROUT',Species),
                                     !grepl('BONITO',Species),
+                                    !grepl('BIGEYE',Species),
                                     !grepl('KELP',Species),
                                     !grepl('SEAWEED',Species)
                                     )
@@ -111,20 +112,20 @@ I reduced the table down to only stocks that had at least 10t of catch at some p
 <<Some subsetting,cache=TRUE>>=
 
 # only keep stocks where 10t have been caught in a region at some point
-suml <- tbl_df(land.price) %>% 
-  group_by(region,Species,Year) %>%
-  summarise(sums = sum(Metric.Tons,na.rm=T)) %>%
-  mutate(flag = any(sums>10)) %>%
-  filter(flag == T) %>%
-  summarise(catch = sum(sums,na.rm=T)) %>%
-  mutate(reg_spec = paste(region,Species))
+#suml <- tbl_df(land.price) %>% 
+#  group_by(region,Species,Year) %>%
+#  summarise(sums = sum(Metric.Tons,na.rm=T)) %>%
+#  mutate(flag = any(sums>5)) %>%
+#  filter(flag == T) %>%
+#  summarise(catch = sum(sums,na.rm=T)) %>%
+#  mutate(reg_spec = paste(region,Species))
   
-lp <- apply(land.price[,c('Species','region')],1,function(x) {
-  tf <- any(grepl(x[1],suml$reg_spec) & grepl(x[2],suml$reg_spec))
-  return(tf)
-  }) 
+#lp <- apply(land.price[,c('Species','region')],1,function(x) {
+ # tf <- any(grepl(x[1],suml$reg_spec) & grepl(x[2],suml$reg_spec))
+  #return(tf)
+  #}) 
 
-land.price <- land.price[lp,]
+#land.price #<- land.price[lp,]
 
 prop.cols <- grepl('prop',colnames(land.price))
 stock.cols <- grepl('stock',colnames(land.price))
@@ -186,16 +187,16 @@ stock.landings <- stock.landings %>% filter(stock != 'a')
 
 save(stock.landings,file='stock.landings.rda') 
 
-
-stock.landings.region <- tbl_df(stock.landings) %>%
-  mutate(rel_price=price/(landings*1000)) %>%
-  group_by(stock,region,year) %>% 
-  summarise(total_landings = sum(landings,na.rm=T),
-            price = mean(rel_price,na.rm=T),
-            species = unique(species)) %>%
-  mutate(cum.land = cumsum(total_landings),
-         price = mean(price,na.rm=T)) %>%
-  ungroup()
+# 
+# stock.landings.region <- tbl_df(stock.landings) %>%
+#   mutate(rel_price=price/(landings*1000)) %>%
+#   group_by(stock,region,year) %>% 
+#   summarise(total_landings = sum(landings,na.rm=T),
+#             price = mean(rel_price,na.rm=T),
+#             species = unique(species)) %>%
+#   mutate(cum.land = cumsum(total_landings),
+#          price = mean(price,na.rm=T)) %>%
+#   ungroup()
 
 # sometimes actual assessed stocks span multiple regions as defined by us; assign region with highest cumulative landings...
 stock.landings.sum <- tbl_df(stock.landings) %>%
@@ -205,8 +206,15 @@ stock.landings.sum <- tbl_df(stock.landings) %>%
             price = mean(rel_price,na.rm=T),
             species = unique(species),
             mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
-  mutate(cum.land = max(total_landings),
+  mutate(max.land = max(total_landings),
+         mean.land = mean(total_landings),
          price = mean(price,na.rm=T)) %>%
+  group_by(mainregion,species) %>%
+  mutate(nstocks = length(unique(stock)),
+          nmland = max(mean.land)) 
+
+stock.landings.sum <- stock.landings.sum %>%
+  filter(!(nstocks>1 & max.land<0.05*nmland),max.land>0.1) %>% 
   ungroup()
 
 save(stock.landings.sum,file='stock.landings.region.rda')
@@ -224,7 +232,7 @@ full.tab.region <- left_join(stock.landings.region,
 
 I'm not sure what's going on here: need to check that out.
 
-<<>>=
+<<>>=stock.landings.sum
 full.tab %>% 
   mutate(assessed = !is.na(Year.of.first.stock.assessment) & nchar(Year.of.first.stock.assessment)<5) %>%
   group_by(mainregion,year,assessed) %>%
@@ -256,7 +264,7 @@ To get taxonomy and habitat info for unassessed stocks (ie, those not in Mike's 
 
 # get habitat and taxonomy from fishbase and other DBs
 require(rfishbase)
-require(taxize)
+#require(taxize)
 
 year.table <- filter(year.table,!is.na(species)) %>%
   mutate(species = sub('\xa0',' ',species))
@@ -288,9 +296,9 @@ habmatch <- match(fishbase$SpecCode,sp$SpecCode)
 habitats <- sp$DemersPelag[habmatch]
 lengths <- sp$Length[habmatch]
 
-fishhabitat <- habitats[fishmatch[!is.na(fishmatch) & is.na(year.table$habitat_MM)]]
+fishhabitat <- habitats[fishmatch[!is.na(fishmatch) & is.na(year.table$habitat_FB.SLB)]]
 
-year.table[!is.na(fishmatch) & is.na(year.table$habitat_MM), 'habitat_MM'] <- fishhabitat
+year.table[!is.na(fishmatch) & is.na(year.table$habitat_FB.SLB), 'habitat_FB.SLB'] <- fishhabitat
 
 fishtax <- fishbase[fishmatch[!is.na(fishmatch)], c('Family','Order','Class')]
 
@@ -329,9 +337,9 @@ inv_hab <- inv_sp$DemersPelag[inv_habmatch]
 
 inv_habitat <- inv_hab[invmatch]
 
-year.table[is.na(fishmatch) & is.na(year.table$habitat_MM), 'habitat_MM'] <- inv_habitat[is.na(year.table$habitat_MM[is.na(fishmatch)])]
+year.table[is.na(fishmatch) & is.na(year.table$habitat_FB.SLB), 'habitat_FB.SLB'] <- inv_habitat[is.na(year.table$habitat_FB.SLB[is.na(fishmatch)])]
 
-year.table[is.na(year.table$habitat_MM), c('stock','species')] %>% data.frame()
+year.table[is.na(year.table$habitat_FB.SLB), c('stock','species')] %>% data.frame()
 
 invtax <- sealifebase[invmatch, c('Family','Order','Class')]
 
@@ -340,14 +348,14 @@ year.table[is.na(fishmatch), c('Family','Order','Class')] <- invtax
 
 ### less resolution for habitat variable
 
-year.table$habitat_MM[grepl('pelagic-', year.table$habitat_MM)] <- 'pelagic'
+year.table$habitat_FB.SLB[grepl('pelagic-', year.table$habitat_FB.SLB)] <- 'pelagic'
 
-year.table$habitat_MM[grepl('bathy', year.table$habitat_MM)] <- 'bathy-'
+year.table$habitat_FB.SLB[grepl('bathy', year.table$habitat_FB.SLB)] <- 'bathy-'
 
-year.table$habitat_MM[grepl('demersal', year.table$habitat_MM)] <- 'demersal'
+year.table$habitat_FB.SLB[grepl('demersal', year.table$habitat_FB.SLB)] <- 'demersal'
 
-year.table$habitat_MM[grepl('reef', year.table$habitat_MM)] <- 'reef'
-year.table$habitat_MM[grepl('sessile', year.table$habitat_MM)] <- 'reef'
+year.table$habitat_FB.SLB[grepl('reef', year.table$habitat_FB.SLB)] <- 'reef'
+year.table$habitat_FB.SLB[grepl('sessile', year.table$habitat_FB.SLB)] <- 'reef'
 
 ### length
 lengths <- inv_sp$Length[inv_habmatch]
@@ -358,11 +366,11 @@ year.table[is.na(fishmatch) & is.na(year.table$lengths), 'lengths'] <- clengths[
 
 # filter out higher taxonomy (i.e., rows that didn't match...)
 year.table <- year.table %>% 
-  filter(!is.na(habitat_MM), !is.na(species),!is.na(Order))  %>%
+  filter(!is.na(habitat_FB.SLB), !is.na(species),!is.na(Order))  %>%
   mutate(lengths = ifelse(is.na(lengths),Lmax..cm.,lengths)) %>%
   as.data.frame()
 
-year.table$lengths[is.na(year.table$lengths)] <- c(35,13.3,NA,12.9,8)
+year.table$lengths[is.na(year.table$lengths)] <- c(NA,13.3,17,NA,NA,40,17,NA,NA,10,8,8)
 
 year.table <- year.table %>% filter(!is.na(lengths))
 
@@ -399,18 +407,19 @@ time.inits[!is.na(a.time)] <- NA
 
 afs <- function(x) as.numeric(as.factor(x))
 
-hab <- with(year.table,afs(habitat_MM))
+hab <- with(year.table,afs(habitat_FB.SLB))
 n.hab <- length(unique(hab))
 
 reg <- with(year.table,afs(mainregion))
 n.region <- length(unique(reg))
 
+family <- with(year.table,afs(Family))
+n.family <- length(unique(family))
+
 orders <- with(year.table,afs(Order))
 n.order <- length(unique(orders))
 orderfam <- tapply(orders,family,unique)
 
-family <- with(year.table,afs(Family))
-n.family <- length(unique(family))
 
 class <- with(year.table,afs(Class))
 n.class <- length(unique(class))
@@ -424,7 +433,7 @@ classord <- tapply(class,orders,unique)
 std <- function(x) (x-mean(x))/(2*sd(x))
 year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
                                     std_log10_price = std(log10(price)),
-                                    std_log10_land = std(log10(cum.land)))
+                                    std_log10_land = std(log10(max.land)))
 
 
 # Covariate dataframe
