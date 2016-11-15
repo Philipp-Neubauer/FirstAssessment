@@ -62,8 +62,8 @@ library(survival)
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00", "#CC79A7","#999999")
 
 
-#load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-load('model.outSun Nov 13 22:25:59 2016.rda',v=T)
+load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
+#load('model.outSun Nov 13 22:25:59 2016.rda',v=T)
 
 
 # just for matching
