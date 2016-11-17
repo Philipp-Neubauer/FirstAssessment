@@ -7,6 +7,11 @@
 *.out
 *.tex
 *.gz
+*.aux
+*.bcf
+*.blg
+*.run.xml
+*.bbl
 *.rda
 *.pdf
 figure/
