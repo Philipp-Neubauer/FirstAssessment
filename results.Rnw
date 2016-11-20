@@ -96,6 +96,13 @@ coef_P <- coeffs %>%
   summarise(post.mean = mean(exp(MCMC)),
             acc = mean(exp(-MCMC/Rate)),
             post.P = mean(exp(MCMC) > 1))
+
+
+# write current dataset
+year.table %>% 
+  select(stock, species, year, Region, Habitat) %>% 
+  write.csv(file='dataset.csv',row.names = F)
+
 @
 
 \FloatBarrier
