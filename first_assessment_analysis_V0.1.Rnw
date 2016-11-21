@@ -51,6 +51,8 @@ land.price <- read.csv(file.path(DB,'First year of assessment/landings-price.csv
          !grepl('FROGS',Species,ignore.case = T),
          !grepl('finfishes',Species,ignore.case = T),
          !grepl('groundfishes',Species,ignore.case = T),
+         !grepl('DOLLY VARDEN',Species,ignore.case = T),
+         !(Species %in% spec.ref$AFS_NAME[!spec.ref$exclude=='']),
          State != "At-Sea Process, Pac.",
          State != 'Hawaii') 
 
@@ -96,6 +98,7 @@ land.price <- land.price %>% filter(Species != 'SHELLFISH',
 Regions were matched based on states, where only large subdivision were kept (I.e., SE-sAtl and GoM does not figure)
 
 <<>>=
+
 matches <- match(land.price[,'State'],reg.ref[1,])
 matches[is.na(matches)] <- 25
 land.price$region <- as.vector(t(reg.ref[2,matches]))
@@ -199,6 +202,33 @@ save(stock.landings,file='stock.landings.rda')
 #   ungroup()
 
 # sometimes actual assessed stocks span multiple regions as defined by us; assign region with highest cumulative landings...
+stock.landings.sum.model <- tbl_df(stock.landings) %>%
+  left_join(years.table, by=c('stock' = 'Stock.name')) %>%
+  mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment)) %>%
+  mutate(rel_price=price/(landings*1000)) %>%
+  group_by(stock) %>%
+  mutate(minyear = min(year,Year.of.fishery.development..stock.based.,na.rm = T),
+         maxyear = max(year,na.rm=T)) %>%
+  filter((year <= Year.of.first.stock.assessment) | (year <= maxyear & (is.na(Year.of.first.stock.assessment) | nchar(Year.of.first.stock.assessment)>4))) %>%
+  group_by(stock,year) %>% 
+  summarise(maxyear = unique(maxyear),
+            minyear = unique(minyear),
+            total_landings = sum(landings,na.rm=T),
+            price = mean(rel_price,na.rm=T),
+            species = unique(species),
+            mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
+  mutate(max.land = max(total_landings),
+         mean.land = mean(total_landings),
+         price = mean(price,na.rm=T)) %>%
+  group_by(mainregion,species) %>%
+  mutate(nstocks = length(unique(stock)),
+          nmland = max(mean.land)) 
+
+
+stock.landings.sum.model <- stock.landings.sum.model %>%
+  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.1) %>% 
+  ungroup()
+
 stock.landings.sum <- tbl_df(stock.landings) %>%
   mutate(rel_price=price/(landings*1000)) %>%
   group_by(stock,year) %>% 
@@ -213,11 +243,10 @@ stock.landings.sum <- tbl_df(stock.landings) %>%
   mutate(nstocks = length(unique(stock)),
           nmland = max(mean.land)) 
 
-stock.landings.sum <- stock.landings.sum %>%
-  filter(!(nstocks>1 & max.land<0.05*nmland),max.land>0.1) %>% 
-  ungroup()
 
-save(stock.landings.sum,file='stock.landings.region.rda')
+stock.landings.sum <- stock.landings.sum %>%
+  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.1) %>% 
+  ungroup()
 
 # join landings on management table
 full.tab <- left_join(stock.landings.sum,
@@ -225,9 +254,12 @@ full.tab <- left_join(stock.landings.sum,
                       by=c('stock' = 'Stock.name')) %>%
   mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment))
 
-full.tab.region <- left_join(stock.landings.region,
+full.tab.model <- left_join(stock.landings.sum.model,
                       years.table,
-                      by=c('stock' = 'Stock.name'))
+                      by=c('stock' = 'Stock.name')) %>%
+  mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment))
+
+
 @
 
 I'm not sure what's going on here: need to check that out.
@@ -245,16 +277,19 @@ For the survival analysis, we only need the last year and cumulative price and l
 
 <<results='hide'>>=
 # only need year with assessment, or last year.
-red.tab <- full.tab %>% 
-  group_by(stock) %>%
-  mutate(minyear = min(year,Year.of.fishery.development..stock.based.,na.rm = T),
-         maxyear = max(year)) %>%
-  filter((year == Year.of.first.stock.assessment) | (year == maxyear & (is.na(Year.of.first.stock.assessment) | nchar(Year.of.first.stock.assessment)>4)))
-
-
-#final data table
-year.table <- red.tab %>% 
-  mutate(time = year - minyear)
+year.table <- full.tab.model %>% 
+  select(stock, 
+         species, 
+         Year.of.first.stock.assessment, 
+         Year.of.fishery.development..stock.based.,
+         maxyear, 
+         minyear,
+         habitat_FB.SLB,
+         mainregion,
+         Lmax..cm.,
+         price,
+         max.land) %>%
+  distinct()
 
 @
 
@@ -266,7 +301,7 @@ To get taxonomy and habitat info for unassessed stocks (ie, those not in Mike's 
 require(rfishbase)
 #require(taxize)
 
-year.table <- filter(year.table,!is.na(species)) %>%
+year.table <- filter(year.table,!is.na(species),grepl(' ',species)) %>%
   mutate(species = sub('\xa0',' ',species))
 
 
@@ -279,7 +314,7 @@ fishmatch <- apply(fishmatches,1,function(x) ifelse(any(x), which(x), NA))
 
 # get sysnonyms
 
-no_match <- year.table$species[is.na(fishmatch) & grepl(' ',year.table$species)]
+no_match <- year.table$species[is.na(fishmatch)]
 
 syn <- lapply(no_match,rfishbase::synonyms, limit=300)
 fishsyn <- do.call('rbind',lapply(syn, function(l) if(nrow(l)>0) l[l$Status=='synonym',] else NA))
@@ -323,7 +358,7 @@ invmatch <- apply(invmatches,1,function(x) ifelse(any(x), which(x), NA))
 
 no_match <- year.table$species[is.na(fishmatch)][is.na(invmatch)&  grepl(' ',year.table$species)[is.na(fishmatch)]]
 
-inv_syn <- lapply(no_match,rfishbase::synonyms, limit=50, server='http://fishbase.ropensci.org/sealifebase')
+inv_syn <- lapply(no_match,rfishbase::synonyms, limit=300, server='http://fishbase.ropensci.org/sealifebase')
 invsyn <- do.call('rbind',lapply(inv_syn, function(l) if(nrow(l)>0) l[l$Status %in% c('synonym','accepted name'),] else NA))
 
 repl_specs <- match(invsyn$SpecCode,sealifebase$SpecCode)
@@ -340,6 +375,8 @@ inv_habitat <- inv_hab[invmatch]
 year.table[is.na(fishmatch) & is.na(year.table$habitat_FB.SLB), 'habitat_FB.SLB'] <- inv_habitat[is.na(year.table$habitat_FB.SLB[is.na(fishmatch)])]
 
 year.table[is.na(year.table$habitat_FB.SLB), c('stock','species')] %>% data.frame()
+
+year.table[is.na(year.table$habitat_FB.SLB),'habitat_FB.SLB'] <- 'benthic'
 
 invtax <- sealifebase[invmatch, c('Family','Order','Class')]
 
@@ -364,15 +401,21 @@ clengths <- inv_sp$CommonLength[inv_habmatch]
 year.table[is.na(fishmatch), 'lengths'] <- lengths[invmatch]
 year.table[is.na(fishmatch) & is.na(year.table$lengths), 'lengths'] <- clengths[invmatch][is.na(year.table$lengths[is.na(fishmatch)])]
 
+db <- taxize::classification(data.frame(year.table[is.na(year.table$Order),'species'])$species,db='itis')
+
+year.table[is.na(year.table$Order),c('Family','Order','Class')] <- do.call('rbind',lapply(db, function(cc) rev(cc$name[cc$rank %in% c('family','order','class')])))
+
+
+
 # filter out higher taxonomy (i.e., rows that didn't match...)
 year.table <- year.table %>% 
   filter(!is.na(habitat_FB.SLB), !is.na(species),!is.na(Order))  %>%
   mutate(lengths = ifelse(is.na(lengths),Lmax..cm.,lengths)) %>%
   as.data.frame()
 
-year.table$lengths[is.na(year.table$lengths)] <- c(NA,13.3,17,NA,NA,40,17,NA,NA,10,8,8)
+year.table$lengths[is.na(year.table$lengths)] <- c(13.3,12,40,12,13,7.5,8,8,8)
 
-year.table <- year.table %>% filter(!is.na(lengths))
+#year.table <- year.table %>% filter(!is.na(lengths))
 
 @
 
@@ -383,21 +426,23 @@ Try a Bayesian truncated Weibull model to keep is simple to start with:
 <<Jags setup>>=
 
 # subset to data with price and landings data
-year.table <- year.table %>% filter(!is.nan(price),year.table$time!=0)
+year.table <- year.table %>% filter(!is.nan(price))
 
 #assessment time
 devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
 
-a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+year.table$a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
 
 # true false censoring
 censored <- is.na(a.time)
+
+sum(nchar(years.table$Year.of.first.stock.assessment)==4) - sum(!censored)
 
 table(censored)
 
 # censor time - improve here from the arbitrary 2010 cutoff for censored (non-assessed stocks)
 ctime <- a.time+1
-ctime[is.na(a.time)] <- year.table$time[is.na(a.time)]
+ctime[is.na(a.time)] <- year.table$maxyear[is.na(a.time)]-year.table$minyear[is.na(a.time)]+1
 
 # initial values for censored observations
 time.inits <- ctime + 1
@@ -433,14 +478,18 @@ classord <- tapply(class,orders,unique)
 std <- function(x) (x-mean(x))/(2*sd(x))
 year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
                                     std_log10_price = std(log10(price)),
-                                    std_log10_land = std(log10(max.land)))
+                                    std_log10_land = std(log10(max.land)),
+                                    std_year = std(year.table$minyear),
+                                    post1996 = as.numeric((is.na(year.table$Year.of.first.stock.assessment) | year.table$Year.of.first.stock.assessment>1996)))
 
 
 # Covariate dataframe
 COVS <- year.table %>%
   select(std_log10_length,
          std_log10_price,
-         std_log10_land) %>% as.matrix()
+         std_log10_land,
+         std_year,
+         post1996) %>% as.matrix()
 
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 #covs$TL[is.na(covs$TL)] <- 3.2
@@ -478,7 +527,7 @@ JM <- jags.model('Weib_surv.R',
                  inits = list(a.time = time.inits),
                  n.chains=3)
 
-update(JM,n.iter=10000)
+update(JM,n.iter=2000)
 
 a.out <- coda.samples(JM,variable.names=c('tau',
                                           'betas',
@@ -496,7 +545,7 @@ a.out <- coda.samples(JM,variable.names=c('tau',
                                           'hab.pmu',
                                           'order.pmu',
                                           'class.pmu',
-                                          'CS'),n.iter = 200e3, thin = 100)
+                                          'CS'),n.iter = 20e3, thin = 10)
 
 save(a.out,year.table,COVS,full.tab,file=paste0('model.out',date(),'.rda'))
 @

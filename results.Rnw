@@ -69,8 +69,8 @@ library(survival)
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00", "#CC79A7","#999999")
 
 
-load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-#load('model.outSun Nov 13 22:25:59 2016.rda',v=T)
+#load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
+load('model.outTue Nov 22 01:54:32 2016.rda',v=T)
 
 
 # just for matching
@@ -79,11 +79,13 @@ year.table$Habitat <- year.table$habitat_FB.SLB
 year.table$region <- year.table$mainregion
 year.table$habitat <- year.table$habitat_FB.SLB
 
+beta_names <- c('Length',
+                'Mean price per kg',
+                'Maximum landings')
+
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'betas',
-                                 var.names = c('Length',
-                                               'Mean price per kg',
-                                               'Maximum landings')))
+                                 var.names = beta_names))
 
 
 tau <- tbl_df(get_coef_chains(model.out = a.out, 
@@ -100,8 +102,19 @@ coef_P <- coeffs %>%
 
 # write current dataset
 year.table %>% 
-  select(stock, species, year, Region, Habitat) %>% 
+  select(stock, species, Year.of.first.stock.assessment, Region, Habitat) %>% 
   write.csv(file='dataset.csv',row.names = F)
+
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v8 Final dataset.csv'),
+                              na.strings=c('','NA','#N/A'),
+                              stringsAsFactors = F)
+)
+
+years.table %>% 
+  filter(!Stock.name %in% year.table$stock) %>% 
+  select(Stock.name,Year.of.first.stock.assessment)  %>% 
+  write.csv(file='dataset_missed.csv',row.names = F)
+
 
 @
 
@@ -333,7 +346,7 @@ We now turn to our time-to-event model to interpret which biological and fishery
 \centering
 <<fx_plot,echo=FALSE,results='hide',fig.width=5,fig.height=8,out.width='0.6\\textwidth',fig.align='center'>>=
 
-betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = c('Length', 'Mean price per kg','Maximum landings'))
+betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = beta_names)
 betas$Effect <- 'Num.'
 
 print(levels(as.factor(year.table$habitat_FB.SLB)))
