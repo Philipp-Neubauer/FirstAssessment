@@ -82,7 +82,7 @@ year.table$habitat <- year.table$habitat_FB.SLB
 beta_names <- c('Length',
                 'Price per kg (US$)',
                 'Landings (t)',
-                'Landed value (US$)')
+                'Interaction')
 
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'betas',
