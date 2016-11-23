@@ -538,7 +538,7 @@ JM <- jags.model('Weib_surv.R',
                  inits = list(a.time = time.inits),
                  n.chains=3)
 
-update(JM,n.iter=10000)
+update(JM,n.iter=20000)
 
 a.out <- coda.samples(JM,variable.names=c('tau',
                                           'betas',
@@ -556,7 +556,7 @@ a.out <- coda.samples(JM,variable.names=c('tau',
                                           'hab.pmu',
                                           'order.pmu',
                                           'class.pmu',
-                                          'CS'),n.iter = 20e3, thin = 10)
+                                          'CS'),n.iter = 200e3, thin = 100)
 
 save(a.out,year.table,COVS,full.tab,file=paste0('model.out',date(),'.rda'))
 @
