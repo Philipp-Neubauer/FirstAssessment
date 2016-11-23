@@ -500,7 +500,8 @@ COVS <- year.table %>%
   select(std_log10_length,
          std_log10_price,
          std_log10_land,
-         std_log10_landprice) %>% as.matrix()
+         std_log10_landprice,
+         post1996) %>% as.matrix()
 
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 #covs$TL[is.na(covs$TL)] <- 3.2

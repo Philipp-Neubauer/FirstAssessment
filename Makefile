@@ -1,6 +1,9 @@
-all: results.pdf
+all: results_compiled.pdf
 
-%.pdf: %.tex
+results_compiled.pdf: results.pdf
+	cp results.pdf results_compiled.pdf
+
+results.pdf: results.tex
 	xelatex $(<F); biber $(*F); xelatex $(<F); xelatex $(<F)
 
 %.tex: %.Rnw
