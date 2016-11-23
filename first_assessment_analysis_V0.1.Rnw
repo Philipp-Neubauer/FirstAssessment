@@ -90,7 +90,7 @@ land.price <- land.price %>% filter(Species != 'SHELLFISH',
                                     !grepl('TROUT',Species),
                                     !grepl('BONITO',Species),
                                     !grepl('BIGEYE',Species),
-                                    !grepl('KELP',Species),
+                                    !(grepl('KELP',Species) & !grepl('GREENLING, KELP',Species)),
                                     !grepl('SEAWEED',Species)
                                     )
 @
@@ -210,13 +210,14 @@ stock.landings.sum.model <- tbl_df(stock.landings) %>%
   mutate(minyear = min(year,Year.of.fishery.development..stock.based.,na.rm = T),
          maxyear = max(year,na.rm=T)) %>%
   filter((year <= Year.of.first.stock.assessment) | (year <= maxyear & (is.na(Year.of.first.stock.assessment) | nchar(Year.of.first.stock.assessment)>4))) %>%
+  mutate(mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
   group_by(stock,year) %>% 
   summarise(maxyear = unique(maxyear),
             minyear = unique(minyear),
+            mainregion = unique(mainregion),
             total_landings = sum(landings,na.rm=T),
             price = mean(rel_price,na.rm=T),
-            species = unique(species),
-            mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
+            species = unique(species)) %>%
   mutate(max.land = max(total_landings),
          mean.land = mean(total_landings),
          price = mean(price,na.rm=T)) %>%
@@ -226,16 +227,23 @@ stock.landings.sum.model <- tbl_df(stock.landings) %>%
 
 
 stock.landings.sum.model <- stock.landings.sum.model %>%
-  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.1) %>% 
+  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.0001) %>% 
   ungroup()
 
+stock.landings.sum.model$mainregion[grepl('croaker',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('weakfish',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('scup',stock.landings.sum.model$stock)] <- 'USEC-NE'
+
+
 stock.landings.sum <- tbl_df(stock.landings) %>%
-  mutate(rel_price=price/(landings*1000)) %>%
+  group_by(stock) %>%
+  mutate(rel_price=price/(landings*1000),
+         mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
   group_by(stock,year) %>% 
   summarise(total_landings = sum(landings,na.rm=T),
             price = mean(rel_price,na.rm=T),
-            species = unique(species),
-            mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
+            mainregion = unique(mainregion),
+            species = unique(species)) %>%
   mutate(max.land = max(total_landings),
          mean.land = mean(total_landings),
          price = mean(price,na.rm=T)) %>%
@@ -245,7 +253,7 @@ stock.landings.sum <- tbl_df(stock.landings) %>%
 
 
 stock.landings.sum <- stock.landings.sum %>%
-  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.1) %>% 
+  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.001) %>% 
   ungroup()
 
 # join landings on management table
@@ -289,6 +297,7 @@ year.table <- full.tab.model %>%
          Lmax..cm.,
          price,
          max.land) %>%
+  filter(maxyear>1960) %>%
   distinct()
 
 @
@@ -301,8 +310,10 @@ To get taxonomy and habitat info for unassessed stocks (ie, those not in Mike's 
 require(rfishbase)
 #require(taxize)
 
-year.table <- filter(year.table,!is.na(species),grepl(' ',species)) %>%
-  mutate(species = sub('\xa0',' ',species))
+year.table <- year.table %>%
+  mutate(species = sub('\xa0',' ',species)) %>% 
+  filter(!is.na(species),grepl(' ',species))
+  
 
 
 fishbase <- load_taxa(update = T,limit = 35000)
@@ -320,7 +331,7 @@ syn <- lapply(no_match,rfishbase::synonyms, limit=300)
 fishsyn <- do.call('rbind',lapply(syn, function(l) if(nrow(l)>0) l[l$Status=='synonym',] else NA))
 
 repl_specs <- match(fishsyn$SpecCode,fishbase$SpecCode)
-fishmatch[is.na(fishmatch) & grepl(' ',year.table$species)] <- repl_specs
+fishmatch[is.na(fishmatch)] <- repl_specs
 
 fishes <- which(!is.na(fishmatch))
 
@@ -429,9 +440,9 @@ Try a Bayesian truncated Weibull model to keep is simple to start with:
 year.table <- year.table %>% filter(!is.nan(price))
 
 #assessment time
-devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
+devtime <- apply(cbind(as.numeric(min(year.table$Year.of.first.stock.assessment,na.rm = T)),year.table$minyear),1,max,na.rm=T)
 
-year.table$a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime + 1
 
 # true false censoring
 censored <- is.na(a.time)
@@ -442,7 +453,7 @@ table(censored)
 
 # censor time - improve here from the arbitrary 2010 cutoff for censored (non-assessed stocks)
 ctime <- a.time+1
-ctime[is.na(a.time)] <- year.table$maxyear[is.na(a.time)]-year.table$minyear[is.na(a.time)]+1
+ctime[is.na(a.time)] <- year.table$maxyear[is.na(a.time)]-devtime[is.na(a.time)]+1
 
 # initial values for censored observations
 time.inits <- ctime + 1
@@ -479,6 +490,7 @@ std <- function(x) (x-mean(x))/(2*sd(x))
 year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
                                     std_log10_price = std(log10(price)),
                                     std_log10_land = std(log10(max.land)),
+                                    std_log10_landprice = std(log10(max.land)*log10(price)),
                                     std_year = std(year.table$minyear),
                                     post1996 = as.numeric((is.na(year.table$Year.of.first.stock.assessment) | year.table$Year.of.first.stock.assessment>1996)))
 
@@ -488,8 +500,7 @@ COVS <- year.table %>%
   select(std_log10_length,
          std_log10_price,
          std_log10_land,
-         std_year,
-         post1996) %>% as.matrix()
+         std_log10_landprice) %>% as.matrix()
 
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 #covs$TL[is.na(covs$TL)] <- 3.2
@@ -527,7 +538,7 @@ JM <- jags.model('Weib_surv.R',
                  inits = list(a.time = time.inits),
                  n.chains=3)
 
-update(JM,n.iter=2000)
+update(JM,n.iter=10000)
 
 a.out <- coda.samples(JM,variable.names=c('tau',
                                           'betas',

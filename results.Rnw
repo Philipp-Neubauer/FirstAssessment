@@ -70,7 +70,7 @@ cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00",
 
 
 #load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-load('model.outTue Nov 22 01:54:32 2016.rda',v=T)
+load('model.outWed Nov 23 21:23:25 2016.rda',v=T)
 
 
 # just for matching
@@ -80,8 +80,9 @@ year.table$region <- year.table$mainregion
 year.table$habitat <- year.table$habitat_FB.SLB
 
 beta_names <- c('Length',
-                'Mean price per kg',
-                'Maximum landings')
+                'Price per kg (US$)',
+                'Landings (t)',
+                'Landed value (US$)')
 
 coeffs <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'betas',
