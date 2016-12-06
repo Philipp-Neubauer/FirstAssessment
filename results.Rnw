@@ -11,7 +11,7 @@
 \usepackage{array,booktabs}
 \usepackage[style=authoryear,backend=biber]{biblatex}
 \DeclareLanguageMapping{american}{american-apa}
-\addbibresource{FirstAssessment.bib}
+
 
 \geometry{verbose,letterpaper,tmargin=2.54cm,bmargin=2.54cm,lmargin=2.54cm,rmargin=2.54cm}
 
@@ -93,7 +93,7 @@ coeffs <- tbl_df(get_coef_chains(model.out = a.out,
 
 tau <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'tau',
-                                 var.names = 'Rate'))
+                                 var.names = 'Rate')))
 coeffs$Rate = tau$MCMC
 # regressin coeffs are beta
 coef_P <- coeffs %>%

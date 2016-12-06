@@ -5,9 +5,9 @@
 \title{Analysis notes}
 \maketitle
 
-V0.2 PN
+V0.3 PN
 
-\section{Data manupulation}
+\section{Data manipulation}
 
 << Data input,results='hide',warning=FALSE>>=
 
@@ -18,7 +18,7 @@ DB <- '~/Dropbox'
 require(dplyr)
 require(ggplot2)
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v8 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v9 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
@@ -46,7 +46,7 @@ land.price <- read.csv(file.path(DB,'First year of assessment/landings-price.csv
          !grepl('Alligator',Species,ignore.case = T),
          !grepl('Coral',Species,ignore.case = T),
          !grepl('Sponge',Species,ignore.case = T),
-         !grepl('UNC',Species,ignore.case = T),
+         !grepl('UNC ',Species,ignore.case = T),
          !grepl('WHALES',Species,ignore.case = T),
          !grepl('FROGS',Species,ignore.case = T),
          !grepl('finfishes',Species,ignore.case = T),
@@ -76,21 +76,21 @@ land.price$Species[grepl('BARRAC',land.price$Species,ignore.case = T)] <- 'BARRA
 # dissagregated from 2005
 land.price$Species[grepl('SCUP',land.price$Species,ignore.case = T)] <- 'SCUPS OR PORGIES'
 
+land.price$Species[grepl('CRAB, BLUE',land.price$Species,ignore.case = T)] <- 'CRAB, BLUE'
+
+land.price$Species[grepl('SHARK, SPINY DOGFISH',land.price$Species,ignore.case = T) | grepl('SHARK, DOGFISH',land.price$Species,ignore.case = T)] <- 'CRAB, BLUE'
+
 #remove shellfish and other generics
 land.price <- land.price %>% filter(Species != 'SHELLFISH',
                                     Species != 'TUNAS',
                                     Species != 'SHARKS',
                                     Species != 'BILLFISHES',
-                                    Species != 'SHARK, SILKY',
                                     Species != 'INCONNU',
                                     !grepl('SWORDFISH',Species),
                                     !grepl('MARLIN',Species),
                                     !grepl('TUNA',Species),
                                     !grepl('SALMON',Species),
-                                    !grepl('TROUT',Species),
                                     !grepl('BONITO',Species),
-                                    !grepl('BIGEYE',Species),
-                                    !(grepl('KELP',Species) & !grepl('GREENLING, KELP',Species)),
                                     !grepl('SEAWEED',Species)
                                     )
 @
@@ -255,6 +255,11 @@ stock.landings.sum <- tbl_df(stock.landings) %>%
 stock.landings.sum <- stock.landings.sum %>%
   filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.001) %>% 
   ungroup()
+
+stock.landings.sum$mainregion[grepl('croaker',stock.landings.sum$stock)] <- 'USEC-NE'
+stock.landings.sum$mainregion[grepl('weakfish',stock.landings.sum$stock)] <- 'USEC-NE'
+stock.landings.sum$mainregion[grepl('scup',stock.landings.sum$stock)] <- 'USEC-NE'
+
 
 # join landings on management table
 full.tab <- left_join(stock.landings.sum,
@@ -446,6 +451,8 @@ a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime + 1
 
 # true false censoring
 censored <- is.na(a.time)
+year.table$censored <- censored
+
 
 sum(nchar(years.table$Year.of.first.stock.assessment)==4) - sum(!censored)
 
@@ -490,7 +497,7 @@ std <- function(x) (x-mean(x))/(2*sd(x))
 year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
                                     std_log10_price = std(log10(price)),
                                     std_log10_land = std(log10(max.land)),
-                                    std_log10_landprice = std(log10(max.land)*log10(price)),
+                                    std_log10_landprice = std(log10(price*max.land)),
                                     std_year = std(year.table$minyear),
                                     post1996 = as.numeric((is.na(year.table$Year.of.first.stock.assessment) | year.table$Year.of.first.stock.assessment>1996)))
 
@@ -500,14 +507,14 @@ COVS <- year.table %>%
   select(std_log10_length,
          std_log10_price,
          std_log10_land,
-         std_log10_landprice,
-         post1996) %>% as.matrix()
+         std_log10_landprice) %>% as.matrix()
 
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 #covs$TL[is.na(covs$TL)] <- 3.2
 
 n.covs <- ncol(COVS)
 n.stocks <- nrow(COVS)
+
 @
 
 <<Run Jags model,eval=T,cache=T>>=
@@ -539,7 +546,7 @@ JM <- jags.model('Weib_surv.R',
                  inits = list(a.time = time.inits),
                  n.chains=3)
 
-update(JM,n.iter=20000)
+update(JM,n.iter=10000)
 
 a.out <- coda.samples(JM,variable.names=c('tau',
                                           'betas',
