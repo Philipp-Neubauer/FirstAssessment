@@ -72,7 +72,7 @@ cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00",
 
 
 load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-#load('model.outWed Nov 23 21:23:25 2016.rda',v=T)
+#load('model.outWed Dec  7 02:27:35 2016.rda',v=T)
 
 
 # just for matching
@@ -93,7 +93,7 @@ coeffs <- tbl_df(get_coef_chains(model.out = a.out,
 
 tau <- tbl_df(get_coef_chains(model.out = a.out, 
                                  coef.names = 'tau',
-                                 var.names = 'Rate')))
+                                 var.names = 'Rate'))
 coeffs$Rate = tau$MCMC
 # regressin coeffs are beta
 coef_P <- coeffs %>%
@@ -106,9 +106,9 @@ coef_P <- coeffs %>%
 # write current dataset
 year.table %>% 
   select(stock, species, Year.of.first.stock.assessment, Region, Habitat) %>% 
-  write.csv(file='dataset.csv',row.names = F)
+  write.csv(file='dataset.csv',row.names = F,na = '')
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v8 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v9 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
@@ -164,7 +164,7 @@ Several variables were considered as explanatory factors affecting the year in w
 
 To assess which factors drive the over-all rate of assessments and the time from first recorded landings to a full stock assessment in US stocks, we applied a time-to-event model. Also called termed survival models in the medical and ecological literature, these models account for censored data (i.e., species that are landed but not yet assessed) while modeling time-to-assessment within a parametric framework. We defined time to event as the time between first recorded landings and a full stock assessment. The first stock assessment (as defined by our criteria above) occured in 1960, and we therefore used 1960 as the first possible assessment eyar for stocks that were first landed prior to 1960. We thus assume, based on the first recorded assessment, that the technology (models, computers to fit models etc.) was not available prior to 1960 to conduct a full stock assessment.
 
-The Weibull distribution is often used as a flexible model that has several desireabledesirable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The shape parameter of the Weibull density can be interpreted in terms of the rate of events occurring. A shape parameter >1 suggests an increasing rate of events, whereas a shape parameter <1 indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time. Weibull 
+The Weibull distribution is often used as a flexible model that has several desireabledesirable properties for this type of analysis, and one can easily check whether the Weibull model is appropriate for the data at hand (see Figure \ref{fig:Weibull_check}). The shape parameter of the Weibull density can be interpreted in terms of the rate of events occurring. A shape parameter $>$1 suggests an increasing rate of events, whereas a shape parameter $<$1 indicates an decreasing rate. This allows us to directly estimate the change in assessment rates over time. 
 
 A further desirable property is that the model coefficient estimates can be interpreted both in terms of the ratio of event rates as well as time-to-event probabilities. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model A coefficient can also be interpreted as the in terms of time-to-event parameters, which scale the time to the an event, scaled by an acceleration factor. For example, in a hyothetical scenario, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmetersparameters obtained for the event rate interpretation - the two interpretations are easily exchangeable in the Weibull model.
 
@@ -574,7 +574,7 @@ lm_fit <- lm(log(-log(surv.cs+1e-10))~log(rcu))$coefficients
 
 abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2); 
 @
-\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the beginning of the landings dataset in 1950 to the year of first assessment should fall on a line with slope $\tau$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $\tau$ evaluates to \Sexpr{round(lm_fit[2],2)} (slope of the green line), suggesting an increasing assessment rate with increasing time $t$.}
+\caption{Appropriateness of the Weibull event-time model for the time-to-assessment dataset. If the Weibull applies, the time from first landings (or from first quantitative stock assessments in 1960 if a stock was landed before 1960) to the year of first assessment should fall on a line with slope $\tau$ (the Weibull shape parameter) between $log(-log(\hat{S}(t)))$, where $\hat{S}(t)$ is the non-parametric Kaplan-Meyer estimate of survival at time $t$, and the log of $t$. Here, $\tau$ evaluates to \Sexpr{round(lm_fit[2],2)} (slope of the green line), suggesting an increasing assessment rate with increasing time $t$.}
 \label{fig:Weibull_check}
 \end{figure}
 

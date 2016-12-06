@@ -497,7 +497,7 @@ std <- function(x) (x-mean(x))/(2*sd(x))
 year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
                                     std_log10_price = std(log10(price)),
                                     std_log10_land = std(log10(max.land)),
-                                    std_log10_landprice = std(log10(price*max.land)),
+                                    std_log10_landprice = std(log10(price)*log10(max.land)),
                                     std_year = std(year.table$minyear),
                                     post1996 = as.numeric((is.na(year.table$Year.of.first.stock.assessment) | year.table$Year.of.first.stock.assessment>1996)))
 
