@@ -168,13 +168,20 @@ The Weibull distribution is often used as a flexible model that has several desi
 
 A further desirable property is that the model coefficient estimates can be interpreted both in terms of the ratio of event rates as well as time-to-event probabilities. For example, one can interpret a model coefficient as decreasing or increasing the likelihood of an event occurring at any particular time relative to the baseline (this is usually called the hazard ratio interpretation). Thus, the rate of events may be modified by a particular variable. The model A coefficient can also be interpreted as the in terms of time-to-event parameters, which scale the time to the an event, scaled by an acceleration factor. For example, in a hyothetical scenario, the median time-to-assessment of a demersal stock may be 0.5 times that of a pelagic stock, suggesting that it takes twice as long for pelagic stocks to get assessed. Such acceleration factors are just transformations of the parmetersparameters obtained for the event rate interpretation - the two interpretations are easily exchangeable in the Weibull model.
 
-We thus model time-to-assessment as Weibull- distributed with shape parameter $\tau$ and rate $\lambda$. The connection between the event rate and the time-to-event interpretations can be is made explicit by writing the Weibull density as a function of the product of the probability of the assessment occurring at time $t$ and the probability of the assessment not occurring prior to time $t$. Thus, $P(T=t)$ depends on the probability of an assessment not having occurred prior to time $t$, ($A(t) = 1-P(T\le t)=1-F(t)$), where $F(t) = \exp(-\lambda t^\tau)$ is the Weibull distribution function, and the rate $r(t)$ with which assessments occur at time $t$. 
+We thus model time-to-assessment as Weibull- distributed with shape parameter $\tau$ and rate $\lambda$:
 
 \begin{align}
-T &\sim Weibull(\tau,\lambda) \\
-  &=  A(t)\times r(t)  \\
-  &= \exp(-\lambda t^\tau) \times \lambda \tau t^{\tau-1}  
+T &\sim Weibull(\tau,\lambda) 
 \end{align}   
+
+The connection between the event rate and the time-to-event interpretations can be is made explicit by writing the Weibull density as a function of the product of the probability of the assessment occurring at time $t$ and the probability of the assessment not occurring prior to time $t$. 
+
+\begin{align}
+ f(t) &=  A(t)\times r(t)  \\
+  &= \exp(-\lambda t^\tau) \times \lambda \tau t^{\tau-1}  
+\end{align}
+
+Thus, $P(T=t)$ depends on the probability of an assessment not having occurred prior to time $t$, $A(t) = 1-P(T\le t)=1-F(t)$, where $F(t) = \exp(-\lambda t^\tau)$ is the Weibull distribution function, and the rate $r(t)$ with which assessments occur at time $t$. 
 
 We modeled the scale $\lambda$ of the Weibull distribution as a function of covariates and categorical variables:
 
