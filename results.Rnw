@@ -105,7 +105,8 @@ coef_P <- coeffs %>%
 
 # write current dataset
 year.table %>% 
-  select(stock, species, Year.of.first.stock.assessment, Region, Habitat) %>% 
+  arrange(Class, Order, Family, species, stock) %>%
+  select(Class, Order,  Family, species,stock,Year.of.first.stock.assessment, Region, Habitat, price, max.land, lengths) %>% 
   write.csv(file='dataset.csv',row.names = F,na = '')
 
 years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v9 Final dataset.csv'),
