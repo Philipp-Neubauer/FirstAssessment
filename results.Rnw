@@ -106,7 +106,13 @@ coef_P <- coeffs %>%
 # write current dataset
 year.table %>% 
   arrange(Class, Order, Family, species, stock) %>%
-  select(Class, Order,  Family, species,stock,Year.of.first.stock.assessment, Region, Habitat, price, max.land, lengths) %>% 
+  mutate(`Mean ex vessel price per kg` = round(price,2),
+         `Maximum landings` = max.land,
+         `Fishbase length` = lengths,
+         `Year of first stock assessment` = Year.of.first.stock.assessment,
+         Species = species,
+         Stock = stock) %>%
+  select(Class, Order,  Family, Species,Stock,Year.of.first.stock.assessment, Region, Habitat, `Mean ex vessel price per kg`, `Maximum landings`, `Fishbase length`) %>% 
   write.csv(file='dataset.csv',row.names = F,na = '')
 
 years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v9 Final dataset.csv'),
