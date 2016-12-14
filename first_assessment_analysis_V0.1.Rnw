@@ -233,7 +233,8 @@ stock.landings.sum.model <- stock.landings.sum.model %>%
 stock.landings.sum.model$mainregion[grepl('croaker',stock.landings.sum.model$stock)] <- 'USEC-NE'
 stock.landings.sum.model$mainregion[grepl('weakfish',stock.landings.sum.model$stock)] <- 'USEC-NE'
 stock.landings.sum.model$mainregion[grepl('scup',stock.landings.sum.model$stock)] <- 'USEC-NE'
-
+stock.landings.sum.model$mainregion[grepl('USEC smooth dogfish shark',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('USNE midAtl red drum',stock.landings.sum.model$stock)] <- 'USEC-NE'
 
 stock.landings.sum <- tbl_df(stock.landings) %>%
   group_by(stock) %>%
@@ -259,6 +260,9 @@ stock.landings.sum <- stock.landings.sum %>%
 stock.landings.sum$mainregion[grepl('croaker',stock.landings.sum$stock)] <- 'USEC-NE'
 stock.landings.sum$mainregion[grepl('weakfish',stock.landings.sum$stock)] <- 'USEC-NE'
 stock.landings.sum$mainregion[grepl('scup',stock.landings.sum$stock)] <- 'USEC-NE'
+
+stock.landings.sum$mainregion[grepl('USEC smooth dogfish shark',stock.landings.sum$stock)] <- 'USEC-NE'
+stock.landings.sum$mainregion[grepl('USNE midAtl red drum',stock.landings.sum$stock)] <- 'USEC-NE'
 
 
 # join landings on management table
@@ -472,6 +476,9 @@ afs <- function(x) as.numeric(as.factor(x))
 
 hab <- with(year.table,afs(habitat_FB.SLB))
 n.hab <- length(unique(hab))
+
+year.table$mainregion[grepl('USEC smooth dogfish shark',year.table$stock)] <- 'USEC-NE'
+year.table$mainregion[grepl('USNE midAtl red drum',year.table$stock)] <- 'USEC-NE'
 
 reg <- with(year.table,afs(mainregion))
 n.region <- length(unique(reg))
