@@ -1,6 +1,6 @@
-\documentclass[american]{article}
+\documentclass{article}
 \usepackage{geometry}
-\usepackage[american]{babel}
+%\usepackage[american]{babel}
 \usepackage{setspace}
 \usepackage{subfig}
 \usepackage{placeins}
@@ -9,8 +9,9 @@
 \usepackage{longtable}
 \usepackage[toc,page]{appendix}
 \usepackage{array,booktabs}
-\usepackage[backend=biber]{biblatex}
-\DeclareLanguageMapping{american}{american-apa}
+\usepackage[backend=biber]{biblatex} 
+%\DeclareLanguageMapping{american}{american-apa}
+
 \addbibresource{FirstAssessment.bib}
 
 \geometry{verbose,letterpaper,tmargin=2.54cm,bmargin=2.54cm,lmargin=2.54cm,rmargin=2.54cm}
