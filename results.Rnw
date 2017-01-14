@@ -59,7 +59,7 @@ if( Sys.info()["effective_user"] == "James.Thorson" ){
 
 # Settings for Mike's machine
 if( Sys.info()["effective_user"] == "MikeMelnychuk" ){
-  setwd("E:/Documents/GitHub/FirstAssessment")
+  setwd("E:/GitHub/FirstAssessment")
   DB <- 'E:/Dropbox/Projects'
 }
 
