@@ -584,14 +584,87 @@ We thank Cody Szuwalski for productive discussions while planning out the data s
 \renewcommand\thefigure{\thesection.\arabic{figure}}   
 \renewcommand\thetable{\thesection.\arabic{table}}   
 \setcounter{figure}{0} 
-\section{A: Model fit}
+
+\begin{landscape}
+\section{Dataset}
+\begin{center}
+\begin{longtable}{lrllrrr}
+\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase.} 
+\label{tab:dataset} \\
+
+Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t) & Length (cm) \\
+\addlinespace
+\endfirsthead
+
+\multicolumn{7}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\addlinespace 
+Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t)  & Length (cm)\\
+\addlinespace 
+\endhead
+
+\addlinespace 
+\hline 
+\addlinespace 
+\multicolumn{7}{c}{Continued on next page} \\
+\endfoot
+
+\endlastfoot
+
+<<results="asis">>=
+dataset <- read.csv('dataset.csv')
+dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
+#dataset$Stock <- dataset$Stock)
+print(xtable(dataset %>% select(-Class, -Order,-Family,-Species)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+@
+\end{longtable}
+
+\begin{longtable}{lllll}
+\caption[dataset]{Taxonomic variables used for time-to-event analysis.} 
+\label{tab:dataset_tax} \\
+
+Stock & Species & Family & Order & Class  \\
+\addlinespace
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\addlinespace 
+Stock & Species & Family & Order & Class \\
+\addlinespace 
+\endhead
+
+\addlinespace 
+\hline 
+\addlinespace 
+\multicolumn{5}{c}{Continued on next page} \\
+\endfoot
+
+\endlastfoot
+
+<<results="asis">>=
+
+print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+@
+\end{longtable}
+\end{center}
+
+\end{landscape}
+
+\section{Model fit}
 \begin{figure}[!ht]
 \centering
+
+
+
+
+
 
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
 
 #assessment time
-
 
 # Kaplan-Meyer non-parametric survival at t - should be linear with slope p
 km.cs <- survfit(Surv(a.time,!censored) ~ 1)
@@ -639,6 +712,8 @@ abline(a=0,b=1,col=3,lwd=2)
 \caption{Model fit of the Weibull survival model, based on Cox-Snell residuals calculated at the posterior mean of the linear predictor. For a perfect fit all data points (solid points) would lie on the y=x (green) line.}
 \label{fig:CS}
 \end{figure}
+
+\section{Model estimates and predictions}
 
 <<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=4,fig.height=4,out.width='0.4\\textwidth',fig.align='center'>>=
 
