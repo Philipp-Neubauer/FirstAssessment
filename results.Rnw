@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{geometry}
-%\usepackage[american]{babel}
+\usepackage{enumitem}
 \usepackage{setspace}
 \usepackage{subfig}
 \usepackage{placeins}
@@ -588,35 +588,35 @@ We thank Jeannette Banobi for compiling year of first stock assessment records i
 \begin{landscape}
 \section{Dataset}
 \begin{center}
-\begin{longtable}{lrllrrr}
-\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase.} 
+\begin{longtable}{lrllrrrr}
+\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. SIS cat. is the SIS assessment database category.} 
 \label{tab:dataset} \\
 
-Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t) & Length (cm) \\
+Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t) & Length (cm) & SIS cat.\\
 \addlinespace
 \endfirsthead
 
-\multicolumn{7}{c}%
+\multicolumn{8}{c}%
 {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
 \hline
 \addlinespace 
-Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t)  & Length (cm)\\
+Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t)  & Length (cm) & SIS cat.\\
 \addlinespace 
 \endhead
 
 \addlinespace 
 \hline 
 \addlinespace 
-\multicolumn{7}{c}{Continued on next page} \\
+\multicolumn{8}{c}{Continued on next page} \\
 \endfoot
 
 \endlastfoot
 
 <<results="asis">>=
-dataset <- read.csv('dataset.csv')
+dataset <- read.csv('dataset_SIS.csv')
 dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
 #dataset$Stock <- dataset$Stock)
-print(xtable(dataset %>% select(-Class, -Order,-Family,-Species)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+print(xtable(dataset %>% select(-Class, -Order,-Family,-Species,-SIS.stock.name)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
 @
 \end{longtable}
 
@@ -649,18 +649,87 @@ Stock & Species & Family & Order & Class \\
 print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
 @
 \end{longtable}
+
+
+\begin{table}[!ht]
+\caption[dataset]{Stocks for which assessments or other abundance information was available, but which were excluded from our analysis. This was generally due to missing landings information at the stock level. The assessment year is the year of first stock assessment.} 
+\label{tab:dataset_missed} 
+\begin{tabular}{lrr}
+Stock & Assessment year & SIS class  \\
+<<results="asis">>=
+dataset_missed <- read.csv('dataset_missed_SIS.csv')
+#dataset$Stock <- dataset$Stock)
+print(xtable(dataset_missed %>% select(-SIS.stock.name)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+@
+\end{tabular}
+\end{table}
 \end{center}
 
 \end{landscape}
 
+\newpage
+\FloatBarrier
+
+\section{Validation of assessment classifications}
+
+In this appendix, we compare our assessment classifications with those of NOAA's Species Information System (SIS) database. 
+
+Our classification system consisted of whether or not a stock has had a formal assessment conducted, and susbequently, the year in which the first formal assessment occurred. Our definition of a formal stock assessment required the use of a population dynamics model fit to fishery landings data, coupled with some benchmark with which to compare model-estimated time series of abundance or fishing pressure (described further in the main text). These biological reference point benchmarks may have been estimated within the same assessment model or specified externally, and allow for comparing estimates of current abundance or fishing pressure relative to target levels. To determine the year of first stock assessment, we reviewed historical assessments on the websites of US Fishery Management Councils and NMFS Science Centers, and also sought the input of fishery scientists and managers within each region (Appendix 1).
+
+The SIS database uses a 6-level categorization of assessments [CITATION, https://www.st.nmfs.noaa.gov/sisPortal/sisPortalMain.jsp], as follows: 
+
+\begin{enumerate}[start=0]
+\item Although some data may have been collected on this species, these data have not been examined beyond simple time series plots or tabulations of catch.
+\item Either:
+\begin{enumerate}[label=\alph*]
+\item time series of a (potentially imprecise) abundance index calculated as raw or standardized CPUE in commercial, recreational, or survey vessel data, or
+\item onetime estimation of absolute abundance made on the basis of tagging results, a depletion study, or some form of calibrated survey.
+\end {enumerate}
+\item Simple equilibrium models applied to life history information; for example, yield per recruit or spawner per recruit functions based on mortality, growth, and maturity schedules; catch curve analysis; survival analysis; or length-based cohort analysis.
+\item Equilibrium and non-equilibrium production models aggregated both spatially and over age and size; for example, the Schaefer model and the Pella-Tomlinson model.
+\item Size, stage, or age structured models such as cohort analysis and untuned and tuned VPA analyses, age-structured production models, CAGEAN, stock synthesis, size or age-structured Bayesian models, modified DeLury methods, and size or age-based mark-recapture models.
+\item Assesssment models incorporating ecosystem considerations and spatial and seasonal analyses in addition to Levels 3 or 4. Ecosystem considerations include one or more of the following:
+\begin{enumerate}[label=\alph*]
+\item one or more time-varying parameters, either estimated as constrained series, or driven by environmental variables,
+\item multiple target species as state variables in the model, or
+\item living components of the ecosystem other than the target species included as state variables in the model."
+\end {enumerate}
+\end {enumerate}
+
+We expect our classification of "assessed" to align with levels 3--6 in the SIS database, and our classification of "unassessed" to align with levels 0--2. This is generally what we find, and the few discrepancies are described below. These comparisons can be followed in our final dataset provided (Tables \ref{tab:dataset}, \ref{tab:dataset_tax}, \ref{tab:dataset_missed}), which list for each stock in our dataset the corresponding stock from the SIS database. In summary, the comparison shows:
+
+
+I) Of the 187 stocks in our final dataset with a year of first stock assessment assignment, 152 have a corresponding stock in the SIS database. Of these 152 overlapping stocks, 145 (95\%) had an assessment level of 3 or greater assigned in the SIS database. The 7 stocks that we classified as assessed but that have an assessment level of 1 or 2 in the SIS database are as follows:
+	
+	\begin{enumerate}
+	\item \label{itm:first} Silver hake - Gulf of Maine / Northern Georges Bank
+	\item Silver hake - Southern Georges Bank / Mid-Atlantic
+	\item \label{itm:third} Winter flounder - Gulf of Maine
+	\item \label{itm:fourth} Opalescent inshore squid - Pacific Coast
+	\item Longfin inshore squid - Georges Bank / Cape Hatteras
+	\item \label{itm:sixth} Northern shortfin squid - Northwestern Atlantic Coast
+	\item \label{itm:seven} Red deepsea crab - Northwestern Atlantic
+	\end{enumerate}
+	The reasons for these discrepancies can be attributed to a population model previously used in the stock assessment process to inform fisheries management, but currently assessments rely on simpler models (with lower assessment level categories in the SIS database). Specifically:
+	\begin{itemize}
+	\item \ref{itm:first}--\ref{itm:third}: The silver hake and winter flounder stocks previously had age-structured Virtual Population Analysis assessment models used. More recently, the assessment models were not approved, so management currently relies on index-based models.
+	\item \ref{itm:fourth}--\ref{itm:sixth}: The squid stocks previously had population models used in assessments, but currently use index-based or simpler equilibrium models.
+	\item \ref{itm:seven}: An older red deepsea crab stock assessment used a population model to estimate MSY, but more recent assessments rely on index-based methods for management. 
+	\end{itemize}
+II) Of the 28 stocks in our final dataset that were considered unassessed (with qualitative categories of "only relative indices", "minimal information", or "no published document"), 18 have a corresponding stock in the SIS database. Of these 18 overlapping stocks, 16 (89\%) had an assessment level of 2 or less assigned in the SIS database. The 2 stocks that we classified as unassessed but that have an assessment level of 3 in the SIS database are as follows:
+
+	\begin{enumerate}
+	\item Shortraker rockfish - Gulf of Alaska
+	\item Yelloweye rockfish - Gulf of Alaska
+	\end{enumerate}
+	Stock assessments for these two rockfish stocks are based on area-swept biomass estimates from surveys. To be consistent with other stocks in our analysis, for which assessments relying on relative index methods are considered unassessed, we consider these stocks as unassessed as well.
+
+
+\newpage
+\FloatBarrier
 \section{Model fit}
 \begin{figure}[!ht]
 \centering
-
-
-
-
-
 
 <<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
 
@@ -713,6 +782,9 @@ abline(a=0,b=1,col=3,lwd=2)
 \label{fig:CS}
 \end{figure}
 
+\newpage
+\FloatBarrier
+\newpage
 \section{Model estimates and predictions}
 
 <<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=4,fig.height=4,out.width='0.4\\textwidth',fig.align='center'>>=
