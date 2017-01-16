@@ -587,11 +587,13 @@ We thank Jeannette Banobi for compiling year of first stock assessment records i
 
 \begin{landscape}
 \section{Dataset}
-\begin{center}
+
+{\small
 \begin{longtable}{lrllrrrr}
 \caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. SIS cat. is the SIS assessment database category.} 
-\label{tab:dataset} \\
 
+\label{tab:dataset} \\
+\centering
 Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings (t) & Length (cm) & SIS cat.\\
 \addlinespace
 \endfirsthead
@@ -614,16 +616,17 @@ Stock &  Assessment year & Region & Habitat & Price (US\$.kg$^{-1}$) & Landings 
 
 <<results="asis">>=
 dataset <- read.csv('dataset_SIS.csv')
-dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
+#dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
 #dataset$Stock <- dataset$Stock)
 print(xtable(dataset %>% select(-Class, -Order,-Family,-Species,-SIS.stock.name)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
 @
-\end{longtable}
 
+\end{longtable}
+\newpage
 \begin{longtable}{lllll}
 \caption[dataset]{Taxonomic variables used for time-to-event analysis.} 
 \label{tab:dataset_tax} \\
-
+\centering
 Stock & Species & Family & Order & Class  \\
 \addlinespace
 \endfirsthead
@@ -654,6 +657,7 @@ print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after 
 \begin{table}[!ht]
 \caption[dataset]{Stocks for which assessments or other abundance information was available, but which were excluded from our analysis. This was generally due to missing landings information at the stock level. The assessment year is the year of first stock assessment.} 
 \label{tab:dataset_missed} 
+\centering
 \begin{tabular}{lrr}
 Stock & Assessment year & SIS class  \\
 <<results="asis">>=
@@ -663,7 +667,7 @@ print(xtable(dataset_missed %>% select(-SIS.stock.name)), hline.after = -1, only
 @
 \end{tabular}
 \end{table}
-\end{center}
+}
 
 \end{landscape}
 
