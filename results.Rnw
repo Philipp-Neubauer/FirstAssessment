@@ -585,6 +585,26 @@ We thank Jeannette Banobi for compiling year of first stock assessment records i
 \renewcommand\thetable{\thesection.\arabic{table}}   
 \setcounter{figure}{0} 
 
+
+\section{Assignment of year of first stock assessment}
+\label{sec:first_assess}
+We used a three-step process to classify stocks as assessed or unassessed and, for assessed stocks, to identify the year of first assessment.
+
+\begin{enumerate}
+\item Management attribute database and interviews:
+As part of a larger data collection effort to characterize management attributes at the stock level, we conducted a survey which included the question "Year of first stock assessment", with a description of what qualifies as an assessment (as outlined in the main text). To answer this question, we first looked through historical stock assessments archived on fisheries agency websites to identify the first assessment that met our defined criteria (as not all published assessments would meet our relatively strict criteria). Websites accessed included those of U.S. Fisheries Management Councils, NMFS Science Centers, and state-level fisheries management agencies. To confirm our findings, or if we were unable to answer the question from archived assessments, we conducted interviews with fisheries scientists and managers familiar with one or more stocks in each region. Individuals who participated in interviews for management attributes for U.S. stocks are listed in our Acknowledgments.
+These surveys were conducted for 196 U.S. stocks, of which 165 were found to have a formal stock assessment as defined. The intention of these surveys was to cover primarily well-studied stocks and stocks important to regional fisheries, not to draw a random sample from the NOAA landings data. Therefore, the proportion of these stocks meeting the criteria of having a formal stock assessment is high compared to the proportion of stocks from the NOAA landings database that are formally assessed.
+
+\item Comparison with SIS database:
+We compared our list of assessed stocks with the list of assessed stocks from the US Species Information System (SIS) database. We considered SIS stocks with assessment level 3 or greater (see Appendix \ref{sec:sis}). We found 20 stocks in the SIS database that were not previously included in our list of assessed stocks in (1). Most of these stocks were first assessed after our period of data collection in (1), 2012--2015, which is why many of these were not originally included in our list of stocks in (1). We added these 20 stocks along with their year of first assessment to our dataset.
+
+\item Remaining stocks in NOAA landings database:
+To ensure that we had not overlooked any U.S. marine stocks with a formal stock assessment (including stocks managed by state agencies), we systematically searched online for a stock assessment for each species in the NOAA landings database. These searches comprised two types of species: some species in the NOAA landings database were not previously included in our collection of stock management attribute data in (1) or (2); and some species in the NOAA landings database were previously included in (1) or (2) but also had landings recorded in states outside of the defined areas of distribution of those stocks, and thus other assessments of the same species may have been available, for other areas. For both types of species, we searched for any stock assessment corresponding to species:state recorded landings that were unaccounted for in (1) or (2). Online searches consisted of (i) going through assessment archives on the websites of U.S. Fisheries Management Councils, NMFS Science Centers, and state-level fisheries management agencies; and (ii) using the Google search engine with search terms "stock assessment" and "Latin name of species" to identify available assessments either in the primary literature or that may not have been otherwise available through agency websites.
+In addition to confirming many of the added assessments in (2), we found 14 stock assessments meeting our criteria for a formal assessment which were not previously accounted for. Many of these were stocks managed by state agencies so did not appear in the list in (2). These 14 stocks were added to our dataset along with their year of first assessment.
+\end{enumerate}
+
+In total, after steps 1--3 we generated a list of 230 U.S. stocks, including 199 stocks with formal stock assessments that qualified under our defined criteria, and 31 which we classified as unassessed. (Later, when merging this dataset with the NOAA landings dataset, additional stocks were added to the unassessed category.) Of these 199 assessed and 31 unassessed stocks in our full dataset, 187 assessed and 28 unassessed stocks were used in our final dataset for analysis (Tables \ref{dataset},\ref{dataset_tax}; this number of unassessed stocks does not include the unassessed stocks added after merging with the NOAA landings database). The remaning 12 assessed and 3 unassessed stocks (Table \ref{dataset_missed}) were excluded from our final dataset for analysis because they either they did not have any recorded landings in the NOAA landings database, or the year of first assessment preceded the year in which landings data first began in the NOAA landings database.
+
 \begin{landscape}
 \section{Dataset}
 
@@ -675,10 +695,10 @@ print(xtable(dataset_missed %>% select(-SIS.stock.name)), hline.after = -1, only
 \FloatBarrier
 
 \section{Validation of assessment classifications}
-
+\label{sec:sis}
 In this appendix, we compare our assessment classifications with those of NOAA's Species Information System (SIS) database. 
 
-Our classification system consisted of whether or not a stock has had a formal assessment conducted, and susbequently, the year in which the first formal assessment occurred. Our definition of a formal stock assessment required the use of a population dynamics model fit to fishery landings data, coupled with some benchmark with which to compare model-estimated time series of abundance or fishing pressure (described further in the main text). These biological reference point benchmarks may have been estimated within the same assessment model or specified externally, and allow for comparing estimates of current abundance or fishing pressure relative to target levels. To determine the year of first stock assessment, we reviewed historical assessments on the websites of US Fishery Management Councils and NMFS Science Centers, and also sought the input of fishery scientists and managers within each region (Appendix 1).
+Our classification system consisted of whether or not a stock has had a formal assessment conducted, and susbequently, the year in which the first formal assessment occurred. Our definition of a formal stock assessment required the use of a population dynamics model fit to fishery landings data, coupled with some benchmark with which to compare model-estimated time series of abundance or fishing pressure (described further in the main text). These biological reference point benchmarks may have been estimated within the same assessment model or specified externally, and allow for comparing estimates of current abundance or fishing pressure relative to target levels. To determine the year of first stock assessment, we reviewed historical assessments on the websites of US Fishery Management Councils and NMFS Science Centers, and also sought the input of fishery scientists and managers within each region (Appendix \ref{sec:first_assess}).
 
 The SIS database uses a 6-level categorization of assessments [CITATION, https://www.st.nmfs.noaa.gov/sisPortal/sisPortalMain.jsp], as follows: 
 
