@@ -32,7 +32,7 @@ Actinopterygii,Elopiformes,Elopidae,Elops saurus,USEC-SE LADYFISH,,USEC-SE,reef,
 Actinopterygii,Elopiformes,Megalopidae,Megalops atlanticus,USEC-NE TARPON,,USEC-NE,reef,0.52,0.1,250,,
 Actinopterygii,Gadiformes,Gadidae,Gadus macrocephalus,BSAI Pacific cod,1987,USWC-AK,demersal,0.42,53463.25468,119,Pacific cod - Bering Sea,4
 Actinopterygii,Gadiformes,Gadidae,Gadus macrocephalus,GOA Pacific cod,1988,USWC-AK,demersal,1.08,32985.26345,119,Pacific cod - Gulf of Alaska,4
-Actinopterygii,Gadiformes,Gadidae,Gadus macrocephalus,USWC Pacific cod,no published document,USWC-48,demersal,0.58,15995.4,119,,
+Actinopterygii,Gadiformes,Gadidae,Gadus macrocephalus,"USWC-48 COD, PACIFIC",,USWC-48,demersal,0.58,15995.4,119,,
 Actinopterygii,Gadiformes,Gadidae,Gadus morhua,GeBank Atlantic cod TRAC,1977,USEC-NE,benthopelagic,0.3,3271,200,Atlantic cod - Georges Bank,4
 Actinopterygii,Gadiformes,Gadidae,Gadus morhua,GoMaine Atlantic cod,1989,USEC-NE,benthopelagic,0.42,51321.4,200,Atlantic cod - Gulf of Maine,4
 Actinopterygii,Gadiformes,Gadidae,Melanogrammus aeglefinus,GeBank haddock TRAC,1968,USEC-NE,demersal,0.18,70483.6,112,Haddock - Georges Bank,4
@@ -40,19 +40,19 @@ Actinopterygii,Gadiformes,Gadidae,Melanogrammus aeglefinus,GoMaine haddock,1982,
 Actinopterygii,Gadiformes,Gadidae,Microgadus proximus,"USWC-48 TOMCOD, PACIFIC",,USWC-48,demersal,0.49,267.6,30.5,,
 Actinopterygii,Gadiformes,Gadidae,Microgadus proximus,"USWC-AK TOMCOD, PACIFIC",,USWC-AK,demersal,0.35,0.2,30.5,,
 Actinopterygii,Gadiformes,Gadidae,Microgadus tomcod,"USEC-NE TOMCOD, ATLANTIC",,USEC-NE,demersal,0.74,1.1,38.1,,
-Actinopterygii,Gadiformes,Gadidae,Pollachius virens,GeBank/GoMaine Atlantic pollock,1978,USEC-NE,demersal,0.16,17947.3,130,Pollock - Gulf of Maine / Georges Bank,4
+Actinopterygii,Gadiformes,Gadidae,Pollachius virens,GeBank/GoMaine Atlantic pollock,1978,USEC-NE,demersal,0.17,17947.3,130,Pollock - Gulf of Maine / Georges Bank,4
 Actinopterygii,Gadiformes,Gadidae,Theragra chalcogramma,AI walleye pollock,2003,USWC-AK,benthopelagic,132.42,2003.21003,91,Walleye pollock - Aleutian Islands,4
 Actinopterygii,Gadiformes,Gadidae,Theragra chalcogramma,EBS walleye pollock,1987,USWC-AK,benthopelagic,0.18,238409.3409,91,Walleye pollock - Eastern Bering Sea,4
 Actinopterygii,Gadiformes,Gadidae,Theragra chalcogramma,GOA walleye pollock,1990,USWC-AK,benthopelagic,2.67,91572.83283,91,Walleye pollock - Western / Central / West Yakutat Gulf of Alaska,4
 Actinopterygii,Gadiformes,Gadidae,Theragra chalcogramma,"USWC-48 POLLOCK, WALLEYE",,USWC-48,benthopelagic,0.28,3911.5,91,,
 Actinopterygii,Gadiformes,Lotidae,Brosme brosme,USEC-NE CUSK,,USEC-NE,demersal,0.69,2363,120,,
 Actinopterygii,Gadiformes,Lotidae,Brosme brosme,USEC-SE CUSK,,USEC-SE,demersal,2.34,2.7,120,,
-Actinopterygii,Gadiformes,Merlucciidae,Merluccius albidus,USNE offshore hake,minimal information,USEC-NE,bathy-,1.34,118.6,40.6,Offshore hake - Northwestern Atlantic Coast,1
+Actinopterygii,Gadiformes,Merlucciidae,Merluccius albidus,"USEC-NE HAKE, OFFSHORE SILVER",,USEC-NE,bathy-,1.34,118.6,40.6,,
 Actinopterygii,Gadiformes,Merlucciidae,Merluccius bilinearis,nGeBank/GoMaine silver hake,1978,USEC-NE,demersal,0.16,23778.76665,76,Silver hake - Gulf of Maine / Northern Georges Bank,1
 Actinopterygii,Gadiformes,Merlucciidae,Merluccius bilinearis,sGeBank/midAtl silver hake,1978,USEC-NE,demersal,0.14,36850.36668,76,Silver hake - Southern Georges Bank / Mid-Atlantic,1
 Actinopterygii,Gadiformes,Merlucciidae,Merluccius productus,USWC/BC Pacific hake,1982,USWC-48,pelagic,0.06,13071.9,91,Pacific hake - Pacific Coast,4
-Actinopterygii,Gadiformes,Phycidae,Urophycis chuss,nGeBank/GoMaine red hake,only relative indices,USEC-NE,demersal,0.62,1705.7,66,Red hake - Gulf of Maine / Northern Georges Bank,1
-Actinopterygii,Gadiformes,Phycidae,Urophycis chuss,sGeBank/midAtl red hake,only relative indices,USEC-NE,demersal,0.43,3040.4,66,Red hake - Southern Georges Bank / Mid-Atlantic,1
+Actinopterygii,Gadiformes,Phycidae,Urophycis chuss,"USEC-NE HAKE, RED",,USEC-NE,demersal,0.39,4746.1,66,,
+Actinopterygii,Gadiformes,Phycidae,Urophycis chuss,"USEC-SE HAKE, RED",,USEC-SE,demersal,0.23,1.1,66,,
 Actinopterygii,Gadiformes,Phycidae,Urophycis floridana,"USEC-NE HAKE, SOUTHERN",,USEC-NE,demersal,0.64,0.3,35,,
 Actinopterygii,Gadiformes,Phycidae,Urophycis tenuis,GeBank/GoMaine white hake,1995,USEC-NE,demersal,0.36,8443.7,133,White hake - Gulf of Maine / Georges Bank,4
 Actinopterygii,Gadiformes,Phycidae,Urophycis tenuis,"USEC-SE HAKE, WHITE",,USEC-SE,demersal,0.71,3.3,133,,
@@ -62,7 +62,6 @@ Actinopterygii,Lampriformes,Lampridae,Lampris guttatus,USWC-48 OPAH,,USWC-48,bat
 Actinopterygii,Lampriformes,Trachipteridae,Trachipterus arcticus,USEC-NE DEALFISH,,USEC-NE,bathy-,1.1,41.4,300,,
 Actinopterygii,Lophiiformes,Lophiidae,Lophius americanus,nGeBank/GoMaine monkfish,2002,USEC-NE,demersal,0.83,19093.8,120,Goosefish - Gulf of Maine / Northern Georges Bank,4
 Actinopterygii,Lophiiformes,Lophiidae,Lophius americanus,sGeBank/midAtl monkfish,2002,USEC-NE,demersal,0.7,11515.9,120,Goosefish - Southern Georges Bank / Mid-Atlantic,4
-Actinopterygii,Lophiiformes,Lophiidae,Lophius americanus,USEC-SE GOOSEFISH,,USEC-SE,demersal,0.34,6.2,120,,
 Actinopterygii,Lophiiformes,Lophiidae,Lophius gastrophysus,"USEC-NE GOOSEFISH, BLACKFIN",,USEC-NE,bathy-,3.4,0.2,60,,
 Actinopterygii,Mugiliformes,Mugilidae,Mugil cephalus,East Florida striped mullet,2005,USEC-SE,benthopelagic,0.56,3214.1,100,,
 Actinopterygii,Mugiliformes,Mugilidae,Mugil cephalus,"USEC-NE MULLET, STRIPED (LIZA)",,USEC-NE,benthopelagic,0.62,90.7,100,,
@@ -90,7 +89,6 @@ Actinopterygii,Perciformes,Carangidae,Caranx latus,"USEC-SE JACK, HORSE-EYE",,US
 Actinopterygii,Perciformes,Carangidae,Caranx lugubris,"USEC-SE JACK, BLACK",,USEC-SE,benthopelagic,1.36,0.6,100,,
 Actinopterygii,Perciformes,Carangidae,Caranx ruber,"USEC-SE JACK, BAR",,USEC-SE,reef,1.96,41.8,59,,
 Actinopterygii,Perciformes,Carangidae,Elagatis bipinnulata,"USEC-SE RUNNER, RAINBOW",,USEC-SE,reef,1.5,1.8,180,,
-Actinopterygii,Perciformes,Carangidae,Naucrates ductor,USEC-NE PILOTFISH,,USEC-NE,reef,0.08,1.2,70,,
 Actinopterygii,Perciformes,Carangidae,Selar crumenophthalmus,"USEC-SE SCAD, BIGEYE",,USEC-SE,reef,11.35,180.6,70,,
 Actinopterygii,Perciformes,Carangidae,Selene setapinnis,"USEC-SE MOONFISH, ATLANTIC",,USEC-SE,benthopelagic,1.47,29.2,60,,
 Actinopterygii,Perciformes,Carangidae,Selene vomer,USEC-SE LOOKDOWN,,USEC-SE,demersal,1.29,18.9,48.3,,
@@ -126,8 +124,7 @@ Actinopterygii,Perciformes,Haemulidae,Orthopristis chrysoptera,USEC-SE PIGFISH,,
 Actinopterygii,Perciformes,Kyphosidae,Girella nigricans,USWC-48 OPALEYE,,USWC-48,benthopelagic,0.51,10.7,66,,
 Actinopterygii,Perciformes,Kyphosidae,Medialuna californiensis,USWC-48 HALFMOON,,USWC-48,demersal,0.61,22.5,48,,
 Actinopterygii,Perciformes,Labridae,Lachnolaimus maximus,East Florida hogfish,2013,USEC-SE,reef,2.98,13.4,91,Hogfish - Southeast Florida,4
-Actinopterygii,Perciformes,Labridae,Lachnolaimus maximus,Northern sAtl hogfish,2013,USEC-SE,reef,4.13,19,91,Hogfish - Carolinas,4
-Actinopterygii,Perciformes,Labridae,Lachnolaimus maximus,USEC-NE HOGFISH,,USEC-NE,reef,0.4,0.4,91,,
+Actinopterygii,Perciformes,Labridae,Lachnolaimus maximus,Northern sAtl hogfish,2013,USEC-SE,reef,4.02,19,91,Hogfish - Carolinas,4
 Actinopterygii,Perciformes,Labridae,Lachnolaimus maximus,West Florida hogfish,2013,USEC-SE,reef,2.45,53,91,Hogfish - Eastern Gulf of Mexico,4
 Actinopterygii,Perciformes,Labridae,Semicossyphus pulcher,USWC California sheephead,2004,USWC-48,reef,2.27,143.1,91,,
 Actinopterygii,Perciformes,Labridae,Tautoga onitis,USEC tautog,1996,USEC-NE,reef,0.44,524.8,91,,
@@ -139,8 +136,7 @@ Actinopterygii,Perciformes,Lutjanidae,Lutjanus analis,USSE mutton snapper,2008,U
 Actinopterygii,Perciformes,Lutjanidae,Lutjanus apodus,"USEC-SE SNAPPER, SCHOOLMASTER",,USEC-SE,reef,2.99,0.1,67.2,,
 Actinopterygii,Perciformes,Lutjanidae,Lutjanus buccanella,"USEC-SE SNAPPER, BLACKFIN",,USEC-SE,reef,4.06,6.9,75,,
 Actinopterygii,Perciformes,Lutjanidae,Lutjanus campechanus,GoMex red snapper,1988,USEC-SE,reef,1.56,6072.3,100,Red snapper - Gulf of Mexico,4
-Actinopterygii,Perciformes,Lutjanidae,Lutjanus campechanus,sAtl red snapper,1998,USEC-SE,reef,3,473,100,Red snapper - Southern Atlantic Coast,4
-Actinopterygii,Perciformes,Lutjanidae,Lutjanus campechanus,"USEC-NE SNAPPER, RED",,USEC-NE,reef,2.13,0.2,100,,
+Actinopterygii,Perciformes,Lutjanidae,Lutjanus campechanus,sAtl red snapper,1998,USEC-SE,reef,2.97,473,100,Red snapper - Southern Atlantic Coast,4
 Actinopterygii,Perciformes,Lutjanidae,Lutjanus cyanopterus,"USEC-SE SNAPPER, CUBERA",,USEC-SE,reef,3.09,5.1,160,,
 Actinopterygii,Perciformes,Lutjanidae,Lutjanus griseus,"USEC-SE SNAPPER, GRAY",,USEC-SE,reef,2.27,460.4,89,,
 Actinopterygii,Perciformes,Lutjanidae,Lutjanus jocu,"USEC-NE SNAPPER, DOG",,USEC-NE,reef,2.72,0.1,128,,
@@ -174,9 +170,8 @@ Actinopterygii,Perciformes,Pomatomidae,Pomatomus saltatrix,USEC bluefish,1994,US
 Actinopterygii,Perciformes,Pomatomidae,Pomatomus saltatrix,USEC-SE BLUEFISH,,USEC-SE,pelagic,0.48,703.6,130,,
 Actinopterygii,Perciformes,Priacanthidae,Priacanthus arenatus,USEC-SE BIGEYE,,USEC-SE,reef,1.83,4.1,50,,
 Actinopterygii,Perciformes,Rachycentridae,Rachycentron canadum,GoMex cobia,2001,USEC-SE,reef,1.2,166.6,200,Cobia - Gulf of Mexico,4
-Actinopterygii,Perciformes,Rachycentridae,Rachycentron canadum,sAtl cobia,2013,USEC-SE,reef,1.67,30.6,200,Cobia - Southern Atlantic Coast,4
-Actinopterygii,Perciformes,Rachycentridae,Rachycentron canadum,USEC-NE COBIA,,USEC-NE,reef,3.07,0.4,200,,
-Actinopterygii,Perciformes,Sciaenidae,Atractoscion nobilis,USWC California white seabass,2016,USWC-48,demersal,2.85,1552.8,166,,
+Actinopterygii,Perciformes,Rachycentridae,Rachycentron canadum,sAtl cobia,2013,USEC-SE,reef,1.65,30.8,200,Cobia - Southern Atlantic Coast,4
+Actinopterygii,Perciformes,Sciaenidae,Atractoscion nobilis,USWC California white seabass,2016,USWC-48,demersal,2.83,1554.1,166,,
 Actinopterygii,Perciformes,Sciaenidae,Cynoscion arenarius,"USEC-SE SEATROUT, SAND",,USEC-SE,demersal,0.85,1176.1,63.5,,
 Actinopterygii,Perciformes,Sciaenidae,Cynoscion nebulosus,Mississippi spotted sea trout,2016,USEC-SE,demersal,2.29,571.4,100,,
 Actinopterygii,Perciformes,Sciaenidae,Cynoscion nebulosus,"USEC-NE SEATROUT, SPOTTED",,USEC-NE,demersal,1.65,89.2,100,,
@@ -190,9 +185,8 @@ Actinopterygii,Perciformes,Sciaenidae,Micropogonias undulatus,USEC Atlantic croa
 Actinopterygii,Perciformes,Sciaenidae,Micropogonias undulatus,"USEC-SE CROAKER, ATLANTIC",,USEC-SE,demersal,1.97,18265.7,55,,
 Actinopterygii,Perciformes,Sciaenidae,Pogonias cromis,"USEC-NE DRUM, BLACK",,USEC-NE,demersal,0.66,219.8,170,,
 Actinopterygii,Perciformes,Sciaenidae,Pogonias cromis,"USEC-SE DRUM, BLACK",,USEC-SE,demersal,0.71,4877.2,170,,
-Actinopterygii,Perciformes,Sciaenidae,Sciaenops ocellatus,"USEC-NE DRUM, RED",,USEC-NE,demersal,1.21,2.3,155,,
-Actinopterygii,Perciformes,Sciaenidae,Sciaenops ocellatus,"USEC-SE DRUM, RED",,USEC-SE,demersal,1.68,6408,155,,
-Actinopterygii,Perciformes,Sciaenidae,Sciaenops ocellatus,USNE midAtl red drum,2009,USEC-NE,demersal,0.96,175.2,155,,
+Actinopterygii,Perciformes,Sciaenidae,Sciaenops ocellatus,GoMex red drum,2000,USEC-SE,demersal,1.21,6408,155,,
+Actinopterygii,Perciformes,Sciaenidae,Sciaenops ocellatus,USNE midAtl red drum,2009,USEC-NE,demersal,0.95,175.2,155,,
 Actinopterygii,Perciformes,Sciaenidae,Sciaenops ocellatus,USSE sAtl red drum,2009,USEC-SE,demersal,1.28,125,155,,
 Actinopterygii,Perciformes,Sciaenidae,Seriphus politus,USWC-48 QUEENFISH,,USWC-48,demersal,0.8,47.3,30,,
 Actinopterygii,Perciformes,Scombridae,Acanthocybium solandri,USEC-NE WAHOO,,USEC-NE,pelagic,4.19,8.9,250,,
@@ -247,10 +241,9 @@ Actinopterygii,Perciformes,Sparidae,Calamus nodosus,"USEC-SE PORGY, KNOBBED",,US
 Actinopterygii,Perciformes,Sparidae,Diplodus holbrookii,"USEC-SE PINFISH, SPOTTAIL",,USEC-SE,demersal,1.04,18.4,46,,
 Actinopterygii,Perciformes,Sparidae,Lagodon rhomboides,USEC-SE PINFISH,,USEC-SE,demersal,3.7,464.1,40,,
 Actinopterygii,Perciformes,Sparidae,Pagrus pagrus,sAtl red porgy,1992,USEC-SE,benthopelagic,2.4,349.9,91,Red porgy - Southern Atlantic Coast,4
-Actinopterygii,Perciformes,Sparidae,Pagrus pagrus,"USEC-NE PORGY, RED",,USEC-NE,benthopelagic,1.6,8.7,91,,
 Actinopterygii,Perciformes,Sparidae,Pagrus pagrus,"USEC-SE PORGY, RED",,USEC-SE,benthopelagic,2.24,176.4,91,,
 Actinopterygii,Perciformes,Sparidae,Stenotomus caprinus,"USEC-SE PORGY, LONGSPINE",,USEC-SE,demersal,2.58,0.2,30,,
-Actinopterygii,Perciformes,Sparidae,Stenotomus chrysops,USNE scup,1995,USEC-NE,demersal,1.07,166.5,46,Scup - Atlantic Coast,4
+Actinopterygii,Perciformes,Sparidae,Stenotomus chrysops,USNE scup,1995,USEC-NE,demersal,1.11,166.5,46,Scup - Atlantic Coast,4
 Actinopterygii,Perciformes,Stichaeidae,Cebidichthys violaceus,"USWC-48 PRICKLEBACK, MONKEYFACE",,USWC-48,demersal,6.02,0.4,76,,
 Actinopterygii,Perciformes,Stromateidae,Peprilus alepidotus,USEC-NE HARVESTFISH,,USEC-NE,benthopelagic,1.29,244.1,30,,
 Actinopterygii,Perciformes,Stromateidae,Peprilus alepidotus,USEC-SE HARVESTFISH,,USEC-SE,benthopelagic,0.99,332.6,30,,
@@ -258,13 +251,11 @@ Actinopterygii,Perciformes,Stromateidae,Peprilus simillimus,"USWC-48 POMPANO, PA
 Actinopterygii,Perciformes,Stromateidae,Peprilus triacanthus,USNE butterfish,1983,USEC-NE,benthopelagic,0.36,8956.3,30,Butterfish - Gulf of Maine / Cape Hatteras,5
 Actinopterygii,Perciformes,Trichiuridae,Trichiurus lepturus,"USEC-SE CUTLASSFISH, ATLANTIC",,USEC-SE,benthopelagic,1.98,375.1,234,,
 Actinopterygii,Perciformes,Uranoscopidae,Astroscopus guttatus,"USEC-NE STARGAZER, NOTHERN",,USEC-NE,demersal,0.79,0.3,59,,
-Actinopterygii,Perciformes,Zoarcidae,Macrozoarces americanus,"USEC-NE POUT, OCEAN",,USEC-NE,demersal,0.93,0.9,110,,
-Actinopterygii,Perciformes,Zoarcidae,Zoarces americanus,USNE ocean pout,only relative indices,USEC-NE,demersal,0.36,2194.6,110,Ocean pout - Northwestern Atlantic Coast,1
+Actinopterygii,Perciformes,Zoarcidae,Macrozoarces americanus,"USEC-NE POUT, OCEAN",,USEC-NE,demersal,0.36,2194.6,110,,
 Actinopterygii,Pleuronectiformes,Achiridae,Trinectes maculatus,USEC-NE HOGCHOKER,,USEC-NE,demersal,0.12,8.9,20,,
 Actinopterygii,Pleuronectiformes,Cynoglossidae,Paraplagusia bilineata,"USWC-48 SOLE, ROCK",,USWC-48,demersal,0.85,244,30,,
 Actinopterygii,Pleuronectiformes,Paralichthyidae,Citharichthys sordidus,Pacific sanddab - Pacific Coast,2013,USWC-48,demersal,0.56,1269.4,41,Pacific sanddab - Pacific Coast,4
 Actinopterygii,Pleuronectiformes,Paralichthyidae,Paralichthys californicus,"USWC-48 HALIBUT, CALIFORNIA",,USWC-48,demersal,3.75,606.7,152,,
-Actinopterygii,Pleuronectiformes,Paralichthyidae,Paralichthys dentatus,"USEC-SE FLOUNDER, SUMMER",,USEC-SE,demersal,4.35,12.8,94,,
 Actinopterygii,Pleuronectiformes,Paralichthyidae,Paralichthys dentatus,USNE summer flounder,1990,USEC-NE,demersal,1.11,18077.6,94,Summer flounder - Mid-Atlantic Coast,4
 Actinopterygii,Pleuronectiformes,Paralichthyidae,Paralichthys lethostigma,North Carolina southern flounder,2009,USEC-SE,demersal,3.1,2213,83,,
 Actinopterygii,Pleuronectiformes,Paralichthyidae,Paralichthys lethostigma,"USEC-NE FLOUNDER, SOUTHERN",,USEC-NE,demersal,4.67,0.7,83,,
@@ -282,11 +273,9 @@ Actinopterygii,Pleuronectiformes,Pleuronectidae,Glyptocephalus zachirus,Rex sole
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossoides elassodon,BSAI flathead sole,1998,USWC-AK,demersal,0.3,17020.64384,52,Flathead sole - Bering Sea / Aleutian Islands,5
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossoides elassodon,GOA flathead sole,2003,USWC-AK,demersal,1.46,2556.456163,52,Flathead sole - Gulf of Alaska,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossoides elassodon,"USWC-48 SOLE, FLATHEAD",,USWC-48,demersal,0.71,35.5,52,,
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossoides platessoides,GeBank/GoMaine American plaice,1992,USEC-NE,demersal,0.73,15128.4,82.6,American plaice - Gulf of Maine / Georges Bank,4
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossus hippoglossus,GeBank/GoMaine Atlantic halibut,2008,USEC-NE,demersal,3.58,242.7,470,Atlantic halibut - Northwestern Atlantic Coast,3
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossus hippoglossus,"USEC-NE HALIBUT, ATLANTIC",,USEC-NE,demersal,3.44,4.7,470,,
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossus stenolepis,Pacific halibut (coastwide),1960,USWC-AK,demersal,0.33,27498.5,258,Pacific halibut - Pacific Coast / Alaska,4
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossus stenolepis,"USWC-48 HALIBUT, PACIFIC",,USWC-48,demersal,2.08,109.8,258,,
+Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossoides platessoides,GeBank/GoMaine American plaice,1992,USEC-NE,demersal,0.69,15131.9,82.6,American plaice - Gulf of Maine / Georges Bank,4
+Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossus hippoglossus,GeBank/GoMaine Atlantic halibut,2008,USEC-NE,demersal,3.31,243.8,470,Atlantic halibut - Northwestern Atlantic Coast,3
+Actinopterygii,Pleuronectiformes,Pleuronectidae,Hippoglossus stenolepis,Pacific halibut (coastwide),1960,USWC-AK,demersal,0.37,27539.6,258,Pacific halibut - Pacific Coast / Alaska,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Isopsetta isolepis,"USWC-48 SOLE, BUTTER",,USWC-48,demersal,0.72,43.6,55,,
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Lepidopsetta bilineata,GOA southern rock sole,2012,USWC-AK,demersal,20.84,1266.510964,58,Rock sole - Gulf of Alaska,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Lepidopsetta polyxystra,BSAI northern rock sole,1992,USWC-AK,demersal,0.3,42707.78802,69,Northern rock sole - Bering Sea / Aleutian Islands,4
@@ -294,8 +283,7 @@ Actinopterygii,Pleuronectiformes,Pleuronectidae,Lepidopsetta polyxystra,GOA nort
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Limanda aspera,BSAI yellowfin sole,1987,USWC-AK,demersal,0.44,32.9,49,Yellowfin sole - Bering Sea / Aleutian Islands,5
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Limanda ferruginea,CCod/GoMaine yellowtail flounder,1999,USEC-NE,demersal,1.81,10733.66666,64,Yellowtail flounder - Cape Cod / Gulf of Maine,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Limanda ferruginea,GeBank yellowtail flounder TRAC,1989,USEC-NE,demersal,1.85,12602.06666,64,Yellowtail flounder - Georges Bank,4
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Limanda ferruginea,sNEng/midAtl yellowtail flounder,1989,USEC-NE,demersal,0.99,14791.36666,64,Yellowtail flounder - Southern New England / Mid-Atlantic,4
-Actinopterygii,Pleuronectiformes,Pleuronectidae,Limanda ferruginea,"USEC-SE FLOUNDER, YELLOWTAIL",,USEC-SE,demersal,0.93,17.2,64,,
+Actinopterygii,Pleuronectiformes,Pleuronectidae,Limanda ferruginea,sNEng/midAtl yellowtail flounder,1989,USEC-NE,demersal,0.97,14791.36666,64,Yellowtail flounder - Southern New England / Mid-Atlantic,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Microstomus bathybius,"USWC-48 SOLE, DEEPSEA",,USWC-48,bathy-,1.13,0.1,47,,
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Microstomus pacificus,GOA dover sole,2003,USWC-AK,demersal,0.26,2221.5,76,Dover sole - Gulf of Alaska,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Microstomus pacificus,USWC dover sole,1984,USWC-48,demersal,0.24,20944.3,76,Dover sole - Pacific Coast,4
@@ -315,8 +303,7 @@ Actinopterygii,Pleuronectiformes,Pleuronectidae,Pseudopleuronectes americanus,Go
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Pseudopleuronectes americanus,sNEng/midAtl winter flounder,1996,USEC-NE,demersal,1.22,9244.871432,64,Winter flounder - Southern New England / Mid-Atlantic,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Reinhardtius hippoglossoides,BSAI Greenland halibut,1987,USWC-AK,benthopelagic,0.49,8544.1,80,Greenland halibut - Bering Sea / Aleutian Islands,4
 Actinopterygii,Pleuronectiformes,Pleuronectidae,Reinhardtius hippoglossoides,"USEC-NE HALIBUT, GREENLAND",,USEC-NE,benthopelagic,2.21,10.6,80,,
-Actinopterygii,Pleuronectiformes,Scophthalmidae,Scophthalmus aquosus,GeBank/GoMaine windowpane flounder,only relative indices,USEC-NE,demersal,1.34,1829.4,45.7,Windowpane - Gulf of Maine / Georges Bank,1
-Actinopterygii,Pleuronectiformes,Scophthalmidae,Scophthalmus aquosus,sNEng/midAtl windowpane flounder,only relative indices,USEC-NE,demersal,0.9,2377.1,45.7,Windowpane - Southern New England / Mid-Atlantic,1
+Actinopterygii,Pleuronectiformes,Scophthalmidae,Scophthalmus aquosus,"USEC-NE FLOUNDER, WINDOWPANE",,USEC-NE,demersal,0.76,4206.5,45.7,,
 Actinopterygii,Scorpaeniformes,Anoplopomatidae,Anoplopoma fimbria,Alaska sablefish,1987,USWC-AK,bathy-,0.57,33959.6,120,Sablefish - Eastern Bering Sea / Aleutian Islands / Gulf of Alaska,4
 Actinopterygii,Scorpaeniformes,Anoplopomatidae,Anoplopoma fimbria,USWC sablefish,1984,USWC-48,bathy-,0.3,23554.8,120,Sablefish - Pacific Coast,4
 Actinopterygii,Scorpaeniformes,Cottidae,Scorpaenichthys marmoratus,USWC cabezon (nCal),2003,USWC-48,demersal,2.44,148.575,99,Cabezon - Northern Pacific Coast,4
@@ -331,7 +318,6 @@ Actinopterygii,Scorpaeniformes,Hexagrammidae,Ophiodon elongatus,USWC-AK LINGCOD,
 Actinopterygii,Scorpaeniformes,Hexagrammidae,Ophiodon elongatus,USWC lingcod (northern),1994,USWC-48,demersal,0.35,3570.4,152,Lingcod - Pacific Coast,4
 Actinopterygii,Scorpaeniformes,Hexagrammidae,Ophiodon elongatus,USWC lingcod (southern),1999,USWC-48,demersal,0.51,1734.4,152,Lingcod - Pacific Coast,4
 Actinopterygii,Scorpaeniformes,Hexagrammidae,Pleurogrammus monopterygius,BSAI atka mackerel,1986,USWC-AK,demersal,0.43,30.37877561,56.5,Atka mackerel - Bering Sea / Aleutian Islands,4
-Actinopterygii,Scorpaeniformes,Hexagrammidae,Pleurogrammus monopterygius,GOA atka mackerel,only relative indices,USWC-AK,demersal,9,2586.212376,56.5,Atka mackerel - Gulf of Alaska,1
 Actinopterygii,Scorpaeniformes,Scorpaenidae,Neomerinthe hemingwayi,"USEC-SE SCORPIONFISH, SPINYCHEEK",,USEC-SE,demersal,2.41,0.7,40,,
 Actinopterygii,Scorpaeniformes,Scorpaenidae,Pterois volitans,USEC-SE LIONFISH,,USEC-SE,reef,9,6.3,38,,
 Actinopterygii,Scorpaeniformes,Scorpaenidae,Scorpaena guttata,USWC California scorpionfish (southern),2005,USWC-48,demersal,3.48,1872.8,43,California scorpionfish - Southern California,4
@@ -350,7 +336,6 @@ Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes aurora,Aurora rockfish - Paci
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes babcocki,"USWC-48 ROCKFISH, REDBANDED",,USWC-48,demersal,2.32,4.6,64,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes babcocki,"USWC-AK ROCKFISH, REDBANDED",,USWC-AK,demersal,0.63,43.5,64,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes borealis,BSAI shortraker rockfish,2003,USWC-AK,bathy-,18.17,888.9878799,108,Shortraker rockfish - Bering Sea / Aleutian Islands,3
-Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes borealis,GOA shortraker rockfish,only relative indices,USWC-AK,bathy-,14.15,1251.947441,108,Shortraker rockfish - Gulf of Alaska,3
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes brevispinis,"USWC-AK ROCKFISH, SILVERGRAY",,USWC-AK,demersal,0.65,23.3,71,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes carnatus,USWC gopher rockfish,2005,USWC-48,demersal,6.2,53.7,39,Gopher rockfish - Northern California,4
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes caurinus,Copper rockfish - Pacific Coast,2013,USWC-48,demersal,4.75,64.8,58,Copper rockfish - Pacific Coast,3
@@ -368,15 +353,13 @@ Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes elongatus,USWC greenstriped r
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes ensifer,"USWC-48 ROCKFISH, SWORDSPINE",,USWC-48,demersal,1.92,0.1,30,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes entomelas,"USWC-AK ROCKFISH, WIDOW",,USWC-AK,pelagic,0.56,9.8,60,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes entomelas,USWC widow rockfish,1983,USWC-48,pelagic,0.35,10276,60,Widow rockfish - Pacific Coast,4
-Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes fasciatus,GeBank/GoMaine Acadian redfish,1975,USEC-NE,demersal,0.1,117169.8,30,Acadian redfish - Gulf of Maine / Georges Bank,4
-Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes fasciatus,"USEC-SE REDFISH, ACADIAN",,USEC-SE,demersal,0.84,2.8,30,,
+Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes fasciatus,GeBank/GoMaine Acadian redfish,1975,USEC-NE,demersal,0.11,117173.2,30,Acadian redfish - Gulf of Maine / Georges Bank,4
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes flavidus,"USWC-AK ROCKFISH, YELLOWTAIL",,USWC-AK,reef,0.66,24.8,66,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes flavidus,USWC yellowtail rockfish (northern),1984,USWC-48,reef,0.65,219.5,66,Yellowtail rockfish - Northern Pacific Coast,3
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes gilli,"USWC-48 ROCKFISH, BRONZESPOTTED",,USWC-48,demersal,3.04,0.1,71,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes goodei,USWC chilipepper (southern),1985,USWC-48,demersal,0.69,31.4,56,Chilipepper - Southern Pacific Coast,4
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes hopkinsi,"USWC-48 ROCKFISH, SQUARESPOT",,USWC-48,reef,4.19,0.6,29,,
-Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes jordani,"USWC-48 ROCKFISH, SHORTBELLY",,USWC-48,demersal,0.57,15.5,32,,
-Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes jordani,USWC shortbelly rockfish,2007,USWC-48,demersal,0.34,27.9,32,Shortbelly rockfish - Pacific Coast,4
+Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes jordani,USWC shortbelly rockfish,2007,USWC-48,demersal,0.31,27.9,32,Shortbelly rockfish - Pacific Coast,4
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes levis,USWC cowcod,1999,USWC-48,bathy-,2.07,62.6,100,Cowcod - Southern California,3
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes melanops,"USWC-AK ROCKFISH, BLACK",,USWC-AK,reef,0.69,517.5,63,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes melanops,USWC black rockfish (Oregon),2016,USWC-48,reef,2.66,197.4,63,Black rockfish - Oregon,4
@@ -401,7 +384,7 @@ Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes rastrelliger,"USWC-48 ROCKFIS
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes reedi,"USWC-AK ROCKFISH, YELLOWMOUTH",,USWC-AK,bathy-,0.8,0.6,58,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes rosaceus,"USWC-48 ROCKFISH, ROSY",,USWC-48,demersal,3.17,3.9,36,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes rosenblatti,"USWC-48 ROCKFISH, GREENBLOTCHED",,USWC-48,demersal,3.91,0.9,48,,
-Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes ruberrimus,GOA yelloweye rockfish,only relative indices,USWC-AK,reef,1.36,992.7,104,Yelloweye rockfish - Gulf of Alaska,3
+Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes ruberrimus,"USWC-AK ROCKFISH, YELLOWEYE",,USWC-AK,reef,1.36,992.7,104,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes ruberrimus,USWC yelloweye rockfish,2001,USWC-48,reef,2.04,343.5,104,Yelloweye rockfish - Pacific Coast,4
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes rubrivinctus,"USWC-48 ROCKFISH, FLAG",,USWC-48,demersal,4.83,0.9,51,,
 Actinopterygii,Scorpaeniformes,Sebastidae,Sebastes rufus,"USWC-48 ROCKFISH, BANK",,USWC-48,demersal,1.24,204.9,54,,
@@ -446,12 +429,7 @@ Bivalvia,Ostreoida,Pectinidae,Argopecten gibbus,"USEC-SE SCALLOP, CALICO",,USEC-
 Bivalvia,Ostreoida,Pectinidae,Argopecten irradians,"USEC-NE SCALLOP, BAY",,USEC-NE,benthic,17.01,1260,7.5,,
 Bivalvia,Ostreoida,Pectinidae,Argopecten irradians,"USEC-SE SCALLOP, BAY",,USEC-SE,benthic,4.17,354.4,7.5,,
 Bivalvia,Ostreoida,Pectinidae,Chlamys islandica,"USEC-NE SCALLOP, ICELAND",,USEC-NE,benthic,8.87,191.3,11,,
-Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,Alaska scallop Bering Sea,only relative indices,USWC-AK,benthic,96.61,69.82570941,28,Weathervane scallop - Alaska,1
-Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,Alaska scallop Kodiak NE,only relative indices,USWC-AK,benthic,45.52,148.1921859,28,Weathervane scallop - Alaska,1
-Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,Alaska scallop Kodiak Shelikof,only relative indices,USWC-AK,benthic,25.75,261.9162328,28,Weathervane scallop - Alaska,1
-Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,Alaska scallop PWS,only relative indices,USWC-AK,benthic,91.01,74.1166742,28,Weathervane scallop - Alaska,1
-Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,Alaska scallop Yakutat Area D,only relative indices,USWC-AK,benthic,24.58,274.4848299,28,Weathervane scallop - Alaska,1
-Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,Alaska scallop Yakutat Dist 16,only relative indices,USWC-AK,benthic,241.22,27.96436784,28,Weathervane scallop - Alaska,1
+Bivalvia,Ostreoida,Pectinidae,Patinopecten caurinus,"USWC-AK SCALLOP, WEATHERVANE",,USWC-AK,benthic,7.88,856.5,28,,
 Bivalvia,Ostreoida,Pectinidae,Placopecten magellanicus,GeBank/midAtl sea scallop,1978,USEC-NE,benthic,2.02,14587.3,20,Sea scallop - Northwestern Atlantic Coast,4
 Bivalvia,Ostreoida,Pectinidae,Placopecten magellanicus,"USWC-AK SCALLOP, SEA",,USWC-AK,benthic,20.24,218.3,20,,
 Bivalvia,Veneroida,Arcticidae,Arctica islandica,USEC ocean quahog,1978,USEC-NE,benthic,0.33,10348.8,12.7,Ocean quahog - Atlantic Coast,4
@@ -483,9 +461,6 @@ Cephalopoda,Teuthida,Loliginidae,Loligo opalescens,USWC market squid,2001,USWC-4
 Cephalopoda,Teuthida,Loliginidae,Loligo pealeii,USNE longfin inshore squid,1976,USEC-NE,pelagic,0.36,140.8,50,Longfin inshore squid - Georges Bank / Cape Hatteras,1
 Cephalopoda,Teuthida,Ommastrephidae,Dosidicus gigas,"USWC-AK SQUID, JUMBO",,USWC-AK,pelagic,0.07,2160,400,,
 Cephalopoda,Teuthida,Ommastrephidae,Illex illecebrosus,USNE northern shortfin squid,1986,USEC-NE,pelagic,0.48,3605.3,27,Northern shortfin squid - Northwestern Atlantic Coast,2
-Echinoidea,Echinoida,Strongylocentrotidae,Strongylocentrotus droebachiensis,WA green sea urchin,no published document,USWC-48,benthic,2.1,2851.509328,10,,
-Echinoidea,Echinoida,Strongylocentrotidae,Strongylocentrotus franciscanus,CA red sea urchin,minimal information,USWC-48,benthic,1.12,23570.8,19,,
-Echinoidea,Echinoida,Strongylocentrotidae,Strongylocentrotus franciscanus,OR red sea urchin,only relative indices,USWC-48,benthic,1.13,4227.9,19,,
 Echinoidea,Echinoida,Strongylocentrotidae,Strongylocentrotus franciscanus,SE Alaska red sea urchin,1990,USWC-AK,benthic,0.8,343.6,19,,
 Echinoidea,Echinoida,Strongylocentrotidae,Strongylocentrotus franciscanus,WA red sea urchin,1994,USWC-48,benthic,1.97,1634.790672,19,,
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus acronotus,sAtl blacknose shark,2002,USEC-SE,reef,0.96,99.8,200,Blacknose shark - Atlantic,4
@@ -494,7 +469,6 @@ Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus altimus,"USEC-NE SH
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus brevipinna,"USEC-SE SHARK, SPINNER",,USEC-SE,reef,0.85,40.5,300,,
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus falciformis,"USEC-NE SHARK, SILKY",,USEC-NE,reef,0.69,1.5,350,,
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus falciformis,"USEC-SE SHARK, SILKY",,USEC-SE,reef,1.37,11,350,,
-Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus isodon,"USEC-NE SHARK, FINETOOTH",,USEC-NE,demersal,9.46,6.2,190,,
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus isodon,USSE finetooth shark,2002,USEC-SE,demersal,0.85,168.2,190,Finetooth shark - Atlantic and Gulf of Mexico,3
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus leucas,"USEC-NE SHARK, BULL",,USEC-NE,reef,1.11,4.6,360,,
 Elasmobranchii,Carcharhiniformes,Carcharhinidae,Carcharhinus leucas,"USEC-SE SHARK, BULL",,USEC-SE,reef,0.81,135.6,360,,
@@ -526,9 +500,7 @@ Elasmobranchii,Lamniformes,Odontaspididae,Carcharias taurus,"USEC-SE SHARK, SAND
 Elasmobranchii,Myliobatiformes,Myliobatidae,Rhinoptera bonasus,"USEC-NE RAY,COWNOSE",,USEC-NE,benthopelagic,3.9,80.3,213.3,,
 Elasmobranchii,Orectolobiformes,Ginglymostomatidae,Ginglymostoma cirratum,"USEC-NE SHARK, NURSE",,USEC-NE,reef,1.2,0.8,430,,
 Elasmobranchii,Pristiformes,Pristidae,Pristis pectinata,"USEC-SE SAWFISH, SMALLTOOTH",,USEC-SE,demersal,0.14,9.4,760,,
-Elasmobranchii,Rajiformes,Rajidae,Amblyraja radiata,USNE thorny skate,only relative indices,USEC-NE,demersal,0.87,12611.01165,105,Thorny skate - Gulf of Maine,1
-Elasmobranchii,Rajiformes,Rajidae,Leucoraja erinacea,USNE little skate,only relative indices,USEC-NE,demersal,0.26,5007.3,54,Little skate - Georges Bank / Southern New England,1
-Elasmobranchii,Rajiformes,Rajidae,Malacoraja senta,USNE smooth skate,only relative indices,USEC-NE,bathy-,12.39,886.4883461,61,Smooth skate - Gulf of Maine,1
+Elasmobranchii,Rajiformes,Rajidae,Leucoraja erinacea,"USEC-NE SKATE, LITTLE",,USEC-NE,demersal,0.26,5007.3,54,,
 Elasmobranchii,Rajiformes,Rajidae,Raja binoculata,"USWC-48 SKATE, BIG",,USWC-48,demersal,0.66,20.5,244,,
 Elasmobranchii,Rajiformes,Rajidae,Raja inornata,"USWC-48 SKATE, CALIFORNIA",,USWC-48,demersal,0.59,1.2,76,,
 Elasmobranchii,Rajiformes,Rajidae,Raja rhina,USWC longnose skate,2007,USWC-48,bathy-,0.22,2521.2,180,Longnose skate - Pacific Coast,4
@@ -544,10 +516,8 @@ Gastropoda,Neogastropoda,Melongenidae,Busycotypus canaliculatus,"USEC-NE WHELK, 
 Holocephali,Chimaeriformes,Chimaeridae,Hydrolagus colliei,USWC-48 RATFISH SPOTTED,,USWC-48,demersal,0.24,1296.9,100,,
 Malacostraca,Decapoda,Cancridae,Cancer borealis,"USEC-NE CRAB, JONAH",,USEC-NE,demersal,1.32,6928.9,16,,
 Malacostraca,Decapoda,Cancridae,Cancer irroratus,"USEC-NE CRAB, ATLANTIC ROCK",,USEC-NE,demersal,0.65,2178.1,13.3,,
-Malacostraca,Decapoda,Cancridae,Cancer magister,CA dungeness crab,no published document,USWC-48,benthic,2.37,15262.5,22.5,,
-Malacostraca,Decapoda,Cancridae,Cancer magister,OR dungeness crab,no published document,USWC-48,benthic,2.25,15099.7,22.5,,
-Malacostraca,Decapoda,Cancridae,Cancer magister,SE Alaska dungeness crab,only relative indices,USWC-AK,benthic,1.9,7114.7,22.5,,
-Malacostraca,Decapoda,Cancridae,Cancer magister,WA dungeness crab,no published document,USWC-48,benthic,2.34,15439,22.5,,
+Malacostraca,Decapoda,Cancridae,Cancer magister,"USWC-48 CRAB, DUNGENESS",,USWC-48,demersal,2.32,38563.9,22.5,,
+Malacostraca,Decapoda,Cancridae,Cancer magister,"USWC-AK CRAB, DUNGENESS",,USWC-AK,demersal,1.9,7114.7,22.5,,
 Malacostraca,Decapoda,Cancridae,Cancer productus,"USWC-48 CRAB, RED ROCK",,USWC-48,benthic,1.43,874.8,20,,
 Malacostraca,Decapoda,Geryonidae,Chaceon fenneri,"USEC-SE CRAB, DEEPSEA GOLDEN",,USEC-SE,benthic,3.25,758.7,18.5,,
 Malacostraca,Decapoda,Geryonidae,Chaceon quinquedens,USNE deep sea red crab,1977,USEC-NE,benthic,0.63,664.7,18,Red deepsea crab - Northwestern Atlantic,1
@@ -566,10 +536,8 @@ Malacostraca,Decapoda,Oregoniidae,Chionoecetes bairdi,"USWC-48 CRAB, SOUTHERN TA
 Malacostraca,Decapoda,Oregoniidae,Chionoecetes opilio,EBS snow crab,2000,USWC-AK,benthic,1.73,147502.1,9.1,Snow crab - Bering Sea,4
 Malacostraca,Decapoda,Palinuridae,Panulirus argus,"USEC-SE LOBSTER, CARIBBEAN SPINY",,USEC-SE,demersal,5.63,5357.8,45,,
 Malacostraca,Decapoda,Palinuridae,Panulirus interruptus,CA spiny lobster,2011,USWC-48,benthic,9.31,423.4,60,,
-Malacostraca,Decapoda,Pandalidae,Pandalus jordani,OR ocean shrimp,only relative indices,USWC-48,benthic,0.71,25703.6,3,,
-Malacostraca,Decapoda,Pandalidae,Pandalus jordani,"USWC-48 SHRIMP, OCEAN",,USWC-48,benthic,0.71,8474.4,3,,
+Malacostraca,Decapoda,Pandalidae,Pandalus jordani,"USWC-48 SHRIMP, OCEAN",,USWC-48,benthic,0.68,37565.8,3,,
 Malacostraca,Decapoda,Pandalidae,Pandalus jordani,"USWC-AK SHRIMP, OCEAN",,USWC-AK,benthic,0.1,19086,3,,
-Malacostraca,Decapoda,Pandalidae,Pandalus jordani,WA pink shrimp,no published document,USWC-48,benthic,0.7,8267.1,3,,
 Malacostraca,Decapoda,Pandalidae,Pandalus platyceros,"USWC-48 SHRIMP, SPOT",,USWC-48,benthic,14.47,374.9,30,,
 Malacostraca,Decapoda,Penaeidae,Farfantepenaeus aztecus,"USEC-NE SHRIMP, BROWN",,USEC-NE,benthic,6.08,3.1,19.5,,
 Malacostraca,Decapoda,Penaeidae,Farfantepenaeus aztecus,"USEC-SE SHRIMP, BROWN",,USEC-SE,benthic,4.45,7414.1,19.5,,
@@ -594,4 +562,3 @@ Malacostraca,Decapoda,Solenoceridae,Pleoticus robustus,"USEC-NE SHRIMP, ROYAL RE
 Malacostraca,Decapoda,Solenoceridae,Pleoticus robustus,"USEC-SE SHRIMP, ROYAL RED",,USEC-SE,demersal,3.51,588.3,18,,
 Malacostraca,Decapoda,Upogebiidae,Upogebia pugettensis,"USWC-48 SHRIMP, BLUE MUD",,USWC-48,demersal,2.64,25.4,15,,
 Merostomata,Xiphosura,Limulidae,Limulus polyphemus,Delaware Bay horseshoe crab,1998,USEC-NE,benthic,0.23,3100.5,60,,
-Merostomata,Xiphosura,Limulidae,Limulus polyphemus,"USEC-SE CRAB, HORSESHOE",,USEC-SE,benthic,0.44,134.2,60,,

@@ -681,9 +681,9 @@ print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after 
 \begin{tabular}{lrr}
 Stock & Assessment year & SIS class  \\
 <<results="asis">>=
-dataset_missed <- read.csv('dataset_missed_SIS.csv')
+dataset_missed <- read.csv('dataset_missed_SIS.csv',stringsAsFactors = F)
 #dataset$Stock <- dataset$Stock)
-print(xtable(dataset_missed %>% select(-SIS.stock.name)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+print(xtable(dataset_missed %>% select(-SIS.stock.name) %>% filter(!is.na(as.numeric(Year.of.first.stock.assessment)))), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
 @
 \end{tabular}
 \end{table}

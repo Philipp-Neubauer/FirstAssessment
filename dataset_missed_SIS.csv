@@ -1,14 +1,42 @@
 Stock.name,Year.of.first.stock.assessment,SIS stock name,SIS assessment level
+GeBank/GoMaine windowpane flounder,only relative indices,Windowpane - Gulf of Maine / Georges Bank,1
 GoMaine northern shrimp,1997,,
+nGeBank/GoMaine red hake,only relative indices,Red hake - Gulf of Maine / Northern Georges Bank,1
+sGeBank/midAtl red hake,only relative indices,Red hake - Southern Georges Bank / Mid-Atlantic,1
+sNEng/midAtl windowpane flounder,only relative indices,Windowpane - Southern New England / Mid-Atlantic,1
 USNE barndoor skate,only relative indices,Barndoor skate - Georges Bank / Southern New England,1
+USNE little skate,only relative indices,Little skate - Georges Bank / Southern New England,1
+USNE ocean pout,only relative indices,Ocean pout - Northwestern Atlantic Coast,1
+USNE offshore hake,minimal information,Offshore hake - Northwestern Atlantic Coast,1
+USNE smooth skate,only relative indices,Smooth skate - Gulf of Maine,1
+USNE thorny skate,only relative indices,Thorny skate - Gulf of Maine,1
 USNE winter skate,only relative indices,Winter skate - Georges Bank / Southern New England,1
 USSE scalloped hammerhead shark,2009,Scalloped hammerhead - Atlantic,3
 GoMex king mackerel,1983,King mackerel - Gulf of Mexico,4
 sAtl king mackerel,1983,King mackerel - Southern Atlantic Coast,4
+CA dungeness crab,no published document,,
+CA red sea urchin,minimal information,,
+OR dungeness crab,no published document,,
+OR ocean shrimp,only relative indices,,
+OR red sea urchin,only relative indices,,
 USWC black rockfish (northern),1994,Black rockfish - Washington,4
 USWC longspine thornyhead,1990,Longspine thornyhead - Pacific Coast,4
+USWC Pacific cod,no published document,,
+WA dungeness crab,no published document,,
+WA green sea urchin,no published document,,
+WA pink shrimp,no published document,,
 AI golden king crab,minimal information,Golden king crab - Aleutian Islands,1
+Alaska scallop Bering Sea,only relative indices,Weathervane scallop - Alaska,1
+Alaska scallop Kodiak NE,only relative indices,Weathervane scallop - Alaska,1
+Alaska scallop Kodiak Shelikof,only relative indices,Weathervane scallop - Alaska,1
+Alaska scallop PWS,only relative indices,Weathervane scallop - Alaska,1
+Alaska scallop Yakutat Area D,only relative indices,Weathervane scallop - Alaska,1
+Alaska scallop Yakutat Dist 16,only relative indices,Weathervane scallop - Alaska,1
+GOA atka mackerel,only relative indices,Atka mackerel - Gulf of Alaska,1
+GOA shortraker rockfish,only relative indices,Shortraker rockfish - Gulf of Alaska,3
 GOA shortspine thornyhead,1995,Shortspine thornyhead - Gulf of Alaska,3
+GOA yelloweye rockfish,only relative indices,Yelloweye rockfish - Gulf of Alaska,3
+SE Alaska dungeness crab,only relative indices,,
 SE Alaska sea cucumber,1990,,
 SE Alaska spot shrimp,1996,,
 Sharpchin rockfish - Pacific Coast,2013,Sharpchin rockfish - Pacific Coast,3
