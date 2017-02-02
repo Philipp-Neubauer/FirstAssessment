@@ -18,7 +18,7 @@ DB <- '~/Dropbox'
 require(dplyr)
 require(ggplot2)
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v9 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
@@ -54,11 +54,10 @@ land.price <- read.csv(file.path(DB,'First year of assessment/landings-price.csv
          !grepl('DOLLY VARDEN',Species,ignore.case = T),
          !(Species %in% spec.ref$AFS_NAME[!spec.ref$exclude=='']),
          State != "At-Sea Process, Pac.",
-         State != 'Hawaii') 
-
-land.price$Price <- as.numeric(gsub(',','',land.price[['Price']]))
-
-land.price$Metric.Tons <- as.numeric(gsub(',','',land.price[['Metric.Tons']]))
+         State != 'Hawaii') %>%
+  mutate(Price  = as.numeric(gsub(',','',Price)),
+         Metric.Tons = as.numeric(gsub(',','',Metric.Tons))) %>%
+  filter(!Metric.Tons <0)
 
 @
 
@@ -139,8 +138,8 @@ land.price[,prop.cols] <- apply(land.price[,prop.cols],2,as.numeric)
 Stocks were defined as region-species/group, with landings and price totalled over the region.
 
 <<results='hide',cache=TRUE>>=
-
 require(data.table)
+require(dtplyr)
 
 l = 84145
 stock.landings <- data.table(year = rep(1,l),
@@ -313,7 +312,7 @@ year.table <- full.tab.model %>%
 
 To get taxonomy and habitat info for unassessed stocks (ie, those not in Mike's DB), taxise and rfishbase goes most of the way.
 
-<<results='hide',cache=T,warning=FALSE,comment=>>=
+<<results='hide',cache=T,warning=FALSE>>=
 
 # get habitat and taxonomy from fishbase and other DBs
 require(rfishbase)
@@ -437,6 +436,10 @@ year.table$lengths[is.na(year.table$lengths)] <- c(13.3,12,40,12,13,7.5,8,8,8)
 
 #year.table <- year.table %>% filter(!is.na(lengths))
 
+# check
+stopifnot(!any(year.table %>% group_by(mainregion,species) %>% filter(is.na(Year.of.first.stock.assessment)) %>% summarise(n=n()>1) %>% .$n))
+
+
 @
 
 \section{Simple Bayesian Weibull survival model}
@@ -477,8 +480,8 @@ afs <- function(x) as.numeric(as.factor(x))
 hab <- with(year.table,afs(habitat_FB.SLB))
 n.hab <- length(unique(hab))
 
-year.table$mainregion[grepl('USEC smooth dogfish shark',year.table$stock)] <- 'USEC-NE'
-year.table$mainregion[grepl('USNE midAtl red drum',year.table$stock)] <- 'USEC-NE'
+#year.table$mainregion[grepl('USEC smooth dogfish shark',year.table$stock)] <- 'USEC-NE'
+#year.table$mainregion[grepl('USNE midAtl red drum',year.table$stock)] <- 'USEC-NE'
 
 reg <- with(year.table,afs(mainregion))
 n.region <- length(unique(reg))
@@ -547,6 +550,8 @@ jags.data <- list(
   a.time=a.time
   )
 
+save.image(file = 'model_inputs.Rdata')
+
 # run model - short run for now...
 JM <- jags.model('Weib_surv.R',
                  data=jags.data,
@@ -567,6 +572,7 @@ a.out <- coda.samples(JM,variable.names=c('tau',
                                           'fp.sd.habitat',
                                           'fp.sd.region',
                                           'mu',
+                                          'logmean',
                                           'region.pmu',
                                           'hab.pmu',
                                           'order.pmu',
@@ -576,67 +582,4 @@ a.out <- coda.samples(JM,variable.names=c('tau',
 save(a.out,year.table,COVS,full.tab,file=paste0('model.out',date(),'.rda'))
 @
 
-<<diagnostic plots, eval=T>>=
-
-#plot(a.out)
-#crosscorr.plot(a.out)
-
-@
-
-
-<<Get output>>=
-
-# get coeffs from the chains - pull in some helper functions and Rdata from Bayesian model
-source('helper_functs.R')
-#load('~/Work/Dropbox/First year of assessment/FA_V001.RData')
-
-# get posterior for cox-snell(CS) residuals from MCMC
-mcmc.out <- do.call('rbind',a.out)
-CS.full <- mcmc.out[,grepl('CS',colnames(mcmc.out))]
-
-# just look at mean CS for now, can put posterior around it later
-
-library(survival)
-
-
-# Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
-CS_func <- function(CS,censored){
-  km.cs <- survfit(Surv(CS,!censored) ~ 1)
-  summary.km.cs <- summary(km.cs)
-  rcu <- summary.km.cs$time # Cox-Snell residuals of
-  # uncensored points.
-  surv.cs <- summary.km.cs$surv
-  return(list(rcu,surv.cs))
-}
-
-CS.means <- apply(CS.full,1,CS_func,censored = censored)
-CS.means <- do.call('rbind',lapply(CS.means, function(x) do.call('cbind',x)))
-
-#CS = CS.means$post.mean
-#CS_high = CS.means$q3
-#CS_low = CS.means$q1
-
-bins <- cut(CS.means[,1],breaks = quantile(CS.means[,1], probs = seq(0, 1, 0.005)),labels = FALSE)
-
-CS.means <- data.frame(CS.means)
-CS.means$bin <- bins
-colnames(CS.means) <- c('time','CS','bin')
-
-CS.mean.sum <- CS.means %>% group_by(bin) %>% 
-  summarise(m_CS = mean(-log(CS)),
-            m_t = mean(time),
-            q1_CS = quantile(-log(CS),0.025),
-            q3_CS = quantile(-log(CS),0.975))
-
-ggplot(CS.mean.sum,aes(y=m_CS,x=m_t))+
-  geom_point()+
- geom_ribbon(aes(ymin=q1_CS,ymax=q3_CS),col='grey80',alpha=0.3)+  
-  geom_abline(aes(intercept=0,slope=1))+
-  scale_x_continuous("Cox-Snell residual",expand=c(0,0))+
-  ylab("Cumulative hazard")+
-  theme_bw()
-
-@
-
-It looks as though the fit of the Weibull isn't too bad, some deviation is expected in the tails of the distribution, but over the bulk it seems to follow the 1:1 line fairly closely.
 
