@@ -103,6 +103,15 @@ coef_P <- coeffs %>%
             acc = mean(exp(-MCMC/Rate)),
             post.P = mean(exp(MCMC) > 1))
 
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
+                              na.strings=c('','NA','#N/A'),
+                              stringsAsFactors = F)
+)
+
+mix <- match(years.table$Stock.name,year.table$stock)
+year.table$FMP <- NA
+year.table$FMP.name <- NA
+year.table[mix[!is.na(mix)],c('FMP','FMP.name')] <- years.table[!is.na(mix),c('FMP','FMP.name')]
 
 # write current dataset
 year.table %>%
@@ -113,13 +122,9 @@ year.table %>%
          `Year of first stock assessment` = Year.of.first.stock.assessment,
          Species = species,
          Stock = stock) %>%
-  select(Class, Order,  Family, Species,Stock,Year.of.first.stock.assessment, Region, Habitat, `Mean ex vessel price per kg`, `Maximum landings`, `Fishbase length`) %>%
+  select(Class, Order,  Family, Species,Stock,Year.of.first.stock.assessment, Region, Habitat, `Mean ex vessel price per kg`, `Maximum landings`, `Fishbase length`,FMP,FMP.name) %>%
   write.csv(file='dataset.csv',row.names = F,na = '')
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
-                              na.strings=c('','NA','#N/A'),
-                              stringsAsFactors = F)
-)
 
 years.table %>%
   filter(!Stock.name %in% year.table$stock) %>%
@@ -843,7 +848,7 @@ fp %>% group_by(Effect) %>%
 @
 
 
-<<surv_plot_num,fig.cap='Marginal probability of a stock being assessed after 50 years as a function of mean Ex-vessel price (US\\$$\cdot$kg$^{-1}$) and and maximum landings prior to assessment. Marginal probabilities were evaluated at the mean of remaining continuous covariates. The dataset used for analysis is over-layed with assessed stocks as dark grey points and unassessed stocks in light grey.',echo=FALSE,results='hide',fig.width=9,fig.height=7,out.width='1\\textwidth',fig.align='center'>>=
+<<surv_plot_num,fig.cap='Marginal probability of a stock being assessed after 50 years as a function of mean Ex-vessel price (US\\$$\\cdot$kg$^{-1}$) and and maximum landings prior to assessment. Marginal probabilities were evaluated at the mean of remaining continuous covariates. The dataset used for analysis is over-layed with assessed stocks as dark grey points and unassessed stocks in light grey.',echo=FALSE,results='hide',fig.width=9,fig.height=7,out.width='1\\textwidth',fig.align='center'>>=
 
 lms <- get_coef_chains(model.out = a.out, coef.names = 'logmean' )
 
