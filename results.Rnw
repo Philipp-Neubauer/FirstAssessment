@@ -116,7 +116,7 @@ year.table %>%
   select(Class, Order,  Family, Species,Stock,Year.of.first.stock.assessment, Region, Habitat, `Mean ex vessel price per kg`, `Maximum landings`, `Fishbase length`) %>%
   write.csv(file='dataset.csv',row.names = F,na = '')
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v9 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
