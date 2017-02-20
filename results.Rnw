@@ -843,7 +843,7 @@ fp %>% group_by(Effect) %>%
 @
 
 
-<<surv_plot_num,fig.cap='Marginal probability of a stock being assessed after 50 years as a function of mean Ex-vessel price (US\\$.kg$^{-1}$) and and maximum landings prior to assessment. Marginal probabilities were evaluated at the mean of remaining continuous covariates. The dataset used for analysis is over-layed with assessed stocks as dark grey points and unassessed stocks in light grey.',echo=FALSE,results='hide',fig.width=9,fig.height=7,out.width='1\\textwidth',fig.align='center'>>=
+<<surv_plot_num,fig.cap='Marginal probability of a stock being assessed after 50 years as a function of mean Ex-vessel price (US\\$$\cdot$kg$^{-1}$) and and maximum landings prior to assessment. Marginal probabilities were evaluated at the mean of remaining continuous covariates. The dataset used for analysis is over-layed with assessed stocks as dark grey points and unassessed stocks in light grey.',echo=FALSE,results='hide',fig.width=9,fig.height=7,out.width='1\\textwidth',fig.align='center'>>=
 
 lms <- get_coef_chains(model.out = a.out, coef.names = 'logmean' )
 
