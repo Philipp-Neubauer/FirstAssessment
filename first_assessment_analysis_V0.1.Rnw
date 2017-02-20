@@ -163,12 +163,14 @@ for (i in 1:nrow(land.price)){
   
   if(any(!(is.na(stocks)))){
     land <- unlist(sapply(which(!is.na(stocks)),function(s) props[s]*land.price[i,'Metric.Tons']))
+    price <- unlist(sapply(which(!is.na(stocks)),function(s) props[s]*land.price[i,'Price']))
     
   } else { # apply a region-stock combo
     #region <- reg.ref[2,reg.ref[1,]==land.price[i,'State']]
     #region <- ifelse(!is.null(dim(region)), 'Inland', region)
     stocks  <-paste(region,land.price$Species[i])
     land <- land.price[i,'Metric.Tons']
+    price <- land.price[i,'Price']
   }
   
   
@@ -180,7 +182,7 @@ for (i in 1:nrow(land.price)){
   set(stock.landings,a:(a+l-1),4L,state)
   set(stock.landings,a:(a+l-1),5L,region) 
   set(stock.landings,a:(a+l-1),6L,land)
-  set(stock.landings,a:(a+l-1),7L,land.price[i,'Price'])
+  set(stock.landings,a:(a+l-1),7L,price)
       
   a=a+l
 }
@@ -215,11 +217,11 @@ stock.landings.sum.model <- tbl_df(stock.landings) %>%
             minyear = unique(minyear),
             mainregion = unique(mainregion),
             total_landings = sum(landings,na.rm=T),
-            price = mean(rel_price,na.rm=T),
+            price = weighted.mean(rel_price,w = landings,na.rm=T),
             species = unique(species)) %>%
   mutate(max.land = max(total_landings),
          mean.land = mean(total_landings),
-         price = mean(price,na.rm=T)) %>%
+         price = weighted.mean(price,w = total_landings, na.rm=T)) %>%
   group_by(mainregion,species) %>%
   mutate(nstocks = length(unique(stock)),
           nmland = max(mean.land)) 
@@ -241,12 +243,12 @@ stock.landings.sum <- tbl_df(stock.landings) %>%
          mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
   group_by(stock,year) %>% 
   summarise(total_landings = sum(landings,na.rm=T),
-            price = mean(rel_price,na.rm=T),
+            price = weighted.mean(rel_price,w = landings,na.rm=T),
             mainregion = unique(mainregion),
             species = unique(species)) %>%
   mutate(max.land = max(total_landings),
          mean.land = mean(total_landings),
-         price = mean(price,na.rm=T)) %>%
+         price = weighted.mean(price,w = total_landings, na.rm=T)) %>%
   group_by(mainregion,species) %>%
   mutate(nstocks = length(unique(stock)),
           nmland = max(mean.land)) 
@@ -292,6 +294,10 @@ full.tab %>%
 For the survival analysis, we only need the last year and cumulative price and landings. I think.
 
 <<results='hide'>>=
+
+# over-write value with manual landings where necessary
+manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_landings_price.csv'),header=T,stringsAsFactors = F,sep='\t')
+
 # only need year with assessment, or last year.
 year.table <- full.tab.model %>% 
   select(stock, 
@@ -306,7 +312,12 @@ year.table <- full.tab.model %>%
          price,
          max.land) %>%
   filter(maxyear>1960) %>%
-  distinct()
+  distinct() %>% 
+  left_join(manual_landprice,by = c('stock'='Stock.name')) %>% 
+  mutate(price = ifelse(is.na(manualMeanPrice.kg),price,manualMeanPrice.kg),
+         max.land = ifelse(is.na(manualMaxLand.t),max.land,manualMaxLand.t))
+
+
 
 @
 
