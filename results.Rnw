@@ -45,7 +45,7 @@ Fisheries management requires estimating harvested quantities or fishing rates s
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -72,8 +72,8 @@ library(survival)
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00", "#CC79A7","#999999")
 
 
-#load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-load('model.outFri Feb 17 23:23:54 2017.rda',v=T)
+load(file.path(DB,"First year of assessment/Weibull_model_output_FMP.rda"),v=T)
+#load('model.outFri Mar 10 07:35:33 2017.rda',v=T)
 
 
 # just for matching
@@ -85,7 +85,8 @@ year.table$habitat <- year.table$habitat_FB.SLB
 beta_names <- c('Maximum length',
                 'Mean ex-vessel price',
                 'Maximum landings',
-                'Interaction')
+                'Interaction',
+                'FMP')
 
 coeffs <- tbl_df(get_coef_chains(model.out = a.out,
                                  coef.names = 'betas',
@@ -258,7 +259,7 @@ The number of landed marine stocks in the United States (excluding salmons, shad
 
 \begin{figure}[!ht]
 \centering
-<<assessed_landed,echo=FALSE,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth'>>=
+<<assessed_landed,echo=FALSE,dev='png',dpi=600,results='asis',fig.width=9,fig.height=4,out.width='1.5\\textwidth'>>=
 
 
 gga <- ggplot(plot.tab) +
@@ -316,7 +317,7 @@ The majority of landed stocks were fish species (Figure \ref{fig:assessed}a), wi
 
 \begin{figure}[!ht]
 \centering
-<<taxa,fig.width=7,fig.height=7,out.width='0.8\\textwidth'>>=
+<<taxa,fig.width=7,fig.height=7,dev='png',dpi=600,out.width='0.8\\textwidth'>>=
 year.table$Assessed <- ifelse(!is.na(as.numeric(year.table$Year.of.first.stock.assessment)),'Yes','No')
 
 simpleCap <- function(s) {
@@ -380,7 +381,7 @@ Our time-to-event model effectively disentangled the biological and fishery char
 
 \begin{figure}[!ht]
 \centering
-<<fx_plot,echo=FALSE,results='hide',fig.width=5,fig.height=8,out.width='0.5\\textwidth',fig.align='center'>>=
+<<fx_plot,echo=FALSE,results='hide',dev='png',dpi=600,fig.width=5,fig.height=8,out.width='0.5\\textwidth',fig.align='center'>>=
 
 betas <- get_coef_chains(model.out = a.out, coef.names = 'betas\\[[0-9]*\\]', var.names = beta_names)
 betas$Effect <- 'Num.'
@@ -431,7 +432,7 @@ Among explanatory random effects, taxonomic factors (order and class) explain a 
 
 \begin{figure}[!ht]
 \centering
-<<fx_plot_oder,echo=FALSE,results='hide',fig.width=5,fig.height=7,out.width='0.6\\textwidth'>>=
+<<fx_plot_oder,echo=FALSE,results='hide',dev='png',dpi=600,fig.width=5,fig.height=7,out.width='0.6\\textwidth'>>=
 
 afs <- function(x) as.numeric(as.factor(x))
 orders <- with(year.table,afs(Order))
@@ -494,7 +495,7 @@ orderr %>%
 
 Although our model suggests an increasing rate of assessments (posterior median for $\tau$: \Sexpr{round(mean(tau$MCMC),2)}) over time, all regions show a relatively slow projected increase in the predicted proportion of assessed populations over the next decades (Figure \ref{fig:surv_plot_region}), compared to the rapid increases in the observed proportions of assessed populations over the last 35 years (Fig. \ref{fig:assessed}b). These projections rely on the values of maximum landings and ex-vessel price for all un-assessed stocks, and were calcualted from the final year of available time series data used for model fitting (usually 2013). The slow predicted increase thus occurs because stocks with a high assessment probability have typically been assessed early, so that remaining stocks have low landings and prices, or other characteristics associated with low annual assessment probability.
 
-<<surv_plot_region,fig.cap='Projected proportion of stocks assessed by region and calendar year, based on assessment probabilities of stocks within each region over the projected year range.',echo=FALSE,results='hide',fig.width=8,fig.height=4,out.width='1\\textwidth',fig.align='center'>>=
+<<surv_plot_region,fig.cap='Projected proportion of stocks assessed by region and calendar year, based on assessment probabilities of stocks within each region over the projected year range.',echo=FALSE,results='hide',dev='png',dpi=600,fig.width=8,fig.height=4,out.width='1\\textwidth',fig.align='center'>>=
 
 devtime <- apply(cbind(year.table$Year.of.fishery.development..stock.based.,year.table$minyear),1,min,na.rm=T)
 
@@ -760,7 +761,7 @@ II) Of the 28 stocks in our final dataset that were considered unassessed (with 
 \begin{figure}[!ht]
 \centering
 
-<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth',dev='png',dpi=600>>=
 
 #assessment time
 
@@ -780,7 +781,7 @@ abline(a=lm_fit[1],b=lm_fit[2],col=3,lwd=2);
 
 \begin{figure}[!ht]
 \centering
-<<fig.width=4,fig.height=4,out.width='0.7\\textwidth'>>=
+<<fig.width=4,fig.height=4,out.width='0.7\\textwidth',dev='png',dpi=600>>=
 
 # Kaplan-Meyer non-parametric survival at CS - should follow exp(1) distribution
 CS.full <- tbl_df(get_coef_chains(model.out = a.out, coef.names = 'CS'))
@@ -816,7 +817,7 @@ abline(a=0,b=1,col=3,lwd=2)
 \newpage
 \section{Model estimates and predictions}
 
-<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=4,fig.height=4,out.width='0.4\\textwidth',fig.align='center'>>=
+<<post_plot,fig.cap='Comparison of finite population standard deviation (i.e., variance attributed to each variable) for random effects in the Weibull survival model. Circles show posterior medians, thick bars show inter-quartile ranges of the posteriors, and thin lines show 95\\% confidence intervals.',fig.width=4,fig.height=4,out.width='0.4\\textwidth',fig.align='center',dev='png',dpi=600>>=
 
 fp <- get_coef_chains(model.out = a.out, coef.names = 'fp' )
 
@@ -848,7 +849,7 @@ fp %>% group_by(Effect) %>%
 @
 
 
-<<surv_plot_num,fig.cap='Marginal probability of a stock being assessed after 50 years as a function of mean Ex-vessel price (US\\$$\\cdot$kg$^{-1}$) and and maximum landings prior to assessment. Marginal probabilities were evaluated at the mean of remaining continuous covariates. The dataset used for analysis is over-layed with assessed stocks as dark grey points and unassessed stocks in light grey.',echo=FALSE,results='hide',fig.width=9,fig.height=7,out.width='1\\textwidth',fig.align='center'>>=
+<<surv_plot_num,fig.cap='Marginal probability of a stock being assessed after 50 years as a function of mean Ex-vessel price (US\\$$\\cdot$kg$^{-1}$) and and maximum landings prior to assessment. Marginal probabilities were evaluated at the mean of remaining continuous covariates. The dataset used for analysis is over-layed with assessed stocks as dark grey points and unassessed stocks in light grey.',echo=FALSE,results='hide',fig.width=9,fig.height=7,out.width='1\\textwidth',fig.align='center',dev='png',dpi=600>>=
 
 lms <- get_coef_chains(model.out = a.out, coef.names = 'logmean' )
 
@@ -895,7 +896,7 @@ ggplot(grids) +
 
 \begin{landscape}
 
-<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=4,out.width='1.5\\textwidth',fig.align='center'>>=
+<<surv_plot,fig.cap='Marginal probability of a stock in category $k$ being assessed as a function of time ($P(T_k \\le t) = F_k(t) = \\exp(-\\lambda_k t^\\tau)$), for stocks of various taxonomic orders, class, regions and habitats. For taxonomic variables, only the eight levels with the most stocks represented in our dataset are shown. Marginal probabilities were evaluated at the mean of (centered) continuous covariates.',echo=FALSE,results='hide',fig.width=9,fig.height=4,out.width='1.5\\textwidth',fig.align='center',dev='png',dpi=600>>=
 
 preds <- get_coef_chains(model.out = a.out, coef.names = 'pmu' )
 

@@ -267,12 +267,12 @@ stock.landings.sum$mainregion[grepl('USNE midAtl red drum',stock.landings.sum$st
 
 
 # join landings on management table
-full.tab <- left_join(stock.landings.sum,
+full.tab <- full_join(stock.landings.sum,
                       years.table,
                       by=c('stock' = 'Stock.name')) %>%
   mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment))
 
-full.tab.model <- left_join(stock.landings.sum.model,
+full.tab.model <- full_join(stock.landings.sum.model,
                       years.table,
                       by=c('stock' = 'Stock.name')) %>%
   mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment))
@@ -300,6 +300,11 @@ manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_l
 
 # only need year with assessment, or last year.
 year.table <- full.tab.model %>% 
+  group_by(stock) %>%
+  mutate(minyear = ifelse(is.na(minyear),as.numeric(Year.of.fishery.development..stock.based.),minyear),
+         maxyear = ifelse(is.na(maxyear),2013,maxyear),
+         mainregion = ifelse(is.na(mainregion),Region, mainregion)) %>% 
+  ungroup() %>%
   select(stock, 
          species, 
          Year.of.first.stock.assessment, 
@@ -311,11 +316,11 @@ year.table <- full.tab.model %>%
          Lmax..cm.,
          price,
          max.land) %>%
-  filter(maxyear>1960) %>%
-  distinct() %>% 
+  distinct() %>%
   left_join(manual_landprice,by = c('stock'='Stock.name')) %>% 
   mutate(price = ifelse(is.na(manualMeanPrice.kg),price,manualMeanPrice.kg),
-         max.land = ifelse(is.na(manualMaxLand.t),max.land,manualMaxLand.t))
+         max.land = ifelse(is.na(manualMaxLand.t),max.land,manualMaxLand.t)) %>%
+  filter(maxyear>1960, !is.na(minyear), !is.na(price))
 
 
 
