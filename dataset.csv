@@ -1,562 +1,562 @@
-"Class","Order","Family","Species","Stock","Year.of.first.stock.assessment","Region","Habitat","Mean ex vessel price per kg","Maximum landings","Fishbase length","FMP","FMP.name"
-"Actinopterygii","Acipenseriformes","Acipenseridae","Acipenser medirostris","USWC-48 STURGEON, GREEN",,"USWC-48","demersal",1.14,109.3,270,,
-"Actinopterygii","Acipenseriformes","Acipenseridae","Acipenser transmontanus","USWC-48 STURGEON, WHITE",,"USWC-48","demersal",3.55,349.4,610,,
-"Actinopterygii","Anguilliformes","Anguillidae","Anguilla rostrata","USEC-NE EEL, AMERICAN",,"USEC-NE","demersal",4.33,1183.8,152,,
-"Actinopterygii","Anguilliformes","Anguillidae","Anguilla rostrata","USEC-SE EEL, AMERICAN",,"USEC-SE","demersal",1.75,586.1,152,,
-"Actinopterygii","Anguilliformes","Congridae","Conger oceanicus","USEC-NE EEL, CONGER",,"USEC-NE","demersal",0.69,107.6,230,,
-"Actinopterygii","Anguilliformes","Congridae","Conger oceanicus","USEC-SE EEL, CONGER",,"USEC-SE","demersal",0.89,6.1,230,,
-"Actinopterygii","Beloniformes","Belonidae","Strongylura marina","USEC-NE NEEDLEFISH, ATLANTIC",,"USEC-NE","reef",0.29,2.9,111,,
-"Actinopterygii","Beloniformes","Belonidae","Tylosurus crocodilus","USEC-NE HOUNDFISH",,"USEC-NE","reef",0.33,1.1,150,,
-"Actinopterygii","Beloniformes","Hemiramphidae","Hemiramphus brasiliensis","USEC-SE BALLYHOO",,"USEC-SE","reef",1.22,625.4,55,,
-"Actinopterygii","Clupeiformes","Clupeidae","Brevoortia patronus","GoMex Gulf menhaden",1972,"USEC-SE","pelagic",0.03,729919.6,35,0,
-"Actinopterygii","Clupeiformes","Clupeidae","Brevoortia tyrannus","USEC Atlantic menhaden",1986,"USEC-NE","pelagic",0.05,697362.1,50,0,
-"Actinopterygii","Clupeiformes","Clupeidae","Clupea harengus","GeBank/GoMaine Atlantic herring",1968,"USEC-NE","benthopelagic",0.03,89147.4,45,1,"Atlantic Herring"
-"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","Alaska Kodiak herring",1978,"USWC-AK","pelagic",0.05,7335.9913980591,34,0,
-"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","Alaska Sitka herring",1976,"USWC-AK","pelagic",0.04,26842.7068446579,34,0,
-"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","Alaska Togiak herring",1978,"USWC-AK","pelagic",0.05,40831.201757283,34,0,
-"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","USWC-48 HERRING, PACIFIC",,"USWC-48","pelagic",0.74,11784.4,34,,
-"Actinopterygii","Clupeiformes","Clupeidae","Dorosoma cepedianum","USEC-NE SHAD, GIZZARD",,"USEC-NE","pelagic",0.25,1389.7,57,,
-"Actinopterygii","Clupeiformes","Clupeidae","Dorosoma cepedianum","USEC-SE SHAD, GIZZARD",,"USEC-SE","pelagic",0.33,938.7,57,,
-"Actinopterygii","Clupeiformes","Clupeidae","Opisthonema oglinum","USEC-NE HERRING, ATLANTIC THREAD",,"USEC-NE","reef",0.03,2321.1,38,,
-"Actinopterygii","Clupeiformes","Clupeidae","Opisthonema oglinum","USEC-SE HERRING, ATLANTIC THREAD",,"USEC-SE","reef",0.12,10083,38,,
-"Actinopterygii","Clupeiformes","Clupeidae","Sardinella aurita","USEC-SE SARDINE, SPANISH",,"USEC-SE","reef",0.3,2921.8,30,,
-"Actinopterygii","Clupeiformes","Clupeidae","Sardinops sagax","USWC Pacific sardine",1966,"USWC-48","pelagic",0.05,324105,39.5,1,"Coastal Pelagic Species"
-"Actinopterygii","Clupeiformes","Dussumieriidae","Etrumeus teres","USEC-SE HERRING, ROUND",,"USEC-SE","pelagic",1.92,0.9,33,,
-"Actinopterygii","Clupeiformes","Dussumieriidae","Etrumeus teres","USWC-48 HERRING, ROUND",,"USWC-48","pelagic",0.21,78.3,33,,
-"Actinopterygii","Clupeiformes","Engraulidae","Anchoa mitchilli","USEC-NE ANCHOVY, BAY",,"USEC-NE","pelagic",2.04,0.1,10,,
-"Actinopterygii","Clupeiformes","Engraulidae","Engraulis mordax","USWC-48 ANCHOVY, NORTHERN",,"USWC-48","pelagic",0.11,52309,24.8,,
-"Actinopterygii","Cypriniformes","Cyprinidae","Orthodon microlepidotus","USWC-48 SACRAMENTO BLACKFISH",,"USWC-48","benthopelagic",0.84,137.4,55,,
-"Actinopterygii","Cypriniformes","Cyprinidae","Pogonichthys macrolepidotus","USWC-48 SPLITTAIL",,"USWC-48","benthopelagic",0.57,2.4,44,,
-"Actinopterygii","Cyprinodontiformes","Fundulidae","Fundulus heteroclitus","USEC-NE MUMMICHOG",,"USEC-NE","benthopelagic",7.82,2.1,15,,
-"Actinopterygii","Elopiformes","Elopidae","Elops saurus","USEC-SE LADYFISH",,"USEC-SE","reef",0.52,2721.5,100,,
-"Actinopterygii","Elopiformes","Megalopidae","Megalops atlanticus","USEC-NE TARPON",,"USEC-NE","reef",0.52,0.1,250,,
-"Actinopterygii","Gadiformes","Gadidae","Gadus macrocephalus","BSAI Pacific cod",1987,"USWC-AK","demersal",0.32,53463.254683984,119,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Gadiformes","Gadidae","Gadus macrocephalus","GOA Pacific cod",1988,"USWC-AK","demersal",0.32,32985.263451232,119,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Gadiformes","Gadidae","Gadus macrocephalus","USWC-48 COD, PACIFIC",,"USWC-48","demersal",0.35,15995.4,119,,
-"Actinopterygii","Gadiformes","Gadidae","Gadus morhua","GeBank Atlantic cod",1977,"USEC-NE","benthopelagic",0.27,3271,200,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Gadidae","Gadus morhua","GoMaine Atlantic cod",1989,"USEC-NE","benthopelagic",0.54,51321.4,200,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Gadidae","Melanogrammus aeglefinus","GeBank haddock",1968,"USEC-NE","demersal",0.18,70483.6,112,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Gadidae","Melanogrammus aeglefinus","GoMaine haddock",1982,"USEC-NE","demersal",0.47,4305.8,112,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Gadidae","Microgadus proximus","USWC-48 TOMCOD, PACIFIC",,"USWC-48","demersal",0.04,267.6,30.5,,
-"Actinopterygii","Gadiformes","Gadidae","Microgadus proximus","USWC-AK TOMCOD, PACIFIC",,"USWC-AK","demersal",0.35,0.2,30.5,,
-"Actinopterygii","Gadiformes","Gadidae","Microgadus tomcod","USEC-NE TOMCOD, ATLANTIC",,"USEC-NE","demersal",0.77,1.1,38.1,,
-"Actinopterygii","Gadiformes","Gadidae","Pollachius virens","GeBank/GoMaine Atlantic pollock",1978,"USEC-NE","demersal",0.15,17947.3,130,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","AI walleye pollock",2003,"USWC-AK","benthopelagic",0.17,2003.21002975,91,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","EBS walleye pollock",1987,"USWC-AK","benthopelagic",0.16,238409.340877723,91,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","GOA walleye pollock",1990,"USWC-AK","benthopelagic",0.18,91572.8328349168,91,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","USWC-48 POLLOCK, WALLEYE",,"USWC-48","benthopelagic",0.2,3911.5,91,,
-"Actinopterygii","Gadiformes","Lotidae","Brosme brosme","USEC-NE CUSK",,"USEC-NE","demersal",0.51,2363,120,,
-"Actinopterygii","Gadiformes","Lotidae","Brosme brosme","USEC-SE CUSK",,"USEC-SE","demersal",2.25,2.7,120,,
-"Actinopterygii","Gadiformes","Merlucciidae","Merluccius albidus","USEC-NE HAKE, OFFSHORE SILVER",,"USEC-NE","bathy-",1.25,118.6,40.6,,
-"Actinopterygii","Gadiformes","Merlucciidae","Merluccius bilinearis","nGeBank/GoMaine silver hake",1978,"USEC-NE","demersal",0.06,23778.7666542859,76,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Merlucciidae","Merluccius bilinearis","sGeBank/midAtl silver hake",1978,"USEC-NE","demersal",0.09,36850.366682992,76,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Merlucciidae","Merluccius productus","USWC/BC Pacific hake",1982,"USWC-48","pelagic",0.04,13071.9,91,1,"Pacific Coast Groundfish"
-"Actinopterygii","Gadiformes","Phycidae","Urophycis chuss","USEC-NE HAKE, RED",,"USEC-NE","demersal",0.26,4746.1,66,,
-"Actinopterygii","Gadiformes","Phycidae","Urophycis chuss","USEC-SE HAKE, RED",,"USEC-SE","demersal",0.23,1.1,66,,
-"Actinopterygii","Gadiformes","Phycidae","Urophycis floridana","USEC-NE HAKE, SOUTHERN",,"USEC-NE","demersal",0.64,0.3,35,,
-"Actinopterygii","Gadiformes","Phycidae","Urophycis tenuis","GeBank/GoMaine white hake",1995,"USEC-NE","demersal",0.44,8443.7,133,1,"Northeast Multispecies"
-"Actinopterygii","Gadiformes","Phycidae","Urophycis tenuis","USEC-SE HAKE, WHITE",,"USEC-SE","demersal",0.74,3.3,133,,
-"Actinopterygii","Lampriformes","Lampridae","Lampris guttatus","USEC-NE OPAH",,"USEC-NE","bathy-",3.2,0.9,200,,
-"Actinopterygii","Lampriformes","Lampridae","Lampris guttatus","USEC-SE OPAH",,"USEC-SE","bathy-",2.9,1,200,,
-"Actinopterygii","Lampriformes","Lampridae","Lampris guttatus","USWC-48 OPAH",,"USWC-48","bathy-",1.91,0.3,200,,
-"Actinopterygii","Lampriformes","Trachipteridae","Trachipterus arcticus","USEC-NE DEALFISH",,"USEC-NE","bathy-",1.14,41.4,300,,
-"Actinopterygii","Lophiiformes","Lophiidae","Lophius americanus","nGeBank/GoMaine monkfish",2002,"USEC-NE","demersal",1.38,19093.8,120,1,"Monkfish"
-"Actinopterygii","Lophiiformes","Lophiidae","Lophius americanus","sGeBank/midAtl monkfish",2002,"USEC-NE","demersal",1.41,11515.9,120,1,"Monkfish"
-"Actinopterygii","Lophiiformes","Lophiidae","Lophius gastrophysus","USEC-NE GOOSEFISH, BLACKFIN",,"USEC-NE","bathy-",3.41,0.2,60,,
-"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","East Florida striped mullet",2005,"USEC-SE","benthopelagic",0.44,3214.1,100,0,
-"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","USEC-NE MULLET, STRIPED (LIZA)",,"USEC-NE","benthopelagic",0.29,90.7,100,,
-"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","USEC-SE MULLET, STRIPED (LIZA)",,"USEC-SE","benthopelagic",0.81,8473.7,100,,
-"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","USWC-48 MULLET, STRIPED (LIZA)",,"USWC-48","benthopelagic",0.32,108.6,100,,
-"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","West Florida striped mullet",2005,"USEC-SE","benthopelagic",0.44,15873.9,100,0,
-"Actinopterygii","Mugiliformes","Mugilidae","Mugil curema","USEC-SE MULLET, WHITE",,"USEC-SE","reef",0.39,2685.2,90,,
-"Actinopterygii","Ophidiiformes","Ophidiidae","Brotula barbata","USEC-SE BROTULA, BEARDED",,"USEC-SE","reef",1.7,36.9,94,,
-"Actinopterygii","Ophidiiformes","Ophidiidae","Genypterus blacodes","USEC-SE AUSTRALIAN ROCKLING",,"USEC-SE","bathy-",1.5,3.4,200,,
-"Actinopterygii","Osmeriformes","Osmeridae","Allosmerus elongatus","USWC-48 SMELT, WHITEBAIT",,"USWC-48","demersal",0.21,152.3,22.9,,
-"Actinopterygii","Osmeriformes","Osmeridae","Mallotus villosus","USWC-AK CAPELIN",,"USWC-AK","pelagic",1.1,18.1,20,,
-"Actinopterygii","Osmeriformes","Osmeridae","Osmerus mordax","USEC-NE SMELT, RAINBOW",,"USEC-NE","pelagic",0.72,162.8,35.6,,
-"Actinopterygii","Osmeriformes","Osmeridae","Thaleichthys pacificus","USWC-48 SMELT, EULACHON",,"USWC-48","pelagic",0.22,1771.7,34,,
-"Actinopterygii","Osmeriformes","Osmeridae","Thaleichthys pacificus","USWC-AK SMELT, EULACHON",,"USWC-AK","pelagic",0.58,156.1,34,,
-"Actinopterygii","Perciformes","Ammodytidae","Ammodytes americanus","USEC-NE LAUNCE, AMERICAN SAND",,"USEC-NE","demersal",0.52,217.8,23.5,,
-"Actinopterygii","Perciformes","Ammodytidae","Ammodytes americanus","USWC-48 LAUNCE, AMERICAN SAND",,"USWC-48","demersal",1.45,0.4,23.5,,
-"Actinopterygii","Perciformes","Anarhichadidae","Anarhichas lupus","USNE Atlantic wolffish",2008,"USEC-NE","demersal",0.4,1205,150,1,"Northeast Multispecies"
-"Actinopterygii","Perciformes","Anarhichadidae","Anarrhichthys ocellatus","USWC-48 WOLF-EEL",,"USWC-48","demersal",0.99,7.9,240,,
-"Actinopterygii","Perciformes","Carangidae","Alectis ciliaris","USEC-SE POMPANO, AFRICAN",,"USEC-SE","reef",3.79,6,150,,
-"Actinopterygii","Perciformes","Carangidae","Caranx crysos","USEC-NE RUNNER, BLUE",,"USEC-NE","reef",1.29,0.3,70,,
-"Actinopterygii","Perciformes","Carangidae","Caranx crysos","USEC-SE RUNNER, BLUE",,"USEC-SE","reef",0.38,1156.4,70,,
-"Actinopterygii","Perciformes","Carangidae","Caranx hippos","USEC-NE JACK, CREVALLE",,"USEC-NE","reef",1,7.2,124,,
-"Actinopterygii","Perciformes","Carangidae","Caranx hippos","USEC-SE JACK, CREVALLE",,"USEC-SE","reef",0.48,2052.1,124,,
-"Actinopterygii","Perciformes","Carangidae","Caranx latus","USEC-SE JACK, HORSE-EYE",,"USEC-SE","reef",1.11,1.9,101,,
-"Actinopterygii","Perciformes","Carangidae","Caranx lugubris","USEC-SE JACK, BLACK",,"USEC-SE","benthopelagic",1.41,0.6,100,,
-"Actinopterygii","Perciformes","Carangidae","Caranx ruber","USEC-SE JACK, BAR",,"USEC-SE","reef",1.98,41.8,59,,
-"Actinopterygii","Perciformes","Carangidae","Elagatis bipinnulata","USEC-SE RUNNER, RAINBOW",,"USEC-SE","reef",1.5,1.8,180,,
-"Actinopterygii","Perciformes","Carangidae","Selar crumenophthalmus","USEC-SE SCAD, BIGEYE",,"USEC-SE","reef",2.35,180.6,70,,
-"Actinopterygii","Perciformes","Carangidae","Selene setapinnis","USEC-SE MOONFISH, ATLANTIC",,"USEC-SE","benthopelagic",1.81,29.2,60,,
-"Actinopterygii","Perciformes","Carangidae","Selene vomer","USEC-SE LOOKDOWN",,"USEC-SE","demersal",1.78,18.9,48.3,,
-"Actinopterygii","Perciformes","Carangidae","Seriola dumerili","GoMex greater amberjack",1995,"USEC-SE","reef",1.84,784.9,190,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Carangidae","Seriola dumerili","sAtl greater amberjack",1999,"USEC-SE","reef",1.77,438,190,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Carangidae","Seriola lalandi","USWC-48 YELLOWTAIL JACK",,"USWC-48","benthopelagic",0.37,4285.1,250,,
-"Actinopterygii","Perciformes","Carangidae","Seriola rivoliana","USEC-SE JACK, ALMACO",,"USEC-SE","reef",2.01,125.2,160,,
-"Actinopterygii","Perciformes","Carangidae","Seriola zonata","USEC-SE RUDDERFISH, BANDED",,"USEC-SE","benthopelagic",1.53,49.7,75,,
-"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","East Florida pompano",2002,"USEC-SE","benthopelagic",3.83,266.3,64,0,
-"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","USEC-NE POMPANO, FLORIDA",,"USEC-NE","benthopelagic",2.3,2,64,,
-"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","USEC-SE POMPANO, FLORIDA",,"USEC-SE","benthopelagic",4.47,69.6,64,,
-"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","USWC-48 POMPANO, FLORIDA",,"USWC-48","benthopelagic",0.7,122.2,64,,
-"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","West Florida pompano",2002,"USEC-SE","benthopelagic",3.52,546.4,64,0,
-"Actinopterygii","Perciformes","Carangidae","Trachinotus falcatus","USEC-SE PERMIT",,"USEC-SE","reef",1.36,97,122,,
-"Actinopterygii","Perciformes","Carangidae","Trachurus lathami","USEC-NE SCAD, ROUGH",,"USEC-NE","reef",0.66,0.7,40,,
-"Actinopterygii","Perciformes","Carangidae","Trachurus symmetricus","USWC-48 JACK MACKEREL",,"USWC-48","pelagic",0.09,66461.8,81,,
-"Actinopterygii","Perciformes","Centrarchidae","Ambloplites rupestris","USEC-NE BASS, ROCK",,"USEC-NE","demersal",0.4,11.3,43,,
-"Actinopterygii","Perciformes","Centrolophidae","Hyperoglyphe bythites","USEC-SE BLACK DRIFTFISH",,"USEC-SE","pelagic",2.95,14.1,60,,
-"Actinopterygii","Perciformes","Centrolophidae","Hyperoglyphe perciformis","USEC-NE BARRELFISH",,"USEC-NE","pelagic",2.79,0.2,91,,
-"Actinopterygii","Perciformes","Centrolophidae","Hyperoglyphe perciformis","USEC-SE BARRELFISH",,"USEC-SE","pelagic",4.19,15.3,91,,
-"Actinopterygii","Perciformes","Coryphaenidae","Coryphaena hippurus","USEC-NE DOLPHINFISH",,"USEC-NE","pelagic",3.93,96.3,210,,
-"Actinopterygii","Perciformes","Coryphaenidae","Coryphaena hippurus","USEC-SE DOLPHINFISH",,"USEC-SE","pelagic",2.99,1062.3,210,,
-"Actinopterygii","Perciformes","Coryphaenidae","Coryphaena hippurus","USWC-48 DOLPHINFISH",,"USWC-48","pelagic",1.96,43,210,,
-"Actinopterygii","Perciformes","Gempylidae","Lepidocybium flavobrunneum","USEC-NE ESCOLAR",,"USEC-NE","benthopelagic",3.1,4,200,,
-"Actinopterygii","Perciformes","Gempylidae","Lepidocybium flavobrunneum","USEC-SE ESCOLAR",,"USEC-SE","benthopelagic",2.04,101.3,200,,
-"Actinopterygii","Perciformes","Gempylidae","Ruvettus pretiosus","USEC-SE OILFISH",,"USEC-SE","benthopelagic",2.02,84.6,300,,
-"Actinopterygii","Perciformes","Gobiidae","Gillichthys mirabilis","USWC-48 MUDSUCKER, LONGJAW",,"USWC-48","demersal",3.38,5.5,21,,
-"Actinopterygii","Perciformes","Haemulidae","Haemulon album","USEC-SE MARGATE",,"USEC-SE","reef",1.5,23.6,79,,
-"Actinopterygii","Perciformes","Haemulidae","Haemulon aurolineatum","USEC-SE GRUNT, TOMTATE",,"USEC-SE","reef",0.79,0.2,25,,
-"Actinopterygii","Perciformes","Haemulidae","Haemulon plumieri","USEC-SE GRUNT, WHITE",,"USEC-SE","reef",2.37,18.8,53,,
-"Actinopterygii","Perciformes","Haemulidae","Orthopristis chrysoptera","USEC-NE PIGFISH",,"USEC-NE","demersal",0.19,15.4,46,,
-"Actinopterygii","Perciformes","Haemulidae","Orthopristis chrysoptera","USEC-SE PIGFISH",,"USEC-SE","demersal",0.4,187.4,46,,
-"Actinopterygii","Perciformes","Kyphosidae","Girella nigricans","USWC-48 OPALEYE",,"USWC-48","benthopelagic",0.49,10.7,66,,
-"Actinopterygii","Perciformes","Kyphosidae","Medialuna californiensis","USWC-48 HALFMOON",,"USWC-48","demersal",0.58,22.5,48,,
-"Actinopterygii","Perciformes","Labridae","Lachnolaimus maximus","East Florida hogfish",2013,"USEC-SE","reef",2.88,13.4,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Labridae","Lachnolaimus maximus","Northern sAtl hogfish",2013,"USEC-SE","reef",4.65,19,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Labridae","Lachnolaimus maximus","West Florida hogfish",2013,"USEC-SE","reef",3.13,53,91,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Labridae","Semicossyphus pulcher","USWC California sheephead",2004,"USWC-48","reef",5.3,143.1,91,0,
-"Actinopterygii","Perciformes","Labridae","Tautoga onitis","USEC tautog",1996,"USEC-NE","reef",0.78,524.8,91,0,
-"Actinopterygii","Perciformes","Labridae","Tautogolabrus adspersus","USEC-NE CUNNER",,"USEC-NE","reef",3.51,12.5,38,,
-"Actinopterygii","Perciformes","Lobotidae","Lobotes surinamensis","USEC-SE TRIPLETAIL",,"USEC-SE","benthopelagic",1.8,21.8,110,,
-"Actinopterygii","Perciformes","Lutjanidae","Apsilus dentatus","USEC-SE SNAPPER, BLACK",,"USEC-SE","reef",3.72,20.8,65,,
-"Actinopterygii","Perciformes","Lutjanidae","Etelis oculatus","USEC-SE SNAPPER, QUEEN",,"USEC-SE","bathy-",4.44,30.9,100,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus analis","USSE mutton snapper",2008,"USEC-SE","reef",2.72,251.4,94,1,"Snapper-Grouper Fishery of the South Atlantic Region / Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus apodus","USEC-SE SNAPPER, SCHOOLMASTER",,"USEC-SE","reef",2.99,0.1,67.2,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus buccanella","USEC-SE SNAPPER, BLACKFIN",,"USEC-SE","reef",4.44,6.9,75,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus campechanus","GoMex red snapper",1988,"USEC-SE","reef",1.32,6072.3,100,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus campechanus","sAtl red snapper",1998,"USEC-SE","reef",2.07,473,100,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus cyanopterus","USEC-SE SNAPPER, CUBERA",,"USEC-SE","reef",3.1,5.1,160,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus griseus","USEC-SE SNAPPER, GRAY",,"USEC-SE","reef",2.11,460.4,89,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus jocu","USEC-NE SNAPPER, DOG",,"USEC-NE","reef",2.72,0.1,128,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus jocu","USEC-SE SNAPPER, DOG",,"USEC-SE","reef",2.67,2,128,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus mahogoni","USEC-SE SNAPPER, MAHOGANY",,"USEC-SE","reef",3.52,0.5,48,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus purpureus","USEC-SE SNAPPER CARIBBEAN RED",,"USEC-SE","demersal",2.53,0.4,100,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus synagris","USEC-SE SNAPPER, LANE",,"USEC-SE","reef",2.62,69.2,60,,
-"Actinopterygii","Perciformes","Lutjanidae","Lutjanus vivanus","USEC-SE SNAPPER, SILK",,"USEC-SE","reef",4.69,147,83,,
-"Actinopterygii","Perciformes","Lutjanidae","Ocyurus chrysurus","USSE yellowtail snapper",2003,"USEC-SE","reef",2.96,1079,86.3,1,"Snapper-Grouper Fishery of the South Atlantic Region / Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Lutjanidae","Pristipomoides aquilonaris","USEC-SE WENCHMAN",,"USEC-SE","demersal",2.55,19.4,56,,
-"Actinopterygii","Perciformes","Lutjanidae","Rhomboplites aurorubens","GoMex vermilion snapper",1998,"USEC-SE","demersal",3.38,1199.6,60,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Lutjanidae","Rhomboplites aurorubens","sAtl vermilion snapper",1998,"USEC-SE","demersal",3.93,639.6,60,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus chrysops","USEC-SE TILEFISH, GOLDFACE",,"USEC-SE","demersal",3.13,41,60,,
-"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus cyanops","USEC-SE TILEFISH, BLACKLINE",,"USEC-SE","demersal",1.56,1.4,60,,
-"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus microps","sAtl blueline tilefish",2004,"USEC-SE","demersal",2.05,117.3,90,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus microps","USEC-SE TILEFISH, BLUELINE",,"USEC-SE","demersal",2.06,98.2,90,,
-"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus princeps","USWC-48 WHITEFISH, OCEAN",,"USWC-48","reef",0.28,9.3,102,,
-"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus princeps","USWC-AK WHITEFISH, OCEAN",,"USWC-AK","reef",0.59,43.3,102,,
-"Actinopterygii","Perciformes","Malacanthidae","Lopholatilus chamaeleonticeps","GoMex golden tilefish",2011,"USEC-SE","demersal",2.74,487.4,125,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Malacanthidae","Lopholatilus chamaeleonticeps","sAtl golden tilefish",2004,"USEC-SE","demersal",2.74,1682.7,125,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Malacanthidae","Lopholatilus chamaeleonticeps","USNE golden tilefish",1993,"USEC-NE","demersal",1.53,3967.6,125,1,"Tilefish"
-"Actinopterygii","Perciformes","Malacanthidae","Malacanthus plumieri","USEC-NE TILEFISH, SAND",,"USEC-NE","reef",4.65,0.3,70,,
-"Actinopterygii","Perciformes","Malacanthidae","Malacanthus plumieri","USEC-SE TILEFISH, SAND",,"USEC-SE","reef",1.98,2.5,70,,
-"Actinopterygii","Perciformes","Moronidae","Morone saxatilis","USEC striped bass",1997,"USEC-NE","demersal",1,6686.3,200,0,
-"Actinopterygii","Perciformes","Moronidae","Morone saxatilis","USWC-48 BASS, STRIPED",,"USWC-48","demersal",0.3,31.2,200,,
-"Actinopterygii","Perciformes","Polyprionidae","Polyprion americanus","USEC-NE WRECKFISH",,"USEC-NE","demersal",5.06,0.6,210,,
-"Actinopterygii","Perciformes","Polyprionidae","Polyprion americanus","USEC-SE WRECKFISH",,"USEC-SE","demersal",2.95,1729.1,210,,
-"Actinopterygii","Perciformes","Polyprionidae","Stereolepis gigas","USWC-48 SEA BASS, GIANT",,"USWC-48","demersal",0.51,202.4,250,,
-"Actinopterygii","Perciformes","Pomacentridae","Chromis punctipinnis","USWC-48 BLACKSMITH",,"USWC-48","reef",0.12,16,25,,
-"Actinopterygii","Perciformes","Pomatomidae","Pomatomus saltatrix","USEC bluefish",1994,"USEC-NE","pelagic",0.37,7466.1,130,1,"Bluefish"
-"Actinopterygii","Perciformes","Pomatomidae","Pomatomus saltatrix","USEC-SE BLUEFISH",,"USEC-SE","pelagic",0.33,703.6,130,,
-"Actinopterygii","Perciformes","Priacanthidae","Priacanthus arenatus","USEC-SE BIGEYE",,"USEC-SE","reef",1.97,4.1,50,,
-"Actinopterygii","Perciformes","Rachycentridae","Rachycentron canadum","GoMex cobia",2001,"USEC-SE","reef",2.36,166.6,200,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
-"Actinopterygii","Perciformes","Rachycentridae","Rachycentron canadum","sAtl cobia",2013,"USEC-SE","reef",2.06,30.8,200,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
-"Actinopterygii","Perciformes","Sciaenidae","Atractoscion nobilis","USWC California white seabass",2016,"USWC-48","demersal",1.55,1554.1,166,0,
-"Actinopterygii","Perciformes","Sciaenidae","Cynoscion arenarius","USEC-SE SEATROUT, SAND",,"USEC-SE","demersal",0.41,1176.1,63.5,,
-"Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","Mississippi spotted sea trout",2016,"USEC-SE","demersal",1.1,571.4,100,0,
-"Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","USEC-NE SEATROUT, SPOTTED",,"USEC-NE","demersal",1.42,89.2,100,,
-"Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","USEC-SE SEATROUT, SPOTTED",,"USEC-SE","demersal",1.07,3802.8,100,,
-"Actinopterygii","Perciformes","Sciaenidae","Cynoscion regalis","USEC weakfish",1991,"USEC-NE","demersal",0.53,16312.4,98,0,
-"Actinopterygii","Perciformes","Sciaenidae","Genyonemus lineatus","USWC-48 CROAKER, PACIFIC WHITE",,"USWC-48","benthopelagic",0.61,1484.8,41,,
-"Actinopterygii","Perciformes","Sciaenidae","Leiostomus xanthurus","USEC-NE SPOT",,"USEC-NE","demersal",0.7,3069.2,36,,
-"Actinopterygii","Perciformes","Sciaenidae","Leiostomus xanthurus","USEC-SE SPOT",,"USEC-SE","demersal",0.41,4923.8,36,,
-"Actinopterygii","Perciformes","Sciaenidae","Menticirrhus saxatilis","USEC-NE KINGFISH, NORTHERN",,"USEC-NE","demersal",1.6,0.3,46,,
-"Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC Atlantic croaker",2003,"USEC-NE","demersal",0.52,13532.1,55,0,
-"Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC-SE CROAKER, ATLANTIC",,"USEC-SE","demersal",0.29,18265.7,55,,
-"Actinopterygii","Perciformes","Sciaenidae","Pogonias cromis","USEC-NE DRUM, BLACK",,"USEC-NE","demersal",0.69,219.8,170,,
-"Actinopterygii","Perciformes","Sciaenidae","Pogonias cromis","USEC-SE DRUM, BLACK",,"USEC-SE","demersal",1.05,4877.2,170,,
-"Actinopterygii","Perciformes","Sciaenidae","Sciaenops ocellatus","GoMex red drum",2000,"USEC-SE","demersal",0.9,6408,155,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Sciaenidae","Sciaenops ocellatus","USNE midAtl red drum",2009,"USEC-NE","demersal",1.21,175.2,155,0,
-"Actinopterygii","Perciformes","Sciaenidae","Sciaenops ocellatus","USSE sAtl red drum",2009,"USEC-SE","demersal",0.67,125,155,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Sciaenidae","Seriphus politus","USWC-48 QUEENFISH",,"USWC-48","demersal",0.5,47.3,30,,
-"Actinopterygii","Perciformes","Scombridae","Acanthocybium solandri","USEC-NE WAHOO",,"USEC-NE","pelagic",4.02,8.9,250,,
-"Actinopterygii","Perciformes","Scombridae","Acanthocybium solandri","USEC-SE WAHOO",,"USEC-SE","pelagic",2.98,163.2,250,,
-"Actinopterygii","Perciformes","Scombridae","Acanthocybium solandri","USWC-48 WAHOO",,"USWC-48","pelagic",0.76,14.6,250,,
-"Actinopterygii","Perciformes","Scombridae","Auxis thazard","USEC-NE MACKEREL, FRIGATE",,"USEC-NE","pelagic",0.29,74.8,65,,
-"Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USEC-NE MACKEREL, CHUB",,"USEC-NE","pelagic",0.3,1984.2,64,,
-"Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USEC-SE MACKEREL, CHUB",,"USEC-SE","pelagic",1.18,121.6,64,,
-"Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USWC Pacific mackerel",2004,"USWC-48","pelagic",0.13,35256.5,64,1,"Coastal Pelagic Species"
-"Actinopterygii","Perciformes","Scombridae","Scomberomorus maculatus","GoMex Spanish mackerel",1996,"USEC-SE","pelagic",0.39,3880.2,91,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
-"Actinopterygii","Perciformes","Scombridae","Scomberomorus maculatus","sAtl Spanish mackerel",1996,"USEC-SE","pelagic",0.48,5015.3,91,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
-"Actinopterygii","Perciformes","Scombridae","Scomberomorus sierra","USWC-48 PACIFIC SIERRA",,"USWC-48","pelagic",0.21,1.9,99,,
-"Actinopterygii","Perciformes","Scombridae","Scomber scombrus","USNE Atlantic mackerel",1977,"USEC-NE","pelagic",0.21,10021.3,60,1,"Atlantic Mackerel, Squid and Butterfish"
-"Actinopterygii","Perciformes","Serranidae","Centropristis ocyurus","USEC-SE SEA BASS, BANK",,"USEC-SE","demersal",1.83,1.3,30,,
-"Actinopterygii","Perciformes","Serranidae","Centropristis philadelphica","USEC-SE SEA BASS, ROCK",,"USEC-SE","reef",2.03,26.3,30,,
-"Actinopterygii","Perciformes","Serranidae","Centropristis striata","sAtl black sea bass",1995,"USEC-SE","reef",1.22,740.2333335115,66,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Serranidae","Centropristis striata","USEC-SE SEA BASS, BLACK",,"USEC-SE","reef",1.3,292.3,66,,
-"Actinopterygii","Perciformes","Serranidae","Centropristis striata","USNE black sea bass",1994,"USEC-NE","reef",0.65,9899.3999999834,66,1,"Summer Flounder, Scup and Black Sea Bass"
-"Actinopterygii","Perciformes","Serranidae","Cephalopholis cruentata","USEC-SE GRAYSBY",,"USEC-SE","reef",4.74,8.2,42.6,,
-"Actinopterygii","Perciformes","Serranidae","Diplectrum formosum","USEC-NE SAND PERCH",,"USEC-NE","reef",0.14,11.9,30,,
-"Actinopterygii","Perciformes","Serranidae","Diplectrum formosum","USEC-SE SAND PERCH",,"USEC-SE","reef",0.97,127.2,30,,
-"Actinopterygii","Perciformes","Serranidae","Diplectrum formosum","USWC-48 SAND PERCH",,"USWC-48","reef",0.61,137.4,30,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus adscensionis","USEC-SE HIND, ROCK",,"USEC-SE","demersal",6.35,13.9,61,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus analogus","USWC-48 SPOTTED CABRILLA",,"USWC-48","reef",0.33,260.5,114,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus drummondhayi","USEC-SE HIND, SPECKLED",,"USEC-SE","demersal",4.3,47.4,110,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus flavolimbatus","GoMex yellowedge grouper",2011,"USEC-SE","demersal",5.12,716.4,115,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Serranidae","Epinephelus fulvus","USEC-SE CONEY",,"USEC-SE","reef",0.44,12.1,41,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus guttatus","USEC-SE HIND, RED",,"USEC-SE","reef",4.54,34.6,76,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus inermis","USEC-SE GROUPER, MARBLED",,"USEC-SE","reef",3.56,19.7,91,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus itajara","USEC-SE GROUPER, GOLIATH",,"USEC-SE","reef",0.46,128.9,250,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus morio","GoMex red grouper",1991,"USEC-SE","reef",3.55,4001.5,125,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Serranidae","Epinephelus morio","sAtl red grouper",2010,"USEC-SE","reef",5,293,125,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Serranidae","Epinephelus mystacinus","USEC-SE GROUPER, MISTY",,"USEC-SE","bathy-",4.84,2,160,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus nigritus","USEC-SE GROUPER, WARSAW",,"USEC-SE","demersal",1.64,162.6,230,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus niveatus","sAtl snowy grouper",2004,"USEC-SE","demersal",3.78,254.6,122,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Serranidae","Epinephelus niveatus","USEC-NE GROUPER, SNOWY",,"USEC-NE","demersal",4.99,0.8,122,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus niveatus","USEC-SE GROUPER, SNOWY",,"USEC-SE","demersal",4.78,128.5,122,,
-"Actinopterygii","Perciformes","Serranidae","Epinephelus striatus","USEC-SE GROUPER, NASSAU",,"USEC-SE","reef",3.66,7,122,,
-"Actinopterygii","Perciformes","Serranidae","Hemanthias leptus","USEC-SE BASS, LONGTAIL",,"USEC-SE","demersal",2.39,0.8,50,,
-"Actinopterygii","Perciformes","Serranidae","Mycteroperca bonaci","USSE black grouper",2010,"USEC-SE","reef",4.72,763.3,150,1,"Snapper-Grouper Fishery of the South Atlantic Region / Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Serranidae","Mycteroperca interstitialis","USEC-SE GROUPER, YELLOWMOUTH",,"USEC-SE","reef",5.12,0.4,84,,
-"Actinopterygii","Perciformes","Serranidae","Mycteroperca microlepis","GoMex gag grouper",1994,"USEC-SE","reef",4.56,793.8,145,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Perciformes","Serranidae","Mycteroperca microlepis","sAtl gag grouper",1994,"USEC-SE","reef",4.12,445.1,145,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Serranidae","Mycteroperca phenax","USEC-SE SCAMP",,"USEC-SE","reef",5.61,356.4,107,,
-"Actinopterygii","Perciformes","Serranidae","Mycteroperca venenosa","USEC-SE GROUPER, YELLOWFIN",,"USEC-SE","reef",4.36,195.9,100,,
-"Actinopterygii","Perciformes","Serranidae","Paranthias furcifer","USEC-SE CREOLE-FISH",,"USEC-SE","reef",2.15,2.4,30,,
-"Actinopterygii","Perciformes","Sparidae","Archosargus probatocephalus","USEC-NE SHEEPSHEAD",,"USEC-NE","reef",0.8,12.3,91,,
-"Actinopterygii","Perciformes","Sparidae","Archosargus probatocephalus","USEC-SE SHEEPSHEAD",,"USEC-SE","reef",0.63,2280.2,91,,
-"Actinopterygii","Perciformes","Sparidae","Calamus bajonado","USEC-SE PORGY, JOLTHEAD",,"USEC-SE","reef",1.86,9.7,76,,
-"Actinopterygii","Perciformes","Sparidae","Calamus leucosteus","USEC-SE PORGY, WHITEBONE",,"USEC-SE","demersal",1.98,5,46,,
-"Actinopterygii","Perciformes","Sparidae","Calamus nodosus","USEC-SE PORGY, KNOBBED",,"USEC-SE","reef",1.51,39.7,54.4,,
-"Actinopterygii","Perciformes","Sparidae","Diplodus holbrookii","USEC-SE PINFISH, SPOTTAIL",,"USEC-SE","demersal",1.13,18.4,46,,
-"Actinopterygii","Perciformes","Sparidae","Lagodon rhomboides","USEC-SE PINFISH",,"USEC-SE","demersal",1.93,464.1,40,,
-"Actinopterygii","Perciformes","Sparidae","Pagrus pagrus","sAtl red porgy",1992,"USEC-SE","benthopelagic",2.4,349.9,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
-"Actinopterygii","Perciformes","Sparidae","Pagrus pagrus","USEC-SE PORGY, RED",,"USEC-SE","benthopelagic",2.5,176.4,91,,
-"Actinopterygii","Perciformes","Sparidae","Stenotomus caprinus","USEC-SE PORGY, LONGSPINE",,"USEC-SE","demersal",2.58,0.2,30,,
-"Actinopterygii","Perciformes","Sparidae","Stenotomus chrysops","USNE scup",1995,"USEC-NE","demersal",1.09,166.5,46,1,"Summer Flounder, Scup and Black Sea Bass"
-"Actinopterygii","Perciformes","Stichaeidae","Cebidichthys violaceus","USWC-48 PRICKLEBACK, MONKEYFACE",,"USWC-48","demersal",6.29,0.4,76,,
-"Actinopterygii","Perciformes","Stromateidae","Peprilus alepidotus","USEC-NE HARVESTFISH",,"USEC-NE","benthopelagic",0.75,244.1,30,,
-"Actinopterygii","Perciformes","Stromateidae","Peprilus alepidotus","USEC-SE HARVESTFISH",,"USEC-SE","benthopelagic",0.87,332.6,30,,
-"Actinopterygii","Perciformes","Stromateidae","Peprilus simillimus","USWC-48 POMPANO, PACIFIC",,"USWC-48","benthopelagic",0.91,83.3,28,,
-"Actinopterygii","Perciformes","Stromateidae","Peprilus triacanthus","USNE butterfish",1983,"USEC-NE","benthopelagic",0.34,8837,30,1,"Atlantic Mackerel, Squid and Butterfish"
-"Actinopterygii","Perciformes","Trichiuridae","Trichiurus lepturus","USEC-SE CUTLASSFISH, ATLANTIC",,"USEC-SE","benthopelagic",1.6,375.1,234,,
-"Actinopterygii","Perciformes","Uranoscopidae","Astroscopus guttatus","USEC-NE STARGAZER, NOTHERN",,"USEC-NE","demersal",0.57,0.3,59,,
-"Actinopterygii","Perciformes","Zoarcidae","Macrozoarces americanus","USEC-NE POUT, OCEAN",,"USEC-NE","demersal",0.19,2194.6,110,,
-"Actinopterygii","Pleuronectiformes","Achiridae","Trinectes maculatus","USEC-NE HOGCHOKER",,"USEC-NE","demersal",0.09,8.9,20,,
-"Actinopterygii","Pleuronectiformes","Cynoglossidae","Paraplagusia bilineata","USWC-48 SOLE, ROCK",,"USWC-48","demersal",0.72,244,30,,
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Citharichthys sordidus","Pacific sanddab - Pacific Coast",2013,"USWC-48","demersal",0.64,1269.4,41,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys californicus","USWC-48 HALIBUT, CALIFORNIA",,"USWC-48","demersal",3.9,606.7,152,,
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys dentatus","USNE summer flounder",1990,"USEC-NE","demersal",1.25,18077.6,94,1,"Summer Flounder, Scup and Black Sea Bass"
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys lethostigma","North Carolina southern flounder",2009,"USEC-SE","demersal",3.2,2213,83,0,
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys lethostigma","USEC-NE FLOUNDER, SOUTHERN",,"USEC-NE","demersal",3.08,0.7,83,,
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys lethostigma","USEC-SE FLOUNDER, SOUTHERN",,"USEC-SE","demersal",2.25,85.2,83,,
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys oblongus","USEC-NE FLOUNDER, FOURSPOT",,"USEC-NE","demersal",0.93,13.2,41,,
-"Actinopterygii","Pleuronectiformes","Paralichthyidae","Xystreurys liolepis","USWC-48 SOLE, FANTAIL",,"USWC-48","demersal",1.14,1.7,63.5,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Atheresthes stomias","BSAI arrowtooth flounder",1988,"USWC-AK","demersal",0.17,476.37936871,84,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Atheresthes stomias","GOA arrowtooth flounder",1996,"USWC-AK","demersal",0.13,2329.61295105,84,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Atheresthes stomias","USWC arrowtooth flounder",2007,"USWC-48","demersal",0.23,5804.5,84,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Eopsetta jordani","USWC-AK SOLE, PETRALE",,"USWC-AK","demersal",0.87,116,53,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Eopsetta jordani","USWC petrale sole",1984,"USWC-48","demersal",0.6,4209,53,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Glyptocephalus cynoglossus","GoMaine witch flounder",1994,"USEC-NE","demersal",1.24,6652.8,60,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Glyptocephalus zachirus","GOA rex sole",2004,"USWC-AK","demersal",0.43,5740.8,60,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Glyptocephalus zachirus","Rex sole - Pacific Coast",2013,"USWC-48","demersal",0.55,4620.1,60,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides elassodon","BSAI flathead sole",1998,"USWC-AK","demersal",0.23,17020.6438365603,52,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides elassodon","GOA flathead sole",2003,"USWC-AK","demersal",0.15,2556.4561634397,52,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides elassodon","USWC-48 SOLE, FLATHEAD",,"USWC-48","demersal",0.7,35.5,52,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides platessoides","GeBank/GoMaine American plaice",1992,"USEC-NE","demersal",0.96,15131.9,82.6,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossus hippoglossus","GeBank/GoMaine Atlantic halibut",2008,"USEC-NE","demersal",1.83,243.8,470,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossus stenolepis","Pacific halibut (coastwide)",1960,"USWC-AK","demersal",0.31,27539.6,258,1,"Species Managed Under International Agreement - IPHC"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Isopsetta isolepis","USWC-48 SOLE, BUTTER",,"USWC-48","demersal",0.45,43.6,55,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Lepidopsetta bilineata","GOA southern rock sole",2012,"USWC-AK","demersal",0.39,1266.5109635848,58,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Lepidopsetta polyxystra","BSAI northern rock sole",1992,"USWC-AK","demersal",0.3,42707.78801885,69,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Lepidopsetta polyxystra","GOA northern rock sole",2012,"USWC-AK","demersal",0.39,2721.350757556,69,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda aspera","BSAI yellowfin sole",1987,"USWC-AK","demersal",0.37,32.9,49,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda ferruginea","CCod/GoMaine yellowtail flounder",1999,"USEC-NE","demersal",0.72,10733.6666559355,64,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda ferruginea","GeBank yellowtail flounder",1989,"USEC-NE","demersal",0.58,12602.0666559355,64,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda ferruginea","sNEng/midAtl yellowtail flounder",1989,"USEC-NE","demersal",0.57,14791.3666600673,64,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Microstomus bathybius","USWC-48 SOLE, DEEPSEA",,"USWC-48","bathy-",1.13,0.1,47,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Microstomus pacificus","GOA dover sole",2003,"USWC-AK","demersal",0.26,2221.5,76,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Microstomus pacificus","USWC dover sole",1984,"USWC-48","demersal",0.33,20944.3,76,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Parophrys vetulus","USWC-AK SOLE, ENGLISH",,"USWC-AK","demersal",0.3,40.2,49,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Parophrys vetulus","USWC English sole",1985,"USWC-48","demersal",0.36,8082.4,49,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys stellatus","USWC-AK FLOUNDER, STARRY",,"USWC-AK","demersal",0.35,877.1,91,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys stellatus","USWC starry flounder (northern)",2005,"USWC-48","demersal",0.55,1096.5,91,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys stellatus","USWC starry flounder (southern)",2005,"USWC-48","demersal",0.96,212.6,91,1,"Pacific Coast Groundfish"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronectes quadrituberculatus","BSAI Alaska plaice",1996,"USWC-AK","demersal",0.17,61638,87,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronichthys coenosus","USWC-48 SOLE, C-O",,"USWC-48","demersal",0.29,1,36,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronichthys decurrens","USWC-48 SOLE, CURLFIN",,"USWC-48","demersal",0.74,7.5,37,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronichthys verticalis","USWC-48 TURBOT, HORNYHEAD",,"USWC-48","demersal",3.76,4.9,37,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Psettichthys melanostictus","USWC-48 SOLE, SAND",,"USWC-48","demersal",1.08,920.1,63,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Psettichthys melanostictus","USWC-AK SOLE, SAND",,"USWC-AK","demersal",0.65,4.5,63,,
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pseudopleuronectes americanus","GeBank winter flounder",1999,"USEC-NE","demersal",1.08,6715.5428521062,64,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pseudopleuronectes americanus","GoMaine winter flounder",2003,"USEC-NE","demersal",1.06,2380.1857159526,64,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pseudopleuronectes americanus","sNEng/midAtl winter flounder",1996,"USEC-NE","demersal",0.83,9244.8714319052,64,1,"Northeast Multispecies"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Reinhardtius hippoglossoides","BSAI Greenland halibut",1987,"USWC-AK","benthopelagic",0.51,8544.1,80,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Pleuronectiformes","Pleuronectidae","Reinhardtius hippoglossoides","USEC-NE HALIBUT, GREENLAND",,"USEC-NE","benthopelagic",0.57,10.6,80,,
-"Actinopterygii","Pleuronectiformes","Scophthalmidae","Scophthalmus aquosus","USEC-NE FLOUNDER, WINDOWPANE",,"USEC-NE","demersal",0.94,4206.5,45.7,,
-"Actinopterygii","Scorpaeniformes","Anoplopomatidae","Anoplopoma fimbria","Alaska sablefish",1987,"USWC-AK","bathy-",1.04,33959.6,120,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area / Groundfish of the Gulf of Alaska"
-"Actinopterygii","Scorpaeniformes","Anoplopomatidae","Anoplopoma fimbria","USWC sablefish",1984,"USWC-48","bathy-",0.39,23554.8,120,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Cottidae","Scorpaenichthys marmoratus","USWC cabezon (nCal)",2003,"USWC-48","demersal",6.09,148.575,99,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Cottidae","Scorpaenichthys marmoratus","USWC cabezon (OR)",2009,"USWC-48","demersal",5.31,46.3,99,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Cottidae","Scorpaenichthys marmoratus","USWC cabezon (sCal)",2003,"USWC-48","demersal",6.09,21.225,99,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Cyclopteridae","Cyclopterus lumpus","USEC-NE LUMPFISH",,"USEC-NE","benthopelagic",0.33,3.5,61,,
-"Actinopterygii","Scorpaeniformes","Hemitripteridae","Hemitripterus americanus","USEC-NE SEA RAVEN",,"USEC-NE","demersal",1.52,5.7,64,,
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Hexagrammos decagrammus","USWC-48 GREENLING, KELP",,"USWC-48","demersal",9.32,23.3,61,,
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Hexagrammos decagrammus","USWC kelp greenling (OR)",2005,"USWC-48","demersal",7.6,53.5,61,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USEC-SE LINGCOD",,"USEC-SE","demersal",0.41,124.4,152,,
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USWC-AK LINGCOD",,"USWC-AK","demersal",1.01,1096,152,,
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USWC lingcod (northern)",1994,"USWC-48","demersal",0.33,3570.4,152,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USWC lingcod (southern)",1999,"USWC-48","demersal",0.47,1734.4,152,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Hexagrammidae","Pleurogrammus monopterygius","BSAI atka mackerel",1986,"USWC-AK","demersal",0.38,30.3787756143,56.5,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Scorpaeniformes","Scorpaenidae","Neomerinthe hemingwayi","USEC-SE SCORPIONFISH, SPINYCHEEK",,"USEC-SE","demersal",2.36,0.7,40,,
-"Actinopterygii","Scorpaeniformes","Scorpaenidae","Pterois volitans","USEC-SE LIONFISH",,"USEC-SE","reef",9.92,6.3,38,,
-"Actinopterygii","Scorpaeniformes","Scorpaenidae","Scorpaena guttata","USWC California scorpionfish (southern)",2005,"USWC-48","demersal",3.38,101.2,43,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Scorpaenidae","Scorpaena plumieri","USEC-SE SCORPIONFISH, SPOTTED",,"USEC-SE","reef",3.46,1,45,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Helicolenus dactylopterus","USEC-NE ROSEFISH, BLACKBELLY",,"USEC-NE","bathy-",1.26,0.8,47,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Helicolenus dactylopterus","USEC-SE ROSEFISH, BLACKBELLY",,"USEC-SE","bathy-",2.08,66.9,47,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aleutianus","BSAI rougheye rockfish",2003,"USWC-AK","bathy-",0.54,3553,97,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aleutianus","GOA rougheye rockfish",2005,"USWC-AK","bathy-",0.7,2418,97,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aleutianus","Rougheye Rockfish - Pacific Coast",2013,"USWC-48","bathy-",0.51,760.11,97,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes alutus","BSAI Pacific ocean perch",1985,"USWC-AK","bathy-",0.28,925.0248052002,53,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes alutus","GOA Pacific ocean perch",1990,"USWC-AK","bathy-",0.38,2182.7040410931,53,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes alutus","USWC Pacific ocean perch",1972,"USWC-48","bathy-",0.11,12860.1,53,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes atrovirens","USWC-48 ROCKFISH, KELP",,"USWC-48","demersal",6.6,3,42,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes auriculatus","Brown rockfish - Pacific Coast",2013,"USWC-48","demersal",3.24,644.3,56,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aurora","Aurora rockfish - Pacific Coast",2013,"USWC-48","bathy-",1.75,4.6,41,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes babcocki","USWC-48 ROCKFISH, REDBANDED",,"USWC-48","demersal",2.11,4.6,64,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes babcocki","USWC-AK ROCKFISH, REDBANDED",,"USWC-AK","demersal",0.63,43.5,64,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes borealis","BSAI shortraker rockfish",2003,"USWC-AK","bathy-",0.37,3286,108,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes brevispinis","USWC-AK ROCKFISH, SILVERGRAY",,"USWC-AK","demersal",0.62,23.3,71,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes carnatus","USWC gopher rockfish",2005,"USWC-48","demersal",6.77,53.7,39,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes caurinus","Copper rockfish - Pacific Coast",2013,"USWC-48","demersal",3.87,64.8,58,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes caurinus","USWC-AK ROCKFISH, COPPER",,"USWC-AK","demersal",0.58,2.7,58,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes chlorostictus","USWC greenspotted rockfish (northern)",2011,"USWC-48","demersal",1.84,1.218,50,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes chlorostictus","USWC greenspotted rockfish (southern)",2011,"USWC-48","demersal",1.84,19.082,50,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes chrysomelas","USWC-48 ROCKFISH, BLACK-AND-YELLOW",,"USWC-48","demersal",13.89,14.6,39,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes constellatus","USWC-48 ROCKFISH, STARRY",,"USWC-48","reef",3.54,15.3,46,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes constellatus","USWC-AK ROCKFISH, STARRY",,"USWC-AK","reef",0.2,446.5,46,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes crameri","USWC-AK ROCKFISH, DARKBLOTCHED",,"USWC-AK","demersal",0.38,15.7,58,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes crameri","USWC darkblotched rockfish",2000,"USWC-48","demersal",0.91,11.6,58,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes diploproa","USWC splitnose rockfish",2009,"USWC-48","bathy-",0.61,111.2,46,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes elongatus","USWC-AK ROCKFISH, GREENSTRIPED",,"USWC-AK","demersal",0.57,0.3,39,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes elongatus","USWC greenstriped rockfish",2009,"USWC-48","demersal",1.19,3.3,39,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ensifer","USWC-48 ROCKFISH, SWORDSPINE",,"USWC-48","demersal",1.92,0.1,30,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes entomelas","USWC-AK ROCKFISH, WIDOW",,"USWC-AK","pelagic",0.49,9.8,60,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes entomelas","USWC widow rockfish",1983,"USWC-48","pelagic",0.35,10276,60,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes fasciatus","GeBank/GoMaine Acadian redfish",1975,"USEC-NE","demersal",0.1,117173.2,30,1,"Northeast Multispecies"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes flavidus","USWC-AK ROCKFISH, YELLOWTAIL",,"USWC-AK","reef",0.42,24.8,66,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes flavidus","USWC yellowtail rockfish (northern)",1984,"USWC-48","reef",0.61,219.5,66,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes gilli","USWC-48 ROCKFISH, BRONZESPOTTED",,"USWC-48","demersal",3.04,0.1,71,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes goodei","USWC chilipepper (southern)",1985,"USWC-48","demersal",0.68,31.4,56,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes hopkinsi","USWC-48 ROCKFISH, SQUARESPOT",,"USWC-48","reef",3.62,0.6,29,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes jordani","USWC shortbelly rockfish",2007,"USWC-48","demersal",0.27,27.9,32,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes levis","USWC cowcod",1999,"USWC-48","bathy-",1.75,62.6,100,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanops","USWC-AK ROCKFISH, BLACK",,"USWC-AK","reef",0.77,517.5,63,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanops","USWC black rockfish (California)",2003,"USWC-48","reef",1.35,128.9,63,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanops","USWC black rockfish (Oregon)",2016,"USWC-48","reef",2.49,197.4,63,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanostomus","USWC blackgill rockfish",2005,"USWC-48","bathy-",1.47,312.4,61,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes miniatus","USWC-48 ROCKFISH, VERMILION",,"USWC-48","reef",4.05,26.4,91,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes miniatus","USWC-AK ROCKFISH, VERMILION",,"USWC-AK","reef",0.7,1.1,91,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC-48 ROCKFISH, BLUE",,"USWC-48","reef",2.29,6.2,61,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC-AK ROCKFISH, BLUE",,"USWC-AK","reef",0.65,0.1,61,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC blue rockfish",2007,"USWC-48","reef",1.29,43.4,61,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC-48 ROCKFISH, CHINA",,"USWC-48","reef",5.55,30.8,45,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC-AK ROCKFISH, CHINA",,"USWC-AK","reef",1.09,2.2,45,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ovalis","USWC-48 ROCKFISH, SPECKLED",,"USWC-48","demersal",2.32,2.3,56,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes paucispinis","USWC-AK ROCKFISH, BOCACCIO",,"USWC-AK","reef",0.67,50.1,91,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes paucispinis","USWC bocaccio (southern)",1990,"USWC-48","reef",0.46,4537.8,91,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes pinniger","USWC-AK ROCKFISH, CANARY",,"USWC-AK","demersal",0.82,19.6,76,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes pinniger","USWC canary rockfish",1990,"USWC-48","reef",1.51,47.2,76,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes polyspinis","BSAI northern rockfish",2003,"USWC-AK","demersal",0.17,6724,41,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes polyspinis","GOA northern rockfish",2000,"USWC-AK","demersal",0.17,17430,41,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes proriger","USWC-AK ROCKFISH, REDSTRIPE",,"USWC-AK","bathy-",0.48,22.5,61,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rastrelliger","USWC-48 ROCKFISH, GRASS",,"USWC-48","demersal",14.23,49.5,56,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes reedi","USWC-AK ROCKFISH, YELLOWMOUTH",,"USWC-AK","bathy-",0.75,0.6,58,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rosaceus","USWC-48 ROCKFISH, ROSY",,"USWC-48","demersal",1.7,3.9,36,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rosenblatti","USWC-48 ROCKFISH, GREENBLOTCHED",,"USWC-48","demersal",3.55,0.9,48,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ruberrimus","USWC-AK ROCKFISH, YELLOWEYE",,"USWC-AK","reef",1.3,992.7,104,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ruberrimus","USWC yelloweye rockfish",2001,"USWC-48","reef",1.47,343.5,104,1,"Pacific Coast Groundfish"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rubrivinctus","USWC-48 ROCKFISH, FLAG",,"USWC-48","demersal",4.91,0.9,51,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rufus","USWC-48 ROCKFISH, BANK",,"USWC-48","demersal",1.16,204.9,54,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes serranoides","USWC-48 ROCKFISH, OLIVE",,"USWC-48","reef",3.66,1.7,61,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes serriceps","USWC-48 ROCKFISH, TREEFISH",,"USWC-48","demersal",15.12,1.9,41,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes simulator","USWC-48 ROCKFISH, PINKROSE",,"USWC-48","demersal",0.77,0.3,30,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes variabilis","GOA dusky rockfish",2003,"USWC-AK","demersal",0.33,4476,43.08,1,"Groundfish of the Gulf of Alaska"
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes zacentrus","USWC-AK ROCKFISH, SHARPCHIN",,"USWC-AK","bathy-",0.53,0.1,39,,
-"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastolobus alascanus","USWC shortspine thornyhead",1990,"USWC-48","bathy-",0.84,202.4,80,1,"Pacific Coast Groundfish"
-"Actinopterygii","Tetraodontiformes","Balistidae","Balistes capriscus","GoMex gray triggerfish",2001,"USEC-SE","reef",2.08,43.8,60,1,"Reef Fish Resources of the Gulf of Mexico"
-"Actinopterygii","Tetraodontiformes","Balistidae","Balistes capriscus","USEC-NE TRIGGERFISH, GRAY",,"USEC-NE","reef",0.84,0.1,60,,
-"Actinopterygii","Tetraodontiformes","Balistidae","Balistes capriscus","USEC-SE TRIGGERFISH, GRAY",,"USEC-SE","reef",4.24,16.5,60,,
-"Actinopterygii","Tetraodontiformes","Balistidae","Balistes vetula","USEC-SE TRIGGERFISH, QUEEN",,"USEC-SE","reef",4.4,1.7,60,,
-"Actinopterygii","Tetraodontiformes","Balistidae","Canthidermis sufflamen","USEC-SE TRIGGERFISH, OCEAN",,"USEC-SE","reef",2.81,0.9,65,,
-"Actinopterygii","Tetraodontiformes","Tetraodontidae","Sphoeroides maculatus","USEC-NE PUFFER, NOTHERN",,"USEC-NE","demersal",0.18,5893,36,,
-"Actinopterygii","Tetraodontiformes","Tetraodontidae","Sphoeroides maculatus","USEC-SE PUFFER, NOTHERN",,"USEC-SE","demersal",0.2,222.1,36,,
-"Actinopterygii","Zeiformes","Zeidae","Zenopsis ocellata","USEC-NE DORY, AMERICAN JOHN",,"USEC-NE","benthopelagic",1.38,136.9,80,,
-"Actinopterygii","Zeiformes","Zeidae","Zenopsis ocellata","USEC-SE DORY, AMERICAN JOHN",,"USEC-SE","benthopelagic",1.31,1.8,80,,
-"Bivalvia","Arcoida","Arcidae","Anadara ovalis","USEC-NE CLAM, ARC, BLOOD",,"USEC-NE","benthic",4.91,71.1,7.6,,
-"Bivalvia","Arcoida","Arcidae","Anadara ovalis","USEC-SE CLAM, ARC, BLOOD",,"USEC-SE","benthic",12.87,5.1,7.6,,
-"Bivalvia","Myoida","Hiatellidae","Panopea generosa","SE Alaska geoduck",1985,"USWC-AK","benthic",2.1,0.1,17.5,0,
-"Bivalvia","Myoida","Hiatellidae","Panopea generosa","WA geoduck clam",1997,"USWC-48","benthic",4.64,1294.3,17.5,0,
-"Bivalvia","Myoida","Myidae","Mya arenaria","USEC-NE CLAM, SOFTSHELL",,"USEC-NE","benthic",3.98,6115,10,,
-"Bivalvia","Myoida","Myidae","Mya arenaria","USWC-48 CLAM, SOFTSHELL",,"USWC-48","benthic",1.85,416.4,10,,
-"Bivalvia","Mytiloida","Mytilidae","Mytilus californianus","USWC-48 MUSSEL, CALIFORNIA",,"USWC-48","reef",6.69,52.5,25.5,,
-"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USEC-NE MUSSEL, BLUE",,"USEC-NE","reef",1,4801.3,11,,
-"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USEC-SE MUSSEL, BLUE",,"USEC-SE","reef",2.71,2.2,11,,
-"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USWC-48 MUSSEL, BLUE",,"USWC-48","reef",17.58,351.2,11,,
-"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USWC-AK MUSSEL, BLUE",,"USWC-AK","reef",3.59,76,11,,
-"Bivalvia","Ostreoida","Ostreidae","Crassostrea gigas","USWC-48 OYSTER, PACIFIC",,"USWC-48","reef",3.83,8914,45,,
-"Bivalvia","Ostreoida","Ostreidae","Crassostrea gigas","USWC-AK OYSTER, PACIFIC",,"USWC-AK","reef",9.41,45.6,45,,
-"Bivalvia","Ostreoida","Ostreidae","Crassostrea virginica","USEC-NE OYSTER, EASTERN",,"USEC-NE","reef",2.9,25264.8,30,,
-"Bivalvia","Ostreoida","Ostreidae","Crassostrea virginica","USEC-SE OYSTER, EASTERN",,"USEC-SE","reef",3.29,14413.2,30,,
-"Bivalvia","Ostreoida","Ostreidae","Crassostrea virginica","USWC-48 OYSTER, EASTERN",,"USWC-48","reef",15.79,169.8,30,,
-"Bivalvia","Ostreoida","Ostreidae","Ostrea edulis","USEC-NE OYSTER, EUROPEAN FLAT",,"USEC-NE","reef",2.6,306.7,12,,
-"Bivalvia","Ostreoida","Ostreidae","Ostrea edulis","USWC-48 OYSTER, EUROPEAN FLAT",,"USWC-48","reef",34.09,17.2,12,,
-"Bivalvia","Ostreoida","Ostreidae","Ostrea lurida","USWC-48 OYSTER, OLYMPIA",,"USWC-48","benthic",11,65,7.5,,
-"Bivalvia","Ostreoida","Ostreidae","Ostrea lurida","USWC-AK OYSTER, OLYMPIA",,"USWC-AK","benthic",2.22,0.9,8,,
-"Bivalvia","Ostreoida","Pectinidae","Argopecten gibbus","USEC-NE SCALLOP, CALICO",,"USEC-NE","benthic",18.61,0.4,5.2,,
-"Bivalvia","Ostreoida","Pectinidae","Argopecten gibbus","USEC-SE SCALLOP, CALICO",,"USEC-SE","benthic",1.8,19387.5,5.2,,
-"Bivalvia","Ostreoida","Pectinidae","Argopecten irradians","USEC-NE SCALLOP, BAY",,"USEC-NE","benthic",5.57,1260,7.5,,
-"Bivalvia","Ostreoida","Pectinidae","Argopecten irradians","USEC-SE SCALLOP, BAY",,"USEC-SE","benthic",2.57,354.4,7.5,,
-"Bivalvia","Ostreoida","Pectinidae","Chlamys islandica","USEC-NE SCALLOP, ICELAND",,"USEC-NE","benthic",8.98,191.3,11,,
-"Bivalvia","Ostreoida","Pectinidae","Patinopecten caurinus","USWC-AK SCALLOP, WEATHERVANE",,"USWC-AK","benthic",7.24,856.5,28,,
-"Bivalvia","Ostreoida","Pectinidae","Placopecten magellanicus","GeBank/midAtl sea scallop",1978,"USEC-NE","benthic",1.84,14587.3,20,1,"Atlantic Sea Scallop"
-"Bivalvia","Ostreoida","Pectinidae","Placopecten magellanicus","USWC-AK SCALLOP, SEA",,"USWC-AK","benthic",20.61,218.3,20,,
-"Bivalvia","Veneroida","Arcticidae","Arctica islandica","USEC ocean quahog",1978,"USEC-NE","benthic",0.58,10348.8,12.7,1,"Atlantic Surfclam and Ocean Quahog"
-"Bivalvia","Veneroida","Cardiidae","Clinocardium nuttallii","USWC-48 COCKLE, NUTTALL",,"USWC-48","benthic",2.58,44.9,14,,
-"Bivalvia","Veneroida","Cardiidae","Clinocardium nuttallii","USWC-AK COCKLE, NUTTALL",,"USWC-AK","benthic",0.3,33.2,14,,
-"Bivalvia","Veneroida","Donacidae","Donax variabilis","USWC-48 CLAM, VARIABLE COQUINA",,"USWC-48","demersal",1.38,0.5,1.9,,
-"Bivalvia","Veneroida","Mactridae","Mactromeris polynyma","USEC-NE CLAM, ARCTIC SURF (STIMPSON)",,"USEC-NE","benthic",1.97,137.5,14,,
-"Bivalvia","Veneroida","Mactridae","Rangia cuneata","USEC-SE CLAM, ATLANTIC RANGIA",,"USEC-SE","benthic",0.68,39,5,,
-"Bivalvia","Veneroida","Mactridae","Spisula solidissima","USEC Atlantic surfclam",1978,"USEC-NE","benthic",0.35,43596.2,20,1,"Atlantic Surfclam and Ocean Quahog"
-"Bivalvia","Veneroida","Pharidae","Ensis directus","USEC-NE CLAM, ATLANTIC JACKKNIFE",,"USEC-NE","benthic",6.84,150.3,26,,
-"Bivalvia","Veneroida","Pharidae","Ensis directus","USWC-AK CLAM, ATLANTIC JACKKNIFE",,"USWC-AK","benthic",1.39,139.4,26,,
-"Bivalvia","Veneroida","Pharidae","Ensis myrae","USWC-48 CLAM, CALIFORNIA JACKKNIFE",,"USWC-48","demersal",15.92,1.2,13,,
-"Bivalvia","Veneroida","Pharidae","Siliqua patula","USWC-48 CLAM, PACIFIC RAZOR",,"USWC-48","benthic",2.61,212.8,18,,
-"Bivalvia","Veneroida","Pharidae","Siliqua patula","USWC-AK CLAM, PACIFIC RAZOR",,"USWC-AK","benthic",0.44,1068.5,18,,
-"Bivalvia","Veneroida","Veneridae","Macrocallista nimbosa","USEC-SE CLAM, SUNRAY VENUS",,"USEC-SE","benthic",0.35,344.6,15,,
-"Bivalvia","Veneroida","Veneridae","Mercenaria mercenaria","USEC-NE CLAM, NORTHERN QUAHOG",,"USEC-NE","benthic",13.82,4428.4,13,,
-"Bivalvia","Veneroida","Veneridae","Mercenaria mercenaria","USEC-SE CLAM, NORTHERN QUAHOG",,"USEC-SE","benthic",11.17,79.3,13,,
-"Bivalvia","Veneroida","Veneridae","Protothaca staminea","USWC-48 CLAM, PACIFIC LITTLENECK",,"USWC-48","benthic",2.61,212.8,7.5,,
-"Bivalvia","Veneroida","Veneridae","Protothaca staminea","USWC-AK CLAM, PACIFIC LITTLENECK",,"USWC-AK","benthic",16.83,10.3,7.5,,
-"Bivalvia","Veneroida","Veneridae","Saxidomus giganteus","USWC-48 CLAM, BUTTER",,"USWC-48","benthic",1.17,69.1,13,,
-"Bivalvia","Veneroida","Veneridae","Saxidomus giganteus","USWC-AK CLAM, BUTTER",,"USWC-AK","benthic",0.19,71.9,13,,
-"Branchiopoda","Anostraca","Artemiidae","Artemia salina","USWC-48 SHRIMP, BRINE",,"USWC-48","pelagic",1.38,842.9,1.5,,
-"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Lampetra tridentata","USWC-48 LAMPREY, PACIFIC",,"USWC-48","demersal",1.24,17.8,76,,
-"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Petromyzon marinus","USEC-NE LAMPREY, SEA",,"USEC-NE","demersal",0.2,0.4,120,,
-"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Petromyzon marinus","USEC-SE LAMPREY, SEA",,"USEC-SE","demersal",1.37,0.2,120,,
-"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Petromyzon marinus","USWC-48 LAMPREY, SEA",,"USWC-48","demersal",0.11,118.8,120,,
-"Cephalopoda","Teuthida","Loliginidae","Loligo opalescens","USWC market squid",2001,"USWC-48","pelagic",0.25,118902.7,19,1,"Coastal Pelagic Species"
-"Cephalopoda","Teuthida","Loliginidae","Loligo pealeii","USNE longfin inshore squid",1976,"USEC-NE","pelagic",0.36,140.8,50,1,"Atlantic Mackerel, Squid and Butterfish"
-"Cephalopoda","Teuthida","Ommastrephidae","Dosidicus gigas","USWC-AK SQUID, JUMBO",,"USWC-AK","pelagic",0.08,2160,400,,
-"Cephalopoda","Teuthida","Ommastrephidae","Illex illecebrosus","USNE northern shortfin squid",1986,"USEC-NE","pelagic",0.29,3605.3,27,1,"Atlantic Mackerel, Squid and Butterfish"
-"Echinoidea","Echinoida","Strongylocentrotidae","Strongylocentrotus franciscanus","SE Alaska red sea urchin",1990,"USWC-AK","benthic",0.71,404,19,0,
-"Echinoidea","Echinoida","Strongylocentrotidae","Strongylocentrotus franciscanus","WA red sea urchin",1994,"USWC-48","benthic",0.59,4024,19,0,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus acronotus","sAtl blacknose shark",2002,"USEC-SE","reef",1.06,99.8,200,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus acronotus","USEC-SE SHARK, BLACKNOSE",,"USEC-SE","reef",0.9,22.7,200,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus altimus","USEC-NE SHARK, BIGNOSE",,"USEC-NE","reef",0.63,8.4,300,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus brevipinna","USEC-SE SHARK, SPINNER",,"USEC-SE","reef",0.79,40.5,300,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus falciformis","USEC-NE SHARK, SILKY",,"USEC-NE","reef",0.51,1.5,350,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus falciformis","USEC-SE SHARK, SILKY",,"USEC-SE","reef",0.89,11,350,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus isodon","USSE finetooth shark",2002,"USEC-SE","demersal",0.81,168.2,190,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus leucas","USEC-NE SHARK, BULL",,"USEC-NE","reef",1.13,4.6,360,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus leucas","USEC-SE SHARK, BULL",,"USEC-SE","reef",0.7,135.6,360,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus limbatus","GoMex blacktip shark",1998,"USEC-SE","reef",0.74,157.1,275,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus limbatus","USEC-NE SHARK, BLACKTIP",,"USEC-NE","reef",1.07,91.1,275,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus limbatus","USEC-SE SHARK, BLACKTIP",,"USEC-SE","reef",0.87,282.1,275,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus obscurus","USEC dusky shark",2006,"USEC-SE","reef",0.74,91.4,420,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus plumbeus","Sandbar shark Atlantic",1998,"USEC-SE","benthopelagic",0.79,1227.5,180,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus signatus","USEC-NE SHARK, NIGHT",,"USEC-NE","benthopelagic",1.15,0.1,280,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Galeocerdo cuvier","USEC-NE SHARK, TIGER",,"USEC-NE","benthopelagic",0.83,1.9,750,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Galeocerdo cuvier","USEC-SE SHARK, TIGER",,"USEC-SE","benthopelagic",0.69,32.8,750,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Negaprion brevirostris","USEC-NE SHARK, LEMON",,"USEC-NE","reef",0.11,0.2,340,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Negaprion brevirostris","USEC-SE SHARK, LEMON",,"USEC-SE","reef",0.7,47.8,340,,
-"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Rhizoprionodon terraenovae","USSE Atlantic sharpnose shark",2002,"USEC-SE","demersal",0.61,148.7,110,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Sphyrnidae","Sphyrna mokarran","USEC-SE SHARK, GREAT HAMMERHEAD",,"USEC-SE","pelagic",0.46,17.3,610,,
-"Elasmobranchii","Carcharhiniformes","Sphyrnidae","Sphyrna tiburo","USSE bonnethead shark",2002,"USEC-SE","reef",0.76,95.6,150,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Triakidae","Galeorhinus zyopterus","USWC-48 SHARK, SOUPFIN",,"USWC-48","benthopelagic",1.31,135.3,193,,
-"Elasmobranchii","Carcharhiniformes","Triakidae","Mustelus canis","USEC smooth dogfish shark",2016,"USEC-NE","demersal",0.68,4115.8,150,1,"Consolidated Atlantic Highly Migratory Species"
-"Elasmobranchii","Carcharhiniformes","Triakidae","Triakis semifasciata","USWC-48 SHARK, LEOPARD",,"USWC-48","demersal",1.4,48.2,198,,
-"Elasmobranchii","Lamniformes","Alopiidae","Alopias superciliosus","USEC-NE SHARK, BIGEYE THRESHER",,"USEC-NE","pelagic",0.78,2,487.985,,
-"Elasmobranchii","Lamniformes","Alopiidae","Alopias superciliosus","USEC-SE SHARK, BIGEYE THRESHER",,"USEC-SE","pelagic",1.02,3.9,487.985,,
-"Elasmobranchii","Lamniformes","Alopiidae","Alopias superciliosus","USWC-48 SHARK, BIGEYE THRESHER",,"USWC-48","pelagic",0.94,96.1,487.985,,
-"Elasmobranchii","Lamniformes","Lamnidae","Carcharodon carcharias","USEC-NE SHARK, WHITE",,"USEC-NE","pelagic",1.34,0.4,541,,
-"Elasmobranchii","Lamniformes","Lamnidae","Carcharodon carcharias","USWC-48 SHARK, WHITE",,"USWC-48","pelagic",0.79,1,541,,
-"Elasmobranchii","Lamniformes","Lamnidae","Isurus paucus","USEC-NE SHARK, LONGFIN MAKO",,"USEC-NE","pelagic",1.8,12.4,417,,
-"Elasmobranchii","Lamniformes","Lamnidae","Isurus paucus","USEC-SE SHARK, LONGFIN MAKO",,"USEC-SE","pelagic",2.25,10.6,417,,
-"Elasmobranchii","Lamniformes","Odontaspididae","Carcharias taurus","USEC-NE SHARK, SAND TIGER",,"USEC-NE","reef",0.63,11.7,330,,
-"Elasmobranchii","Lamniformes","Odontaspididae","Carcharias taurus","USEC-SE SHARK, SAND TIGER",,"USEC-SE","reef",0.6,4,330,,
-"Elasmobranchii","Myliobatiformes","Myliobatidae","Rhinoptera bonasus","USEC-NE RAY,COWNOSE",,"USEC-NE","benthopelagic",3.03,80.3,213.3,,
-"Elasmobranchii","Orectolobiformes","Ginglymostomatidae","Ginglymostoma cirratum","USEC-NE SHARK, NURSE",,"USEC-NE","reef",1.07,0.8,430,,
-"Elasmobranchii","Pristiformes","Pristidae","Pristis pectinata","USEC-SE SAWFISH, SMALLTOOTH",,"USEC-SE","demersal",0.13,9.4,760,,
-"Elasmobranchii","Rajiformes","Rajidae","Leucoraja erinacea","USEC-NE SKATE, LITTLE",,"USEC-NE","demersal",0.22,5007.3,54,,
-"Elasmobranchii","Rajiformes","Rajidae","Raja binoculata","USWC-48 SKATE, BIG",,"USWC-48","demersal",0.79,20.5,244,,
-"Elasmobranchii","Rajiformes","Rajidae","Raja inornata","USWC-48 SKATE, CALIFORNIA",,"USWC-48","demersal",0.7,1.2,76,,
-"Elasmobranchii","Rajiformes","Rajidae","Raja rhina","USWC longnose skate",2007,"USWC-48","bathy-",0.25,1721,180,1,"Pacific Coast Groundfish"
-"Elasmobranchii","Squaliformes","Squalidae","Squalus acanthias","USEC spiny dogfish",1994,"USEC-NE","benthopelagic",0.22,20763,160,1,"Spiny Dogfish"
-"Elasmobranchii","Squaliformes","Squalidae","Squalus acanthias","USWC spiny dogfish",2011,"USWC-48","benthopelagic",0.33,16876,160,1,"Pacific Coast Groundfish"
-"Elasmobranchii","Squatiniformes","Squatinidae","Squatina californica","USWC-48 SHARK, PACIFIC ANGEL",,"USWC-48","demersal",0.58,1132.6,152,,
-"Elasmobranchii","Squatiniformes","Squatinidae","Squatina dumeril","USEC-NE SHARK, ATLANTIC ANGEL",,"USEC-NE","bathy-",1.12,0.1,152,,
-"Elasmobranchii","Squatiniformes","Squatinidae","Squatina dumeril","USEC-SE SHARK, ATLANTIC ANGEL",,"USEC-SE","bathy-",0.41,1,152,,
-"Gastropoda","Neogastropoda","Melongenidae","Busycon carica","USEC-NE WHELK, KNOBBED",,"USEC-NE","demersal",2.4,799.2,24.9,,
-"Gastropoda","Neogastropoda","Melongenidae","Busycon carica","USEC-SE WHELK, KNOBBED",,"USEC-SE","demersal",0.76,16.9,24.9,,
-"Gastropoda","Neogastropoda","Melongenidae","Busycon sinistrum","USEC-NE WHELK, LIGHTNING",,"USEC-NE","benthic",4.7,1.6,40,,
-"Gastropoda","Neogastropoda","Melongenidae","Busycotypus canaliculatus","USEC-NE WHELK, CHANNELED",,"USEC-NE","demersal",9.39,1014.8,20.1,,
-"Holocephali","Chimaeriformes","Chimaeridae","Hydrolagus colliei","USWC-48 RATFISH SPOTTED",,"USWC-48","demersal",0.02,1296.9,100,,
-"Malacostraca","Decapoda","Cancridae","Cancer borealis","USEC-NE CRAB, JONAH",,"USEC-NE","demersal",1.21,6928.9,16,,
-"Malacostraca","Decapoda","Cancridae","Cancer irroratus","USEC-NE CRAB, ATLANTIC ROCK",,"USEC-NE","demersal",0.52,2178.1,13.3,,
-"Malacostraca","Decapoda","Cancridae","Cancer magister","USWC-48 CRAB, DUNGENESS",,"USWC-48","demersal",2.77,38563.9,22.5,,
-"Malacostraca","Decapoda","Cancridae","Cancer magister","USWC-AK CRAB, DUNGENESS",,"USWC-AK","demersal",1.8,7114.7,22.5,,
-"Malacostraca","Decapoda","Cancridae","Cancer productus","USWC-48 CRAB, RED ROCK",,"USWC-48","benthic",2.03,874.8,20,,
-"Malacostraca","Decapoda","Geryonidae","Chaceon fenneri","USEC-SE CRAB, DEEPSEA GOLDEN",,"USEC-SE","benthic",3.16,758.7,18.5,,
-"Malacostraca","Decapoda","Geryonidae","Chaceon quinquedens","USNE deep sea red crab",1977,"USEC-NE","benthic",0.65,664.7,18,1,"Deep-Sea Red Crab"
-"Malacostraca","Decapoda","Lithodidae","Paralithodes camtschaticus","Bristol Bay red king crab",1994,"USWC-AK","benthic",2.5,58944,22,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
-"Malacostraca","Decapoda","Lithodidae","Paralithodes camtschaticus","Norton Sound red king crab",1996,"USWC-AK","benthic",2.74,1329,22,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
-"Malacostraca","Decapoda","Lithodidae","Paralithodes platypus","St-Matthews blue king crab",1997,"USWC-AK","benthic",2.83,4288,25,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
-"Malacostraca","Decapoda","Menippidae","Menippe mercenaria","USEC-NE CRAB, FLORIDA STONE CLAWS",,"USEC-NE","demersal",0.72,2.7,12,,
-"Malacostraca","Decapoda","Menippidae","Menippe mercenaria","USEC-SE CRAB, FLORIDA STONE CLAWS",,"USEC-SE","demersal",5.96,3214.2,12,,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","GeBank American lobster",1992,"USEC-NE","benthic",4.4,3652.408330504,64,0,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","GoMaine American lobster",1992,"USEC-NE","benthic",3.22,19508.6000027715,64,0,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","sNEng American lobster",1992,"USEC-NE","benthic",4.82,5225.625,64,0,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","USEC-NE LOBSTER, AMERICAN",,"USEC-NE","benthic",4.94,1028.4,64,,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","USEC-SE LOBSTER, AMERICAN",,"USEC-SE","benthic",1.39,13.6,64,,
-"Malacostraca","Decapoda","Oregoniidae","Chionoecetes bairdi","EBS tanner crab",2012,"USWC-AK","benthic",3.87,24871.3,15,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
-"Malacostraca","Decapoda","Oregoniidae","Chionoecetes bairdi","USWC-48 CRAB, SOUTHERN TANNER",,"USWC-48","benthic",2.77,209.1,15,,
-"Malacostraca","Decapoda","Oregoniidae","Chionoecetes opilio","EBS snow crab",2000,"USWC-AK","benthic",1.67,147502.1,9.1,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
-"Malacostraca","Decapoda","Palinuridae","Panulirus argus","USEC-SE LOBSTER, CARIBBEAN SPINY",,"USEC-SE","demersal",5.87,5357.8,45,,
-"Malacostraca","Decapoda","Palinuridae","Panulirus interruptus","CA spiny lobster",2011,"USWC-48","benthic",10.37,423.4,60,0,
-"Malacostraca","Decapoda","Pandalidae","Pandalus jordani","USWC-48 SHRIMP, OCEAN",,"USWC-48","benthic",0.85,37565.8,3,,
-"Malacostraca","Decapoda","Pandalidae","Pandalus jordani","USWC-AK SHRIMP, OCEAN",,"USWC-AK","benthic",0.1,19086,3,,
-"Malacostraca","Decapoda","Pandalidae","Pandalus platyceros","USWC-48 SHRIMP, SPOT",,"USWC-48","benthic",15.84,374.9,30,,
-"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus aztecus","USEC-NE SHRIMP, BROWN",,"USEC-NE","benthic",7.23,3.1,19.5,,
-"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus aztecus","USEC-SE SHRIMP, BROWN",,"USEC-SE","benthic",4.38,7414.1,19.5,,
-"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus duorarum","GoMex pink shrimp",1984,"USEC-SE","benthic",1.95,25105.6,26.8999996185303,1,"Shrimp Fishery of the Gulf of Mexico"
-"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus duorarum","USEC-SE SHRIMP, PINK",,"USEC-SE","demersal",3.83,1531.2,26.8999996185303,,
-"Malacostraca","Decapoda","Penaeidae","Litopenaeus setiferus","GoMex white shrimp",1984,"USEC-SE","benthic",2.53,39185.1,17.5,1,"Shrimp Fishery of the Gulf of Mexico"
-"Malacostraca","Decapoda","Penaeidae","Litopenaeus setiferus","USEC-SE SHRIMP, WHITE",,"USEC-SE","demersal",1.59,128449.4,17.5,,
-"Malacostraca","Decapoda","Penaeidae","Penaeus aztecus ","GoMex brown shrimp",1984,"USEC-SE","benthic",2.16,72672.8,19.5,1,"Shrimp Fishery of the Gulf of Mexico"
-"Malacostraca","Decapoda","Penaeidae","Xiphopenaeus kroyeri","USEC-SE SHRIMP, SEABOB",,"USEC-SE","demersal",1.01,6592.5,11.5,,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Chesapeake Bay blue crab",1997,"USEC-NE","benthic",0.59,52075.6,22.7,0,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Eastern Gulf of Mexico blue crab",2007,"USEC-SE","demersal",0.65,9348.3,22.7,0,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Florida South Atlantic blue crab",2007,"USEC-SE","demersal",0.68,4227.8,22.7,0,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","North Carolina blue crab",2004,"USEC-SE","demersal",0.85,30427.4,22.7,0,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","USEC-NE CRAB, BLUE",,"USEC-NE","demersal",1.55,7922.2,22.7,,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","USEC-SE CRAB, BLUE",,"USEC-SE","demersal",0.67,10586.6,22.7,,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","USWC-AK CRAB, BLUE",,"USWC-AK","demersal",0.53,41.2,22.7,,
-"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Western Gulf of Mexico blue crab",2013,"USEC-SE","demersal",1.05,31242.9,22.7,0,
-"Malacostraca","Decapoda","Portunidae","Carcinus maenas","USEC-NE CRAB, GREEN",,"USEC-NE","benthic",1.02,128.1,6,,
-"Malacostraca","Decapoda","Portunidae","Podophthalmus vigil","USWC-48 CRAB, RED PA",,"USWC-48","benthic",0.31,63,15,,
-"Malacostraca","Decapoda","Sicyoniidae","Sicyonia ingentis","USWC-48 SHRIMP, PACIFIC ROCK",,"USWC-48","demersal",2.6,739.7,6.6,,
-"Malacostraca","Decapoda","Solenoceridae","Pleoticus robustus","USEC-NE SHRIMP, ROYAL RED",,"USEC-NE","demersal",7.61,24,18,,
-"Malacostraca","Decapoda","Solenoceridae","Pleoticus robustus","USEC-SE SHRIMP, ROYAL RED",,"USEC-SE","demersal",4.42,588.3,18,,
-"Malacostraca","Decapoda","Upogebiidae","Upogebia pugettensis","USWC-48 SHRIMP, BLUE MUD",,"USWC-48","demersal",2.38,25.4,15,,
-"Merostomata","Xiphosura","Limulidae","Limulus polyphemus","Delaware Bay horseshoe crab",1998,"USEC-NE","benthic",0.34,3100.5,60,0,
+"Class","Order","Family","Species","Stock","Year of first stock assessment","Initial year","Region","Habitat","Mean ex vessel price per kg","Maximum landings","Fishbase length","FMP","FMP.name"
+"Actinopterygii","Acipenseriformes","Acipenseridae","Acipenser medirostris","USWC-48 STURGEON, GREEN",,1981,"USWC-48","demersal",1.14,109.3,270,,
+"Actinopterygii","Acipenseriformes","Acipenseridae","Acipenser transmontanus","USWC-48 STURGEON, WHITE",,1981,"USWC-48","demersal",3.55,349.4,610,,
+"Actinopterygii","Anguilliformes","Anguillidae","Anguilla rostrata","USEC-NE EEL, AMERICAN",,1960,"USEC-NE","demersal",4.33,1183.8,152,,
+"Actinopterygii","Anguilliformes","Anguillidae","Anguilla rostrata","USEC-SE EEL, AMERICAN",,1960,"USEC-SE","demersal",1.75,586.1,152,,
+"Actinopterygii","Anguilliformes","Congridae","Conger oceanicus","USEC-NE EEL, CONGER",,1960,"USEC-NE","demersal",0.69,107.6,230,,
+"Actinopterygii","Anguilliformes","Congridae","Conger oceanicus","USEC-SE EEL, CONGER",,1984,"USEC-SE","demersal",0.89,6.1,230,,
+"Actinopterygii","Beloniformes","Belonidae","Strongylura marina","USEC-NE NEEDLEFISH, ATLANTIC",,1963,"USEC-NE","reef",0.29,2.9,111,,
+"Actinopterygii","Beloniformes","Belonidae","Tylosurus crocodilus","USEC-NE HOUNDFISH",,2007,"USEC-NE","reef",0.33,1.1,150,,
+"Actinopterygii","Beloniformes","Hemiramphidae","Hemiramphus brasiliensis","USEC-SE BALLYHOO",,1960,"USEC-SE","reef",1.22,625.4,55,,
+"Actinopterygii","Clupeiformes","Clupeidae","Brevoortia patronus","GoMex Gulf menhaden",1972,1960,"USEC-SE","pelagic",0.03,729919.6,35,0,
+"Actinopterygii","Clupeiformes","Clupeidae","Brevoortia tyrannus","USEC Atlantic menhaden",1986,1960,"USEC-NE","pelagic",0.05,697362.1,50,0,
+"Actinopterygii","Clupeiformes","Clupeidae","Clupea harengus","GeBank/GoMaine Atlantic herring",1968,1960,"USEC-NE","benthopelagic",0.03,89147.4,45,1,"Atlantic Herring"
+"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","Alaska Kodiak herring",1978,1960,"USWC-AK","pelagic",0.05,7335.9913980591,34,0,
+"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","Alaska Sitka herring",1976,1960,"USWC-AK","pelagic",0.04,26842.7068446579,34,0,
+"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","Alaska Togiak herring",1978,1960,"USWC-AK","pelagic",0.05,40831.201757283,34,0,
+"Actinopterygii","Clupeiformes","Clupeidae","Clupea pallasii","USWC-48 HERRING, PACIFIC",,1960,"USWC-48","pelagic",0.74,11784.4,34,,
+"Actinopterygii","Clupeiformes","Clupeidae","Dorosoma cepedianum","USEC-NE SHAD, GIZZARD",,1960,"USEC-NE","pelagic",0.25,1389.7,57,,
+"Actinopterygii","Clupeiformes","Clupeidae","Dorosoma cepedianum","USEC-SE SHAD, GIZZARD",,1960,"USEC-SE","pelagic",0.33,938.7,57,,
+"Actinopterygii","Clupeiformes","Clupeidae","Opisthonema oglinum","USEC-NE HERRING, ATLANTIC THREAD",,1960,"USEC-NE","reef",0.03,2321.1,38,,
+"Actinopterygii","Clupeiformes","Clupeidae","Opisthonema oglinum","USEC-SE HERRING, ATLANTIC THREAD",,1960,"USEC-SE","reef",0.12,10083,38,,
+"Actinopterygii","Clupeiformes","Clupeidae","Sardinella aurita","USEC-SE SARDINE, SPANISH",,1960,"USEC-SE","reef",0.3,2921.8,30,,
+"Actinopterygii","Clupeiformes","Clupeidae","Sardinops sagax","USWC Pacific sardine",1966,1960,"USWC-48","pelagic",0.05,324105,39.5,1,"Coastal Pelagic Species"
+"Actinopterygii","Clupeiformes","Dussumieriidae","Etrumeus teres","USEC-SE HERRING, ROUND",,2001,"USEC-SE","pelagic",1.92,0.9,33,,
+"Actinopterygii","Clupeiformes","Dussumieriidae","Etrumeus teres","USWC-48 HERRING, ROUND",,1992,"USWC-48","pelagic",0.21,78.3,33,,
+"Actinopterygii","Clupeiformes","Engraulidae","Anchoa mitchilli","USEC-NE ANCHOVY, BAY",,2013,"USEC-NE","pelagic",2.04,0.1,10,,
+"Actinopterygii","Clupeiformes","Engraulidae","Engraulis mordax","USWC-48 ANCHOVY, NORTHERN",,1981,"USWC-48","pelagic",0.11,52309,24.8,,
+"Actinopterygii","Cypriniformes","Cyprinidae","Orthodon microlepidotus","USWC-48 SACRAMENTO BLACKFISH",,1973,"USWC-48","benthopelagic",0.84,137.4,55,,
+"Actinopterygii","Cypriniformes","Cyprinidae","Pogonichthys macrolepidotus","USWC-48 SPLITTAIL",,1960,"USWC-48","benthopelagic",0.57,2.4,44,,
+"Actinopterygii","Cyprinodontiformes","Fundulidae","Fundulus heteroclitus","USEC-NE MUMMICHOG",,1979,"USEC-NE","benthopelagic",7.82,2.1,15,,
+"Actinopterygii","Elopiformes","Elopidae","Elops saurus","USEC-SE LADYFISH",,1960,"USEC-SE","reef",0.52,2721.5,100,,
+"Actinopterygii","Elopiformes","Megalopidae","Megalops atlanticus","USEC-NE TARPON",,1960,"USEC-NE","reef",0.52,0.1,250,,
+"Actinopterygii","Gadiformes","Gadidae","Gadus macrocephalus","BSAI Pacific cod",1987,1960,"USWC-AK","demersal",0.32,53463.254683984,119,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Gadiformes","Gadidae","Gadus macrocephalus","GOA Pacific cod",1988,1960,"USWC-AK","demersal",0.32,32985.263451232,119,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Gadiformes","Gadidae","Gadus macrocephalus","USWC-48 COD, PACIFIC",,1960,"USWC-48","demersal",0.35,15995.4,119,,
+"Actinopterygii","Gadiformes","Gadidae","Gadus morhua","GeBank Atlantic cod",1977,1960,"USEC-NE","benthopelagic",0.27,3271,200,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Gadidae","Gadus morhua","GoMaine Atlantic cod",1989,1960,"USEC-NE","benthopelagic",0.54,51321.4,200,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Gadidae","Melanogrammus aeglefinus","GeBank haddock",1968,1960,"USEC-NE","demersal",0.18,70483.6,112,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Gadidae","Melanogrammus aeglefinus","GoMaine haddock",1982,1960,"USEC-NE","demersal",0.47,4305.8,112,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Gadidae","Microgadus proximus","USWC-48 TOMCOD, PACIFIC",,1960,"USWC-48","demersal",0.04,267.6,30.5,,
+"Actinopterygii","Gadiformes","Gadidae","Microgadus proximus","USWC-AK TOMCOD, PACIFIC",,1979,"USWC-AK","demersal",0.35,0.2,30.5,,
+"Actinopterygii","Gadiformes","Gadidae","Microgadus tomcod","USEC-NE TOMCOD, ATLANTIC",,1960,"USEC-NE","demersal",0.77,1.1,38.1,,
+"Actinopterygii","Gadiformes","Gadidae","Pollachius virens","GeBank/GoMaine Atlantic pollock",1978,1960,"USEC-NE","demersal",0.15,17947.3,130,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","AI walleye pollock",2003,1976,"USWC-AK","benthopelagic",0.17,2003.21002975,91,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","EBS walleye pollock",1987,1967,"USWC-AK","benthopelagic",0.16,238409.340877723,91,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","GOA walleye pollock",1990,1976,"USWC-AK","benthopelagic",0.18,91572.8328349168,91,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Gadiformes","Gadidae","Theragra chalcogramma","USWC-48 POLLOCK, WALLEYE",,1965,"USWC-48","benthopelagic",0.2,3911.5,91,,
+"Actinopterygii","Gadiformes","Lotidae","Brosme brosme","USEC-NE CUSK",,1960,"USEC-NE","demersal",0.51,2363,120,,
+"Actinopterygii","Gadiformes","Lotidae","Brosme brosme","USEC-SE CUSK",,1990,"USEC-SE","demersal",2.25,2.7,120,,
+"Actinopterygii","Gadiformes","Merlucciidae","Merluccius albidus","USEC-NE HAKE, OFFSHORE SILVER",,1991,"USEC-NE","bathy-",1.25,118.6,40.6,,
+"Actinopterygii","Gadiformes","Merlucciidae","Merluccius bilinearis","nGeBank/GoMaine silver hake",1978,1960,"USEC-NE","demersal",0.06,23778.7666542859,76,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Merlucciidae","Merluccius bilinearis","sGeBank/midAtl silver hake",1978,1960,"USEC-NE","demersal",0.09,36850.366682992,76,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Merlucciidae","Merluccius productus","USWC/BC Pacific hake",1982,1960,"USWC-48","pelagic",0.04,13071.9,91,1,"Pacific Coast Groundfish"
+"Actinopterygii","Gadiformes","Phycidae","Urophycis chuss","USEC-NE HAKE, RED",,1960,"USEC-NE","demersal",0.26,4746.1,66,,
+"Actinopterygii","Gadiformes","Phycidae","Urophycis chuss","USEC-SE HAKE, RED",,1983,"USEC-SE","demersal",0.23,1.1,66,,
+"Actinopterygii","Gadiformes","Phycidae","Urophycis floridana","USEC-NE HAKE, SOUTHERN",,2009,"USEC-NE","demersal",0.64,0.3,35,,
+"Actinopterygii","Gadiformes","Phycidae","Urophycis tenuis","GeBank/GoMaine white hake",1995,1960,"USEC-NE","demersal",0.44,8443.7,133,1,"Northeast Multispecies"
+"Actinopterygii","Gadiformes","Phycidae","Urophycis tenuis","USEC-SE HAKE, WHITE",,1985,"USEC-SE","demersal",0.74,3.3,133,,
+"Actinopterygii","Lampriformes","Lampridae","Lampris guttatus","USEC-NE OPAH",,1992,"USEC-NE","bathy-",3.2,0.9,200,,
+"Actinopterygii","Lampriformes","Lampridae","Lampris guttatus","USEC-SE OPAH",,1996,"USEC-SE","bathy-",2.9,1,200,,
+"Actinopterygii","Lampriformes","Lampridae","Lampris guttatus","USWC-48 OPAH",,1980,"USWC-48","bathy-",1.91,0.3,200,,
+"Actinopterygii","Lampriformes","Trachipteridae","Trachipterus arcticus","USEC-NE DEALFISH",,1994,"USEC-NE","bathy-",1.14,41.4,300,,
+"Actinopterygii","Lophiiformes","Lophiidae","Lophius americanus","nGeBank/GoMaine monkfish",2002,1960,"USEC-NE","demersal",1.38,19093.8,120,1,"Monkfish"
+"Actinopterygii","Lophiiformes","Lophiidae","Lophius americanus","sGeBank/midAtl monkfish",2002,1960,"USEC-NE","demersal",1.41,11515.9,120,1,"Monkfish"
+"Actinopterygii","Lophiiformes","Lophiidae","Lophius gastrophysus","USEC-NE GOOSEFISH, BLACKFIN",,2004,"USEC-NE","bathy-",3.41,0.2,60,,
+"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","East Florida striped mullet",2005,1960,"USEC-SE","benthopelagic",0.44,3214.1,100,0,
+"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","USEC-NE MULLET, STRIPED (LIZA)",,1960,"USEC-NE","benthopelagic",0.29,90.7,100,,
+"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","USEC-SE MULLET, STRIPED (LIZA)",,1960,"USEC-SE","benthopelagic",0.81,8473.7,100,,
+"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","USWC-48 MULLET, STRIPED (LIZA)",,1960,"USWC-48","benthopelagic",0.32,108.6,100,,
+"Actinopterygii","Mugiliformes","Mugilidae","Mugil cephalus","West Florida striped mullet",2005,1960,"USEC-SE","benthopelagic",0.44,15873.9,100,0,
+"Actinopterygii","Mugiliformes","Mugilidae","Mugil curema","USEC-SE MULLET, WHITE",,1960,"USEC-SE","reef",0.39,2685.2,90,,
+"Actinopterygii","Ophidiiformes","Ophidiidae","Brotula barbata","USEC-SE BROTULA, BEARDED",,1986,"USEC-SE","reef",1.7,36.9,94,,
+"Actinopterygii","Ophidiiformes","Ophidiidae","Genypterus blacodes","USEC-SE AUSTRALIAN ROCKLING",,2007,"USEC-SE","bathy-",1.5,3.4,200,,
+"Actinopterygii","Osmeriformes","Osmeridae","Allosmerus elongatus","USWC-48 SMELT, WHITEBAIT",,1960,"USWC-48","demersal",0.21,152.3,22.9,,
+"Actinopterygii","Osmeriformes","Osmeridae","Mallotus villosus","USWC-AK CAPELIN",,1991,"USWC-AK","pelagic",1.1,18.1,20,,
+"Actinopterygii","Osmeriformes","Osmeridae","Osmerus mordax","USEC-NE SMELT, RAINBOW",,1960,"USEC-NE","pelagic",0.72,162.8,35.6,,
+"Actinopterygii","Osmeriformes","Osmeridae","Thaleichthys pacificus","USWC-48 SMELT, EULACHON",,1960,"USWC-48","pelagic",0.22,1771.7,34,,
+"Actinopterygii","Osmeriformes","Osmeridae","Thaleichthys pacificus","USWC-AK SMELT, EULACHON",,1965,"USWC-AK","pelagic",0.58,156.1,34,,
+"Actinopterygii","Perciformes","Ammodytidae","Ammodytes americanus","USEC-NE LAUNCE, AMERICAN SAND",,1960,"USEC-NE","demersal",0.52,217.8,23.5,,
+"Actinopterygii","Perciformes","Ammodytidae","Ammodytes americanus","USWC-48 LAUNCE, AMERICAN SAND",,1973,"USWC-48","demersal",1.45,0.4,23.5,,
+"Actinopterygii","Perciformes","Anarhichadidae","Anarhichas lupus","USNE Atlantic wolffish",2008,1960,"USEC-NE","demersal",0.4,1205,150,1,"Northeast Multispecies"
+"Actinopterygii","Perciformes","Anarhichadidae","Anarrhichthys ocellatus","USWC-48 WOLF-EEL",,1976,"USWC-48","demersal",0.99,7.9,240,,
+"Actinopterygii","Perciformes","Carangidae","Alectis ciliaris","USEC-SE POMPANO, AFRICAN",,1991,"USEC-SE","reef",3.79,6,150,,
+"Actinopterygii","Perciformes","Carangidae","Caranx crysos","USEC-NE RUNNER, BLUE",,1997,"USEC-NE","reef",1.29,0.3,70,,
+"Actinopterygii","Perciformes","Carangidae","Caranx crysos","USEC-SE RUNNER, BLUE",,1960,"USEC-SE","reef",0.38,1156.4,70,,
+"Actinopterygii","Perciformes","Carangidae","Caranx hippos","USEC-NE JACK, CREVALLE",,1960,"USEC-NE","reef",1,7.2,124,,
+"Actinopterygii","Perciformes","Carangidae","Caranx hippos","USEC-SE JACK, CREVALLE",,1960,"USEC-SE","reef",0.48,2052.1,124,,
+"Actinopterygii","Perciformes","Carangidae","Caranx latus","USEC-SE JACK, HORSE-EYE",,1992,"USEC-SE","reef",1.11,1.9,101,,
+"Actinopterygii","Perciformes","Carangidae","Caranx lugubris","USEC-SE JACK, BLACK",,1996,"USEC-SE","benthopelagic",1.41,0.6,100,,
+"Actinopterygii","Perciformes","Carangidae","Caranx ruber","USEC-SE JACK, BAR",,1994,"USEC-SE","reef",1.98,41.8,59,,
+"Actinopterygii","Perciformes","Carangidae","Elagatis bipinnulata","USEC-SE RUNNER, RAINBOW",,1996,"USEC-SE","reef",1.5,1.8,180,,
+"Actinopterygii","Perciformes","Carangidae","Selar crumenophthalmus","USEC-SE SCAD, BIGEYE",,1991,"USEC-SE","reef",2.35,180.6,70,,
+"Actinopterygii","Perciformes","Carangidae","Selene setapinnis","USEC-SE MOONFISH, ATLANTIC",,1960,"USEC-SE","benthopelagic",1.81,29.2,60,,
+"Actinopterygii","Perciformes","Carangidae","Selene vomer","USEC-SE LOOKDOWN",,1993,"USEC-SE","demersal",1.78,18.9,48.3,,
+"Actinopterygii","Perciformes","Carangidae","Seriola dumerili","GoMex greater amberjack",1995,1984,"USEC-SE","reef",1.84,784.9,190,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Carangidae","Seriola dumerili","sAtl greater amberjack",1999,1987,"USEC-SE","reef",1.77,438,190,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Carangidae","Seriola lalandi","USWC-48 YELLOWTAIL JACK",,1960,"USWC-48","benthopelagic",0.37,4285.1,250,,
+"Actinopterygii","Perciformes","Carangidae","Seriola rivoliana","USEC-SE JACK, ALMACO",,1991,"USEC-SE","reef",2.01,125.2,160,,
+"Actinopterygii","Perciformes","Carangidae","Seriola zonata","USEC-SE RUDDERFISH, BANDED",,1991,"USEC-SE","benthopelagic",1.53,49.7,75,,
+"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","East Florida pompano",2002,1960,"USEC-SE","benthopelagic",3.83,266.3,64,0,
+"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","USEC-NE POMPANO, FLORIDA",,1960,"USEC-NE","benthopelagic",2.3,2,64,,
+"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","USEC-SE POMPANO, FLORIDA",,1960,"USEC-SE","benthopelagic",4.47,69.6,64,,
+"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","USWC-48 POMPANO, FLORIDA",,1962,"USWC-48","benthopelagic",0.7,122.2,64,,
+"Actinopterygii","Perciformes","Carangidae","Trachinotus carolinus","West Florida pompano",2002,1960,"USEC-SE","benthopelagic",3.52,546.4,64,0,
+"Actinopterygii","Perciformes","Carangidae","Trachinotus falcatus","USEC-SE PERMIT",,1960,"USEC-SE","reef",1.36,97,122,,
+"Actinopterygii","Perciformes","Carangidae","Trachurus lathami","USEC-NE SCAD, ROUGH",,1999,"USEC-NE","reef",0.66,0.7,40,,
+"Actinopterygii","Perciformes","Carangidae","Trachurus symmetricus","USWC-48 JACK MACKEREL",,1960,"USWC-48","pelagic",0.09,66461.8,81,,
+"Actinopterygii","Perciformes","Centrarchidae","Ambloplites rupestris","USEC-NE BASS, ROCK",,1960,"USEC-NE","demersal",0.4,11.3,43,,
+"Actinopterygii","Perciformes","Centrolophidae","Hyperoglyphe bythites","USEC-SE BLACK DRIFTFISH",,1987,"USEC-SE","pelagic",2.95,14.1,60,,
+"Actinopterygii","Perciformes","Centrolophidae","Hyperoglyphe perciformis","USEC-NE BARRELFISH",,2000,"USEC-NE","pelagic",2.79,0.2,91,,
+"Actinopterygii","Perciformes","Centrolophidae","Hyperoglyphe perciformis","USEC-SE BARRELFISH",,1991,"USEC-SE","pelagic",4.19,15.3,91,,
+"Actinopterygii","Perciformes","Coryphaenidae","Coryphaena hippurus","USEC-NE DOLPHINFISH",,1960,"USEC-NE","pelagic",3.93,96.3,210,,
+"Actinopterygii","Perciformes","Coryphaenidae","Coryphaena hippurus","USEC-SE DOLPHINFISH",,1960,"USEC-SE","pelagic",2.99,1062.3,210,,
+"Actinopterygii","Perciformes","Coryphaenidae","Coryphaena hippurus","USWC-48 DOLPHINFISH",,1972,"USWC-48","pelagic",1.96,43,210,,
+"Actinopterygii","Perciformes","Gempylidae","Lepidocybium flavobrunneum","USEC-NE ESCOLAR",,1991,"USEC-NE","benthopelagic",3.1,4,200,,
+"Actinopterygii","Perciformes","Gempylidae","Lepidocybium flavobrunneum","USEC-SE ESCOLAR",,1991,"USEC-SE","benthopelagic",2.04,101.3,200,,
+"Actinopterygii","Perciformes","Gempylidae","Ruvettus pretiosus","USEC-SE OILFISH",,1989,"USEC-SE","benthopelagic",2.02,84.6,300,,
+"Actinopterygii","Perciformes","Gobiidae","Gillichthys mirabilis","USWC-48 MUDSUCKER, LONGJAW",,1973,"USWC-48","demersal",3.38,5.5,21,,
+"Actinopterygii","Perciformes","Haemulidae","Haemulon album","USEC-SE MARGATE",,1994,"USEC-SE","reef",1.5,23.6,79,,
+"Actinopterygii","Perciformes","Haemulidae","Haemulon aurolineatum","USEC-SE GRUNT, TOMTATE",,2010,"USEC-SE","reef",0.79,0.2,25,,
+"Actinopterygii","Perciformes","Haemulidae","Haemulon plumieri","USEC-SE GRUNT, WHITE",,1995,"USEC-SE","reef",2.37,18.8,53,,
+"Actinopterygii","Perciformes","Haemulidae","Orthopristis chrysoptera","USEC-NE PIGFISH",,1960,"USEC-NE","demersal",0.19,15.4,46,,
+"Actinopterygii","Perciformes","Haemulidae","Orthopristis chrysoptera","USEC-SE PIGFISH",,1960,"USEC-SE","demersal",0.4,187.4,46,,
+"Actinopterygii","Perciformes","Kyphosidae","Girella nigricans","USWC-48 OPALEYE",,1960,"USWC-48","benthopelagic",0.49,10.7,66,,
+"Actinopterygii","Perciformes","Kyphosidae","Medialuna californiensis","USWC-48 HALFMOON",,1960,"USWC-48","demersal",0.58,22.5,48,,
+"Actinopterygii","Perciformes","Labridae","Lachnolaimus maximus","East Florida hogfish",2013,1960,"USEC-SE","reef",2.88,13.4,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Labridae","Lachnolaimus maximus","Northern sAtl hogfish",2013,1960,"USEC-SE","reef",4.65,19,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Labridae","Lachnolaimus maximus","West Florida hogfish",2013,1960,"USEC-SE","reef",3.13,53,91,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Labridae","Semicossyphus pulcher","USWC California sheephead",2004,1960,"USWC-48","reef",5.3,143.1,91,0,
+"Actinopterygii","Perciformes","Labridae","Tautoga onitis","USEC tautog",1996,1960,"USEC-NE","reef",0.78,524.8,91,0,
+"Actinopterygii","Perciformes","Labridae","Tautogolabrus adspersus","USEC-NE CUNNER",,1960,"USEC-NE","reef",3.51,12.5,38,,
+"Actinopterygii","Perciformes","Lobotidae","Lobotes surinamensis","USEC-SE TRIPLETAIL",,1960,"USEC-SE","benthopelagic",1.8,21.8,110,,
+"Actinopterygii","Perciformes","Lutjanidae","Apsilus dentatus","USEC-SE SNAPPER, BLACK",,1985,"USEC-SE","reef",3.72,20.8,65,,
+"Actinopterygii","Perciformes","Lutjanidae","Etelis oculatus","USEC-SE SNAPPER, QUEEN",,1986,"USEC-SE","bathy-",4.44,30.9,100,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus analis","USSE mutton snapper",2008,1960,"USEC-SE","reef",2.72,251.4,94,1,"Snapper-Grouper Fishery of the South Atlantic Region / Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus apodus","USEC-SE SNAPPER, SCHOOLMASTER",,1997,"USEC-SE","reef",2.99,0.1,67.2,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus buccanella","USEC-SE SNAPPER, BLACKFIN",,1984,"USEC-SE","reef",4.44,6.9,75,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus campechanus","GoMex red snapper",1988,1960,"USEC-SE","reef",1.32,6072.3,100,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus campechanus","sAtl red snapper",1998,1960,"USEC-SE","reef",2.07,473,100,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus cyanopterus","USEC-SE SNAPPER, CUBERA",,1982,"USEC-SE","reef",3.1,5.1,160,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus griseus","USEC-SE SNAPPER, GRAY",,1960,"USEC-SE","reef",2.11,460.4,89,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus jocu","USEC-NE SNAPPER, DOG",,1988,"USEC-NE","reef",2.72,0.1,128,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus jocu","USEC-SE SNAPPER, DOG",,1991,"USEC-SE","reef",2.67,2,128,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus mahogoni","USEC-SE SNAPPER, MAHOGANY",,1992,"USEC-SE","reef",3.52,0.5,48,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus purpureus","USEC-SE SNAPPER CARIBBEAN RED",,2000,"USEC-SE","demersal",2.53,0.4,100,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus synagris","USEC-SE SNAPPER, LANE",,1960,"USEC-SE","reef",2.62,69.2,60,,
+"Actinopterygii","Perciformes","Lutjanidae","Lutjanus vivanus","USEC-SE SNAPPER, SILK",,1981,"USEC-SE","reef",4.69,147,83,,
+"Actinopterygii","Perciformes","Lutjanidae","Ocyurus chrysurus","USSE yellowtail snapper",2003,1960,"USEC-SE","reef",2.96,1079,86.3,1,"Snapper-Grouper Fishery of the South Atlantic Region / Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Lutjanidae","Pristipomoides aquilonaris","USEC-SE WENCHMAN",,1995,"USEC-SE","demersal",2.55,19.4,56,,
+"Actinopterygii","Perciformes","Lutjanidae","Rhomboplites aurorubens","GoMex vermilion snapper",1998,1960,"USEC-SE","demersal",3.38,1199.6,60,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Lutjanidae","Rhomboplites aurorubens","sAtl vermilion snapper",1998,1960,"USEC-SE","demersal",3.93,639.6,60,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus chrysops","USEC-SE TILEFISH, GOLDFACE",,1986,"USEC-SE","demersal",3.13,41,60,,
+"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus cyanops","USEC-SE TILEFISH, BLACKLINE",,1985,"USEC-SE","demersal",1.56,1.4,60,,
+"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus microps","sAtl blueline tilefish",2004,1985,"USEC-SE","demersal",2.05,117.3,90,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus microps","USEC-SE TILEFISH, BLUELINE",,1988,"USEC-SE","demersal",2.06,98.2,90,,
+"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus princeps","USWC-48 WHITEFISH, OCEAN",,1960,"USWC-48","reef",0.28,9.3,102,,
+"Actinopterygii","Perciformes","Malacanthidae","Caulolatilus princeps","USWC-AK WHITEFISH, OCEAN",,1963,"USWC-AK","reef",0.59,43.3,102,,
+"Actinopterygii","Perciformes","Malacanthidae","Lopholatilus chamaeleonticeps","GoMex golden tilefish",2011,1960,"USEC-SE","demersal",2.74,487.4,125,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Malacanthidae","Lopholatilus chamaeleonticeps","sAtl golden tilefish",2004,1960,"USEC-SE","demersal",2.74,1682.7,125,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Malacanthidae","Lopholatilus chamaeleonticeps","USNE golden tilefish",1993,1960,"USEC-NE","demersal",1.53,3967.6,125,1,"Tilefish"
+"Actinopterygii","Perciformes","Malacanthidae","Malacanthus plumieri","USEC-NE TILEFISH, SAND",,2005,"USEC-NE","reef",4.65,0.3,70,,
+"Actinopterygii","Perciformes","Malacanthidae","Malacanthus plumieri","USEC-SE TILEFISH, SAND",,1992,"USEC-SE","reef",1.98,2.5,70,,
+"Actinopterygii","Perciformes","Moronidae","Morone saxatilis","USEC striped bass",1997,1960,"USEC-NE","demersal",1,6686.3,200,0,
+"Actinopterygii","Perciformes","Moronidae","Morone saxatilis","USWC-48 BASS, STRIPED",,1960,"USWC-48","demersal",0.3,31.2,200,,
+"Actinopterygii","Perciformes","Polyprionidae","Polyprion americanus","USEC-NE WRECKFISH",,1993,"USEC-NE","demersal",5.06,0.6,210,,
+"Actinopterygii","Perciformes","Polyprionidae","Polyprion americanus","USEC-SE WRECKFISH",,1988,"USEC-SE","demersal",2.95,1729.1,210,,
+"Actinopterygii","Perciformes","Polyprionidae","Stereolepis gigas","USWC-48 SEA BASS, GIANT",,1960,"USWC-48","demersal",0.51,202.4,250,,
+"Actinopterygii","Perciformes","Pomacentridae","Chromis punctipinnis","USWC-48 BLACKSMITH",,1973,"USWC-48","reef",0.12,16,25,,
+"Actinopterygii","Perciformes","Pomatomidae","Pomatomus saltatrix","USEC bluefish",1994,1960,"USEC-NE","pelagic",0.37,7466.1,130,1,"Bluefish"
+"Actinopterygii","Perciformes","Pomatomidae","Pomatomus saltatrix","USEC-SE BLUEFISH",,1960,"USEC-SE","pelagic",0.33,703.6,130,,
+"Actinopterygii","Perciformes","Priacanthidae","Priacanthus arenatus","USEC-SE BIGEYE",,1994,"USEC-SE","reef",1.97,4.1,50,,
+"Actinopterygii","Perciformes","Rachycentridae","Rachycentron canadum","GoMex cobia",2001,1960,"USEC-SE","reef",2.36,166.6,200,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
+"Actinopterygii","Perciformes","Rachycentridae","Rachycentron canadum","sAtl cobia",2013,1960,"USEC-SE","reef",2.06,30.8,200,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
+"Actinopterygii","Perciformes","Sciaenidae","Atractoscion nobilis","USWC California white seabass",2016,1960,"USWC-48","demersal",1.55,1554.1,166,0,
+"Actinopterygii","Perciformes","Sciaenidae","Cynoscion arenarius","USEC-SE SEATROUT, SAND",,1960,"USEC-SE","demersal",0.41,1176.1,63.5,,
+"Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","Mississippi spotted sea trout",2016,1960,"USEC-SE","demersal",1.1,571.4,100,0,
+"Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","USEC-NE SEATROUT, SPOTTED",,1960,"USEC-NE","demersal",1.42,89.2,100,,
+"Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","USEC-SE SEATROUT, SPOTTED",,1960,"USEC-SE","demersal",1.07,3802.8,100,,
+"Actinopterygii","Perciformes","Sciaenidae","Cynoscion regalis","USEC weakfish",1991,1960,"USEC-NE","demersal",0.53,16312.4,98,0,
+"Actinopterygii","Perciformes","Sciaenidae","Genyonemus lineatus","USWC-48 CROAKER, PACIFIC WHITE",,1960,"USWC-48","benthopelagic",0.61,1484.8,41,,
+"Actinopterygii","Perciformes","Sciaenidae","Leiostomus xanthurus","USEC-NE SPOT",,1960,"USEC-NE","demersal",0.7,3069.2,36,,
+"Actinopterygii","Perciformes","Sciaenidae","Leiostomus xanthurus","USEC-SE SPOT",,1960,"USEC-SE","demersal",0.41,4923.8,36,,
+"Actinopterygii","Perciformes","Sciaenidae","Menticirrhus saxatilis","USEC-NE KINGFISH, NORTHERN",,2007,"USEC-NE","demersal",1.6,0.3,46,,
+"Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC Atlantic croaker",2003,1960,"USEC-NE","demersal",0.52,13532.1,55,0,
+"Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC-SE CROAKER, ATLANTIC",,1960,"USEC-SE","demersal",0.29,18265.7,55,,
+"Actinopterygii","Perciformes","Sciaenidae","Pogonias cromis","USEC-NE DRUM, BLACK",,1960,"USEC-NE","demersal",0.69,219.8,170,,
+"Actinopterygii","Perciformes","Sciaenidae","Pogonias cromis","USEC-SE DRUM, BLACK",,1960,"USEC-SE","demersal",1.05,4877.2,170,,
+"Actinopterygii","Perciformes","Sciaenidae","Sciaenops ocellatus","GoMex red drum",2000,1960,"USEC-SE","demersal",0.9,6408,155,1,"Red Drum Fishery of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Sciaenidae","Sciaenops ocellatus","USNE midAtl red drum",2009,1960,"USEC-NE","demersal",1.21,175.2,155,0,
+"Actinopterygii","Perciformes","Sciaenidae","Sciaenops ocellatus","USSE sAtl red drum",2009,1960,"USEC-SE","demersal",0.67,125,155,0,
+"Actinopterygii","Perciformes","Sciaenidae","Seriphus politus","USWC-48 QUEENFISH",,1974,"USWC-48","demersal",0.5,47.3,30,,
+"Actinopterygii","Perciformes","Scombridae","Acanthocybium solandri","USEC-NE WAHOO",,1983,"USEC-NE","pelagic",4.02,8.9,250,,
+"Actinopterygii","Perciformes","Scombridae","Acanthocybium solandri","USEC-SE WAHOO",,1974,"USEC-SE","pelagic",2.98,163.2,250,,
+"Actinopterygii","Perciformes","Scombridae","Acanthocybium solandri","USWC-48 WAHOO",,1960,"USWC-48","pelagic",0.76,14.6,250,,
+"Actinopterygii","Perciformes","Scombridae","Auxis thazard","USEC-NE MACKEREL, FRIGATE",,1960,"USEC-NE","pelagic",0.29,74.8,65,,
+"Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USEC-NE MACKEREL, CHUB",,1960,"USEC-NE","pelagic",0.3,1984.2,64,,
+"Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USEC-SE MACKEREL, CHUB",,1995,"USEC-SE","pelagic",1.18,121.6,64,,
+"Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USWC Pacific mackerel",2004,1960,"USWC-48","pelagic",0.13,35256.5,64,1,"Coastal Pelagic Species"
+"Actinopterygii","Perciformes","Scombridae","Scomberomorus maculatus","GoMex Spanish mackerel",1996,1960,"USEC-SE","pelagic",0.39,3880.2,91,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
+"Actinopterygii","Perciformes","Scombridae","Scomberomorus maculatus","sAtl Spanish mackerel",1996,1960,"USEC-SE","pelagic",0.48,5015.3,91,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
+"Actinopterygii","Perciformes","Scombridae","Scomberomorus sierra","USWC-48 PACIFIC SIERRA",,1960,"USWC-48","pelagic",0.21,1.9,99,,
+"Actinopterygii","Perciformes","Scombridae","Scomber scombrus","USNE Atlantic mackerel",1977,1960,"USEC-NE","pelagic",0.21,10021.3,60,1,"Atlantic Mackerel, Squid and Butterfish"
+"Actinopterygii","Perciformes","Serranidae","Centropristis ocyurus","USEC-SE SEA BASS, BANK",,1991,"USEC-SE","demersal",1.83,1.3,30,,
+"Actinopterygii","Perciformes","Serranidae","Centropristis philadelphica","USEC-SE SEA BASS, ROCK",,1992,"USEC-SE","reef",2.03,26.3,30,,
+"Actinopterygii","Perciformes","Serranidae","Centropristis striata","sAtl black sea bass",1995,1960,"USEC-SE","reef",1.22,740.2333335115,66,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Serranidae","Centropristis striata","USEC-SE SEA BASS, BLACK",,1960,"USEC-SE","reef",1.3,292.3,66,,
+"Actinopterygii","Perciformes","Serranidae","Centropristis striata","USNE black sea bass",1994,1960,"USEC-NE","reef",0.65,9899.3999999834,66,1,"Summer Flounder, Scup and Black Sea Bass"
+"Actinopterygii","Perciformes","Serranidae","Cephalopholis cruentata","USEC-SE GRAYSBY",,1991,"USEC-SE","reef",4.74,8.2,42.6,,
+"Actinopterygii","Perciformes","Serranidae","Diplectrum formosum","USEC-NE SAND PERCH",,1960,"USEC-NE","reef",0.14,11.9,30,,
+"Actinopterygii","Perciformes","Serranidae","Diplectrum formosum","USEC-SE SAND PERCH",,1960,"USEC-SE","reef",0.97,127.2,30,,
+"Actinopterygii","Perciformes","Serranidae","Diplectrum formosum","USWC-48 SAND PERCH",,1973,"USWC-48","reef",0.61,137.4,30,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus adscensionis","USEC-SE HIND, ROCK",,1984,"USEC-SE","demersal",6.35,13.9,61,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus analogus","USWC-48 SPOTTED CABRILLA",,1960,"USWC-48","reef",0.33,260.5,114,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus drummondhayi","USEC-SE HIND, SPECKLED",,1980,"USEC-SE","demersal",4.3,47.4,110,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus flavolimbatus","GoMex yellowedge grouper",2011,1981,"USEC-SE","demersal",5.12,716.4,115,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Serranidae","Epinephelus fulvus","USEC-SE CONEY",,1996,"USEC-SE","reef",0.44,12.1,41,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus guttatus","USEC-SE HIND, RED",,1984,"USEC-SE","reef",4.54,34.6,76,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus inermis","USEC-SE GROUPER, MARBLED",,1986,"USEC-SE","reef",3.56,19.7,91,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus itajara","USEC-SE GROUPER, GOLIATH",,1960,"USEC-SE","reef",0.46,128.9,250,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus morio","GoMex red grouper",1991,1960,"USEC-SE","reef",3.55,4001.5,125,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Serranidae","Epinephelus morio","sAtl red grouper",2010,1960,"USEC-SE","reef",5,293,125,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Serranidae","Epinephelus mystacinus","USEC-SE GROUPER, MISTY",,1990,"USEC-SE","bathy-",4.84,2,160,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus nigritus","USEC-SE GROUPER, WARSAW",,1960,"USEC-SE","demersal",1.64,162.6,230,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus niveatus","sAtl snowy grouper",2004,1974,"USEC-SE","demersal",3.78,254.6,122,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Serranidae","Epinephelus niveatus","USEC-NE GROUPER, SNOWY",,1999,"USEC-NE","demersal",4.99,0.8,122,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus niveatus","USEC-SE GROUPER, SNOWY",,1985,"USEC-SE","demersal",4.78,128.5,122,,
+"Actinopterygii","Perciformes","Serranidae","Epinephelus striatus","USEC-SE GROUPER, NASSAU",,1986,"USEC-SE","reef",3.66,7,122,,
+"Actinopterygii","Perciformes","Serranidae","Hemanthias leptus","USEC-SE BASS, LONGTAIL",,1994,"USEC-SE","demersal",2.39,0.8,50,,
+"Actinopterygii","Perciformes","Serranidae","Mycteroperca bonaci","USSE black grouper",2010,1960,"USEC-SE","reef",4.72,763.3,150,1,"Snapper-Grouper Fishery of the South Atlantic Region / Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Serranidae","Mycteroperca interstitialis","USEC-SE GROUPER, YELLOWMOUTH",,1999,"USEC-SE","reef",5.12,0.4,84,,
+"Actinopterygii","Perciformes","Serranidae","Mycteroperca microlepis","GoMex gag grouper",1994,1960,"USEC-SE","reef",4.56,793.8,145,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Perciformes","Serranidae","Mycteroperca microlepis","sAtl gag grouper",1994,1960,"USEC-SE","reef",4.12,445.1,145,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Serranidae","Mycteroperca phenax","USEC-SE SCAMP",,1980,"USEC-SE","reef",5.61,356.4,107,,
+"Actinopterygii","Perciformes","Serranidae","Mycteroperca venenosa","USEC-SE GROUPER, YELLOWFIN",,1984,"USEC-SE","reef",4.36,195.9,100,,
+"Actinopterygii","Perciformes","Serranidae","Paranthias furcifer","USEC-SE CREOLE-FISH",,1998,"USEC-SE","reef",2.15,2.4,30,,
+"Actinopterygii","Perciformes","Sparidae","Archosargus probatocephalus","USEC-NE SHEEPSHEAD",,1960,"USEC-NE","reef",0.8,12.3,91,,
+"Actinopterygii","Perciformes","Sparidae","Archosargus probatocephalus","USEC-SE SHEEPSHEAD",,1960,"USEC-SE","reef",0.63,2280.2,91,,
+"Actinopterygii","Perciformes","Sparidae","Calamus bajonado","USEC-SE PORGY, JOLTHEAD",,1993,"USEC-SE","reef",1.86,9.7,76,,
+"Actinopterygii","Perciformes","Sparidae","Calamus leucosteus","USEC-SE PORGY, WHITEBONE",,1988,"USEC-SE","demersal",1.98,5,46,,
+"Actinopterygii","Perciformes","Sparidae","Calamus nodosus","USEC-SE PORGY, KNOBBED",,1985,"USEC-SE","reef",1.51,39.7,54.4,,
+"Actinopterygii","Perciformes","Sparidae","Diplodus holbrookii","USEC-SE PINFISH, SPOTTAIL",,1986,"USEC-SE","demersal",1.13,18.4,46,,
+"Actinopterygii","Perciformes","Sparidae","Lagodon rhomboides","USEC-SE PINFISH",,1960,"USEC-SE","demersal",1.93,464.1,40,,
+"Actinopterygii","Perciformes","Sparidae","Pagrus pagrus","sAtl red porgy",1992,1978,"USEC-SE","benthopelagic",2.4,349.9,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
+"Actinopterygii","Perciformes","Sparidae","Pagrus pagrus","USEC-SE PORGY, RED",,1992,"USEC-SE","benthopelagic",2.5,176.4,91,,
+"Actinopterygii","Perciformes","Sparidae","Stenotomus caprinus","USEC-SE PORGY, LONGSPINE",,2011,"USEC-SE","demersal",2.58,0.2,30,,
+"Actinopterygii","Perciformes","Sparidae","Stenotomus chrysops","USNE scup",1995,1960,"USEC-NE","demersal",1.09,166.5,46,1,"Summer Flounder, Scup and Black Sea Bass"
+"Actinopterygii","Perciformes","Stichaeidae","Cebidichthys violaceus","USWC-48 PRICKLEBACK, MONKEYFACE",,1991,"USWC-48","demersal",6.29,0.4,76,,
+"Actinopterygii","Perciformes","Stromateidae","Peprilus alepidotus","USEC-NE HARVESTFISH",,1960,"USEC-NE","benthopelagic",0.75,244.1,30,,
+"Actinopterygii","Perciformes","Stromateidae","Peprilus alepidotus","USEC-SE HARVESTFISH",,1960,"USEC-SE","benthopelagic",0.87,332.6,30,,
+"Actinopterygii","Perciformes","Stromateidae","Peprilus simillimus","USWC-48 POMPANO, PACIFIC",,1960,"USWC-48","benthopelagic",0.91,83.3,28,,
+"Actinopterygii","Perciformes","Stromateidae","Peprilus triacanthus","USNE butterfish",1983,1960,"USEC-NE","benthopelagic",0.34,8837,30,1,"Atlantic Mackerel, Squid and Butterfish"
+"Actinopterygii","Perciformes","Trichiuridae","Trichiurus lepturus","USEC-SE CUTLASSFISH, ATLANTIC",,1960,"USEC-SE","benthopelagic",1.6,375.1,234,,
+"Actinopterygii","Perciformes","Uranoscopidae","Astroscopus guttatus","USEC-NE STARGAZER, NOTHERN",,2009,"USEC-NE","demersal",0.57,0.3,59,,
+"Actinopterygii","Perciformes","Zoarcidae","Macrozoarces americanus","USEC-NE POUT, OCEAN",,1960,"USEC-NE","demersal",0.19,2194.6,110,,
+"Actinopterygii","Pleuronectiformes","Achiridae","Trinectes maculatus","USEC-NE HOGCHOKER",,1960,"USEC-NE","demersal",0.09,8.9,20,,
+"Actinopterygii","Pleuronectiformes","Cynoglossidae","Paraplagusia bilineata","USWC-48 SOLE, ROCK",,1976,"USWC-48","demersal",0.72,244,30,,
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Citharichthys sordidus","Pacific sanddab - Pacific Coast",2013,1960,"USWC-48","demersal",0.64,1269.4,41,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys californicus","USWC-48 HALIBUT, CALIFORNIA",,1960,"USWC-48","demersal",3.9,606.7,152,,
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys dentatus","USNE summer flounder",1990,1960,"USEC-NE","demersal",1.25,18077.6,94,1,"Summer Flounder, Scup and Black Sea Bass"
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys lethostigma","North Carolina southern flounder",2009,1978,"USEC-SE","demersal",3.2,2213,83,0,
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys lethostigma","USEC-NE FLOUNDER, SOUTHERN",,2003,"USEC-NE","demersal",3.08,0.7,83,,
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys lethostigma","USEC-SE FLOUNDER, SOUTHERN",,1978,"USEC-SE","demersal",2.25,85.2,83,,
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Paralichthys oblongus","USEC-NE FLOUNDER, FOURSPOT",,2006,"USEC-NE","demersal",0.93,13.2,41,,
+"Actinopterygii","Pleuronectiformes","Paralichthyidae","Xystreurys liolepis","USWC-48 SOLE, FANTAIL",,1979,"USWC-48","demersal",1.14,1.7,63.5,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Atheresthes stomias","BSAI arrowtooth flounder",1988,1981,"USWC-AK","demersal",0.17,476.37936871,84,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Atheresthes stomias","GOA arrowtooth flounder",1996,1973,"USWC-AK","demersal",0.13,2329.61295105,84,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Atheresthes stomias","USWC arrowtooth flounder",2007,1960,"USWC-48","demersal",0.23,5804.5,84,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Eopsetta jordani","USWC-AK SOLE, PETRALE",,1985,"USWC-AK","demersal",0.87,116,53,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Eopsetta jordani","USWC petrale sole",1984,1960,"USWC-48","demersal",0.6,4209,53,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Glyptocephalus cynoglossus","GoMaine witch flounder",1994,1960,"USEC-NE","demersal",1.24,6652.8,60,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Glyptocephalus zachirus","GOA rex sole",2004,1982,"USWC-AK","demersal",0.43,5740.8,60,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Glyptocephalus zachirus","Rex sole - Pacific Coast",2013,1960,"USWC-48","demersal",0.55,4620.1,60,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides elassodon","BSAI flathead sole",1998,1984,"USWC-AK","demersal",0.23,17020.6438365603,52,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides elassodon","GOA flathead sole",2003,1960,"USWC-AK","demersal",0.15,2556.4561634397,52,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides elassodon","USWC-48 SOLE, FLATHEAD",,1978,"USWC-48","demersal",0.7,35.5,52,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossoides platessoides","GeBank/GoMaine American plaice",1992,1960,"USEC-NE","demersal",0.96,15131.9,82.6,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossus hippoglossus","GeBank/GoMaine Atlantic halibut",2008,1960,"USEC-NE","demersal",1.83,243.8,470,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Hippoglossus stenolepis","Pacific halibut (coastwide)",1960,1960,"USWC-AK","demersal",0.31,27539.6,258,1,"Species Managed Under International Agreement - IPHC"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Isopsetta isolepis","USWC-48 SOLE, BUTTER",,1981,"USWC-48","demersal",0.45,43.6,55,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Lepidopsetta bilineata","GOA southern rock sole",2012,1981,"USWC-AK","demersal",0.39,1266.5109635848,58,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Lepidopsetta polyxystra","BSAI northern rock sole",1992,1981,"USWC-AK","demersal",0.3,42707.78801885,69,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Lepidopsetta polyxystra","GOA northern rock sole",2012,1981,"USWC-AK","demersal",0.39,2721.350757556,69,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda aspera","BSAI yellowfin sole",1987,1977,"USWC-AK","demersal",0.37,32.9,49,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda ferruginea","CCod/GoMaine yellowtail flounder",1999,1960,"USEC-NE","demersal",0.72,10733.6666559355,64,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda ferruginea","GeBank yellowtail flounder",1989,1960,"USEC-NE","demersal",0.58,12602.0666559355,64,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Limanda ferruginea","sNEng/midAtl yellowtail flounder",1989,1960,"USEC-NE","demersal",0.57,14791.3666600673,64,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Microstomus bathybius","USWC-48 SOLE, DEEPSEA",,2011,"USWC-48","bathy-",1.13,0.1,47,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Microstomus pacificus","GOA dover sole",2003,1983,"USWC-AK","demersal",0.26,2221.5,76,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Microstomus pacificus","USWC dover sole",1984,1960,"USWC-48","demersal",0.33,20944.3,76,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Parophrys vetulus","USWC-AK SOLE, ENGLISH",,1985,"USWC-AK","demersal",0.3,40.2,49,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Parophrys vetulus","USWC English sole",1985,1960,"USWC-48","demersal",0.36,8082.4,49,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys stellatus","USWC-AK FLOUNDER, STARRY",,1981,"USWC-AK","demersal",0.35,877.1,91,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys stellatus","USWC starry flounder (northern)",2005,1970,"USWC-48","demersal",0.55,1096.5,91,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Platichthys stellatus","USWC starry flounder (southern)",2005,1970,"USWC-48","demersal",0.96,212.6,91,1,"Pacific Coast Groundfish"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronectes quadrituberculatus","BSAI Alaska plaice",1996,1984,"USWC-AK","demersal",0.17,61638,87,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronichthys coenosus","USWC-48 SOLE, C-O",,1976,"USWC-48","demersal",0.29,1,36,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronichthys decurrens","USWC-48 SOLE, CURLFIN",,1981,"USWC-48","demersal",0.74,7.5,37,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pleuronichthys verticalis","USWC-48 TURBOT, HORNYHEAD",,2010,"USWC-48","demersal",3.76,4.9,37,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Psettichthys melanostictus","USWC-48 SOLE, SAND",,1960,"USWC-48","demersal",1.08,920.1,63,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Psettichthys melanostictus","USWC-AK SOLE, SAND",,1996,"USWC-AK","demersal",0.65,4.5,63,,
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pseudopleuronectes americanus","GeBank winter flounder",1999,1960,"USEC-NE","demersal",1.08,6715.5428521062,64,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pseudopleuronectes americanus","GoMaine winter flounder",2003,1960,"USEC-NE","demersal",1.06,2380.1857159526,64,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Pseudopleuronectes americanus","sNEng/midAtl winter flounder",1996,1960,"USEC-NE","demersal",0.83,9244.8714319052,64,1,"Northeast Multispecies"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Reinhardtius hippoglossoides","BSAI Greenland halibut",1987,1964,"USWC-AK","benthopelagic",0.51,8544.1,80,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Pleuronectiformes","Pleuronectidae","Reinhardtius hippoglossoides","USEC-NE HALIBUT, GREENLAND",,1969,"USEC-NE","benthopelagic",0.57,10.6,80,,
+"Actinopterygii","Pleuronectiformes","Scophthalmidae","Scophthalmus aquosus","USEC-NE FLOUNDER, WINDOWPANE",,1964,"USEC-NE","demersal",0.94,4206.5,45.7,,
+"Actinopterygii","Scorpaeniformes","Anoplopomatidae","Anoplopoma fimbria","Alaska sablefish",1987,1960,"USWC-AK","bathy-",1.04,33959.6,120,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area / Groundfish of the Gulf of Alaska"
+"Actinopterygii","Scorpaeniformes","Anoplopomatidae","Anoplopoma fimbria","USWC sablefish",1984,1960,"USWC-48","bathy-",0.39,23554.8,120,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Cottidae","Scorpaenichthys marmoratus","USWC cabezon (nCal)",2003,1960,"USWC-48","demersal",6.09,148.575,99,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Cottidae","Scorpaenichthys marmoratus","USWC cabezon (OR)",2009,1979,"USWC-48","demersal",5.31,46.3,99,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Cottidae","Scorpaenichthys marmoratus","USWC cabezon (sCal)",2003,1960,"USWC-48","demersal",6.09,21.225,99,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Cyclopteridae","Cyclopterus lumpus","USEC-NE LUMPFISH",,1989,"USEC-NE","benthopelagic",0.33,3.5,61,,
+"Actinopterygii","Scorpaeniformes","Hemitripteridae","Hemitripterus americanus","USEC-NE SEA RAVEN",,1991,"USEC-NE","demersal",1.52,5.7,64,,
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Hexagrammos decagrammus","USWC-48 GREENLING, KELP",,1981,"USWC-48","demersal",9.32,23.3,61,,
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Hexagrammos decagrammus","USWC kelp greenling (OR)",2005,1968,"USWC-48","demersal",7.6,53.5,61,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USEC-SE LINGCOD",,1978,"USEC-SE","demersal",0.41,124.4,152,,
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USWC-AK LINGCOD",,1960,"USWC-AK","demersal",1.01,1096,152,,
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USWC lingcod (northern)",1994,1960,"USWC-48","demersal",0.33,3570.4,152,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Ophiodon elongatus","USWC lingcod (southern)",1999,1960,"USWC-48","demersal",0.47,1734.4,152,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Hexagrammidae","Pleurogrammus monopterygius","BSAI atka mackerel",1986,1970,"USWC-AK","demersal",0.38,30.3787756143,56.5,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Scorpaeniformes","Scorpaenidae","Neomerinthe hemingwayi","USEC-SE SCORPIONFISH, SPINYCHEEK",,1994,"USEC-SE","demersal",2.36,0.7,40,,
+"Actinopterygii","Scorpaeniformes","Scorpaenidae","Pterois volitans","USEC-SE LIONFISH",,2011,"USEC-SE","reef",9.92,6.3,38,,
+"Actinopterygii","Scorpaeniformes","Scorpaenidae","Scorpaena guttata","USWC California scorpionfish (southern)",2005,1979,"USWC-48","demersal",3.38,101.2,43,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Scorpaenidae","Scorpaena plumieri","USEC-SE SCORPIONFISH, SPOTTED",,2001,"USEC-SE","reef",3.46,1,45,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Helicolenus dactylopterus","USEC-NE ROSEFISH, BLACKBELLY",,1994,"USEC-NE","bathy-",1.26,0.8,47,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Helicolenus dactylopterus","USEC-SE ROSEFISH, BLACKBELLY",,1989,"USEC-SE","bathy-",2.08,66.9,47,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aleutianus","BSAI rougheye rockfish",2003,1960,"USWC-AK","bathy-",0.54,3553,97,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aleutianus","GOA rougheye rockfish",2005,1960,"USWC-AK","bathy-",0.7,2418,97,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aleutianus","Rougheye Rockfish - Pacific Coast",2013,1960,"USWC-48","bathy-",0.51,760.11,97,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes alutus","BSAI Pacific ocean perch",1985,1963,"USWC-AK","bathy-",0.28,925.0248052002,53,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes alutus","GOA Pacific ocean perch",1990,1963,"USWC-AK","bathy-",0.38,2182.7040410931,53,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes alutus","USWC Pacific ocean perch",1972,1960,"USWC-48","bathy-",0.11,12860.1,53,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes atrovirens","USWC-48 ROCKFISH, KELP",,1985,"USWC-48","demersal",6.6,3,42,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes auriculatus","Brown rockfish - Pacific Coast",2013,1960,"USWC-48","demersal",3.24,644.3,56,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes aurora","Aurora rockfish - Pacific Coast",2013,1982,"USWC-48","bathy-",1.75,4.6,41,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes babcocki","USWC-48 ROCKFISH, REDBANDED",,1992,"USWC-48","demersal",2.11,4.6,64,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes babcocki","USWC-AK ROCKFISH, REDBANDED",,1986,"USWC-AK","demersal",0.63,43.5,64,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes borealis","BSAI shortraker rockfish",2003,1960,"USWC-AK","bathy-",0.37,3286,108,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes brevispinis","USWC-AK ROCKFISH, SILVERGRAY",,1985,"USWC-AK","demersal",0.62,23.3,71,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes carnatus","USWC gopher rockfish",2005,1975,"USWC-48","demersal",6.77,53.7,39,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes caurinus","Copper rockfish - Pacific Coast",2013,1966,"USWC-48","demersal",3.87,64.8,58,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes caurinus","USWC-AK ROCKFISH, COPPER",,1991,"USWC-AK","demersal",0.58,2.7,58,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes chlorostictus","USWC greenspotted rockfish (northern)",2011,1976,"USWC-48","demersal",1.84,1.218,50,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes chlorostictus","USWC greenspotted rockfish (southern)",2011,1970,"USWC-48","demersal",1.84,19.082,50,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes chrysomelas","USWC-48 ROCKFISH, BLACK-AND-YELLOW",,1987,"USWC-48","demersal",13.89,14.6,39,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes constellatus","USWC-48 ROCKFISH, STARRY",,1982,"USWC-48","reef",3.54,15.3,46,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes constellatus","USWC-AK ROCKFISH, STARRY",,1997,"USWC-AK","reef",0.2,446.5,46,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes crameri","USWC-AK ROCKFISH, DARKBLOTCHED",,1986,"USWC-AK","demersal",0.38,15.7,58,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes crameri","USWC darkblotched rockfish",2000,1966,"USWC-48","demersal",0.91,11.6,58,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes diploproa","USWC splitnose rockfish",2009,1978,"USWC-48","bathy-",0.61,111.2,46,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes elongatus","USWC-AK ROCKFISH, GREENSTRIPED",,1993,"USWC-AK","demersal",0.57,0.3,39,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes elongatus","USWC greenstriped rockfish",2009,1978,"USWC-48","demersal",1.19,3.3,39,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ensifer","USWC-48 ROCKFISH, SWORDSPINE",,1999,"USWC-48","demersal",1.92,0.1,30,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes entomelas","USWC-AK ROCKFISH, WIDOW",,1984,"USWC-AK","pelagic",0.49,9.8,60,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes entomelas","USWC widow rockfish",1983,1979,"USWC-48","pelagic",0.35,10276,60,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes fasciatus","GeBank/GoMaine Acadian redfish",1975,1960,"USEC-NE","demersal",0.1,117173.2,30,1,"Northeast Multispecies"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes flavidus","USWC-AK ROCKFISH, YELLOWTAIL",,1984,"USWC-AK","reef",0.42,24.8,66,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes flavidus","USWC yellowtail rockfish (northern)",1984,1967,"USWC-48","reef",0.61,219.5,66,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes gilli","USWC-48 ROCKFISH, BRONZESPOTTED",,1998,"USWC-48","demersal",3.04,0.1,71,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes goodei","USWC chilipepper (southern)",1985,1960,"USWC-48","demersal",0.68,31.4,56,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes hopkinsi","USWC-48 ROCKFISH, SQUARESPOT",,1994,"USWC-48","reef",3.62,0.6,29,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes jordani","USWC shortbelly rockfish",2007,1967,"USWC-48","demersal",0.27,27.9,32,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes levis","USWC cowcod",1999,1960,"USWC-48","bathy-",1.75,62.6,100,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanops","USWC-AK ROCKFISH, BLACK",,1983,"USWC-AK","reef",0.77,517.5,63,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanops","USWC black rockfish (California)",2003,1960,"USWC-48","reef",1.35,128.9,63,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanops","USWC black rockfish (Oregon)",2016,1994,"USWC-48","reef",2.49,197.4,63,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes melanostomus","USWC blackgill rockfish",2005,1978,"USWC-48","bathy-",1.47,312.4,61,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes miniatus","USWC-48 ROCKFISH, VERMILION",,1981,"USWC-48","reef",4.05,26.4,91,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes miniatus","USWC-AK ROCKFISH, VERMILION",,1996,"USWC-AK","reef",0.7,1.1,91,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC-48 ROCKFISH, BLUE",,2000,"USWC-48","reef",2.29,6.2,61,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC-AK ROCKFISH, BLUE",,1993,"USWC-AK","reef",0.65,0.1,61,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC blue rockfish",2007,1960,"USWC-48","reef",1.29,43.4,61,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC-48 ROCKFISH, CHINA",,1979,"USWC-48","reef",5.55,30.8,45,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC-AK ROCKFISH, CHINA",,1991,"USWC-AK","reef",1.09,2.2,45,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ovalis","USWC-48 ROCKFISH, SPECKLED",,1981,"USWC-48","demersal",2.32,2.3,56,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes paucispinis","USWC-AK ROCKFISH, BOCACCIO",,1989,"USWC-AK","reef",0.67,50.1,91,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes paucispinis","USWC bocaccio (southern)",1990,1960,"USWC-48","reef",0.46,4537.8,91,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes pinniger","USWC-AK ROCKFISH, CANARY",,1984,"USWC-AK","demersal",0.82,19.6,76,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes pinniger","USWC canary rockfish",1990,1960,"USWC-48","reef",1.51,47.2,76,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes polyspinis","BSAI northern rockfish",2003,1960,"USWC-AK","demersal",0.17,6724,41,1,"Groundfish of the Bering Sea and Aleutian Islands Management Area"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes polyspinis","GOA northern rockfish",2000,1960,"USWC-AK","demersal",0.17,17430,41,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes proriger","USWC-AK ROCKFISH, REDSTRIPE",,1989,"USWC-AK","bathy-",0.48,22.5,61,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rastrelliger","USWC-48 ROCKFISH, GRASS",,1981,"USWC-48","demersal",14.23,49.5,56,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes reedi","USWC-AK ROCKFISH, YELLOWMOUTH",,1988,"USWC-AK","bathy-",0.75,0.6,58,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rosaceus","USWC-48 ROCKFISH, ROSY",,1985,"USWC-48","demersal",1.7,3.9,36,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rosenblatti","USWC-48 ROCKFISH, GREENBLOTCHED",,2000,"USWC-48","demersal",3.55,0.9,48,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ruberrimus","USWC-AK ROCKFISH, YELLOWEYE",,1984,"USWC-AK","reef",1.3,992.7,104,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ruberrimus","USWC yelloweye rockfish",2001,1972,"USWC-48","reef",1.47,343.5,104,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rubrivinctus","USWC-48 ROCKFISH, FLAG",,1993,"USWC-48","demersal",4.91,0.9,51,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes rufus","USWC-48 ROCKFISH, BANK",,1983,"USWC-48","demersal",1.16,204.9,54,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes serranoides","USWC-48 ROCKFISH, OLIVE",,1981,"USWC-48","reef",3.66,1.7,61,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes serriceps","USWC-48 ROCKFISH, TREEFISH",,1994,"USWC-48","demersal",15.12,1.9,41,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes simulator","USWC-48 ROCKFISH, PINKROSE",,1992,"USWC-48","demersal",0.77,0.3,30,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes variabilis","GOA dusky rockfish",2003,1960,"USWC-AK","demersal",0.33,4476,43.08,1,"Groundfish of the Gulf of Alaska"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes zacentrus","USWC-AK ROCKFISH, SHARPCHIN",,1991,"USWC-AK","bathy-",0.53,0.1,39,,
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastolobus alascanus","USWC shortspine thornyhead",1990,1967,"USWC-48","bathy-",0.84,202.4,80,1,"Pacific Coast Groundfish"
+"Actinopterygii","Tetraodontiformes","Balistidae","Balistes capriscus","GoMex gray triggerfish",2001,1988,"USEC-SE","reef",2.08,43.8,60,1,"Reef Fish Resources of the Gulf of Mexico"
+"Actinopterygii","Tetraodontiformes","Balistidae","Balistes capriscus","USEC-NE TRIGGERFISH, GRAY",,2009,"USEC-NE","reef",0.84,0.1,60,,
+"Actinopterygii","Tetraodontiformes","Balistidae","Balistes capriscus","USEC-SE TRIGGERFISH, GRAY",,2011,"USEC-SE","reef",4.24,16.5,60,,
+"Actinopterygii","Tetraodontiformes","Balistidae","Balistes vetula","USEC-SE TRIGGERFISH, QUEEN",,2002,"USEC-SE","reef",4.4,1.7,60,,
+"Actinopterygii","Tetraodontiformes","Balistidae","Canthidermis sufflamen","USEC-SE TRIGGERFISH, OCEAN",,1999,"USEC-SE","reef",2.81,0.9,65,,
+"Actinopterygii","Tetraodontiformes","Tetraodontidae","Sphoeroides maculatus","USEC-NE PUFFER, NOTHERN",,1960,"USEC-NE","demersal",0.18,5893,36,,
+"Actinopterygii","Tetraodontiformes","Tetraodontidae","Sphoeroides maculatus","USEC-SE PUFFER, NOTHERN",,1960,"USEC-SE","demersal",0.2,222.1,36,,
+"Actinopterygii","Zeiformes","Zeidae","Zenopsis ocellata","USEC-NE DORY, AMERICAN JOHN",,1988,"USEC-NE","benthopelagic",1.38,136.9,80,,
+"Actinopterygii","Zeiformes","Zeidae","Zenopsis ocellata","USEC-SE DORY, AMERICAN JOHN",,2003,"USEC-SE","benthopelagic",1.31,1.8,80,,
+"Bivalvia","Arcoida","Arcidae","Anadara ovalis","USEC-NE CLAM, ARC, BLOOD",,1993,"USEC-NE","benthic",4.91,71.1,7.6,,
+"Bivalvia","Arcoida","Arcidae","Anadara ovalis","USEC-SE CLAM, ARC, BLOOD",,2009,"USEC-SE","benthic",12.87,5.1,7.6,,
+"Bivalvia","Myoida","Hiatellidae","Panopea generosa","SE Alaska geoduck",1985,1980,"USWC-AK","benthic",2.1,0.1,17.5,0,
+"Bivalvia","Myoida","Hiatellidae","Panopea generosa","WA geoduck clam",1997,1970,"USWC-48","benthic",4.64,1294.3,17.5,0,
+"Bivalvia","Myoida","Myidae","Mya arenaria","USEC-NE CLAM, SOFTSHELL",,1960,"USEC-NE","benthic",3.98,6115,10,,
+"Bivalvia","Myoida","Myidae","Mya arenaria","USWC-48 CLAM, SOFTSHELL",,1972,"USWC-48","benthic",1.85,416.4,10,,
+"Bivalvia","Mytiloida","Mytilidae","Mytilus californianus","USWC-48 MUSSEL, CALIFORNIA",,1960,"USWC-48","reef",6.69,52.5,25.5,,
+"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USEC-NE MUSSEL, BLUE",,1960,"USEC-NE","reef",1,4801.3,11,,
+"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USEC-SE MUSSEL, BLUE",,2008,"USEC-SE","reef",2.71,2.2,11,,
+"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USWC-48 MUSSEL, BLUE",,1962,"USWC-48","reef",17.58,351.2,11,,
+"Bivalvia","Mytiloida","Mytilidae","Mytilus edulis","USWC-AK MUSSEL, BLUE",,1989,"USWC-AK","reef",3.59,76,11,,
+"Bivalvia","Ostreoida","Ostreidae","Crassostrea gigas","USWC-48 OYSTER, PACIFIC",,1960,"USWC-48","reef",3.83,8914,45,,
+"Bivalvia","Ostreoida","Ostreidae","Crassostrea gigas","USWC-AK OYSTER, PACIFIC",,1960,"USWC-AK","reef",9.41,45.6,45,,
+"Bivalvia","Ostreoida","Ostreidae","Crassostrea virginica","USEC-NE OYSTER, EASTERN",,1960,"USEC-NE","reef",2.9,25264.8,30,,
+"Bivalvia","Ostreoida","Ostreidae","Crassostrea virginica","USEC-SE OYSTER, EASTERN",,1960,"USEC-SE","reef",3.29,14413.2,30,,
+"Bivalvia","Ostreoida","Ostreidae","Crassostrea virginica","USWC-48 OYSTER, EASTERN",,1960,"USWC-48","reef",15.79,169.8,30,,
+"Bivalvia","Ostreoida","Ostreidae","Ostrea edulis","USEC-NE OYSTER, EUROPEAN FLAT",,1987,"USEC-NE","reef",2.6,306.7,12,,
+"Bivalvia","Ostreoida","Ostreidae","Ostrea edulis","USWC-48 OYSTER, EUROPEAN FLAT",,1979,"USWC-48","reef",34.09,17.2,12,,
+"Bivalvia","Ostreoida","Ostreidae","Ostrea lurida","USWC-48 OYSTER, OLYMPIA",,1960,"USWC-48","benthic",11,65,7.5,,
+"Bivalvia","Ostreoida","Ostreidae","Ostrea lurida","USWC-AK OYSTER, OLYMPIA",,1965,"USWC-AK","benthic",2.22,0.9,8,,
+"Bivalvia","Ostreoida","Pectinidae","Argopecten gibbus","USEC-NE SCALLOP, CALICO",,2005,"USEC-NE","benthic",18.61,0.4,5.2,,
+"Bivalvia","Ostreoida","Pectinidae","Argopecten gibbus","USEC-SE SCALLOP, CALICO",,1960,"USEC-SE","benthic",1.8,19387.5,5.2,,
+"Bivalvia","Ostreoida","Pectinidae","Argopecten irradians","USEC-NE SCALLOP, BAY",,1960,"USEC-NE","benthic",5.57,1260,7.5,,
+"Bivalvia","Ostreoida","Pectinidae","Argopecten irradians","USEC-SE SCALLOP, BAY",,1960,"USEC-SE","benthic",2.57,354.4,7.5,,
+"Bivalvia","Ostreoida","Pectinidae","Chlamys islandica","USEC-NE SCALLOP, ICELAND",,1983,"USEC-NE","benthic",8.98,191.3,11,,
+"Bivalvia","Ostreoida","Pectinidae","Patinopecten caurinus","USWC-AK SCALLOP, WEATHERVANE",,1967,"USWC-AK","benthic",7.24,856.5,28,,
+"Bivalvia","Ostreoida","Pectinidae","Placopecten magellanicus","GeBank/midAtl sea scallop",1978,1960,"USEC-NE","benthic",1.84,14587.3,20,1,"Atlantic Sea Scallop"
+"Bivalvia","Ostreoida","Pectinidae","Placopecten magellanicus","USWC-AK SCALLOP, SEA",,2009,"USWC-AK","benthic",20.61,218.3,20,,
+"Bivalvia","Veneroida","Arcticidae","Arctica islandica","USEC ocean quahog",1978,1960,"USEC-NE","benthic",0.58,10348.8,12.7,1,"Atlantic Surfclam and Ocean Quahog"
+"Bivalvia","Veneroida","Cardiidae","Clinocardium nuttallii","USWC-48 COCKLE, NUTTALL",,1972,"USWC-48","benthic",2.58,44.9,14,,
+"Bivalvia","Veneroida","Cardiidae","Clinocardium nuttallii","USWC-AK COCKLE, NUTTALL",,1960,"USWC-AK","benthic",0.3,33.2,14,,
+"Bivalvia","Veneroida","Donacidae","Donax variabilis","USWC-48 CLAM, VARIABLE COQUINA",,1964,"USWC-48","demersal",1.38,0.5,1.9,,
+"Bivalvia","Veneroida","Mactridae","Mactromeris polynyma","USEC-NE CLAM, ARCTIC SURF (STIMPSON)",,1990,"USEC-NE","benthic",1.97,137.5,14,,
+"Bivalvia","Veneroida","Mactridae","Rangia cuneata","USEC-SE CLAM, ATLANTIC RANGIA",,1966,"USEC-SE","benthic",0.68,39,5,,
+"Bivalvia","Veneroida","Mactridae","Spisula solidissima","USEC Atlantic surfclam",1978,1960,"USEC-NE","benthic",0.35,43596.2,20,1,"Atlantic Surfclam and Ocean Quahog"
+"Bivalvia","Veneroida","Pharidae","Ensis directus","USEC-NE CLAM, ATLANTIC JACKKNIFE",,1960,"USEC-NE","benthic",6.84,150.3,26,,
+"Bivalvia","Veneroida","Pharidae","Ensis directus","USWC-AK CLAM, ATLANTIC JACKKNIFE",,2012,"USWC-AK","benthic",1.39,139.4,26,,
+"Bivalvia","Veneroida","Pharidae","Ensis myrae","USWC-48 CLAM, CALIFORNIA JACKKNIFE",,1981,"USWC-48","demersal",15.92,1.2,13,,
+"Bivalvia","Veneroida","Pharidae","Siliqua patula","USWC-48 CLAM, PACIFIC RAZOR",,1960,"USWC-48","benthic",2.61,212.8,18,,
+"Bivalvia","Veneroida","Pharidae","Siliqua patula","USWC-AK CLAM, PACIFIC RAZOR",,1960,"USWC-AK","benthic",0.44,1068.5,18,,
+"Bivalvia","Veneroida","Veneridae","Macrocallista nimbosa","USEC-SE CLAM, SUNRAY VENUS",,1967,"USEC-SE","benthic",0.35,344.6,15,,
+"Bivalvia","Veneroida","Veneridae","Mercenaria mercenaria","USEC-NE CLAM, NORTHERN QUAHOG",,1981,"USEC-NE","benthic",13.82,4428.4,13,,
+"Bivalvia","Veneroida","Veneridae","Mercenaria mercenaria","USEC-SE CLAM, NORTHERN QUAHOG",,2005,"USEC-SE","benthic",11.17,79.3,13,,
+"Bivalvia","Veneroida","Veneridae","Protothaca staminea","USWC-48 CLAM, PACIFIC LITTLENECK",,1960,"USWC-48","benthic",2.61,212.8,7.5,,
+"Bivalvia","Veneroida","Veneridae","Protothaca staminea","USWC-AK CLAM, PACIFIC LITTLENECK",,1999,"USWC-AK","benthic",16.83,10.3,7.5,,
+"Bivalvia","Veneroida","Veneridae","Saxidomus giganteus","USWC-48 CLAM, BUTTER",,1960,"USWC-48","benthic",1.17,69.1,13,,
+"Bivalvia","Veneroida","Veneridae","Saxidomus giganteus","USWC-AK CLAM, BUTTER",,1960,"USWC-AK","benthic",0.19,71.9,13,,
+"Branchiopoda","Anostraca","Artemiidae","Artemia salina","USWC-48 SHRIMP, BRINE",,1975,"USWC-48","pelagic",1.38,842.9,1.5,,
+"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Lampetra tridentata","USWC-48 LAMPREY, PACIFIC",,1981,"USWC-48","demersal",1.24,17.8,76,,
+"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Petromyzon marinus","USEC-NE LAMPREY, SEA",,1960,"USEC-NE","demersal",0.2,0.4,120,,
+"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Petromyzon marinus","USEC-SE LAMPREY, SEA",,1996,"USEC-SE","demersal",1.37,0.2,120,,
+"Cephalaspidomorphi","Petromyzontiformes","Petromyzontidae","Petromyzon marinus","USWC-48 LAMPREY, SEA",,1960,"USWC-48","demersal",0.11,118.8,120,,
+"Cephalopoda","Teuthida","Loliginidae","Loligo opalescens","USWC market squid",2001,1981,"USWC-48","pelagic",0.25,118902.7,19,1,"Coastal Pelagic Species"
+"Cephalopoda","Teuthida","Loliginidae","Loligo pealeii","USNE longfin inshore squid",1976,1969,"USEC-NE","pelagic",0.36,140.8,50,1,"Atlantic Mackerel, Squid and Butterfish"
+"Cephalopoda","Teuthida","Ommastrephidae","Dosidicus gigas","USWC-AK SQUID, JUMBO",,1999,"USWC-AK","pelagic",0.08,2160,400,,
+"Cephalopoda","Teuthida","Ommastrephidae","Illex illecebrosus","USNE northern shortfin squid",1986,1971,"USEC-NE","pelagic",0.29,3605.3,27,1,"Atlantic Mackerel, Squid and Butterfish"
+"Echinoidea","Echinoida","Strongylocentrotidae","Strongylocentrotus franciscanus","SE Alaska red sea urchin",1990,1980,"USWC-AK","benthic",0.71,404,19,0,
+"Echinoidea","Echinoida","Strongylocentrotidae","Strongylocentrotus franciscanus","WA red sea urchin",1994,1971,"USWC-48","benthic",0.59,4024,19,0,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus acronotus","sAtl blacknose shark",2002,1989,"USEC-SE","reef",1.06,99.8,200,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus acronotus","USEC-SE SHARK, BLACKNOSE",,1995,"USEC-SE","reef",0.9,22.7,200,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus altimus","USEC-NE SHARK, BIGNOSE",,1992,"USEC-NE","reef",0.63,8.4,300,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus brevipinna","USEC-SE SHARK, SPINNER",,1997,"USEC-SE","reef",0.79,40.5,300,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus falciformis","USEC-NE SHARK, SILKY",,1994,"USEC-NE","reef",0.51,1.5,350,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus falciformis","USEC-SE SHARK, SILKY",,1994,"USEC-SE","reef",0.89,11,350,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus isodon","USSE finetooth shark",2002,1965,"USEC-SE","demersal",0.81,168.2,190,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus leucas","USEC-NE SHARK, BULL",,1991,"USEC-NE","reef",1.13,4.6,360,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus leucas","USEC-SE SHARK, BULL",,1991,"USEC-SE","reef",0.7,135.6,360,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus limbatus","GoMex blacktip shark",1998,1986,"USEC-SE","reef",0.74,157.1,275,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus limbatus","USEC-NE SHARK, BLACKTIP",,1987,"USEC-NE","reef",1.07,91.1,275,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus limbatus","USEC-SE SHARK, BLACKTIP",,1991,"USEC-SE","reef",0.87,282.1,275,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus obscurus","USEC dusky shark",2006,1988,"USEC-SE","reef",0.74,91.4,420,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus plumbeus","Sandbar shark Atlantic",1998,1981,"USEC-SE","benthopelagic",0.79,1227.5,180,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Carcharhinus signatus","USEC-NE SHARK, NIGHT",,1995,"USEC-NE","benthopelagic",1.15,0.1,280,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Galeocerdo cuvier","USEC-NE SHARK, TIGER",,1990,"USEC-NE","benthopelagic",0.83,1.9,750,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Galeocerdo cuvier","USEC-SE SHARK, TIGER",,1991,"USEC-SE","benthopelagic",0.69,32.8,750,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Negaprion brevirostris","USEC-NE SHARK, LEMON",,1990,"USEC-NE","reef",0.11,0.2,340,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Negaprion brevirostris","USEC-SE SHARK, LEMON",,1991,"USEC-SE","reef",0.7,47.8,340,,
+"Elasmobranchii","Carcharhiniformes","Carcharhinidae","Rhizoprionodon terraenovae","USSE Atlantic sharpnose shark",2002,1991,"USEC-SE","demersal",0.61,148.7,110,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Sphyrnidae","Sphyrna mokarran","USEC-SE SHARK, GREAT HAMMERHEAD",,2013,"USEC-SE","pelagic",0.46,17.3,610,,
+"Elasmobranchii","Carcharhiniformes","Sphyrnidae","Sphyrna tiburo","USSE bonnethead shark",2002,1989,"USEC-SE","reef",0.76,95.6,150,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Triakidae","Galeorhinus zyopterus","USWC-48 SHARK, SOUPFIN",,1960,"USWC-48","benthopelagic",1.31,135.3,193,,
+"Elasmobranchii","Carcharhiniformes","Triakidae","Mustelus canis","USEC smooth dogfish shark",2016,1981,"USEC-NE","demersal",0.68,4115.8,150,1,"Consolidated Atlantic Highly Migratory Species"
+"Elasmobranchii","Carcharhiniformes","Triakidae","Triakis semifasciata","USWC-48 SHARK, LEOPARD",,1978,"USWC-48","demersal",1.4,48.2,198,,
+"Elasmobranchii","Lamniformes","Alopiidae","Alopias superciliosus","USEC-NE SHARK, BIGEYE THRESHER",,1988,"USEC-NE","pelagic",0.78,2,487.985,,
+"Elasmobranchii","Lamniformes","Alopiidae","Alopias superciliosus","USEC-SE SHARK, BIGEYE THRESHER",,1988,"USEC-SE","pelagic",1.02,3.9,487.985,,
+"Elasmobranchii","Lamniformes","Alopiidae","Alopias superciliosus","USWC-48 SHARK, BIGEYE THRESHER",,1980,"USWC-48","pelagic",0.94,96.1,487.985,,
+"Elasmobranchii","Lamniformes","Lamnidae","Carcharodon carcharias","USEC-NE SHARK, WHITE",,1992,"USEC-NE","pelagic",1.34,0.4,541,,
+"Elasmobranchii","Lamniformes","Lamnidae","Carcharodon carcharias","USWC-48 SHARK, WHITE",,1979,"USWC-48","pelagic",0.79,1,541,,
+"Elasmobranchii","Lamniformes","Lamnidae","Isurus paucus","USEC-NE SHARK, LONGFIN MAKO",,1988,"USEC-NE","pelagic",1.8,12.4,417,,
+"Elasmobranchii","Lamniformes","Lamnidae","Isurus paucus","USEC-SE SHARK, LONGFIN MAKO",,1987,"USEC-SE","pelagic",2.25,10.6,417,,
+"Elasmobranchii","Lamniformes","Odontaspididae","Carcharias taurus","USEC-NE SHARK, SAND TIGER",,1988,"USEC-NE","reef",0.63,11.7,330,,
+"Elasmobranchii","Lamniformes","Odontaspididae","Carcharias taurus","USEC-SE SHARK, SAND TIGER",,1993,"USEC-SE","reef",0.6,4,330,,
+"Elasmobranchii","Myliobatiformes","Myliobatidae","Rhinoptera bonasus","USEC-NE RAY,COWNOSE",,2007,"USEC-NE","benthopelagic",3.03,80.3,213.3,,
+"Elasmobranchii","Orectolobiformes","Ginglymostomatidae","Ginglymostoma cirratum","USEC-NE SHARK, NURSE",,1991,"USEC-NE","reef",1.07,0.8,430,,
+"Elasmobranchii","Pristiformes","Pristidae","Pristis pectinata","USEC-SE SAWFISH, SMALLTOOTH",,1960,"USEC-SE","demersal",0.13,9.4,760,,
+"Elasmobranchii","Rajiformes","Rajidae","Leucoraja erinacea","USEC-NE SKATE, LITTLE",,2006,"USEC-NE","demersal",0.22,5007.3,54,,
+"Elasmobranchii","Rajiformes","Rajidae","Raja binoculata","USWC-48 SKATE, BIG",,1999,"USWC-48","demersal",0.79,20.5,244,,
+"Elasmobranchii","Rajiformes","Rajidae","Raja inornata","USWC-48 SKATE, CALIFORNIA",,1999,"USWC-48","demersal",0.7,1.2,76,,
+"Elasmobranchii","Rajiformes","Rajidae","Raja rhina","USWC longnose skate",2007,1960,"USWC-48","bathy-",0.25,1721,180,1,"Pacific Coast Groundfish"
+"Elasmobranchii","Squaliformes","Squalidae","Squalus acanthias","USEC spiny dogfish",1994,1960,"USEC-NE","benthopelagic",0.22,20763,160,1,"Spiny Dogfish"
+"Elasmobranchii","Squaliformes","Squalidae","Squalus acanthias","USWC spiny dogfish",2011,1960,"USWC-48","benthopelagic",0.33,16876,160,1,"Pacific Coast Groundfish"
+"Elasmobranchii","Squatiniformes","Squatinidae","Squatina californica","USWC-48 SHARK, PACIFIC ANGEL",,1979,"USWC-48","demersal",0.58,1132.6,152,,
+"Elasmobranchii","Squatiniformes","Squatinidae","Squatina dumeril","USEC-NE SHARK, ATLANTIC ANGEL",,2004,"USEC-NE","bathy-",1.12,0.1,152,,
+"Elasmobranchii","Squatiniformes","Squatinidae","Squatina dumeril","USEC-SE SHARK, ATLANTIC ANGEL",,1994,"USEC-SE","bathy-",0.41,1,152,,
+"Gastropoda","Neogastropoda","Melongenidae","Busycon carica","USEC-NE WHELK, KNOBBED",,2006,"USEC-NE","demersal",2.4,799.2,24.9,,
+"Gastropoda","Neogastropoda","Melongenidae","Busycon carica","USEC-SE WHELK, KNOBBED",,2005,"USEC-SE","demersal",0.76,16.9,24.9,,
+"Gastropoda","Neogastropoda","Melongenidae","Busycon sinistrum","USEC-NE WHELK, LIGHTNING",,2011,"USEC-NE","benthic",4.7,1.6,40,,
+"Gastropoda","Neogastropoda","Melongenidae","Busycotypus canaliculatus","USEC-NE WHELK, CHANNELED",,2006,"USEC-NE","demersal",9.39,1014.8,20.1,,
+"Holocephali","Chimaeriformes","Chimaeridae","Hydrolagus colliei","USWC-48 RATFISH SPOTTED",,1960,"USWC-48","demersal",0.02,1296.9,100,,
+"Malacostraca","Decapoda","Cancridae","Cancer borealis","USEC-NE CRAB, JONAH",,1974,"USEC-NE","demersal",1.21,6928.9,16,,
+"Malacostraca","Decapoda","Cancridae","Cancer irroratus","USEC-NE CRAB, ATLANTIC ROCK",,1960,"USEC-NE","demersal",0.52,2178.1,13.3,,
+"Malacostraca","Decapoda","Cancridae","Cancer magister","USWC-48 CRAB, DUNGENESS",,1960,"USWC-48","demersal",2.77,38563.9,22.5,,
+"Malacostraca","Decapoda","Cancridae","Cancer magister","USWC-AK CRAB, DUNGENESS",,1960,"USWC-AK","demersal",1.8,7114.7,22.5,,
+"Malacostraca","Decapoda","Cancridae","Cancer productus","USWC-48 CRAB, RED ROCK",,1960,"USWC-48","benthic",2.03,874.8,20,,
+"Malacostraca","Decapoda","Geryonidae","Chaceon fenneri","USEC-SE CRAB, DEEPSEA GOLDEN",,1995,"USEC-SE","benthic",3.16,758.7,18.5,,
+"Malacostraca","Decapoda","Geryonidae","Chaceon quinquedens","USNE deep sea red crab",1977,1972,"USEC-NE","benthic",0.65,664.7,18,1,"Deep-Sea Red Crab"
+"Malacostraca","Decapoda","Lithodidae","Paralithodes camtschaticus","Bristol Bay red king crab",1994,1960,"USWC-AK","benthic",2.5,58944,22,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
+"Malacostraca","Decapoda","Lithodidae","Paralithodes camtschaticus","Norton Sound red king crab",1996,1960,"USWC-AK","benthic",2.74,1329,22,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
+"Malacostraca","Decapoda","Lithodidae","Paralithodes platypus","St-Matthews blue king crab",1997,1960,"USWC-AK","benthic",2.83,4288,25,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
+"Malacostraca","Decapoda","Menippidae","Menippe mercenaria","USEC-NE CRAB, FLORIDA STONE CLAWS",,1980,"USEC-NE","demersal",0.72,2.7,12,,
+"Malacostraca","Decapoda","Menippidae","Menippe mercenaria","USEC-SE CRAB, FLORIDA STONE CLAWS",,1960,"USEC-SE","demersal",5.96,3214.2,12,,
+"Malacostraca","Decapoda","Nephropidae","Homarus americanus","GeBank American lobster",1992,1960,"USEC-NE","benthic",4.4,3652.408330504,64,0,
+"Malacostraca","Decapoda","Nephropidae","Homarus americanus","GoMaine American lobster",1992,1960,"USEC-NE","benthic",3.22,19508.6000027715,64,0,
+"Malacostraca","Decapoda","Nephropidae","Homarus americanus","sNEng American lobster",1992,1960,"USEC-NE","benthic",4.82,5225.625,64,0,
+"Malacostraca","Decapoda","Nephropidae","Homarus americanus","USEC-NE LOBSTER, AMERICAN",,1960,"USEC-NE","benthic",4.94,1028.4,64,,
+"Malacostraca","Decapoda","Nephropidae","Homarus americanus","USEC-SE LOBSTER, AMERICAN",,1967,"USEC-SE","benthic",1.39,13.6,64,,
+"Malacostraca","Decapoda","Oregoniidae","Chionoecetes bairdi","EBS tanner crab",2012,1967,"USWC-AK","benthic",3.87,24871.3,15,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
+"Malacostraca","Decapoda","Oregoniidae","Chionoecetes bairdi","USWC-48 CRAB, SOUTHERN TANNER",,1993,"USWC-48","benthic",2.77,209.1,15,,
+"Malacostraca","Decapoda","Oregoniidae","Chionoecetes opilio","EBS snow crab",2000,1968,"USWC-AK","benthic",1.67,147502.1,9.1,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
+"Malacostraca","Decapoda","Palinuridae","Panulirus argus","USEC-SE LOBSTER, CARIBBEAN SPINY",,1960,"USEC-SE","demersal",5.87,5357.8,45,,
+"Malacostraca","Decapoda","Palinuridae","Panulirus interruptus","CA spiny lobster",2011,1960,"USWC-48","benthic",10.37,423.4,60,0,
+"Malacostraca","Decapoda","Pandalidae","Pandalus jordani","USWC-48 SHRIMP, OCEAN",,1960,"USWC-48","benthic",0.85,37565.8,3,,
+"Malacostraca","Decapoda","Pandalidae","Pandalus jordani","USWC-AK SHRIMP, OCEAN",,1968,"USWC-AK","benthic",0.1,19086,3,,
+"Malacostraca","Decapoda","Pandalidae","Pandalus platyceros","USWC-48 SHRIMP, SPOT",,1979,"USWC-48","benthic",15.84,374.9,30,,
+"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus aztecus","USEC-NE SHRIMP, BROWN",,1995,"USEC-NE","benthic",7.23,3.1,19.5,,
+"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus aztecus","USEC-SE SHRIMP, BROWN",,1978,"USEC-SE","benthic",4.38,7414.1,19.5,,
+"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus duorarum","GoMex pink shrimp",1984,1960,"USEC-SE","benthic",1.95,25105.6,26.8999996185303,1,"Shrimp Fishery of the Gulf of Mexico"
+"Malacostraca","Decapoda","Penaeidae","Farfantepenaeus duorarum","USEC-SE SHRIMP, PINK",,1978,"USEC-SE","demersal",3.83,1531.2,26.8999996185303,,
+"Malacostraca","Decapoda","Penaeidae","Litopenaeus setiferus","GoMex white shrimp",1984,1960,"USEC-SE","benthic",2.53,39185.1,17.5,1,"Shrimp Fishery of the Gulf of Mexico"
+"Malacostraca","Decapoda","Penaeidae","Litopenaeus setiferus","USEC-SE SHRIMP, WHITE",,1960,"USEC-SE","demersal",1.59,128449.4,17.5,,
+"Malacostraca","Decapoda","Penaeidae","Penaeus aztecus ","GoMex brown shrimp",1984,1960,"USEC-SE","benthic",2.16,72672.8,19.5,1,"Shrimp Fishery of the Gulf of Mexico"
+"Malacostraca","Decapoda","Penaeidae","Xiphopenaeus kroyeri","USEC-SE SHRIMP, SEABOB",,1962,"USEC-SE","demersal",1.01,6592.5,11.5,,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Chesapeake Bay blue crab",1997,1960,"USEC-NE","benthic",0.59,52075.6,22.7,0,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Eastern Gulf of Mexico blue crab",2007,1960,"USEC-SE","demersal",0.65,9348.3,22.7,0,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Florida South Atlantic blue crab",2007,1960,"USEC-SE","demersal",0.68,4227.8,22.7,0,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","North Carolina blue crab",2004,1960,"USEC-SE","demersal",0.85,30427.4,22.7,0,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","USEC-NE CRAB, BLUE",,1960,"USEC-NE","demersal",1.55,7922.2,22.7,,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","USEC-SE CRAB, BLUE",,1960,"USEC-SE","demersal",0.67,10586.6,22.7,,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","USWC-AK CRAB, BLUE",,1982,"USWC-AK","demersal",0.53,41.2,22.7,,
+"Malacostraca","Decapoda","Portunidae","Callinectes sapidus","Western Gulf of Mexico blue crab",2013,1960,"USEC-SE","demersal",1.05,31242.9,22.7,0,
+"Malacostraca","Decapoda","Portunidae","Carcinus maenas","USEC-NE CRAB, GREEN",,1960,"USEC-NE","benthic",1.02,128.1,6,,
+"Malacostraca","Decapoda","Portunidae","Podophthalmus vigil","USWC-48 CRAB, RED PA",,1973,"USWC-48","benthic",0.31,63,15,,
+"Malacostraca","Decapoda","Sicyoniidae","Sicyonia ingentis","USWC-48 SHRIMP, PACIFIC ROCK",,1974,"USWC-48","demersal",2.6,739.7,6.6,,
+"Malacostraca","Decapoda","Solenoceridae","Pleoticus robustus","USEC-NE SHRIMP, ROYAL RED",,2001,"USEC-NE","demersal",7.61,24,18,,
+"Malacostraca","Decapoda","Solenoceridae","Pleoticus robustus","USEC-SE SHRIMP, ROYAL RED",,1962,"USEC-SE","demersal",4.42,588.3,18,,
+"Malacostraca","Decapoda","Upogebiidae","Upogebia pugettensis","USWC-48 SHRIMP, BLUE MUD",,1985,"USWC-48","demersal",2.38,25.4,15,,
+"Merostomata","Xiphosura","Limulidae","Limulus polyphemus","Delaware Bay horseshoe crab",1998,1960,"USEC-NE","benthic",0.34,3100.5,60,0,

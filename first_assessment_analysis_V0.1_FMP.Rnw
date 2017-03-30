@@ -1,0 +1,625 @@
+\documentclass{article}
+
+\begin{document}
+
+\title{Analysis notes}
+\maketitle
+
+V0.3 PN
+
+\section{Data manipulation}
+
+<< Data input,results='hide',warning=FALSE>>=
+
+# set dropbox folder for data
+
+DB <- '~/Dropbox'
+
+require(dplyr)
+require(ggplot2)
+
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
+                              na.strings=c('','NA','#N/A'),
+                              stringsAsFactors = F)
+)
+
+# crossref tables for non-assessed stocks
+crossref <- tbl_df(read.csv(file.path(DB,
+                                      'First year of assessment/crosref.csv'), 
+                            na.strings=c('','NA','#N/A'), 
+                            stringsAsFactors = F,dec = ",",header=T))
+
+spec.ref <- read.csv(file.path(DB,
+                               'First year of assessment/SpeciesCrossReference.csv'),
+                     header=T,
+                     stringsAsFactors = F)
+
+reg.ref <- read.csv(file.path(DB,'First year of assessment/region_ref.csv'),header=F,stringsAsFactors = F)
+@ 
+
+For the landings data, I excluded a fair few species since they are irrelevant, and groupings since their definitons seem to be inconsistent, and landings therefore fluctuate suspiciously.
+
+<<deal with landings>>=
+
+land.price <- read.csv(file.path(DB,'First year of assessment/landings-price.csv'), na.strings=c('','NA','#N/A'), stringsAsFactors = F,dec = ",") %>%
+  filter(!grepl('Turtle',Species,ignore.case = T),
+         !grepl('Alligator',Species,ignore.case = T),
+         !grepl('Coral',Species,ignore.case = T),
+         !grepl('Sponge',Species,ignore.case = T),
+         !grepl('UNC ',Species,ignore.case = T),
+         !grepl('WHALES',Species,ignore.case = T),
+         !grepl('FROGS',Species,ignore.case = T),
+         !grepl('finfishes',Species,ignore.case = T),
+         !grepl('groundfishes',Species,ignore.case = T),
+         !grepl('DOLLY VARDEN',Species,ignore.case = T),
+         !(Species %in% spec.ref$AFS_NAME[!spec.ref$exclude=='']),
+         State != "At-Sea Process, Pac.",
+         State != 'Hawaii') %>%
+  mutate(Price  = as.numeric(gsub(',','',Price)),
+         Metric.Tons = as.numeric(gsub(',','',Metric.Tons))) %>%
+  filter(!Metric.Tons <0)
+
+@
+
+Time series that start out as groups that were disaggregated (but without assessment), were re-aggregated at group level.
+
+<<fix grouped landings data>>=
+
+#fixes to grouped->disaggregated time series
+land.price$Species[grepl('ABALONE',land.price$Species,ignore.case = T)] <- 'ABALONE'
+
+land.price$Species[grepl('AMBERJACK',land.price$Species,ignore.case = T)] <- 'AMBERJACK'
+
+land.price$Species[grepl('BARRAC',land.price$Species,ignore.case = T)] <- 'BARRACUDA'
+
+# dissagregated from 2005
+land.price$Species[grepl('SCUP',land.price$Species,ignore.case = T)] <- 'SCUPS OR PORGIES'
+
+land.price$Species[grepl('CRAB, BLUE',land.price$Species,ignore.case = T)] <- 'CRAB, BLUE'
+
+land.price$Species[grepl('SHARK, SPINY DOGFISH',land.price$Species,ignore.case = T) | grepl('SHARK, DOGFISH',land.price$Species,ignore.case = T)] <- 'CRAB, BLUE'
+
+#remove shellfish and other generics
+land.price <- land.price %>% filter(Species != 'SHELLFISH',
+                                    Species != 'TUNAS',
+                                    Species != 'SHARKS',
+                                    Species != 'BILLFISHES',
+                                    Species != 'INCONNU',
+                                    !grepl('SWORDFISH',Species),
+                                    !grepl('MARLIN',Species),
+                                    !grepl('TUNA',Species),
+                                    !grepl('SALMON',Species),
+                                    !grepl('BONITO',Species),
+                                    !grepl('SEAWEED',Species)
+                                    )
+@
+
+Regions were matched based on states, where only large subdivision were kept (I.e., SE-sAtl and GoM does not figure)
+
+<<>>=
+
+matches <- match(land.price[,'State'],reg.ref[1,])
+matches[is.na(matches)] <- 25
+land.price$region <- as.vector(t(reg.ref[2,matches]))
+land.price <- land.price %>% filter(region!='INLAND')
+land.price$region <- factor(land.price$region)
+
+
+land.price$Species[grepl('SHRIMP, MA',land.price$Species,ignore.case = T) & (land.price$Year <= 1961 | (land.price$Year >= 1972 & land.price$Year <= 1977)) & land.price$region == 'USEC-SE'] <- 'SHRIMP, WHITE'
+
+@
+
+I reduced the table down to only stocks that had at least 10t of catch at some point over the regional time-series.
+
+<<Some subsetting,cache=TRUE>>=
+
+# only keep stocks where 10t have been caught in a region at some point
+#suml <- tbl_df(land.price) %>% 
+#  group_by(region,Species,Year) %>%
+#  summarise(sums = sum(Metric.Tons,na.rm=T)) %>%
+#  mutate(flag = any(sums>5)) %>%
+#  filter(flag == T) %>%
+#  summarise(catch = sum(sums,na.rm=T)) %>%
+#  mutate(reg_spec = paste(region,Species))
+  
+#lp <- apply(land.price[,c('Species','region')],1,function(x) {
+ # tf <- any(grepl(x[1],suml$reg_spec) & grepl(x[2],suml$reg_spec))
+  #return(tf)
+  #}) 
+
+#land.price #<- land.price[lp,]
+
+prop.cols <- grepl('prop',colnames(land.price))
+stock.cols <- grepl('stock',colnames(land.price))
+land.price[,prop.cols] <- apply(land.price[,prop.cols],2,as.numeric)
+
+@
+
+Stocks were defined as region-species/group, with landings and price totalled over the region.
+
+<<results='hide',cache=TRUE>>=
+require(data.table)
+require(dtplyr)
+
+l = 84145
+stock.landings <- data.table(year = rep(1,l),
+                             stock = rep('a',l),
+                             species = rep('a',l),
+                             state = rep('a',l),
+                             region = rep('a',l),
+                             landings = rep(1,l),
+                             price = rep(1,l))
+
+# clunky, but easy:
+a=1
+for (i in 1:nrow(land.price)){
+  #cat(i,'\n')
+  
+  stocks <- land.price[i,stock.cols]
+  props <- land.price[i,prop.cols]
+  region <- land.price[i,'region']
+  state = land.price[i,'State']
+  species <- spec.ref$SCIENTIFIC_NAME[match(land.price$Species[i],spec.ref$AFS_NAME)]
+  
+  if(any(!(is.na(stocks)))){
+    land <- unlist(sapply(which(!is.na(stocks)),function(s) props[s]*land.price[i,'Metric.Tons']))
+    price <- unlist(sapply(which(!is.na(stocks)),function(s) props[s]*land.price[i,'Price']))
+    
+  } else { # apply a region-stock combo
+    #region <- reg.ref[2,reg.ref[1,]==land.price[i,'State']]
+    #region <- ifelse(!is.null(dim(region)), 'Inland', region)
+    stocks  <-paste(region,land.price$Species[i])
+    land <- land.price[i,'Metric.Tons']
+    price <- land.price[i,'Price']
+  }
+  
+  
+  l = length(which(!is.na(stocks)))
+  
+  set(stock.landings,a:(a+l-1),1L,land.price[i,'Year'])
+  set(stock.landings,a:(a+l-1),2L,t(stocks[which(!is.na(stocks))]))
+  set(stock.landings,a:(a+l-1),3L,species)
+  set(stock.landings,a:(a+l-1),4L,state)
+  set(stock.landings,a:(a+l-1),5L,region) 
+  set(stock.landings,a:(a+l-1),6L,land)
+  set(stock.landings,a:(a+l-1),7L,price)
+      
+  a=a+l
+}
+
+stock.landings <- stock.landings %>% filter(stock != 'a')
+
+save(stock.landings,file='stock.landings.rda') 
+
+# 
+# stock.landings.region <- tbl_df(stock.landings) %>%
+#   mutate(rel_price=price/(landings*1000)) %>%
+#   group_by(stock,region,year) %>% 
+#   summarise(total_landings = sum(landings,na.rm=T),
+#             price = mean(rel_price,na.rm=T),
+#             species = unique(species)) %>%
+#   mutate(cum.land = cumsum(total_landings),
+#          price = mean(price,na.rm=T)) %>%
+#   ungroup()
+
+# sometimes actual assessed stocks span multiple regions as defined by us; assign region with highest cumulative landings...
+stock.landings.sum.model <- tbl_df(stock.landings) %>%
+  left_join(years.table, by=c('stock' = 'Stock.name')) %>%
+  mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment)) %>%
+  mutate(rel_price=price/(landings*1000)) %>%
+  group_by(stock) %>%
+  mutate(minyear = min(year,Year.of.fishery.development..stock.based.,na.rm = T),
+         maxyear = max(year,na.rm=T)) %>%
+  filter((year <= Year.of.first.stock.assessment) | (year <= maxyear & (is.na(Year.of.first.stock.assessment) | nchar(Year.of.first.stock.assessment)>4))) %>%
+  mutate(mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
+  group_by(stock,year) %>% 
+  summarise(maxyear = unique(maxyear),
+            minyear = unique(minyear),
+            mainregion = unique(mainregion),
+            total_landings = sum(landings,na.rm=T),
+            price = weighted.mean(rel_price,w = landings,na.rm=T),
+            species = unique(species)) %>%
+  mutate(max.land = max(total_landings),
+         mean.land = mean(total_landings),
+         price = weighted.mean(price,w = total_landings, na.rm=T)) %>%
+  group_by(mainregion,species) %>%
+  mutate(nstocks = length(unique(stock)),
+          nmland = max(mean.land)) 
+
+
+stock.landings.sum.model <- stock.landings.sum.model %>%
+  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.0001) %>% 
+  ungroup()
+
+stock.landings.sum.model$mainregion[grepl('croaker',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('weakfish',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('scup',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('USEC smooth dogfish shark',stock.landings.sum.model$stock)] <- 'USEC-NE'
+stock.landings.sum.model$mainregion[grepl('USNE midAtl red drum',stock.landings.sum.model$stock)] <- 'USEC-NE'
+
+stock.landings.sum <- tbl_df(stock.landings) %>%
+  group_by(stock) %>%
+  mutate(rel_price=price/(landings*1000),
+         mainregion = names(tapply(landings,region,sum,na.rm=T))[which.max(tapply(landings,region,sum,na.rm=T))]) %>%
+  group_by(stock,year) %>% 
+  summarise(total_landings = sum(landings,na.rm=T),
+            price = weighted.mean(rel_price,w = landings,na.rm=T),
+            mainregion = unique(mainregion),
+            species = unique(species)) %>%
+  mutate(max.land = max(total_landings),
+         mean.land = mean(total_landings),
+         price = weighted.mean(price,w = total_landings, na.rm=T)) %>%
+  group_by(mainregion,species) %>%
+  mutate(nstocks = length(unique(stock)),
+          nmland = max(mean.land)) 
+
+
+stock.landings.sum <- stock.landings.sum %>%
+  filter(!(nstocks>1 & max.land<0.05*nmland & !(stock %in% years.table$Stock.name)),max.land>0.001) %>% 
+  ungroup()
+
+stock.landings.sum$mainregion[grepl('croaker',stock.landings.sum$stock)] <- 'USEC-NE'
+stock.landings.sum$mainregion[grepl('weakfish',stock.landings.sum$stock)] <- 'USEC-NE'
+stock.landings.sum$mainregion[grepl('scup',stock.landings.sum$stock)] <- 'USEC-NE'
+
+stock.landings.sum$mainregion[grepl('USEC smooth dogfish shark',stock.landings.sum$stock)] <- 'USEC-NE'
+stock.landings.sum$mainregion[grepl('USNE midAtl red drum',stock.landings.sum$stock)] <- 'USEC-NE'
+
+
+# join landings on management table
+full.tab <- full_join(stock.landings.sum,
+                      years.table,
+                      by=c('stock' = 'Stock.name')) %>%
+  mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment))
+
+full.tab.model <- full_join(stock.landings.sum.model,
+                      years.table,
+                      by=c('stock' = 'Stock.name')) %>%
+  mutate(species = ifelse(is.na(Latin.name_assessment), species, Latin.name_assessment))
+
+
+@
+
+I'm not sure what's going on here: need to check that out.
+
+<<>>=stock.landings.sum
+full.tab %>% 
+  mutate(assessed = !is.na(Year.of.first.stock.assessment) & nchar(Year.of.first.stock.assessment)<5) %>%
+  group_by(mainregion,year,assessed) %>%
+  summarise(ns = n()) %>%
+  ggplot() + geom_line(aes(col=mainregion,x=year,y=ns,linetype = assessed)) + ylab('Number of species landed') + xlab('Year') + 
+  theme_bw()
+@
+
+For the survival analysis, we only need the last year and cumulative price and landings. I think.
+
+<<results='hide'>>=
+
+# over-write value with manual landings where necessary
+manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_landings_price.csv'),header=T,stringsAsFactors = F,sep='\t')
+
+# only need year with assessment, or last year.
+year.table <- full.tab.model %>% 
+  group_by(stock) %>%
+  mutate(minyear = ifelse(is.na(minyear),as.numeric(Year.of.fishery.development..stock.based.),minyear),
+         maxyear = ifelse(is.na(maxyear),2013,maxyear),
+         mainregion = ifelse(is.na(mainregion),Region, mainregion)) %>% 
+  ungroup() %>%
+  select(stock, 
+         species, 
+         Year.of.first.stock.assessment, 
+         Year.of.fishery.development..stock.based.,
+         maxyear, 
+         minyear,
+         habitat_FB.SLB,
+         mainregion,
+         Lmax..cm.,
+         price,
+         max.land) %>%
+  distinct() %>%
+  left_join(manual_landprice,by = c('stock'='Stock.name')) %>% 
+  mutate(price = ifelse(is.na(manualMeanPrice.kg),price,manualMeanPrice.kg),
+         max.land = ifelse(is.na(manualMaxLand.t),max.land,manualMaxLand.t)) %>%
+  filter(maxyear>1960, !is.na(minyear), !is.na(price))
+
+
+
+@
+
+To get taxonomy and habitat info for unassessed stocks (ie, those not in Mike's DB), taxise and rfishbase goes most of the way.
+
+<<results='hide',cache=T,warning=FALSE>>=
+
+# get habitat and taxonomy from fishbase and other DBs
+require(rfishbase)
+#require(taxize)
+
+year.table <- year.table %>%
+  mutate(species = sub('\xa0',' ',species)) %>% 
+  filter(!is.na(species),grepl(' ',species))
+  
+
+
+fishbase <- load_taxa(update = T,limit = 35000)
+
+#these match year.table species to fishabse table
+fishspecs <- paste(fishbase$Genus,fishbase$Species)
+fishmatches <- sapply(fishspecs,startsWith,year.table$species)
+fishmatch <- apply(fishmatches,1,function(x) ifelse(any(x), which(x), NA))
+
+# get sysnonyms
+
+no_match <- year.table$species[is.na(fishmatch)]
+
+syn <- lapply(no_match,rfishbase::synonyms, limit=300)
+fishsyn <- do.call('rbind',lapply(syn, function(l) if(nrow(l)>0) l[l$Status=='synonym',] else NA))
+
+repl_specs <- match(fishsyn$SpecCode,fishbase$SpecCode)
+fishmatch[is.na(fishmatch)] <- repl_specs
+
+fishes <- which(!is.na(fishmatch))
+
+sp <- species(limit=35000)
+#match sp to fishbase
+habmatch <- match(fishbase$SpecCode,sp$SpecCode)
+
+habitats <- sp$DemersPelag[habmatch]
+lengths <- sp$Length[habmatch]
+
+fishhabitat <- habitats[fishmatch[!is.na(fishmatch) & is.na(year.table$habitat_FB.SLB)]]
+
+year.table[!is.na(fishmatch) & is.na(year.table$habitat_FB.SLB), 'habitat_FB.SLB'] <- fishhabitat
+
+fishtax <- fishbase[fishmatch[!is.na(fishmatch)], c('Family','Order','Class')]
+
+year.table <- year.table %>% mutate(Order=NA,
+                                    Family=NA,
+                                    Class=NA)
+
+year.table[fishes, c('Family','Order','Class')] <- fishtax
+
+# Lengths
+year.table$lengths <- lengths[fishmatch]
+
+#### Inverts ###
+# need to reload beyongd the cached part of sealifebase
+sealifebase <- load_taxa(server='http://fishbase.ropensci.org/sealifebase',update = T,limit=120000)
+
+invspecs <- paste(sealifebase$Genus,sealifebase$Species)
+invmatches <- sapply(invspecs,startsWith,year.table$species[is.na(fishmatch)])
+invmatch <- apply(invmatches,1,function(x) ifelse(any(x), which(x), NA))
+
+# get sysnonyms
+
+no_match <- year.table$species[is.na(fishmatch)][is.na(invmatch)&  grepl(' ',year.table$species)[is.na(fishmatch)]]
+
+inv_syn <- lapply(no_match,rfishbase::synonyms, limit=300, server='http://fishbase.ropensci.org/sealifebase')
+invsyn <- do.call('rbind',lapply(inv_syn, function(l) if(nrow(l)>0) l[l$Status %in% c('synonym','accepted name'),] else NA))
+
+repl_specs <- match(invsyn$SpecCode,sealifebase$SpecCode)
+invmatch[is.na(invmatch) & grepl(' ',year.table$species)[is.na(fishmatch)]] <- repl_specs
+
+invs <- which(!is.na(invmatch))
+
+inv_sp <- species(server='http://fishbase.ropensci.org/sealifebase',limit=120000)
+inv_habmatch <- match(sealifebase$SpecCode,inv_sp$SpecCode)
+inv_hab <- inv_sp$DemersPelag[inv_habmatch]
+
+inv_habitat <- inv_hab[invmatch]
+
+year.table[is.na(fishmatch) & is.na(year.table$habitat_FB.SLB), 'habitat_FB.SLB'] <- inv_habitat[is.na(year.table$habitat_FB.SLB[is.na(fishmatch)])]
+
+year.table[is.na(year.table$habitat_FB.SLB), c('stock','species')] %>% data.frame()
+
+year.table[is.na(year.table$habitat_FB.SLB),'habitat_FB.SLB'] <- 'benthic'
+
+invtax <- sealifebase[invmatch, c('Family','Order','Class')]
+
+year.table[is.na(fishmatch), c('Family','Order','Class')] <- invtax
+
+
+### less resolution for habitat variable
+
+year.table$habitat_FB.SLB[grepl('pelagic-', year.table$habitat_FB.SLB)] <- 'pelagic'
+
+year.table$habitat_FB.SLB[grepl('bathy', year.table$habitat_FB.SLB)] <- 'bathy-'
+
+year.table$habitat_FB.SLB[grepl('demersal', year.table$habitat_FB.SLB)] <- 'demersal'
+
+year.table$habitat_FB.SLB[grepl('reef', year.table$habitat_FB.SLB)] <- 'reef'
+year.table$habitat_FB.SLB[grepl('sessile', year.table$habitat_FB.SLB)] <- 'reef'
+
+### length
+lengths <- inv_sp$Length[inv_habmatch]
+clengths <- inv_sp$CommonLength[inv_habmatch]
+
+year.table[is.na(fishmatch), 'lengths'] <- lengths[invmatch]
+year.table[is.na(fishmatch) & is.na(year.table$lengths), 'lengths'] <- clengths[invmatch][is.na(year.table$lengths[is.na(fishmatch)])]
+
+db <- taxize::classification(data.frame(year.table[is.na(year.table$Order),'species'])$species,db='itis')
+
+year.table[is.na(year.table$Order),c('Family','Order','Class')] <- do.call('rbind',lapply(db, function(cc) rev(cc$name[cc$rank %in% c('family','order','class')])))
+
+
+
+# filter out higher taxonomy (i.e., rows that didn't match...)
+year.table <- year.table %>% 
+  filter(!is.na(habitat_FB.SLB), !is.na(species),!is.na(Order))  %>%
+  mutate(lengths = ifelse(is.na(lengths),Lmax..cm.,lengths)) %>%
+  as.data.frame()
+
+year.table$lengths[is.na(year.table$lengths)] <- c(13.3,12,40,12,13,7.5,8,8,8)
+
+#year.table <- year.table %>% filter(!is.na(lengths))
+
+# check
+stopifnot(!any(year.table %>% group_by(mainregion,species) %>% filter(is.na(Year.of.first.stock.assessment)) %>% summarise(n=n()>1) %>% .$n))
+
+
+@
+
+\section{Simple Bayesian Weibull survival model}
+
+Try a Bayesian truncated Weibull model to keep is simple to start with:
+
+<<Jags setup>>=
+
+
+# subset to data with price and landings data
+year.table <- year.table %>% filter(!is.nan(price))
+
+#assessment time
+devtime <- apply(cbind(as.numeric(min(year.table$Year.of.first.stock.assessment,na.rm = T)),year.table$minyear),1,max,na.rm=T)
+
+a.time <- as.numeric(year.table$Year.of.first.stock.assessment) - devtime + 1
+
+# true false censoring
+censored <- is.na(a.time)
+year.table$censored <- censored
+
+
+sum(nchar(years.table$Year.of.first.stock.assessment)==4) - sum(!censored)
+
+table(censored)
+
+# censor time - improve here from the arbitrary 2010 cutoff for censored (non-assessed stocks)
+ctime <- a.time+1
+ctime[is.na(a.time)] <- year.table$maxyear[is.na(a.time)]-devtime[is.na(a.time)]+1
+
+# initial values for censored observations
+time.inits <- ctime + 1
+time.inits[!is.na(a.time)] <- NA
+
+# habitat and family random effect - note - taxon is half way between habitat and family variables, try that too sometime
+
+afs <- function(x) as.numeric(as.factor(x))
+
+hab <- with(year.table,afs(habitat_FB.SLB))
+n.hab <- length(unique(hab))
+
+#year.table$mainregion[grepl('USEC smooth dogfish shark',year.table$stock)] <- 'USEC-NE'
+#year.table$mainregion[grepl('USNE midAtl red drum',year.table$stock)] <- 'USEC-NE'
+
+reg <- with(year.table,afs(mainregion))
+n.region <- length(unique(reg))
+
+family <- with(year.table,afs(Family))
+n.family <- length(unique(family))
+
+orders <- with(year.table,afs(Order))
+n.order <- length(unique(orders))
+orderfam <- tapply(orders,family,unique)
+
+
+class <- with(year.table,afs(Class))
+n.class <- length(unique(class))
+classfam <- tapply(class,family,unique)
+classord <- tapply(class,orders,unique)
+
+
+# random effect for regions
+# 
+
+std <- function(x) (x-mean(x))/(2*sd(x))
+year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
+                                    std_log10_price = std(log10(price)),
+                                    std_log10_land = std(log10(max.land)),
+                                    std_log10_landprice = std(log10(price)*log10(max.land)),
+                                    std_year = std(year.table$minyear),
+                                    post1996 = as.numeric((is.na(year.table$Year.of.first.stock.assessment) | year.table$Year.of.first.stock.assessment>1996)))
+
+fmp <- read.csv('dataset_FMP.csv')
+year.table <- inner_join(year.table,fmp) %>% mutate(FMP = as.numeric(FMP)-1,
+                                                    FMP = ifelse(FMP>1,1,FMP))
+
+
+fmp_reg <- stan_glmer(FMP ~ std_log10_length + 
+           std_log10_price + 
+           std_log10_land + 
+           std_log10_landprice + 
+           (1|habitat_FB.SLB) + 
+           (1|mainregion) + 
+           (1|Family) + 
+           (1|Order) + 
+           (1|Class),
+         data = year.table,
+         family = binomial(link = "logit"), 
+         prior = student_t(df = 100), 
+         prior_intercept = student_t(df = 100),
+         chains = 2, cores = 2)
+
+ci95 <- posterior_interval(fmp_reg, prob = 0.95)
+round(ci95, 2)
+
+# Covariate dataframe
+COVS <- year.table %>%
+  select(std_log10_length,
+         std_log10_price,
+         std_log10_land,
+         std_log10_landprice,
+         FMP) %>% as.matrix()
+
+# replace TL for CA spiny lobster with something approximate for now since I can't find a good value
+#covs$TL[is.na(covs$TL)] <- 3.2
+
+n.covs <- ncol(COVS)
+n.stocks <- nrow(COVS)
+
+@
+
+<<Run Jags model,eval=T,cache=T>>=
+# set up jags model
+
+require(rjags)
+
+jags.data <- list(
+  censored=as.numeric(censored),
+  COVS=COVS,
+  n.covs=n.covs,
+  n.region=n.region,
+  reg=reg,
+  n.stocks=n.stocks,
+  hab=hab,
+  class=class,
+  n.class=n.class,
+  order=orders,
+  n.order=n.order,
+  classord=classord,
+  n.hab=n.hab,
+  ctime=ctime,
+  a.time=a.time
+  )
+
+save.image(file = 'model_inputs_fmp.Rdata')
+
+# run model - short run for now...
+JM <- jags.model('Weib_surv.R',
+                 data=jags.data,
+                 inits = list(a.time = time.inits),
+                 n.chains=2)
+
+update(JM,n.iter=25000)
+
+a.out <- coda.samples(JM,variable.names=c('tau',
+                                          'betas',
+                                          'habitat',
+                                          'region',
+                                          'orderfx',
+                                          'classfx',
+                                          'fp.sd.family',
+                                          'fp.sd.order',
+                                          'fp.sd.class',
+                                          'fp.sd.habitat',
+                                          'fp.sd.region',
+                                          'mu',
+                                          'logmean',
+                                          'region.pmu',
+                                          'hab.pmu',
+                                          'order.pmu',
+                                          'class.pmu',
+                                          'CS'),n.iter = 200e3, thin = 10)
+
+save(a.out,year.table,COVS,full.tab,file=paste0('model.out',date(),'.rda'))
+@
+
+
