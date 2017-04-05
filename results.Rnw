@@ -22,7 +22,7 @@
 
 \author{Philipp Neubauer, Dragonfly Data Science, Wellington, New Zealand
 \and James T. Thorson, NOAA Northwest Fisheries Science Center, Seattle, USA
-\and            Michael C. Melnychuk, School of Aquatic and Fisheries Science, \\University of Washington, Seattle, USA
+\and Michael C. Melnychuk, School of Aquatic and Fisheries Science, \\University of Washington, Seattle, USA
 \and Richard Methot, NOAA Northwest Fisheries Science Center, Seattle, USA
 \and Kristan Blackhart, ECS Federal, Inc., in support of NOAA Fisheries Service, \\Office of Science and Technology, USA}
 

@@ -18,7 +18,7 @@ DB <- '~/Dropbox'
 require(dplyr)
 require(ggplot2)
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v11 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
@@ -280,8 +280,6 @@ full.tab.model <- full_join(stock.landings.sum.model,
 
 @
 
-I'm not sure what's going on here: need to check that out.
-
 <<>>=stock.landings.sum
 full.tab %>% 
   mutate(assessed = !is.na(Year.of.first.stock.assessment) & nchar(Year.of.first.stock.assessment)<5) %>%
@@ -296,7 +294,7 @@ For the survival analysis, we only need the last year and cumulative price and l
 <<results='hide'>>=
 
 # over-write value with manual landings where necessary
-manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_landings_price.csv'),header=T,stringsAsFactors = F,sep='\t')
+manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_landings_price.csv'),header=T,stringsAsFactors = F,sep=',')
 
 # only need year with assessment, or last year.
 year.table <- full.tab.model %>% 
