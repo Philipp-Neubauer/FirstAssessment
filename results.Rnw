@@ -96,7 +96,7 @@ coef_P <- coeffs %>%
             acc = mean(exp(-MCMC/Rate)),
             post.P = mean(exp(MCMC) > 1))
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v11 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )

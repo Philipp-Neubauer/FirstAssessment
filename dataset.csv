@@ -24,6 +24,7 @@
 "Actinopterygii","Clupeiformes","Dussumieriidae","Etrumeus teres","USEC-SE HERRING, ROUND",,2001,"USEC-SE","pelagic",1.92,0.9,33,,
 "Actinopterygii","Clupeiformes","Dussumieriidae","Etrumeus teres","USWC-48 HERRING, ROUND",,1992,"USWC-48","pelagic",0.21,78.3,33,,
 "Actinopterygii","Clupeiformes","Engraulidae","Anchoa mitchilli","USEC-NE ANCHOVY, BAY",,2013,"USEC-NE","pelagic",2.04,0.1,10,,
+"Actinopterygii","Clupeiformes","Engraulidae","Engraulis mordax","USWC northern anchovy",1980,1960,"USWC-48","pelagic",0.74,158511,24.8,0,
 "Actinopterygii","Cypriniformes","Cyprinidae","Orthodon microlepidotus","USWC-48 SACRAMENTO BLACKFISH",,1973,"USWC-48","benthopelagic",0.84,137.4,55,,
 "Actinopterygii","Cypriniformes","Cyprinidae","Pogonichthys macrolepidotus","USWC-48 SPLITTAIL",,1960,"USWC-48","benthopelagic",0.57,2.4,44,,
 "Actinopterygii","Cyprinodontiformes","Fundulidae","Fundulus heteroclitus","USEC-NE MUMMICHOG",,1979,"USEC-NE","benthopelagic",33.09,2.1,15,,
@@ -373,6 +374,7 @@
 "Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes mystinus","USWC blue rockfish",2007,1960,"USWC-48","reef",1.29,43.4,61,1,"Pacific Coast Groundfish"
 "Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC-AK ROCKFISH, CHINA",,1991,"USWC-AK","reef",1.09,2.2,45,,
 "Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC China rockfish (central)",2015,1979,"USWC-48","reef",8.38,9.10402,45,1,"Pacific Coast Groundfish"
+"Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC China rockfish (northern)",2015,1979,"USWC-48","reef",5.55,7.98,45,1,"Pacific Coast Groundfish"
 "Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes nebulosus","USWC China rockfish (southern)",2015,1979,"USWC-48","reef",4.46,25.59788,45,1,"Pacific Coast Groundfish"
 "Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes ovalis","USWC-48 ROCKFISH, SPECKLED",,1981,"USWC-48","demersal",2.32,2.3,56,,
 "Actinopterygii","Scorpaeniformes","Sebastidae","Sebastes paucispinis","USWC-AK ROCKFISH, BOCACCIO",,1989,"USWC-AK","reef",0.67,50.1,91,,
