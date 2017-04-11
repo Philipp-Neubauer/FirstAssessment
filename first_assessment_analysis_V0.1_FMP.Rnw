@@ -18,7 +18,7 @@ DB <- '~/Dropbox'
 require(dplyr)
 require(ggplot2)
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v10 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v11 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
@@ -296,7 +296,7 @@ For the survival analysis, we only need the last year and cumulative price and l
 <<results='hide'>>=
 
 # over-write value with manual landings where necessary
-manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_landings_price.csv'),header=T,stringsAsFactors = F,sep='\t')
+manual_landprice <- read.csv(file.path(DB,'First year of assessment/manual_max_landings_price.csv'),header=T,stringsAsFactors = F)
 
 # only need year with assessment, or last year.
 year.table <- full.tab.model %>% 
@@ -319,10 +319,13 @@ year.table <- full.tab.model %>%
   distinct() %>%
   left_join(manual_landprice,by = c('stock'='Stock.name')) %>% 
   mutate(price = ifelse(is.na(manualMeanPrice.kg),price,manualMeanPrice.kg),
-         max.land = ifelse(is.na(manualMaxLand.t),max.land,manualMaxLand.t)) %>%
-  filter(maxyear>1960, !is.na(minyear), !is.na(price))
+         max.land = ifelse(is.na(manualMaxLand.t),max.land,manualMaxLand.t)) 
 
+year.table[which(year.table$stock=="USWC China rockfish (northern)"),'minyear'] <- mean(year.table[grep("USWC China rockfish",year.table$stock),]$minyear,na.rm=T)
 
+year.table[grep("anchovy",year.table$stock),'minyear'] <- 1960
+
+year.table <- year.table %>% filter(maxyear>1960, !is.na(minyear), !is.na(price))
 
 @
 
@@ -436,9 +439,16 @@ clengths <- inv_sp$CommonLength[inv_habmatch]
 year.table[is.na(fishmatch), 'lengths'] <- lengths[invmatch]
 year.table[is.na(fishmatch) & is.na(year.table$lengths), 'lengths'] <- clengths[invmatch][is.na(year.table$lengths[is.na(fishmatch)])]
 
-db <- taxize::classification(data.frame(year.table[is.na(year.table$Order),'species'])$species,db='itis')
+db <- taxize::classification(data.frame(year.table[is.na(year.table$Order),'species'])$species, db='ncbi')
 
-year.table[is.na(year.table$Order),c('Family','Order','Class')] <- do.call('rbind',lapply(db, function(cc) rev(cc$name[cc$rank %in% c('family','order','class')])))
+@
+
+<<check>>=
+
+#year.table[is.na(year.table$Order),c('Family','Order','Class')] <- do.call('rbind',lapply(db, function(cc) rev(cc$name[cc$rank %in% c('family','order','class')])))
+
+
+year.table[is.na(year.table$Order),c('Class','Order','Family')] <- rbind(c("Bivalvia","Veneroida","Corbiculidae"),c("Bivalvia","Ostreoida","Ostreidae"))
 
 
 
@@ -447,7 +457,6 @@ year.table <- year.table %>%
   filter(!is.na(habitat_FB.SLB), !is.na(species),!is.na(Order))  %>%
   mutate(lengths = ifelse(is.na(lengths),Lmax..cm.,lengths)) %>%
   as.data.frame()
-
 year.table$lengths[is.na(year.table$lengths)] <- c(13.3,12,40,12,13,7.5,8,8,8)
 
 #year.table <- year.table %>% filter(!is.na(lengths))
@@ -455,6 +464,7 @@ year.table$lengths[is.na(year.table$lengths)] <- c(13.3,12,40,12,13,7.5,8,8,8)
 # check
 stopifnot(!any(year.table %>% group_by(mainregion,species) %>% filter(is.na(Year.of.first.stock.assessment)) %>% summarise(n=n()>1) %>% .$n))
 
+year.table$mainregion[grep('USEC-SE',year.table$mainregion)] <- 'USEC-SE'
 
 @
 
@@ -464,10 +474,14 @@ Try a Bayesian truncated Weibull model to keep is simple to start with:
 
 <<Jags setup>>=
 
-
 # subset to data with price and landings data
 year.table <- year.table %>% filter(!is.nan(price))
 
+fmp <- read.csv('dataset_FMP.csv')
+year.table <- inner_join(year.table,fmp) %>% mutate(FMP = as.numeric(FMP),
+                                                    FMP = ifelse(FMP>1,1,FMP))
+
+year.table <- unique(year.table)
 #assessment time
 devtime <- apply(cbind(as.numeric(min(year.table$Year.of.first.stock.assessment,na.rm = T)),year.table$minyear),1,max,na.rm=T)
 
@@ -500,6 +514,8 @@ n.hab <- length(unique(hab))
 #year.table$mainregion[grepl('USEC smooth dogfish shark',year.table$stock)] <- 'USEC-NE'
 #year.table$mainregion[grepl('USNE midAtl red drum',year.table$stock)] <- 'USEC-NE'
 
+
+
 reg <- with(year.table,afs(mainregion))
 n.region <- length(unique(reg))
 
@@ -528,11 +544,8 @@ year.table <- year.table %>% mutate(std_log10_length = std(log10(lengths)),
                                     std_year = std(year.table$minyear),
                                     post1996 = as.numeric((is.na(year.table$Year.of.first.stock.assessment) | year.table$Year.of.first.stock.assessment>1996)))
 
-fmp <- read.csv('dataset_FMP.csv')
-year.table <- inner_join(year.table,fmp) %>% mutate(FMP = as.numeric(FMP)-1,
-                                                    FMP = ifelse(FMP>1,1,FMP))
 
-
+require(rstanarm)
 fmp_reg <- stan_glmer(FMP ~ std_log10_length + 
            std_log10_price + 
            std_log10_land + 
@@ -556,8 +569,7 @@ COVS <- year.table %>%
   select(std_log10_length,
          std_log10_price,
          std_log10_land,
-         std_log10_landprice,
-         FMP) %>% as.matrix()
+         std_log10_landprice) %>% as.matrix()
 
 # replace TL for CA spiny lobster with something approximate for now since I can't find a good value
 #covs$TL[is.na(covs$TL)] <- 3.2
@@ -617,7 +629,7 @@ a.out <- coda.samples(JM,variable.names=c('tau',
                                           'hab.pmu',
                                           'order.pmu',
                                           'class.pmu',
-                                          'CS'),n.iter = 200e3, thin = 10)
+                                          'CS'),n.iter = 200e3, thin = 100)
 
 save(a.out,year.table,COVS,full.tab,file=paste0('model.out',date(),'.rda'))
 @

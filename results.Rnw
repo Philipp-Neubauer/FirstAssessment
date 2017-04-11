@@ -38,7 +38,7 @@ Effective fisheries management requires scientific estimates of harvested quanti
 
 <<echo=FALSE>>=
 require(knitr)
-opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=T, autodep=TRUE)
+opts_chunk$set(warning=F, message = FALSE,echo=F,error=FALSE,cache=F, autodep=TRUE)
 @
 
 <<preamble,results='hide'>>=
@@ -65,9 +65,13 @@ library(survival)
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00", "#CC79A7","#999999")
 
 
-load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-#load('Weibull_model_output_FMP.rda.rda',v=T)
+#load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
+load('model.outTue Apr 11 09:45:42 2017.rda',v=T)
 
+# a.out <- as.mcmc.list(lapply(a.out, function(x) {
+#   l <- nrow(x)
+#   as.mcmc(x[seq(1,l,by = 10),])
+# }))
 
 # just for matching
 year.table$Region <- year.table$mainregion
@@ -110,7 +114,12 @@ censored <- as.logical(is.na(a.time))
 
 
 e1 <- new.env()
-load(file.path(DB,"First year of assessment/Weibull_model_output_FMP.rda"),envir=e1)
+#load(file.path(DB,"First year of assessment/Weibull_model_output_FMP.rda"),envir=e1)
+load('model.outMon Apr 10 22:55:44 2017.rda',v=T,envir=e1)
+# with(e1, a.out <- as.mcmc.list(lapply(a.out, function(x) {
+#   l <- nrow(x)
+#   as.mcmc(x[seq(1,l,by = 10),])
+# })))
 
 year.table_fmp <- get('year.table',e=e1)
 year.table_fmp$fmps <- year.table_fmp$FMP
@@ -745,14 +754,14 @@ Stock &  Assessment year & Initial year & Region & Habitat & Price (US\$$\cdot$k
 \endlastfoot
 
 <<results="asis">>=
-#dataset <- read.csv('dataset_SIS.csv')
-dataset$SIS <- NA
-dataset$SIS.stock.name <- NA
+dataset <- read.csv('dataset_appendix.csv')
+#dataset$SIS <- NA
+#dataset$SIS.stock.name <- NA
 dataset$FMP <- ifelse(dataset$FMP,'Yes','No')
 
 #dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
 #dataset$Stock <- dataset$Stock)
-print(xtable(dataset %>% select(-Class, -Order,-Family,-Species,-SIS.stock.name,-FMP.name),digits=c(rep(0,6),2,0,0,0,0)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+print(xtable(dataset %>% select(-Class, -Order,-Family,-Species,-SIS.name,-FMP.name),digits=c(rep(0,6),2,0,0,0,0)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
 @
 
 \end{longtable}

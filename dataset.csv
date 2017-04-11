@@ -195,8 +195,8 @@
 "Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USEC-NE MACKEREL, CHUB",,1960,"USEC-NE","pelagic",0.3,1984.2,64,,
 "Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USEC-SE MACKEREL, CHUB",,1995,"USEC-SE","pelagic",1.18,121.6,64,,
 "Actinopterygii","Perciformes","Scombridae","Scomber japonicus","USWC Pacific mackerel",2004,1960,"USWC-48","pelagic",0.13,35256.5,64,1,"Coastal Pelagic Species"
-"Actinopterygii","Perciformes","Scombridae","Scomberomorus cavalla","GoMex king mackerel",1983,1960,"USEC-SE-GoMex","reef",0.89,2896,184,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
-"Actinopterygii","Perciformes","Scombridae","Scomberomorus cavalla","sAtl king mackerel",1983,1960,"USEC-SE-sAtl","reef",0.89,2854,184,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
+"Actinopterygii","Perciformes","Scombridae","Scomberomorus cavalla","GoMex king mackerel",1983,1960,"USEC-SE","reef",0.89,2896,184,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
+"Actinopterygii","Perciformes","Scombridae","Scomberomorus cavalla","sAtl king mackerel",1983,1960,"USEC-SE","reef",0.89,2854,184,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
 "Actinopterygii","Perciformes","Scombridae","Scomberomorus maculatus","GoMex Spanish mackerel",1996,1960,"USEC-SE","pelagic",0.39,3880.2,91,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
 "Actinopterygii","Perciformes","Scombridae","Scomberomorus maculatus","sAtl Spanish mackerel",1996,1960,"USEC-SE","pelagic",0.48,5015.3,91,1,"Coastal Migratory Pelagic Resources of the Gulf of Mexico and South Atlantic"
 "Actinopterygii","Perciformes","Scombridae","Scomberomorus sierra","USWC-48 PACIFIC SIERRA",,1960,"USWC-48","pelagic",0.21,1.9,99,,
@@ -520,7 +520,6 @@
 "Gastropoda","Neogastropoda","Melongenidae","Busycotypus canaliculatus","USEC-NE WHELK, CHANNELED",,2006,"USEC-NE","demersal",9.39,1014.8,20.1,,
 "Holocephali","Chimaeriformes","Chimaeridae","Hydrolagus colliei","USWC-48 RATFISH SPOTTED",,1960,"USWC-48","demersal",0.02,1296.9,100,,
 "Holothuroidea","Aspidochirotida","Stichopodidae","Parastichopus californicus","SE Alaska sea cucumber",1990,1988,"USWC-AK","benthic",0.93,1052,7.5,0,
-"Holothuroidea","Aspidochirotida","Stichopodidae","Parastichopus californicus","SE Alaska sea cucumber",1990,1988,"USWC-AK","benthic",0.93,1052,7.5,,
 "Malacostraca","Decapoda","Cancridae","Cancer borealis","USEC-NE CRAB, JONAH",,1974,"USEC-NE","demersal",1.21,6928.9,16,,
 "Malacostraca","Decapoda","Cancridae","Cancer irroratus","USEC-NE CRAB, ATLANTIC ROCK",,1960,"USEC-NE","demersal",0.52,2178.1,13.3,,
 "Malacostraca","Decapoda","Cancridae","Cancer magister","USWC-48 CRAB, DUNGENESS",,1960,"USWC-48","demersal",2.77,38563.9,22.5,,

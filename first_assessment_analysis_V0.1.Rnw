@@ -436,7 +436,7 @@ year.table[is.na(fishmatch) & is.na(year.table$lengths), 'lengths'] <- clengths[
 
 db <- taxize::classification(data.frame(year.table[is.na(year.table$Order),'species'])$species,db='itis')
 
-year.table[is.na(year.table$Order),c('Family','Order','Class')] <- do.call('rbind',lapply(db, function(cc) rev(cc$name[cc$rank %in% c('family','order','class')])))
+year.table[is.na(year.table$Order),c('Class','Order','Family')] <- rbind(c("Bivalvia","Veneroida","Corbiculidae"),c("Bivalvia","Ostreoida","Ostreidae")) #do.call('rbind',lapply(db, function(cc) rev(cc$name[cc$rank %in% c('family','order','class')])))
 
 
 
