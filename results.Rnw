@@ -731,7 +731,7 @@ In total, after steps 1--3 we generated a list of 239 US stocks, including 208 s
 
 {\footnotesize
 \begin{longtable}{lrrllrrrrlr}
-\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, the initial year is the year of first landings or 1960, whichever is earlier (used to calculate time-to-assessment), regions are Northeast (USEC-NE), Southeast (USEC-SE), Alaska (USWC-AK) or West Coast (USWC-48), price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. FMP indicates whether or not the stock is included in a federal management plan. SIS cat. is the Level of Assessment in SIS. SIS assessments that were not accepted in review are noted as negative integers corresponding to the category taht would apply to the assessment had it been accepted. Unassessed stocks are named according to entities in the NOAA landings database, and denoted with capital letters. Within each region, there is a maximum of one unassessed stock of a particular species, corresponding to the states that are not linked with assessed stocks of that species.   }
+\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, the initial year is the year of first landings or 1960, whichever is earlier (used to calculate time-to-assessment), regions are Northeast (USEC-NE), Southeast (USEC-SE), Alaska (USWC-AK) or West Coast (USWC-48), price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. FMP indicates whether or not the stock is included in a federal management plan. SIS cat. is the Level of Assessment in SIS. SIS assessments that were not accepted in review are noted as negative integers corresponding to the category that would apply to the assessment had it been accepted. Unassessed stocks are named according to entities in the NOAA landings database, and denoted with capital letters. Within each region, there is a maximum of one unassessed stock of a particular species, corresponding to the states that are not linked with assessed stocks of that species.   }
 
 \label{tab:dataset} \\
 \centering
@@ -845,33 +845,63 @@ The SIS database uses a 6-level categorization of assessments [CITATION, https:/
 \end {enumerate}
 \end {enumerate}
 
-We expect our classification of "assessed" to align with levels 3--6 in the SIS database, and our classification of "unassessed" to align with levels 0--2. This is generally what we found, and the few discrepancies are described below. These comparisons can be followed in our final dataset provided (Tables \ref{tab:dataset}, \ref{tab:dataset_tax}, \ref{tab:dataset_missed}), which list for each stock in our dataset the corresponding stock from the SIS database. In summary, the comparison shows:
+We expect our classification of "assessed" to align with levels 3--6 in the SIS database, and our classification of "unassessed" to align with levels 0--2. This is generally what we found, and the discrepancies are described below. These comparisons can be followed in our final dataset provided (Tables \ref{tab:dataset}, \ref{tab:dataset_tax}, \ref{tab:dataset_missed}), which list for each stock in our dataset the corresponding stock from the SIS database. In summary, the comparison shows:
 
 
-I) Of the 200 stocks in our final dataset with a year of first stock assessment assignment, 165 have a corresponding stock in the SIS database. Of these 165 overlapping stocks, 158 (96\%) had an assessment level of 3 or greater assigned in the SIS database. The 7 stocks that we classified as assessed but that have a current assessment level of 1 or 2 in the SIS database are as follows:
+I) Of the 208 stocks in our final dataset with a year of first stock assessment assignment, 186 have a corresponding stock in the SIS database. Of these 186 overlapping stocks, 154 (85\%) had an assessment level of 3 or greater assigned in the SIS database. The 28 stocks that we classified as assessed but that have a current assessment level less than 3 in the SIS database fall into two groups. First, the most recent assessment has been rejected during review for 7 stocks that would have otherwise had a SIS assessment level of 3 or greater:
+
+	\begin{enumerate}
+	\item \label{itm:first} Atlantic cod - Georges Bank
+	\item Hogfish - Carolinas
+	\item Blacknose shark - Gulf of Mexico
+	\item Blacktip shark - Atlantic
+	\item Bonnethead - Atlantic and Gulf of Mexico
+	\item Caribbean spiny lobster - Southern Atlantic Coast / Gulf of Mexico
+	\item Atlantic halibut - Northwestern Atlantic Coast
+	\end{enumerate}
+
+Because qualifying assessments for these stocks have been accepted and used for management in the past, we treat these as assessed stocks in our analysis and maintain their year of first assessment as noted in Table B.2.
+Second, 20 stocks currently have a SIS assessment level less than 3 despite having had a qualifying assessment in the past:
 
 	\begin{enumerate}
 	\item \label{itm:first} Silver hake - Gulf of Maine / Northern Georges Bank
 	\item Silver hake - Southern Georges Bank / Mid-Atlantic
-	\item \label{itm:third} Winter flounder - Gulf of Maine
-	\item \label{itm:fourth} Opalescent inshore squid - Pacific Coast
+	\item Goosefish - Gulf of Maine / Northern Georges Bank
+	\item Goosefish - Southern Georges Bank / Mid-Atlantic
+	\item Tilefish - Mid-Atlantic Coast
+	\item Bluefish - Atlantic Coast
+	\item Atlantic croaker - Mid-Atlantic Coast
+	\item Atlantic mackerel - Gulf of Maine / Cape Hatteras
+	\item Scup - Atlantic Coast
+	\item Butterfish - Gulf of Maine / Cape Hatteras
+	\item Yellowtail flounder - Georges Bank
+	\item Winter flounder - Gulf of Maine
+	\item Ocean quahog - Atlantic Coast
+	\item Atlantic surfclam - Mid-Atlantic Coast
+	\item Opalescent inshore squid - Pacific Coast
 	\item Longfin inshore squid - Georges Bank / Cape Hatteras
-	\item \label{itm:sixth} Northern shortfin squid - Northwestern Atlantic Coast
-	\item \label{itm:seven} Red deepsea crab - Northwestern Atlantic
+	\item Northern shortfin squid - Northwestern Atlantic Coast
+	\item Spiny dogfish - Atlantic Coast
+	\item Red deepsea crab - Northwestern Atlantic
+	\item Horseshoe crab - Atlantic
 	\end{enumerate}
-	The reasons for these discrepancies can be attributed to a population model previously used in the stock assessment process to inform fisheries management, but currently assessments rely on simpler models (with lower assessment level categories in the SIS database). Specifically:
-	\begin{itemize}
-	\item \ref{itm:first}--\ref{itm:third}: The silver hake and winter flounder stocks previously had age-structured Virtual Population Analysis assessment models used. More recently, the assessment models were not approved, so management currently relies on index-based models.
-	\item \ref{itm:fourth}--\ref{itm:sixth}: The squid stocks previously had population models used in assessments, but currently use index-based or simpler equilibrium models.
-	\item \ref{itm:seven}: An older red deepsea crab stock assessment used a population model to estimate MSY, but more recent assessments rely on index-based methods for management.
-	\end{itemize}
-II) Of the 31 stocks in our final dataset that were considered unassessed (with qualitative categories of "only relative indices", "minimal information", or "no published document"), 21 have a corresponding stock in the SIS database. Of these 21 overlapping stocks, 19 (90\%) had an assessment level of 2 or less assigned in the SIS database. The 2 stocks that we classified as unassessed but that have an assessment level of 3 in the SIS database are:
+
+The reasons for these discrepancies can be attributed to a population model (e.g. VPA) coupled with biological reference points previously used in the stock assessment process to inform fisheries management, but currently assessments rely on simpler models with lower assessment level categories in the SIS database (e.g. index-based methods or simpler equilibrium models). 
+One additional stock that was assessed in 2016 for the first time is not in a federal FMP and not included in SIS as having had an assessment, White seabass - Pacific Coast. 
+
+II) Of the 368 stocks in our final dataset that were considered unassessed (based on species in the NOAA landings-by-state database that did not pair with assessed stocks) 151 have a corresponding stock in the SIS database. Of these 151 overlapping stocks, 141 (93\%) had an assessment level of 2 or less assigned in the SIS database, and an additional 3 (2%) had a recent assessment rejected that would have been a level 4 assessment had it not been rejected. The 7 stocks that we classified as unassessed but that have an assessment level of 3 or 4 in the SIS database are:
 
 	\begin{enumerate}
-	\item Shortraker rockfish - Gulf of Alaska
-	\item Yelloweye rockfish - Gulf of Alaska
+	\item Yelloweye rockfish - Bering Sea / Aleutian Islands; Yelloweye rockfish - Gulf of Alaska
+	\item Scamp - Gulf of Mexico; Scamp - Southern Atlantic Coast
+	\item White grunt - Southern Atlantic Coast
+	\item Golden deepsea crab - Southern Atlantic Coast
+	\item Stone crabs (Menippe spp.) - Gulf of Mexico
+	\item American lobster - Atlantic Coast [Northeast]
+	\item American lobster - Atlantic Coast [Southeast]
 	\end{enumerate}
-	Stock assessments for these two rockfish stocks are based on area-swept biomass estimates from surveys. To be consistent with other stocks in our analysis, for which assessments relying on relative index methods are considered unassessed, we consider these stocks as unassessed as well.
+
+Stock assessments for these stocks are based on area-swept biomass estimates from surveys, other index-based methods, or do not appear to be coupled with biological reference points to meet our definition of a full assessment. To be consistent with other stocks in our analysis, we consider these stocks as unassessed.
 
 
 \newpage
