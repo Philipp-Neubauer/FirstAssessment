@@ -722,14 +722,14 @@ To ensure that we had not overlooked any US marine stocks with a stock assessmen
 In addition to confirming many of the added assessments in (2), we found 15 stock assessments meeting our criteria for a assessment which were not previously accounted for. Many of these were stocks managed by state agencies so did not appear in the list in (2). These 15 stocks were added to our dataset along with their year of first assessment.
 \end{enumerate}
 
-In total, after steps 1--3 we generated a list of 239 US stocks, including 208 stocks with stock assessments that qualified under our defined criteria. The remaining 31 stocks did not meet our assessment criteria. They were excluded from our dataset, although after merging our dataset of assessed stocks with the NOAA landings database, those stocks would later re-enter as unassessed stocks. Of these 208 assessed stocks in our full dataset, 204 assessed stocks were used in our final dataset for analysis (Tables \ref{tab:dataset},\ref{tab:dataset_tax}. The remaining 4 assessed stocks (in Table \ref{tab:dataset_missed}) were excluded from our final dataset for analysis because they either they did not have any recorded landings in the NOAA landings database, or the year of first assessment preceded the year in which landings data first began in the NOAA landings database.
+In total, after steps 1--3 we generated a list of 239 US stocks, including 208 stocks with stock assessments that qualified under our defined criteria. The remaining 31 stocks did not meet our assessment criteria. They were excluded from our dataset, although after merging our dataset of assessed stocks with the NOAA landings database, those stocks would later re-enter as unassessed stocks. Of these 208 assessed stocks in our full dataset, 204 assessed stocks were used in our final dataset for analysis (Tables \ref{tab:dataset},\ref{tab:dataset_tax}. The remaining 4 assessed stocks (in Table \ref{tab:dataset_missed}) were excluded from our final dataset for analysis because they did not have available estimates of ex-vessel prices in the years leading up to the year of first assessment.
 
 \begin{landscape}
 \section{Dataset}
 
 {\footnotesize
 \begin{longtable}{lrrllrrrrlr}
-\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, the initial year is the year of first landings or 1960, whichever is earlier (used to calculate time-to-assessment), price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. FMP indicates whether or not the stock is included in a federal management plan. SIS cat. is the SIS assessment database category.  }
+\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, the initial year is the year of first landings or 1960, whichever is earlier (used to calculate time-to-assessment), regions are Northeast (USEC-NE), Southeast (USEC-SE), Alaska (USWC-AK) or West Coast (USWC-48), price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. FMP indicates whether or not the stock is included in a federal management plan. SIS cat. is the Level of Assessment in SIS. Unassessed stocks are named according to entities in the NOAA landings database, and denoted with capital letters. Within each region, there is a maximum of one unassessed stock of a particular species, corresponding to the states that are not linked with assessed stocks of that species.   }
 
 \label{tab:dataset} \\
 \centering
@@ -798,7 +798,7 @@ print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after 
 
 
 \begin{table}[!ht]
-\caption[dataset]{Stocks for which assessments or other abundance information was available, but which were excluded from our analysis. This was generally due to missing landings information at the stock level. The assessment year is the year of first stock assessment.}
+\caption[dataset]{Assessed stocks that were excluded from our analysis, due to unavailable ex-vessel prices in the years leading up to the year of first assessment. The assessment year is the year of first stock assessment.}
 \label{tab:dataset_missed}
 \centering
 \begin{tabular}{lrr}
