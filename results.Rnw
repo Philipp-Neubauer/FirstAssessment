@@ -800,15 +800,15 @@ print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after 
 
 
 \begin{table}[!ht]
-\caption[dataset]{Four assessed stocks were excluded from our analysis, due to unavailable ex-vessel prices in the years leading up to the year of first assessment. The assessment year is the year of first stock assessment.}
+\caption[dataset]{Four assessed stocks were excluded from our analysis, due to unavailable ex-vessel prices in the years leading up to the year of first assessment. The assessment year is the year of first stock assessment. The fishery management plan (FMP) name is provided for reference.}
 \label{tab:dataset_missed}
 \centering
-\begin{tabular}{lrr}
-Stock & Assessment year & SIS class  \\
+\begin{tabular}{lrlr}
+Stock & Assessment year & FMP name & SIS class  \\
 <<results="asis">>=
 dataset_missed <- read.csv('dataset_missed_SIS.csv',stringsAsFactors = F)
 #dataset$Stock <- dataset$Stock)
-print(xtable(dataset_missed %>% select(-SIS.stock.name) %>% filter(!is.na(as.numeric(Year.of.first.stock.assessment)))), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+print(xtable(dataset_missed %>% select(-SIS.name,-FMP) %>% filter(!is.na(as.numeric(Year.of.first.stock.assessment)))), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
 @
 \end{tabular}
 \end{table}
