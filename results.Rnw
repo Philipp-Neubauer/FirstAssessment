@@ -32,7 +32,7 @@
 
 \begin{abstract}
 
-Effective fisheries management requires scientific estimates of harvested quantities or fishing rates so that the fishery can sustainably derive value from the resource. Many management agencies also define conservation objectives regarding population status, such as estimated biomass relative to target levels. However, estimating population status generally requires a stock assessment, which is often more costly and resource-intensive than simple models that only estimate harvest limits, and to date only a subset of landed species have stock assessments. Here we evaluate factors influencing the probability that a previously-unassessed stock in the United States will become the subject of a stock assessment. Using a statistical model based on time-to-event analysis and 572 coastal marine fish and invertebrate stocks landed in commercial fisheries, we quantify the impact of region, habitat, life-history, and economic factors on the annual probability of being assessed. Although the majority of landings come from assessed stocks in all regions, less than half of the regionally-landed species currently have been assessed. Nevertheless, we find that the overall rate at which new stocks are assessed has been increasing since 1960, the year of the first recorded stock assessment. Our time-to-event model identifies landed tonnage and ex-vessel prices as the dominant factors determining the rate of new assessments, with greater landings and higher prices leading to higher probabilities of being assessed. Placement of stocks within federal fishery management plans was identified as adding momentum toward stocks being assessed. We also find that after controlling for landings and price, there has been a consistent bias towards assessing larger-bodied species. A number of vulnerable groups such as rockfishes (Scorpaeniformes) and groundsharks (Carcharhiniformes) have a relatively high annual probability of being assessed after controlling for their relatively small tonnage and low price. Given the characteristics of species that are currently unassessed, our model suggests that the number of assessed stocks will increase more slowly in future decades, as the landed tonnage and price for the remaining unassessed stocks stocks are relatively low, and may therefore confer less incentive for implementing costly stock assessments.
+Effective fisheries management requires scientific estimates of harvested quantities or fishing rates so that the fishery can sustainably derive value from the resource. Many management agencies also define conservation objectives regarding population status, such as estimated biomass relative to target levels. However, estimating population status generally requires a stock assessment, which is often more costly and resource-intensive than simple models that only estimate harvest limits, and to date only a subset of landed species have stock assessments. Here we evaluate factors influencing the probability that a previously-unassessed stock in the United States will become the subject of a stock assessment. Using a statistical model based on time-to-event analysis and 570 coastal marine fish and invertebrate stocks landed in commercial fisheries, we quantify the impact of region, habitat, life-history, and economic factors on the annual probability of being assessed. Although the majority of landings come from assessed stocks in all regions, less than half of the regionally-landed species currently have been assessed. Nevertheless, we find that the overall rate at which new stocks are assessed has been increasing since 1960, the year of the first recorded stock assessment. Our time-to-event model identifies landed tonnage and ex-vessel prices as the dominant factors determining the rate of new assessments, with greater landings and higher prices leading to higher probabilities of being assessed. Placement of stocks within federal fishery management plans was identified as adding momentum toward stocks being assessed. We also find that after controlling for landings and price, there has been a consistent bias towards assessing larger-bodied species. A number of vulnerable groups such as rockfishes (Scorpaeniformes) and groundsharks (Carcharhiniformes) have a relatively high annual probability of being assessed after controlling for their relatively small tonnage and low price. Given the characteristics of species that are currently unassessed, our model suggests that the number of assessed stocks will increase more slowly in future decades, as the landed tonnage and price for the remaining unassessed stocks stocks are relatively low, and may therefore confer less incentive for implementing costly stock assessments.
 
 \end{abstract}
 
@@ -66,7 +66,9 @@ cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#F0E442", "#D55E00",
 
 
 #load(file.path(DB,"First year of assessment/Weibull_model_output.rda"),v=T)
-load('model.outTue Apr 11 09:45:42 2017.rda',v=T)
+load('model.outThu Apr 27 07:38:57 2017.rda',v=T)
+
+
 
 # a.out <- as.mcmc.list(lapply(a.out, function(x) {
 #   l <- nrow(x)
@@ -100,7 +102,7 @@ coef_P <- coeffs %>%
             acc = mean(exp(-MCMC/Rate)),
             post.P = mean(exp(MCMC) > 1))
 
-years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v11 Final dataset.csv'),
+years.table <- tbl_df(read.csv(file.path(DB,'First year of assessment/v12 Final dataset.csv'),
                               na.strings=c('','NA','#N/A'),
                               stringsAsFactors = F)
 )
@@ -115,7 +117,7 @@ censored <- as.logical(is.na(a.time))
 
 e1 <- new.env()
 #load(file.path(DB,"First year of assessment/Weibull_model_output_FMP.rda"),envir=e1)
-load('model.outMon Apr 10 22:55:44 2017.rda',v=T,envir=e1)
+load('model.outThu Apr 27 12:05:57 2017.rda',v=T,envir=e1)
 # with(e1, a.out <- as.mcmc.list(lapply(a.out, function(x) {
 #   l <- nrow(x)
 #   as.mcmc(x[seq(1,l,by = 10),])
@@ -141,7 +143,7 @@ dataset <- year.table %>%
          Stock = stock) %>%
   select(Class, Order,  Family, Species,Stock, `Year of first stock assessment`,`Initial year`, Region, Habitat, `Mean ex vessel price per kg`, `Maximum landings`, `Fishbase length`,FMP,FMP.name) 
 
-write.csv(dataset,file='dataset.csv',row.names = F,na = '')
+write.csv(dataset,file='dataset_v12.csv',row.names = F,na = '')
 
 
 years.table %>%
@@ -724,7 +726,7 @@ To ensure that we had not overlooked any US marine stocks with a stock assessmen
 In addition to confirming many of the added assessments in (2), we found 15 stock assessments meeting our criteria for a assessment which were not previously accounted for. Many of these were stocks managed by state agencies so did not appear in the list in (2). These 15 stocks were added to our dataset along with their year of first assessment.
 \end{enumerate}
 
-In total, after steps 1--3 we generated a list of 239 US stocks, including 208 stocks with stock assessments that qualified under our defined criteria. The remaining 31 stocks did not meet our assessment criteria. They were excluded from our dataset, although after merging our dataset of assessed stocks with the NOAA landings database, those stocks would later re-enter as unassessed stocks. Of these 208 assessed stocks in our full dataset, 204 assessed stocks were used in our final dataset for analysis (Tables \ref{tab:dataset},\ref{tab:dataset_tax}. The remaining 4 assessed stocks (in Table \ref{tab:dataset_missed}) were excluded from our final dataset for analysis because they did not have available estimates of ex-vessel prices in the years leading up to the year of first assessment.
+In total, after steps 1--3 we generated a list of 239 US stocks, including 208 stocks with stock assessments that qualified under our defined criteria. The remaining 31 stocks did not meet our assessment criteria. They were excluded from our dataset, although after merging our dataset of assessed stocks with the NOAA landings database, those stocks would later re-enter as unassessed stocks. Of these 208 assessed stocks in our full dataset, 204 assessed stocks were used in our final dataset for analysis (Tables \ref{tab:dataset},\ref{tab:dataset_tax}. 
 
 \begin{landscape}
 \section{Dataset}
@@ -798,21 +800,6 @@ print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after 
 @
 \end{longtable}
 
-
-\begin{table}[!ht]
-\caption[dataset]{Four assessed stocks were excluded from our analysis, due to unavailable ex-vessel prices in the years leading up to the year of first assessment. The assessment year is the year of first stock assessment. The fishery management plan (FMP) name is provided for reference.}
-\label{tab:dataset_missed}
-\centering
-\begin{tabular}{lrlr}
-Stock & Assessment year & FMP name & SIS class  \\
-<<results="asis">>=
-dataset_missed <- read.csv('dataset_missed_SIS.csv',stringsAsFactors = F)
-#dataset$Stock <- dataset$Stock)
-print(xtable(dataset_missed %>% select(-SIS.name,-FMP) %>% filter(!is.na(as.numeric(Year.of.first.stock.assessment)))), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
-@
-\end{tabular}
-\end{table}
-}
 
 \end{landscape}
 
