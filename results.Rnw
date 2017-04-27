@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4paper]{scrartcl}
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage{setspace}
@@ -728,80 +728,80 @@ In addition to confirming many of the added assessments in (2), we found 15 stoc
 
 In total, after steps 1--3 we generated a list of 239 US stocks, including 208 stocks with stock assessments that qualified under our defined criteria. The remaining 31 stocks did not meet our assessment criteria. They were excluded from our dataset, although after merging our dataset of assessed stocks with the NOAA landings database, those stocks would later re-enter as unassessed stocks. Of these 208 assessed stocks in our full dataset, 204 assessed stocks were used in our final dataset for analysis (Tables \ref{tab:dataset},\ref{tab:dataset_tax}. 
 
-\begin{landscape}
-\section{Dataset}
-
-{\footnotesize
-\begin{longtable}{lrrllrrrrlr}
-\caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, the initial year is the year of first landings or 1960, whichever is earlier (used to calculate time-to-assessment), regions are Northeast (USEC-NE), Southeast (USEC-SE), Alaska (USWC-AK) or West Coast (USWC-48), price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. FMP indicates whether or not the stock is included in a federal management plan. SIS cat. is the Level of Assessment in SIS. SIS assessments that were not accepted in review are noted as negative integers corresponding to the category that would apply to the assessment had it been accepted. Unassessed stocks are named according to entities in the NOAA landings database, and denoted with capital letters. Within each region, there is a maximum of one unassessed stock of a particular species, corresponding to the states that are not linked with assessed stocks of that species.   }
-
-\label{tab:dataset} \\
-\centering
-Stock &  Assessment year &  Initial year & Region & Habitat & Price (US\$$\cdot$kg$^{-1}$) & Landings (t) & Length (cm) & FMP  & SIS cat.\\
-\addlinespace
-\endfirsthead
-
-\multicolumn{10}{c}%
-{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-\hline
-\addlinespace
-Stock &  Assessment year & Initial year & Region & Habitat & Price (US\$$\cdot$kg$^{-1}$) & Landings (t)  & Length (cm) & FMP & SIS cat.\\
-\addlinespace
-\endhead
-
-\addlinespace
-\hline
-\addlinespace
-\multicolumn{10}{c}{Continued on next page} \\
-\endfoot
-
-\endlastfoot
-
-<<results="asis">>=
-dataset <- read.csv('dataset_appendix.csv')
-#dataset$SIS <- NA
-#dataset$SIS.stock.name <- NA
-dataset$FMP <- ifelse(dataset$FMP,'Yes','No')
-
-#dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
-#dataset$Stock <- dataset$Stock)
-print(xtable(dataset %>% select(-Class, -Order,-Family,-Species,-SIS.name,-FMP.name),digits=c(rep(0,6),2,0,0,0,0)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
-@
-
-\end{longtable}
-\newpage
-\begin{longtable}{lllll}
-\caption[dataset]{Taxonomic variables used for time-to-event analysis.}
-\label{tab:dataset_tax} \\
-\centering
-Stock & Species & Family & Order & Class  \\
-\addlinespace
-\endfirsthead
-
-\multicolumn{5}{c}%
-{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-\hline
-\addlinespace
-Stock & Species & Family & Order & Class \\
-\addlinespace
-\endhead
-
-\addlinespace
-\hline
-\addlinespace
-\multicolumn{5}{c}{Continued on next page} \\
-\endfoot
-
-\endlastfoot
-
-<<results="asis">>=
-
-print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
-@
-\end{longtable}
-
-
-\end{landscape}
+% \begin{landscape}
+% \section{Dataset}
+% 
+% {\footnotesize
+% \begin{longtable}{lrrllrrrrlr}
+% \caption[dataset]{Dataset used for time-to-event analysis. The assessment year is the year of first stock assessment, the initial year is the year of first landings or 1960, whichever is earlier (used to calculate time-to-assessment), regions are Northeast (USEC-NE), Southeast (USEC-SE), Alaska (USWC-AK) or West Coast (USWC-48), price is mean ex-vessel price and landings are maximum recorded landings prior to the first assessment, length and habitat were derived from Fishbase. FMP indicates whether or not the stock is included in a federal management plan. SIS cat. is the Level of Assessment in SIS. SIS assessments that were not accepted in review are noted as negative integers corresponding to the category that would apply to the assessment had it been accepted. Unassessed stocks are named according to entities in the NOAA landings database, and denoted with capital letters. Within each region, there is a maximum of one unassessed stock of a particular species, corresponding to the states that are not linked with assessed stocks of that species.   }
+% 
+% \label{tab:dataset} \\
+% \centering
+% Stock &  Assessment year &  Initial year & Region & Habitat & Price (US\$$\cdot$kg$^{-1}$) & Landings (t) & Length (cm) & FMP  & SIS cat.\\
+% \addlinespace
+% \endfirsthead
+% 
+% \multicolumn{10}{c}%
+% {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+% \hline
+% \addlinespace
+% Stock &  Assessment year & Initial year & Region & Habitat & Price (US\$$\cdot$kg$^{-1}$) & Landings (t)  & Length (cm) & FMP & SIS cat.\\
+% \addlinespace
+% \endhead
+% 
+% \addlinespace
+% \hline
+% \addlinespace
+% \multicolumn{10}{c}{Continued on next page} \\
+% \endfoot
+% 
+% \endlastfoot
+% 
+% <<results="asis">>=
+% dataset <- read.csv('dataset_appendix.csv')
+% #dataset$SIS <- NA
+% #dataset$SIS.stock.name <- NA
+% dataset$FMP <- ifelse(dataset$FMP,'Yes','No')
+% 
+% #dataset$Year.of.first.stock.assessment <- as.integer(as.character(dataset$Year.of.first.stock.assessment))
+% #dataset$Stock <- dataset$Stock)
+% print(xtable(dataset %>% select(-Class, -Order,-Family,-Species,-SIS.name,-FMP.name),digits=c(rep(0,6),2,0,0,0,0)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+% @
+% 
+% \end{longtable}
+% \newpage
+% \begin{longtable}{lllll}
+% \caption[dataset]{Taxonomic variables used for time-to-event analysis.}
+% \label{tab:dataset_tax} \\
+% \centering
+% Stock & Species & Family & Order & Class  \\
+% \addlinespace
+% \endfirsthead
+% 
+% \multicolumn{5}{c}%
+% {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+% \hline
+% \addlinespace
+% Stock & Species & Family & Order & Class \\
+% \addlinespace
+% \endhead
+% 
+% \addlinespace
+% \hline
+% \addlinespace
+% \multicolumn{5}{c}{Continued on next page} \\
+% \endfoot
+% 
+% \endlastfoot
+% 
+% <<results="asis">>=
+% 
+% print(xtable(dataset %>% select(Stock,Species,Family,Order,Class)), hline.after = -1, only.contents = T, include.colnames = F, include.rownames = F)
+% @
+% \end{longtable}
+% 
+% }
+% \end{landscape}
 
 \newpage
 \FloatBarrier
