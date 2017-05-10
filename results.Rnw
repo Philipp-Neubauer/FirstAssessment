@@ -724,8 +724,7 @@ These surveys were conducted for 196 US stocks, of which 165 were found to have 
 We compared our list of assessed stocks with the list of assessed stocks from the US Species Information System (SIS) database. We considered SIS stocks with assessment level 3 or greater (see Appendix \ref{sec:sis}). We found 31 stocks in the SIS database that were not previously included in our list of assessed stocks in (1). Most of these stocks were first assessed after our period of data collection in (1), 2012--2015, which is why many of these were not originally included in our list of stocks in (1). We added these 31 stocks along with their year of first assessment to our dataset.
 
 \item Remaining stocks in NOAA landings database:
-To ensure that we had not overlooked any US marine stocks with a stock assessment (including stocks managed by state agencies), we systematically searched online for a stock assessment for each species in the NOAA landings database. These searches comprised two types of species: some species in the NOAA landings database were not previously included in our collection of stock management attribute data in (1) or (2); and some species in the NOAA landings database were previously included in (1) or (2) but also had landings recorded in states outside of the defined areas of distribution of those stocks, and thus other assessments of the same species may have been available, for other areas. For both types of species, we searched for any stock assessment corresponding to species:state recorded landings that were unaccounted for in (1) or (2). Online searches consisted of: (i) going through assessment archives on the websites of US Fisheries Management Councils, NMFS Science Centers, and state-level fisheries management agencies; and (ii) using the Google search engine with search terms ("Latin name of species" "stock assessment" "Region") to identify available assessments either in the primary literature or that may not have been otherwise available through agency websites.
-In addition to confirming many of the added assessments in (2), we found 15 stock assessments meeting our criteria for a assessment which were not previously accounted for. Many of these were stocks managed by state agencies so did not appear in the list in (2). These 15 stocks were added to our dataset along with their year of first assessment.
+To ensure that we had not overlooked any US marine stocks with a stock assessment (including stocks managed by state agencies), we systematically searched online for a stock assessment for each species in the NOAA landings database. These searches comprised two types of species: some species in the NOAA landings database were not previously included in our collection of stock management attribute data in (1) or (2); and some species in the NOAA landings database were previously included in (1) or (2) but also had landings recorded in states outside of the defined areas of distribution of those stocks, and thus other assessments of the same species may have been available, for other areas. For both types of species, we searched for any stock assessment corresponding to species $\times$ state recorded landings that were unaccounted for in (1) or (2). Online searches consisted of: (i) going through assessment archives on the websites of US Fisheries Management Councils, NMFS Science Centers, and state-level fisheries management agencies; and (ii) using the Google search engine with search terms ("Latin name of species" "stock assessment" "Region") to identify available assessments either in the primary literature or that may not have been otherwise available through agency websites. In addition to confirming many of the added assessments in (2), we found 15 stock assessments meeting our criteria for assessment which were not previously accounted for. Many of these were stocks managed by state agencies so did not appear in the list in (2). These 15 stocks were added to our dataset along with their year of first assessment.
 \end{enumerate}
 
 In total, after steps 1--3 we generated a list of 242 US stocks, including 211 stocks with stock assessments that qualified under our defined criteria. The remaining 31 stocks did not meet our assessment criteria. They were excluded from our dataset, although after merging our dataset of assessed stocks with the NOAA landings database, those stocks would later re-enter as unassessed stocks. 
@@ -837,7 +836,7 @@ The SIS database uses a 6-level categorization of assessments (\cite{SIS}), as f
 We expect our classification of "assessed" to align with levels 3--6 in the SIS database, and our classification of "unassessed" to align with levels 0--2. This is generally what we found, and the discrepancies are described below. These comparisons can be followed in our final dataset provided (supplementary dataset), which list for each stock in our dataset the corresponding stock from the SIS database. In summary, the comparison shows:
 
 
-I) Of the 211 stocks in our final dataset with a year of first stock assessment assignment, 189 have a corresponding stock in the SIS database. Of these 189 overlapping stocks, 161 (85\%) had an assessment level of 3 or greater assigned in the SIS database. The 28 stocks that we classified as assessed but that have a current assessment level less than 3 in the SIS database fall into two groups. First, the most recent assessment has been rejected during review for 7 stocks that would have otherwise had a SIS assessment level of 3 or greater:
+I) Of the 211 stocks in our final dataset with a year of first stock assessment assignment, 189 have a corresponding stock in the SIS database. Of these 189 overlapping stocks, 161 (85\%) had an assessment level of 3 or greater assigned in the SIS database. The 28 stocks that we classified as assessed but that have a current assessment level less than 3 in the SIS database fall into three groups. First, the most recent assessment has been rejected during review for 7 stocks that would have otherwise had a SIS assessment level of 3 or greater:
 
 	\begin{enumerate}
 	\item \label{itm:first} Atlantic cod - Georges Bank
@@ -850,6 +849,7 @@ I) Of the 211 stocks in our final dataset with a year of first stock assessment 
 	\end{enumerate}
 
 Because qualifying assessments for these stocks have been accepted and used for management in the past, we treat these as assessed stocks in our analysis and maintain their year of first assessment.
+
 Second, 20 stocks currently have a SIS assessment level less than 3 despite having had a qualifying assessment in the past:
 
 	\begin{enumerate}
@@ -876,7 +876,9 @@ Second, 20 stocks currently have a SIS assessment level less than 3 despite havi
 	\end{enumerate}
 
 The reasons for these discrepancies can be attributed to a population model (e.g. VPA) coupled with biological reference points previously used in the stock assessment process to inform fisheries management, but currently assessments rely on simpler models with lower assessment level categories in the SIS database (e.g. index-based methods or simpler equilibrium models). 
-One additional stock that was assessed in 2016 for the first time is not in a federal FMP and not included in SIS as having had an assessment, White seabass - Pacific Coast. 
+
+Third, one additional stock that was assessed in 2016 for the first time is not in a federal FMP and not included in SIS as having had an assessment: White seabass - Pacific Coast. 
+
 
 II) Of the 359 stocks in our final dataset that were considered unassessed (based on species in the NOAA landings-by-state database that did not pair with assessed stocks) 144 have a corresponding stock in the SIS database. Of these 144 overlapping stocks, 138 (96\%) had an assessment level of 2 or less assigned in the SIS database, and an additional 3 (2\%) had a recent assessment rejected that would have been a level 4 assessment had it not been rejected. The 3 stocks that we classified as unassessed but that have an assessment level of 3 or 4 in the SIS database are:
 
@@ -886,7 +888,7 @@ II) Of the 359 stocks in our final dataset that were considered unassessed (base
 	\item American lobster - Atlantic Coast [Northeast]
 	\end{enumerate}
 
-Stock assessments for these stocks are based on area-swept biomass estimates from surveys, other index-based methods, or do not appear to be coupled with biological reference points to meet our definition of a full assessment. To be consistent with other stocks in our analysis, we consider these stocks as unassessed. Note the American lobster unassessed stock represents areas south of the three assessed stocks already included (Georges Bank, Gulf of Maine, Southern New England)
+Stock assessments for these stocks are based on area-swept biomass estimates from surveys, other index-based methods, or do not appear to be coupled with biological reference points to meet our definition of a full assessment. To be consistent with other stocks in our analysis, we consider these stocks as unassessed. Note the American lobster unassessed stock represents areas south of the three assessed stocks already included (Georges Bank, Gulf of Maine, Southern New England).
 
 
 \newpage
@@ -1108,7 +1110,7 @@ ptab <- order(match(fx.tab.sum$Effect, c('Covariates','Region','Habitat','Class'
 \newpage
 \begin{center}
 \begin{longtable}{llrrr}
-\caption[Paramter estimates]{Posterior means of model parameters under interpretations of ratio of rates ($\theta$) or time-to-assessment ($\nu$), and probability $P(\theta>1)$ that increasing parameter values or stocks in a given category have an increased likelihood of assessment compared to the baseline. Under the ratio of rates interpretation, the rate effect $\theta$ represents rates at which stocks with different characteristics are assessed relative to a baseline of 1. Under the time-to-assessment interpretation, the time effect ν is a multiplicative acceleration factor, i.e., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock.}
+\caption[Paramter estimates]{Posterior means of model parameters under interpretations of ratio of rates ($\theta$) or time-to-assessment ($\nu$), and probability $P(\theta>1)$ that increasing parameter values or stocks in a given category have an increased likelihood of assessment compared to the baseline. Under the ratio of rates interpretation, the rate effect $\theta$ represents rates at which stocks with different characteristics are assessed relative to a baseline of 1. Under the time-to-assessment interpretation, the time effect $\nu$ is a multiplicative acceleration factor, i.e., $\nu=0.5$ suggests a stock with these characteristics is assessed twice as fast as the average stock.}
 \label{tab:fx} \\
 
 Effect & Category & Rate effect ($\theta$) & Time effect ($\nu$) & $P(\theta>1)$ \\
