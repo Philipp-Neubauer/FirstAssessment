@@ -880,15 +880,14 @@ The reasons for these discrepancies can be attributed to a population model (e.g
 Third, one additional stock that was assessed in 2016 for the first time is not in a federal FMP and not included in SIS as having had an assessment: White seabass - Pacific Coast. 
 
 
-II) Of the 359 stocks in our final dataset that were considered unassessed (based on species in the NOAA landings-by-state database that did not pair with assessed stocks) 144 have a corresponding stock in the SIS database. Of these 144 overlapping stocks, 138 (96\%) had an assessment level of 2 or less assigned in the SIS database, and an additional 3 (2\%) had a recent assessment rejected that would have been a level 4 assessment had it not been rejected. The 3 stocks that we classified as unassessed but that have an assessment level of 3 or 4 in the SIS database are:
+II) Of the 358 stocks in our final dataset that were considered unassessed (based on species in the NOAA landings-by-state database that did not pair with assessed stocks) 143 have a corresponding stock in the SIS database. Of these 143 overlapping stocks, 138 (97\%) had an assessment level of 2 or less assigned in the SIS database, and an additional 3 (2\%) had a recent assessment rejected that would have been a level 4 assessment had it not been rejected. The two stocks that we classified as unassessed but that have an assessment level of 3 or 4 in the SIS database are:
 
 	\begin{enumerate}
 	\item Yelloweye rockfish - Bering Sea / Aleutian Islands; Yelloweye rockfish - Gulf of Alaska
 	\item Stone crabs (Menippe spp.) - Gulf of Mexico
-	\item American lobster - Atlantic Coast [Northeast]
 	\end{enumerate}
 
-Stock assessments for these stocks are based on area-swept biomass estimates from surveys, other index-based methods, or do not appear to be coupled with biological reference points to meet our definition of a full assessment. To be consistent with other stocks in our analysis, we consider these stocks as unassessed. Note the American lobster unassessed stock represents areas south of the three assessed stocks already included (Georges Bank, Gulf of Maine, Southern New England).
+Stock assessments for these stocks are based on area-swept biomass estimates from surveys, other index-based methods, or do not appear to be coupled with biological reference points to meet our definition of a full assessment. To be consistent with other stocks in our analysis, we consider these stocks as unassessed.
 
 
 \newpage
