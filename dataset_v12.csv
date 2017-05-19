@@ -174,12 +174,12 @@
 "Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","Mississippi spotted sea trout",2016,1960,"USEC-SE","demersal",1.1,571.4,100,0,
 "Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","USEC-NE SEATROUT, SPOTTED",,1960,"USEC-NE","demersal",1.42,89.2,100,,
 "Actinopterygii","Perciformes","Sciaenidae","Cynoscion nebulosus","USEC-SE SEATROUT, SPOTTED",,1960,"USEC-SE","demersal",1.07,3802.8,100,,
-"Actinopterygii","Perciformes","Sciaenidae","Cynoscion regalis","USEC weakfish",1991,1960,"USEC-SE","demersal",0.53,16312.4,98,0,
+"Actinopterygii","Perciformes","Sciaenidae","Cynoscion regalis","USEC weakfish",1991,1960,"USEC-NE","demersal",0.53,16312.4,98,0,
 "Actinopterygii","Perciformes","Sciaenidae","Genyonemus lineatus","USWC-48 CROAKER, PACIFIC WHITE",,1960,"USWC-48","benthopelagic",0.61,1484.8,41,,
 "Actinopterygii","Perciformes","Sciaenidae","Leiostomus xanthurus","USEC-NE SPOT",,1960,"USEC-NE","demersal",0.7,3069.2,36,,
 "Actinopterygii","Perciformes","Sciaenidae","Leiostomus xanthurus","USEC-SE SPOT",,1960,"USEC-SE","demersal",0.41,4923.8,36,,
 "Actinopterygii","Perciformes","Sciaenidae","Menticirrhus saxatilis","USEC-NE KINGFISH, NORTHERN",,2007,"USEC-NE","demersal",1.6,0.3,46,,
-"Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC Atlantic croaker",2003,1960,"USEC-SE","demersal",0.52,13532.1,55,0,
+"Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC Atlantic croaker",2003,1960,"USEC-NE","demersal",0.52,13532.1,55,0,
 "Actinopterygii","Perciformes","Sciaenidae","Micropogonias undulatus","USEC-SE CROAKER, ATLANTIC",,1960,"USEC-SE","demersal",0.29,18265.7,55,,
 "Actinopterygii","Perciformes","Sciaenidae","Pogonias cromis","USEC-NE DRUM, BLACK",,1960,"USEC-NE","demersal",0.69,219.8,170,,
 "Actinopterygii","Perciformes","Sciaenidae","Pogonias cromis","USEC-SE DRUM, BLACK",,1960,"USEC-SE","demersal",1.05,4877.2,170,,
@@ -244,7 +244,7 @@
 "Actinopterygii","Perciformes","Sparidae","Pagrus pagrus","sAtl red porgy",1992,1978,"USEC-SE","benthopelagic",2.4,349.9,91,1,"Snapper-Grouper Fishery of the South Atlantic Region"
 "Actinopterygii","Perciformes","Sparidae","Pagrus pagrus","USEC-SE PORGY, RED",,1992,"USEC-SE","benthopelagic",2.5,176.4,91,,
 "Actinopterygii","Perciformes","Sparidae","Stenotomus caprinus","USEC-SE PORGY, LONGSPINE",,2011,"USEC-SE","demersal",2.58,0.2,30,,
-"Actinopterygii","Perciformes","Sparidae","Stenotomus chrysops","USNE scup",1995,1960,"USEC-SE","demersal",1.09,166.5,46,1,"Summer Flounder, Scup and Black Sea Bass"
+"Actinopterygii","Perciformes","Sparidae","Stenotomus chrysops","USNE scup",1995,1960,"USEC-NE","demersal",1.09,166.5,46,1,"Summer Flounder, Scup and Black Sea Bass"
 "Actinopterygii","Perciformes","Stichaeidae","Cebidichthys violaceus","USWC-48 PRICKLEBACK, MONKEYFACE",,1991,"USWC-48","demersal",6.29,0.4,76,,
 "Actinopterygii","Perciformes","Stromateidae","Peprilus alepidotus","USEC-NE HARVESTFISH",,1960,"USEC-NE","benthopelagic",0.75,244.1,30,,
 "Actinopterygii","Perciformes","Stromateidae","Peprilus alepidotus","USEC-SE HARVESTFISH",,1960,"USEC-SE","benthopelagic",0.87,332.6,30,,
@@ -534,8 +534,7 @@
 "Malacostraca","Decapoda","Menippidae","Menippe mercenaria","USEC-SE CRAB, FLORIDA STONE CLAWS",,1960,"USEC-SE","demersal",5.96,3214.2,12,,
 "Malacostraca","Decapoda","Nephropidae","Homarus americanus","GeBank American lobster",1992,1960,"USEC-NE","benthic",4.4,3652.408330504,64,0,
 "Malacostraca","Decapoda","Nephropidae","Homarus americanus","GoMaine American lobster",1992,1960,"USEC-NE","benthic",3.22,19508.6000027715,64,0,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","sNEng American lobster",1992,1960,"USEC-NE","benthic",4.82,5225.625,64,0,
-"Malacostraca","Decapoda","Nephropidae","Homarus americanus","USEC-NE LOBSTER, AMERICAN",,1960,"USEC-NE","benthic",4.94,1028.4,64,,
+"Malacostraca","Decapoda","Nephropidae","Homarus americanus","sNEng American lobster",1992,1960,"USEC-NE","benthic",4.57,6254.025,64,0,
 "Malacostraca","Decapoda","Oregoniidae","Chionoecetes bairdi","EBS tanner crab",2012,1967,"USWC-AK","benthic",3.87,24871.3,15,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"
 "Malacostraca","Decapoda","Oregoniidae","Chionoecetes bairdi","USWC-48 CRAB, SOUTHERN TANNER",,1993,"USWC-48","benthic",2.77,209.1,15,,
 "Malacostraca","Decapoda","Oregoniidae","Chionoecetes opilio","EBS snow crab",2000,1968,"USWC-AK","benthic",1.67,147502.1,9.1,1,"Bering Sea/Aleutian Islands King and Tanner Crabs"

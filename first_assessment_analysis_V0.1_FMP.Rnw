@@ -490,6 +490,7 @@ year.table <- inner_join(year.table %>% select(-FMP),fmp) %>% mutate(FMP = as.nu
                                                     FMP = ifelse(FMP>1,1,FMP))
 
 year.table <- unique(year.table)
+dim(year.table)
 #assessment time
 devtime <- apply(cbind(as.numeric(min(year.table$Year.of.first.stock.assessment,na.rm = T)),year.table$minyear),1,max,na.rm=T)
 
