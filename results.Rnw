@@ -1,4 +1,4 @@
-\documentclass[a4paper, toc=index,titlepage=true,abstract=true]{scrartcl}
+\documentclass[12pt,halfline,a4paper]{ouparticle}
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage{setspace}
@@ -10,48 +10,54 @@
 \usepackage[toc,page]{appendix}
 \usepackage{array,booktabs}
 \usepackage[american]{babel}
-\usepackage[backend=biber,style=apa,language=american, labeldate=year,
+\usepackage[backend=biber,style=authoryear,language=american, labeldate=year,
 uniquename=false, maxcitenames=2,maxbibnames=200,uniquelist=false,mincitenames=1]{biblatex}
 \usepackage{lineno, blindtext}
 \DeclareLanguageMapping{american}{american-apa}
 
 \addbibresource{FirstAssessment.bib}
 
-\geometry{verbose,letterpaper,tmargin=2.54cm,bmargin=2.54cm,lmargin=2.54cm,rmargin=2.54cm}
-
 \begin{document}
-\begin{titlepage}
-\centering
 
-\title{Drivers and rates of assessment of fished stocks in the United States}
+\title{Drivers and rates of stock assessments in the United States}
 
-\subtitle{When are fished stocks assessed?}
+\author{%
+\name{Philipp Neubauer} 
+\address{Dragonfly Data Science, Wellington, New Zealand}
+\email{philipp@dragonfly.co.nz}
+\and 
+\name{James T. Thorson} 
+\address{NOAA Northwest Fisheries Science Center, Seattle, USA}
+\email{james.thorson@noaa.gov}
+\and 
+\name{Michael C. Melnychuk} 
+\address{School of Aquatic and Fisheries Science,\\
+University of Washington, Seattle, USA}
+\email{mmel@uw.edu}
+\and 
+\name{Richard Methot} 
+\address{NOAA Northwest Fisheries Science Center, Seattle, USA}
+\email{richard.methot@noaa.gov}
+\and 
+\name{Kristan Blackhart}
+\address{ECS Federal, Inc., in support of NOAA Fisheries, \\Office of Science and Technology, USA}
+\email{kristan.blackhart@noaa.gov}
+}
 
-\author{Philipp Neubauer, Dragonfly Data Science, Wellington, New Zealand
-\and James T. Thorson, NOAA Northwest Fisheries Science Center, Seattle, USA
-\and Michael C. Melnychuk, School of Aquatic and Fisheries Science, \\University of Washington, Seattle, USA
-\and Richard Methot, NOAA Northwest Fisheries Science Center, Seattle, USA
-\and Kristan Blackhart, ECS Federal, Inc., in support of NOAA Fisheries, \\Office of Science and Technology, USA}
-
-
-\end{titlepage}
-\maketitle
-\begin{spacing}{1.9}
-\begin{abstract}
-Fisheries management is most effective when based on scientific estimates of sustainable fishing rates. While some simple approaches allow estimation of harvest limits, more data-intensive stock assessments are generally required to 
-evaluate the stock's biomass and fishing rates relative to sustainable levels. Here we evaluate factors influencing the probability that a 
-previously-unassessed stock in the United States will become the subject of a stock assessment. Using a statistical model based on time-to-event analysis and 569 coastal marine fish and invertebrate stocks landed in commercial 
+\abstract{Fisheries management is most effective when based on scientific estimates of sustainable fishing rates. While some simple approaches allow estimation of harvest limits, more data-intensive stock assessments are generally required to 
+evaluate the stock's biomass and fishing rates relative to sustainable levels. Here we evaluate how stock characteristics relate to the rate of new assessments in the United States. Using a statistical model based on time-to-event analysis and 569 coastal marine fish and invertebrate stocks landed in commercial 
 fisheries, we quantify the impact of region, habitat, life-history, and economic factors on the annual probability of being assessed. Although the majority of landings come from assessed stocks in all regions, less than half of the 
 regionally-landed species currently have been assessed. As expected, our time-to-event 
-model identifies landed tonnage and ex-vessel price as the dominant factors determining the rate of new assessments, with greater landings and higher prices leading to higher probabilities of being assessed. However, we also find that after controlling for landings and price, there has been a consistent bias towards assessing larger-bodied species. 
-A number of vulnerable groups such as rockfishes (Scorpaeniformes) and groundsharks (Carcharhiniformes) have a relatively high annual probability of being assessed after controlling for their relatively small tonnage and low price. 
-Due to relatively low landed tonnage and price of species that are currently unassessed, our model suggests that the number of assessed stocks will increase more slowly in future decades.
-\end{abstract}
-{\large Keywords:} stock assessment, fisheries meta-analysis, fishery development, time-to-event analysis, marine conservation, catch-only methods
+model identified landed tonnage and ex-vessel price as the dominant factors determining increased rates of new assessments. However, we also found that after controlling for landings and price, there has been a consistent bias towards assessing larger-bodied species. 
+A number of vulnerable groups such as rockfishes (Scorpaeniformes) and groundsharks (Carcharhiniformes) have a relatively high annual probability of being assessed after controlling for their relatively small tonnage and low price. Due to relatively low landed tonnage and price of species that are currently unassessed, our model suggests that the number of assessed stocks will increase more slowly in future decades.}
 
-\newpage
-\pagenumbering{gobble}
-\tableofcontents
+
+\date{\today}
+
+\keywords{stock assessment, fisheries meta-analysis, fishery development, time-to-event analysis, marine conservation, catch-only methods}
+
+\maketitle
+
 \newpage
 
 <<echo=FALSE>>=
@@ -173,8 +179,6 @@ years.table %>%
 @
 
 \FloatBarrier
-\newpage
-\begin{linenumbers}
 \section{Introduction}
 
 Fisheries scientists have measured human impacts on populations of finfishes and invertebrates for over 100 years with the goal of balancing the value derived from fishing with the long-term sustainability of populations 
@@ -203,8 +207,8 @@ to receive sufficient attention to develop a stock assessment.  Understanding wh
 
 1. Conservation concerns and, conversely, missed opportunities for increased exploitation will be undocumented, so will receive less attention from the public and fishery managers.
 
-2.  Output from stock assessments has often been used in meta-analyses to understand ecological characteristics of marine fishes in general \autocite{myers_maximum_1999, thorson2015giants, jensen2012marine}.  Therefore, any systematic 
-bias in which particular stocks are assessed will also bias our ecological understanding of marine fishes.
+2.  Output from stock assessments has often been used in meta-analyses to understand ecological characteristics of marine fishes in general \autocite{myers_maximum_1999, thorson2015giants, jensen2012marine}.  Therefore, it is important to understand the nature of systematic 
+biases towards particular stock chracteristics, as these will also bias our ecological understanding of marine fishes.
 
 3.  Stock assessments often require periodic updates (e.g., Pacific hake has been re-assessed annually from \Sexpr{year.table[grepl('Pacific hake',year.table$stock),'Year.of.first.stock.assessment']} through 2016; 
 \autocite[e.g., ][]{helser2006stock}), and agency resources might be fully expended while assessing a small fraction of possible stocks. If the rate of assessing new species is decreasing, this could indicate the need for additional 
@@ -735,11 +739,9 @@ Fish and invertebrate stocks in the US are reaching saturation with respect to t
 
 It is not necessarily the case that stock assessments are required for effectively managing fish and invertebrate stocks, as harvest control rules or in-season adjustments to fishing effort can be based on fishery-independent survey indices or fishery-dependent catch-per-unit effort indices rather than on stock status estimates from assessments. However, a logical leap from "what gets measured, gets managed" to "what is better measured, is better managed" suggests the value of better estimating stock status through the use of stock assessments (population models fitted statistically to abundance index or age/length composition data, where estimated biomass is compared with explicit target levels). Further improvements in management performance given current resources could also be attained by improved methods for prioritizing which stocks to assess, and we hope that the current results will help to inform ongoing plans to prioritize future stock assessments in the United States \autocite{methot_prioritizing_2015}.
 
-\end{linenumbers}
-\end{spacing}
-\section{Acknowledgements}
+\begin{notes}[Acknowledgements]
 We thank Jeannette Banobi for compiling year of first stock assessment records in the management attributes database, and Nicole Baker for conducting online searches to identify additional assessments. We thank Cody Szuwalski for productive discussions while planning out the data set and analysis, and Chantal Wetzel for helpful comments on the manuscript. We are grateful to fisheries scientists and managers who participated in interviews to characterize management attributes of US stocks including the year of first stock assessment. These individuals include: Ingrid Spies, Grant Thompson (Alaska Fisheries Science Center); Scott Kelley, Tim Baker, Gretchen Bishop, Dave Harris, Tim Sands, Mark Stichert, Joe Stratman, Jeff Wadle (Alaska Department of Fish and Game); Edward Poulsen (Alaska Bering Sea Crabbers Association); John Devore, Mike Burner, Kerry Griffin (Pacific Fishery Management Council); Paul Crone (Southwest Fisheries Science Center); Steven Hare (International Pacific Halibut Commission); Dan Ayres, Heather Reed, Bob Sizemore, Mike Ulrich, Lorna Wargo (Washington Department of Fish and Wildlife); Kelly Corbett, Scott Groth, Robert Hannah (Oregon Department of Fish and Wildlife); Kristine Barsky, Peter Kalvass (California Department of Fish and Game), Toni Chute, Ruth Haas-Castro, Dvora Hart, Joseph Idoine, Larry Jacobsen, Chris Legault, Loretta O'Brien, Paul Rago, Gary Shepherd, Fred Serchuk, Katherine Sosebee (Northeast Fisheries Science Center); Andy Applegate, Phillip Haring, Chris Kellog, Tom Nies, Lori Steele (New England Fishery Management Council); Robert Beale, Toni Kerns, Nichola Meserve, Brad Spear, Christopher Vonderweidt, Michael Waine (Atlantic States Marine Fisheries Commission); Jason Didden, Tom Hoff (Mid-Atlantic Marine Fisheries Commission); Derek Orner (National Marine Fisheries Service); John Carlson, Shannon Cass-Calay, Nancy Cummings, Enric Cortes, Rick Hart, Erik Williams (Southeast Fisheries Science Center); Sue Gerhart, Peter Hood, Jack McGovern, Andy Strelcheck (NOAA Southeast Regional Office); Gregg Waugh (South Atlantic Marine Fisheries Commission); Tom Matthews, and Bill Sharp (Florida Fish and Wildlife Conservation Commission). M.C.M. was supported in this work by the Walton Family Foundation and by a NSERC Banting Fellowship.
-
+\end{notes}
 
 \printbibliography
 
@@ -747,9 +749,6 @@ We thank Jeannette Banobi for compiling year of first stock assessment records i
 \newpage
 
 \appendix
-\renewcommand\thefigure{\thesection.\arabic{figure}}
-\renewcommand\thetable{\thesection.\arabic{table}}
-\setcounter{figure}{0}
 
 
 \section{Assignment of year of first stock assessment}
